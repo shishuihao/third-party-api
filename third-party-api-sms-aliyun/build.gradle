@@ -2,6 +2,5 @@ dependencies {
     compile project(':third-party-api-core')
     compile project(':third-party-api-sms')
 
-    compile 'com.aliyun:aliyun-java-sdk-core:4.5.3'
     compile 'com.aliyun:dysmsapi20170525:2.0.1'
 }

@@ -1,2 +1,5 @@
 rootProject.name = 'third-party-api'
+includeFlat(
+        'third-party-api-core'
+)
 

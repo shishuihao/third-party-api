@@ -24,4 +24,5 @@ allprojects {
 
 dependencies {
     compile project(':third-party-api-core')
+    compile project(':third-party-api-sms')
 }

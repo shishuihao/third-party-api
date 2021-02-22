@@ -1,0 +1,2 @@
+rootProject.name = 'third-party-api-push'
+includeFlat('third-party-api-core')

@@ -1,0 +1,2 @@
+rootProject.name = 'third-party-api-sms-tencent'
+includeFlat('third-party-api-core', 'third-party-api-sms')

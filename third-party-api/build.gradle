@@ -27,4 +27,5 @@ dependencies {
     compile project(':third-party-api-pay')
     compile project(':third-party-api-push')
     compile project(':third-party-api-sms')
+    compile project(':third-party-api-sms-tencent')
 }

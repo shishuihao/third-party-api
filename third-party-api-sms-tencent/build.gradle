@@ -1,0 +1,6 @@
+dependencies {
+    compile project(':third-party-api-core')
+    compile project(':third-party-api-sms')
+
+    compile 'com.tencentcloudapi:tencentcloud-sdk-java:3.1.209'
+}

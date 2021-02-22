@@ -1,0 +1,3 @@
+rootProject.name = 'third-party-api-pay'
+includeFlat('third-party-api-core')
+

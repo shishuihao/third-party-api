@@ -1,6 +1,7 @@
 rootProject.name = 'third-party-api'
 includeFlat(
         'third-party-api-core',
-        'third-party-api-sms'
+        'third-party-api-sms',
+        'third-party-api-pay'
 )
 

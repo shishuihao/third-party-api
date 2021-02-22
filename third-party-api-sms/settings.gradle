@@ -1,0 +1,3 @@
+rootProject.name = 'third-party-api-sms'
+includeFlat('third-party-api-core')
+

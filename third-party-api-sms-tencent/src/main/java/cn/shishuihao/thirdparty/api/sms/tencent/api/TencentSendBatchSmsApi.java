@@ -28,9 +28,9 @@ public class TencentSendBatchSmsApi implements SendBatchSmsApi {
 
     @Override
     public SendBatchSmsResponse execute(SendBatchSmsRequest request) {
+        TencentSmsProperties smsProperties = (TencentSmsProperties) propertiesRepository.getById(request.getPropertiesId())
+                .orElseThrow(() -> new PropertiesNotFoundException("properties not found"));
         try {
-            TencentSmsProperties smsProperties = (TencentSmsProperties) propertiesRepository.getById(request.getPropertiesId())
-                    .orElseThrow(() -> new PropertiesNotFoundException(""));
             /* 必要步骤：
              * 实例化一个认证对象，入参需要传入腾讯云账户密钥对 secretId 和 secretKey
              * 本示例采用从环境变量读取的方式，需要预先在环境变量中设置这两个值

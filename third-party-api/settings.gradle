@@ -4,6 +4,7 @@ includeFlat(
         'third-party-api-pay',
         'third-party-api-push',
         'third-party-api-sms',
+        'third-party-api-sms-aliyun',
         'third-party-api-sms-tencent'
 )
 

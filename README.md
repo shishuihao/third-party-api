@@ -1,5 +1,5 @@
 # third-party-api
-第三方接口实现。如：支付、推送、短信等等(Third party interface implementation. Such as: payment, push, SMS and so on)
+第三方接口集成。如：短信、推送等等(Third party interface integration. Such as: SMS, push and so on)
 
 
 # 短信接口(SMS API)

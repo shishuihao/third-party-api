@@ -1,5 +1,7 @@
 package cn.shishuihao.thirdparty.api.core;
 
+import cn.shishuihao.thirdparty.api.core.exception.ApiNotFoundException;
+import cn.shishuihao.thirdparty.api.core.exception.ChannelNotFoundException;
 import cn.shishuihao.thirdparty.api.core.impl.ChannelRepositoryMemoryImpl;
 import cn.shishuihao.thirdparty.api.core.impl.PropertiesRepositoryMemoryImpl;
 
@@ -34,9 +36,10 @@ public class ApiRegistry {
      * @param request request
      * @return optional api
      */
-    public <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> Optional<A> getApi(T request) {
-        return channelRepository.getById(request.channelId())
-                .flatMap(channel -> channel.getApi(request.apiType()));
+    public <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> Optional<A> getApi(final T request) {
+        Channel channel = this.channelRepository.getById(request.channelId())
+                .orElseThrow(() -> new ChannelNotFoundException("channel not found by channelId:" + request.channelId()));
+        return channel.getApi(request.apiType());
     }
 
     /**
@@ -45,7 +48,9 @@ public class ApiRegistry {
      * @param request request
      * @return optional response
      */
-    public <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> Optional<R> execute(T request) {
-        return getApi(request).map(api -> api.execute(request));
+    public <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> R execute(final T request) {
+        A api = this.getApi(request)
+                .orElseThrow(() -> new ApiNotFoundException("api not found by apiType:" + request.apiType()));
+        return api.execute(request);
     }
 }

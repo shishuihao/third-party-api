@@ -1,4 +1,6 @@
-package cn.shishuihao.thirdparty.api.core;
+package cn.shishuihao.thirdparty.api.core.exception;
+
+import cn.shishuihao.thirdparty.api.core.ApiException;
 
 /**
  * @author shishuihao

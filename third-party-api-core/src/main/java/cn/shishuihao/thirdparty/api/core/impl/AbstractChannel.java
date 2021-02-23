@@ -18,19 +18,19 @@ public abstract class AbstractChannel implements Channel {
     private final Map<Class<?>, Api<?, ?, ?>> map = new ConcurrentHashMap<>();
 
     @Override
-    public void add(Api<?, ?, ?> entity) {
+    public void add(final Api<?, ?, ?> entity) {
         map.put(entity.id(), entity);
         map.put(entity.apiType(), entity);
     }
 
     @Override
-    public Optional<Api<?, ?, ?>> getById(Class<?> id) {
+    public Optional<Api<?, ?, ?>> getById(final Class<?> id) {
         return Optional.ofNullable(map.get(id));
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> Optional<A> getApi(Class<A> apiType) {
+    public <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> Optional<A> getApi(final Class<A> apiType) {
         return Optional.ofNullable((A) this.getById(apiType).orElse(null));
     }
 }

@@ -16,12 +16,12 @@ public class RepositoryMemoryImpl<I, T extends Entity<I>> implements Repository<
     private final Map<I, T> map = new ConcurrentHashMap<>();
 
     @Override
-    public void add(T entity) {
+    public void add(final T entity) {
         map.put(entity.id(), entity);
     }
 
     @Override
-    public Optional<T> getById(I id) {
+    public Optional<T> getById(final I id) {
         return Optional.ofNullable(map.get(id));
     }
 }

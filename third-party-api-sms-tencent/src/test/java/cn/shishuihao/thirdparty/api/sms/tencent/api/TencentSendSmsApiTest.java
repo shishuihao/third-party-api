@@ -34,8 +34,7 @@ class TencentSendSmsApiTest {
                 .phoneNumber("+8613711112222")
                 .templateId("1234")
                 .templateParams(params)
-                .build())
-                .orElse(null);
+                .build());
         Assertions.assertNotNull(response);
     }
 }

@@ -13,7 +13,7 @@ public interface Repository<I, T extends Entity<I>> {
      *
      * @param entity entity
      */
-    void add(T entity);
+    void add(final T entity);
 
     /**
      * get entity by id
@@ -21,5 +21,5 @@ public interface Repository<I, T extends Entity<I>> {
      * @param id entity id
      * @return optional entity
      */
-    Optional<T> getById(I id);
+    Optional<T> getById(final I id);
 }

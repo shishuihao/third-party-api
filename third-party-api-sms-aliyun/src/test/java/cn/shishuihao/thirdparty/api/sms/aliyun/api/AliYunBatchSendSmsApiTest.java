@@ -17,6 +17,7 @@ import java.util.TreeMap;
  */
 
 class AliYunBatchSendSmsApiTest {
+
     @Test
     void execute() {
         AliYunSmsProperties properties = new AliYunSmsProperties();
@@ -31,8 +32,7 @@ class AliYunBatchSendSmsApiTest {
                 .phoneNumbers(Arrays.asList("+8613711112222", "+8618511122266"))
                 .templateId("1234")
                 .templateParams(params)
-                .build())
-                .orElse(null);
+                .build());
         Assertions.assertNotNull(response);
     }
 }

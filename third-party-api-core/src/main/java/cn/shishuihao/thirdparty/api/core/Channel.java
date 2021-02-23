@@ -14,5 +14,5 @@ public interface Channel extends Entity<String>, ApiRepository {
      * @param apiType api type
      * @return api
      */
-    <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> Optional<A> getApi(Class<A> apiType);
+    <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> Optional<A> getApi(final Class<A> apiType);
 }

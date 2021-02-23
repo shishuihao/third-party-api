@@ -13,20 +13,30 @@ public class XiaomiPushProperties implements PushProperties {
      */
     private String appId;
     /**
-     * application key
-     */
-    private String appKey;
-    /**
      * application secret key
      */
     private String appSecretKey;
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public XiaomiPushProperties setAppId(String appId) {
+        this.appId = appId;
+        return this;
+    }
 
     public String getAppSecretKey() {
         return appSecretKey;
     }
 
+    public XiaomiPushProperties setAppSecretKey(String appSecretKey) {
+        this.appSecretKey = appSecretKey;
+        return this;
+    }
+
     @Override
     public String id() {
-        return null;
+        return appId;
     }
 }

@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.push.xiaomi;
 
+import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
 import cn.shishuihao.thirdparty.api.core.impl.AbstractChannel;
 import cn.shishuihao.thirdparty.api.push.PushChannel;
@@ -17,6 +18,10 @@ public class XiaomiPushChannel extends AbstractChannel implements PushChannel {
                              PropertiesRepository propertiesRepository) {
         this.channelProperties = channelProperties;
         this.add(new XiaomiPushMessageApi(propertiesRepository));
+    }
+
+    public XiaomiPushChannel() {
+        this(new XiaomiPushChannelProperties(), ApiRegistry.PROPERTIES_REPOSITORY);
     }
 
     @Override

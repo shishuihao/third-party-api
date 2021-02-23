@@ -35,8 +35,7 @@ class TencentSendBatchSmsApiTest {
                 .phoneNumbers(Arrays.asList("+8613711112222", "+8618511122266"))
                 .templateId("1234")
                 .templateParams(params)
-                .build())
-                .orElse(null);
+                .build());
         Assertions.assertNotNull(response);
     }
 }

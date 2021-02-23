@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.push.xiaomi.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiException;
-import cn.shishuihao.thirdparty.api.core.PropertiesNotFoundException;
+import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
 import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
 import cn.shishuihao.thirdparty.api.push.api.PushMessageApi;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageRequest;

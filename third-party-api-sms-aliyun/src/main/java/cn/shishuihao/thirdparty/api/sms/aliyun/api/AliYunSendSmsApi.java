@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiException;
-import cn.shishuihao.thirdparty.api.core.PropertiesNotFoundException;
+import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
 import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
 import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsProperties;
 import cn.shishuihao.thirdparty.api.sms.api.SendSmsApi;

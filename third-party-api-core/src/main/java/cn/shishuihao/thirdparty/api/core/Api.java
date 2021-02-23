@@ -12,7 +12,7 @@ public interface Api<A extends Api<A, T, R>, T extends Request<A, T, R>, R exten
      * @return response
      * @throws ApiException api exception
      */
-    R execute(T request);
+    R execute(final T request);
 
     /**
      * get entity id

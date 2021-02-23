@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 class ApiRegistryTest {
     @Test
     void execute() {
-        CodePayResponse response = ApiRegistry.INSTANCE.execute(new CodePayRequest()).orElse(null);
+        CodePayResponse response = ApiRegistry.INSTANCE.execute(new CodePayRequest());
         Assertions.assertNotNull(response);
     }
 

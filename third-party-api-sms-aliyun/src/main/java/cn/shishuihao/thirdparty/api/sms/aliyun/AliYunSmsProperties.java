@@ -21,8 +21,16 @@ public class AliYunSmsProperties implements SmsProperties {
         return accessKeyId;
     }
 
+    public void setAccessKeyId(String accessKeyId) {
+        this.accessKeyId = accessKeyId;
+    }
+
     public String getAccessSecret() {
         return accessSecret;
+    }
+
+    public void setAccessSecret(String accessSecret) {
+        this.accessSecret = accessSecret;
     }
 
     @Override

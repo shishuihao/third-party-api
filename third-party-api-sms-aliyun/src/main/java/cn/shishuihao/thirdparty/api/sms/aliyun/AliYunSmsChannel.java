@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun;
 
+import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
 import cn.shishuihao.thirdparty.api.core.impl.AbstractChannel;
 import cn.shishuihao.thirdparty.api.sms.SmsChannel;
@@ -19,6 +20,10 @@ public class AliYunSmsChannel extends AbstractChannel implements SmsChannel {
         this.channelProperties = channelProperties;
         this.add(new AliYunSendBatchSmsApi(propertiesRepository));
         this.add(new AliYunSendSmsApi(propertiesRepository));
+    }
+
+    public AliYunSmsChannel() {
+        this(new AliYunSmsChannelProperties(), ApiRegistry.PROPERTIES_REPOSITORY);
     }
 
     @Override

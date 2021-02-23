@@ -2,19 +2,14 @@ package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsRequest;
-import cn.shishuihao.thirdparty.api.sms.request.SendSmsRequest;
 import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsResponse;
-import cn.shishuihao.thirdparty.api.sms.response.SendSmsResponse;
 import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsProperties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author shishuihao

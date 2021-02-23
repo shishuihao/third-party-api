@@ -37,34 +37,21 @@ public class TencentSmsProperties implements SmsProperties {
         return appId;
     }
 
-    public String getSecretId() {
-        return secretId;
-    }
-
-    public String getSecretKey() {
-        return secretKey;
-    }
-
-    public String getSign() {
-        return sign;
-    }
-
-    public String getSenderId() {
-        return senderId;
-    }
-
-    public String getExtendCode() {
-        return extendCode;
-    }
-
     public TencentSmsProperties setAppId(String appId) {
         this.appId = appId;
         return this;
     }
 
-    public TencentSmsProperties setSecretId(String secretId) {
+    public String getSecretId() {
+        return secretId;
+    }
+
+    public void setSecretId(String secretId) {
         this.secretId = secretId;
-        return this;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
     }
 
     public TencentSmsProperties setSecretKey(String secretKey) {
@@ -72,14 +59,26 @@ public class TencentSmsProperties implements SmsProperties {
         return this;
     }
 
+    public String getSign() {
+        return sign;
+    }
+
     public TencentSmsProperties setSign(String sign) {
         this.sign = sign;
         return this;
     }
 
+    public String getSenderId() {
+        return senderId;
+    }
+
     public TencentSmsProperties setSenderId(String senderId) {
         this.senderId = senderId;
         return this;
+    }
+
+    public String getExtendCode() {
+        return extendCode;
     }
 
     public TencentSmsProperties setExtendCode(String extendCode) {

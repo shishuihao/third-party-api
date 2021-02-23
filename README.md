@@ -15,7 +15,7 @@ graph LR
   B-->C(ChannelRepository.getById(SendSmsRequest.channelId()))
   C-->D(AliYunSmsChannel.getApi(SendSmsRequest.apiType()))
   D-->E(AliYunSendSmsApi.execute(SendSmsRequest))
-  E-->F(AliYunClient.sendSms(new SendSmsRequest))
+  E-->F(AliYunClient.sendSms(new AliYunSendSmsRequest))
   G-->H(new SendSmsResponseBody)
   H-->I
 ```

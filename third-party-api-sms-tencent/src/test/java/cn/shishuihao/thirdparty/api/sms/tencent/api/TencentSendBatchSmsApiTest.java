@@ -32,7 +32,6 @@ class TencentSendBatchSmsApiTest {
         SendBatchSmsResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsRequest.Builder.builder()
                 .channelId("sms.tencent")
                 .propertiesId(properties.id())
-                .requestId("requestId")
                 .phoneNumbers(Arrays.asList("+8613711112222", "+8618511122266"))
                 .templateId("1234")
                 .templateParams(params)

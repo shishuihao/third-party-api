@@ -31,8 +31,7 @@ SendSmsResponse response = ApiRegistry.INSTANCE.execute(SendSmsRequest.Builder.b
     .phoneNumber("+8613711112222")
     .templateId("1234")
     .templateParams(params)
-    .build())
-    .orElse(null);
+    .build());
 ```
 
 ## send batch sms
@@ -50,6 +49,5 @@ SendBatchSmsResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsRequest
     .phoneNumbers(Arrays.asList("+8613711112222", "+8618511122266"))
     .templateId("1234")
     .templateParams(params)
-    .build())
-    .orElse(null);
+    .build());
 ```

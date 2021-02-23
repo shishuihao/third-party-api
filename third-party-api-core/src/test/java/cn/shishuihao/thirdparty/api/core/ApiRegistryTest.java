@@ -1,7 +1,6 @@
 package cn.shishuihao.thirdparty.api.core;
 
 import cn.shishuihao.thirdparty.api.core.impl.AbstractChannel;
-import cn.shishuihao.thirdparty.api.core.impl.ChannelRepositoryMemoryImpl;
 import cn.shishuihao.thirdparty.api.core.impl.PropertiesRepositoryMemoryImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,23 +11,31 @@ import org.junit.jupiter.api.Test;
  */
 
 class ApiRegistryTest {
-    ChannelRepository channelRepository = new ChannelRepositoryMemoryImpl();
-    ApiRegistry apiRegistry = new ApiRegistry(channelRepository);
-
     @Test
     void execute() {
-        AlipayPayChannel channel = new AlipayPayChannel();
-        channel.add(new CodePayApi());
-        channelRepository.add(channel);
-        CodePayResponse response = apiRegistry.execute(new CodePayRequest()).orElse(null);
+        CodePayResponse response = ApiRegistry.INSTANCE.execute(new CodePayRequest()).orElse(null);
         Assertions.assertNotNull(response);
     }
 
-    static class AlipayPayChannel extends AbstractChannel {
+    public static class AlipayPayChannel extends AbstractChannel {
+        public AlipayPayChannel() {
+            this.add(new CodePayApi());
+        }
+
         @Override
         public String id() {
             return AlipayPayChannel.class.getSimpleName();
         }
+    }
+
+    static class AlipayProperties implements Properties {
+        @Override
+        public String id() {
+            return AlipayProperties.class.getSimpleName();
+        }
+    }
+
+    static class AlipayPropertiesRepository extends PropertiesRepositoryMemoryImpl {
     }
 
     static class CodePayApi implements Api<CodePayApi, CodePayRequest, CodePayResponse> {
@@ -62,15 +69,5 @@ class ApiRegistryTest {
     }
 
     static class CodePayResponse implements Response {
-    }
-
-    static class AlipayPropertiesRepository extends PropertiesRepositoryMemoryImpl {
-    }
-
-    static class AlipayProperties implements Properties {
-        @Override
-        public String id() {
-            return AlipayProperties.class.getSimpleName();
-        }
     }
 }

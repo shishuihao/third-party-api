@@ -1,6 +1,9 @@
 package cn.shishuihao.thirdparty.api.core;
 
+import cn.shishuihao.thirdparty.api.core.impl.ChannelRepositoryMemoryImpl;
+
 import java.util.Optional;
+import java.util.ServiceLoader;
 
 /**
  * @author shishuihao
@@ -8,6 +11,15 @@ import java.util.Optional;
  */
 
 public class ApiRegistry {
+    /**
+     * spi
+     */
+    public static final ApiRegistry INSTANCE = new ApiRegistry(new ChannelRepositoryMemoryImpl());
+
+    static {
+        ServiceLoader.load(Channel.class).forEach(INSTANCE.channelRepository::add);
+    }
+
     private final ChannelRepository channelRepository;
 
     public ApiRegistry(ChannelRepository channelRepository) {

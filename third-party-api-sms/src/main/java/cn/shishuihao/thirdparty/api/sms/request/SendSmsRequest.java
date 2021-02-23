@@ -14,67 +14,51 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
     /**
      * channel id
      */
-    private String channelId;
+    private final String channelId;
     /**
      * properties id
      */
-    private String propertiesId;
+    private final String propertiesId;
     /**
      * phone number
      */
-    private String phoneNumber;
+    private final String phoneNumber;
     /**
      * template Id
      */
-    private String templateId;
+    private final String templateId;
     /**
      * template params
      */
-    private Map<String, String> templateParams;
+    private final Map<String, String> templateParams;
+
+    protected SendSmsRequest(String channelId, String propertiesId,
+                             String phoneNumber, String templateId, Map<String, String> templateParams) {
+        this.channelId = channelId;
+        this.propertiesId = propertiesId;
+        this.phoneNumber = phoneNumber;
+        this.templateId = templateId;
+        this.templateParams = templateParams;
+    }
 
     public String getChannelId() {
         return channelId;
-    }
-
-    public SendSmsRequest setChannelId(String channelId) {
-        this.channelId = channelId;
-        return this;
     }
 
     public String getPropertiesId() {
         return propertiesId;
     }
 
-    public SendSmsRequest setPropertiesId(String propertiesId) {
-        this.propertiesId = propertiesId;
-        return this;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public SendSmsRequest setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return this;
     }
 
     public String getTemplateId() {
         return templateId;
     }
 
-    public SendSmsRequest setTemplateId(String templateId) {
-        this.templateId = templateId;
-        return this;
-    }
-
     public Map<String, String> getTemplateParams() {
         return templateParams;
-    }
-
-    public SendSmsRequest setTemplateParams(Map<String, String> templateParams) {
-        this.templateParams = templateParams;
-        return this;
     }
 
     @Override
@@ -90,5 +74,50 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
     @Override
     public Class<SendSmsApi> apiType() {
         return SendSmsApi.class;
+    }
+
+
+    public static final class Builder {
+        private String channelId;
+        private String propertiesId;
+        private String phoneNumber;
+        private String templateId;
+        private Map<String, String> templateParams;
+
+        private Builder() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder channelId(String channelId) {
+            this.channelId = channelId;
+            return this;
+        }
+
+        public Builder propertiesId(String propertiesId) {
+            this.propertiesId = propertiesId;
+            return this;
+        }
+
+        public Builder phoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public Builder templateId(String templateId) {
+            this.templateId = templateId;
+            return this;
+        }
+
+        public Builder templateParams(Map<String, String> templateParams) {
+            this.templateParams = templateParams;
+            return this;
+        }
+
+        public SendSmsRequest build() {
+            return new SendSmsRequest(channelId, propertiesId, phoneNumber, templateId, templateParams);
+        }
     }
 }

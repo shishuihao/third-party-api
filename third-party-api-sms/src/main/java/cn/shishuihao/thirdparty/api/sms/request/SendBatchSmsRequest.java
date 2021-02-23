@@ -15,67 +15,50 @@ public class SendBatchSmsRequest implements SmsRequest<SendBatchSmsApi, SendBatc
     /**
      * channel id
      */
-    private String channelId;
+    private final String channelId;
     /**
      * properties id
      */
-    private String propertiesId;
+    private final String propertiesId;
     /**
      * phone numbers
      */
-    private List<String> phoneNumbers;
+    private final List<String> phoneNumbers;
     /**
      * template Id
      */
-    private String templateId;
+    private final String templateId;
     /**
      * template params
      */
-    private Map<String, String> templateParams;
+    private final Map<String, String> templateParams;
+
+    protected SendBatchSmsRequest(String channelId, String propertiesId, List<String> phoneNumbers, String templateId, Map<String, String> templateParams) {
+        this.channelId = channelId;
+        this.propertiesId = propertiesId;
+        this.phoneNumbers = phoneNumbers;
+        this.templateId = templateId;
+        this.templateParams = templateParams;
+    }
 
     public String getChannelId() {
         return channelId;
-    }
-
-    public SendBatchSmsRequest setChannelId(String channelId) {
-        this.channelId = channelId;
-        return this;
     }
 
     public String getPropertiesId() {
         return propertiesId;
     }
 
-    public SendBatchSmsRequest setPropertiesId(String propertiesId) {
-        this.propertiesId = propertiesId;
-        return this;
-    }
-
     public List<String> getPhoneNumbers() {
         return phoneNumbers;
-    }
-
-    public SendBatchSmsRequest setPhoneNumbers(List<String> phoneNumbers) {
-        this.phoneNumbers = phoneNumbers;
-        return this;
     }
 
     public String getTemplateId() {
         return templateId;
     }
 
-    public SendBatchSmsRequest setTemplateId(String templateId) {
-        this.templateId = templateId;
-        return this;
-    }
-
     public Map<String, String> getTemplateParams() {
         return templateParams;
-    }
-
-    public SendBatchSmsRequest setTemplateParams(Map<String, String> templateParams) {
-        this.templateParams = templateParams;
-        return this;
     }
 
     @Override
@@ -91,5 +74,49 @@ public class SendBatchSmsRequest implements SmsRequest<SendBatchSmsApi, SendBatc
     @Override
     public Class<SendBatchSmsApi> apiType() {
         return SendBatchSmsApi.class;
+    }
+
+    public static final class Builder {
+        private String channelId;
+        private String propertiesId;
+        private List<String> phoneNumbers;
+        private String templateId;
+        private Map<String, String> templateParams;
+
+        private Builder() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder channelId(String channelId) {
+            this.channelId = channelId;
+            return this;
+        }
+
+        public Builder propertiesId(String propertiesId) {
+            this.propertiesId = propertiesId;
+            return this;
+        }
+
+        public Builder phoneNumbers(List<String> phoneNumbers) {
+            this.phoneNumbers = phoneNumbers;
+            return this;
+        }
+
+        public Builder templateId(String templateId) {
+            this.templateId = templateId;
+            return this;
+        }
+
+        public Builder templateParams(Map<String, String> templateParams) {
+            this.templateParams = templateParams;
+            return this;
+        }
+
+        public SendBatchSmsRequest build() {
+            return new SendBatchSmsRequest(channelId, propertiesId, phoneNumbers, templateId, templateParams);
+        }
     }
 }

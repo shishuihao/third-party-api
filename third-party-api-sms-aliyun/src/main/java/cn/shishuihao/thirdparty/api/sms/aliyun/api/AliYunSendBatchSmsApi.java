@@ -11,6 +11,8 @@ import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsResponse;
 import com.aliyun.dysmsapi20170525.models.SendBatchSmsResponseBody;
 import com.aliyun.teaopenapi.models.Config;
 
+import java.util.Arrays;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -24,23 +26,24 @@ public class AliYunSendBatchSmsApi implements SendBatchSmsApi {
 
     @Override
     public SendBatchSmsResponse execute(SendBatchSmsRequest request) {
-        AliYunSmsProperties smsProperties = (AliYunSmsProperties) propertiesRepository.getById(request.getPropertiesId())
+        AliYunSmsProperties properties = (AliYunSmsProperties) propertiesRepository.getById(request.getPropertiesId())
                 .orElseThrow(() -> new PropertiesNotFoundException("properties not found"));
         try {
             Config config = new Config()
                     // 您的AccessKey ID
-                    .setAccessKeyId(smsProperties.getAccessKeyId())
+                    .setAccessKeyId(properties.getAccessKeyId())
                     // 您的AccessKey Secret
-                    .setAccessKeySecret(smsProperties.getAccessSecret());
+                    .setAccessKeySecret(properties.getAccessSecret());
             // 访问的域名
             config.endpoint = "dysmsapi.aliyuncs.com";
             com.aliyun.dysmsapi20170525.Client client = new com.aliyun.dysmsapi20170525.Client(config);
             com.aliyun.dysmsapi20170525.models.SendBatchSmsRequest sendBatchSmsRequest = new com.aliyun.dysmsapi20170525.models.SendBatchSmsRequest();
             //
-            SendBatchSmsResponseBody smsResponse = client.sendBatchSms(sendBatchSmsRequest).getBody();
-            return new SendBatchSmsResponse()
-                    .setSendStatuses(new SendStatus[]{new SendStatus(smsResponse.getCode(), smsResponse.getMessage())})
-                    .setRequestId(smsResponse.getRequestId());
+            SendBatchSmsResponseBody sendBatchSmsResponseBody = client.sendBatchSms(sendBatchSmsRequest).getBody();
+            return SendBatchSmsResponse.Builder.builder()
+                    .sendStatuses(new SendStatus[]{new SendStatus(sendBatchSmsResponseBody.getCode(), sendBatchSmsResponseBody.getMessage())})
+                    .requestId(sendBatchSmsResponseBody.getRequestId())
+                    .build();
         } catch (Exception e) {
             throw new ApiException(e);
         }

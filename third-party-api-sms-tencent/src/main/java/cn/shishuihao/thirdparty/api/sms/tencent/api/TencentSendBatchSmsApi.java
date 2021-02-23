@@ -28,7 +28,7 @@ public class TencentSendBatchSmsApi implements SendBatchSmsApi {
 
     @Override
     public SendBatchSmsResponse execute(SendBatchSmsRequest request) {
-        TencentSmsProperties smsProperties = (TencentSmsProperties) propertiesRepository.getById(request.getPropertiesId())
+        TencentSmsProperties properties = (TencentSmsProperties) propertiesRepository.getById(request.getPropertiesId())
                 .orElseThrow(() -> new PropertiesNotFoundException("properties not found"));
         try {
             /* 必要步骤：
@@ -37,7 +37,7 @@ public class TencentSendBatchSmsApi implements SendBatchSmsApi {
              * 您也可以直接在代码中写入密钥对，但需谨防泄露，不要将代码复制、上传或者分享给他人
              * CAM 密钥查询：https://console.cloud.tencent.com/cam/capi
              */
-            Credential cred = new Credential(smsProperties.getSecretId(), smsProperties.getSecretKey());
+            Credential cred = new Credential(properties.getSecretId(), properties.getSecretKey());
             /* 非必要步骤:
              * 实例化一个客户端配置对象，可以指定超时时间等配置 */
             ClientProfile clientProfile = new ClientProfile();
@@ -58,10 +58,10 @@ public class TencentSendBatchSmsApi implements SendBatchSmsApi {
              * 帮助链接：
              * 短信控制台：https://console.cloud.tencent.com/smsv2
              * sms helper：https://cloud.tencent.com/document/product/382/3773 */
-            req.setSmsSdkAppid(smsProperties.getAppId());
-            req.setSign(smsProperties.getSign());
-            req.setSenderId(smsProperties.getSenderId());
-            req.setExtendCode(smsProperties.getExtendCode());
+            req.setSmsSdkAppid(properties.getAppId());
+            req.setSign(properties.getSign());
+            req.setSenderId(properties.getSenderId());
+            req.setExtendCode(properties.getExtendCode());
             /* 模板 ID: 必须填写已审核通过的模板 ID，可登录 [短信控制台] 查看模板 ID */
             req.setTemplateID(request.getTemplateId());
             /* 下发手机号码，采用 e.164 标准，+[国家或地区码][手机号]
@@ -72,12 +72,13 @@ public class TencentSendBatchSmsApi implements SendBatchSmsApi {
             req.setTemplateParamSet(templateParams);
             /* 通过 client 对象调用 SendSms 方法发起请求。注意请求方法名与请求对象是对应的
              * 返回的 res 是一个 SendSmsResponse 类的实例，与请求对象对应 */
-            com.tencentcloudapi.sms.v20190711.models.SendSmsResponse res = client.SendSms(req);
-            return new SendBatchSmsResponse()
-                    .setSendStatuses(Arrays.stream(res.getSendStatusSet())
+            com.tencentcloudapi.sms.v20190711.models.SendSmsResponse sendSmsResponse = client.SendSms(req);
+            return SendBatchSmsResponse.Builder.builder()
+                    .sendStatuses(Arrays.stream(sendSmsResponse.getSendStatusSet())
                             .map(it -> new SendStatus(it.getCode(), it.getMessage()))
                             .toArray(SendStatus[]::new))
-                    .setRequestId(res.getRequestId());
+                    .requestId(sendSmsResponse.getRequestId())
+                    .build();
         } catch (TencentCloudSDKException e) {
             throw new ApiException(e);
         }

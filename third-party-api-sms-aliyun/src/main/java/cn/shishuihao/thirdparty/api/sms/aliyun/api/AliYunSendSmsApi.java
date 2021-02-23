@@ -24,24 +24,25 @@ public class AliYunSendSmsApi implements SendSmsApi {
 
     @Override
     public SendSmsResponse execute(SendSmsRequest request) {
-        AliYunSmsProperties smsProperties = (AliYunSmsProperties) propertiesRepository.getById(request.getPropertiesId())
+        AliYunSmsProperties properties = (AliYunSmsProperties) propertiesRepository.getById(request.getPropertiesId())
                 .orElseThrow(() -> new PropertiesNotFoundException("properties not found"));
         try {
             Config config = new Config()
                     // 您的AccessKey ID
-                    .setAccessKeyId(smsProperties.getAccessKeyId())
+                    .setAccessKeyId(properties.getAccessKeyId())
                     // 您的AccessKey Secret
-                    .setAccessKeySecret(smsProperties.getAccessSecret());
+                    .setAccessKeySecret(properties.getAccessSecret());
             // 访问的域名
             config.endpoint = "dysmsapi.aliyuncs.com";
             com.aliyun.dysmsapi20170525.Client client = new com.aliyun.dysmsapi20170525.Client(config);
             com.aliyun.dysmsapi20170525.models.SendSmsRequest sendSmsRequest = new com.aliyun.dysmsapi20170525.models.SendSmsRequest();
             //
-            SendSmsResponseBody smsResponse = client.sendSms(sendSmsRequest).getBody();
-            return new SendSmsResponse()
-                    .setCode(smsResponse.getCode())
-                    .setMessage(smsResponse.getMessage())
-                    .setRequestId(smsResponse.getRequestId());
+            SendSmsResponseBody sendSmsResponseBody = client.sendSms(sendSmsRequest).getBody();
+            return SendSmsResponse.Builder.builder()
+                    .code(sendSmsResponseBody.getCode())
+                    .message(sendSmsResponseBody.getMessage())
+                    .requestId(sendSmsResponseBody.getRequestId())
+                    .build();
         } catch (Exception e) {
             throw new ApiException(e);
         }

@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.tencent;
 
+import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
 import cn.shishuihao.thirdparty.api.core.impl.AbstractChannel;
 import cn.shishuihao.thirdparty.api.sms.SmsChannel;
@@ -20,6 +21,10 @@ public class TencentSmsChannel extends AbstractChannel implements SmsChannel {
         TencentSendBatchSmsApi batchSmsApi = new TencentSendBatchSmsApi(propertiesRepository);
         this.add(batchSmsApi);
         this.add(new TencentSendSmsApi(batchSmsApi));
+    }
+
+    public TencentSmsChannel() {
+        this(new TencentSmsChannelProperties(), ApiRegistry.PROPERTIES_REPOSITORY);
     }
 
     @Override

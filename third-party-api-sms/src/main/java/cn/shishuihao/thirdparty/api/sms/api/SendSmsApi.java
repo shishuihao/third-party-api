@@ -10,4 +10,14 @@ import cn.shishuihao.thirdparty.api.sms.response.SendSmsResponse;
  */
 
 public interface SendSmsApi extends SmsApi<SendSmsApi, SendSmsRequest, SendSmsResponse> {
+    /**
+     * get api type
+     * immutable
+     *
+     * @return api type
+     */
+    @Override
+    default Class<SendSmsApi> apiType() {
+        return SendSmsApi.class;
+    }
 }

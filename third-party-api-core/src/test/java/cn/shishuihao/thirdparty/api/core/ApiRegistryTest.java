@@ -49,6 +49,11 @@ class ApiRegistryTest {
                 throw new ApiException(e);
             }
         }
+
+        @Override
+        public Class<CodePayApi> apiType() {
+            return CodePayApi.class;
+        }
     }
 
     static class CodePayRequest implements Request<CodePayApi, CodePayRequest, CodePayResponse> {

@@ -23,4 +23,12 @@ public interface Api<A extends Api<A, T, R>, T extends Request<A, T, R>, R exten
     default Class<?> id() {
         return this.getClass();
     }
+
+    /**
+     * get api type
+     * immutable
+     *
+     * @return api type
+     */
+    Class<A> apiType();
 }

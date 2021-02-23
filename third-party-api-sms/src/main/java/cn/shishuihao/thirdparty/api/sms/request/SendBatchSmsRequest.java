@@ -21,6 +21,10 @@ public class SendBatchSmsRequest implements SmsRequest<SendBatchSmsApi, SendBatc
      */
     private final String propertiesId;
     /**
+     * request id;
+     */
+    private final String requestId;
+    /**
      * phone numbers
      */
     private final List<String> phoneNumbers;
@@ -33,9 +37,11 @@ public class SendBatchSmsRequest implements SmsRequest<SendBatchSmsApi, SendBatc
      */
     private final Map<String, String> templateParams;
 
-    protected SendBatchSmsRequest(String channelId, String propertiesId, List<String> phoneNumbers, String templateId, Map<String, String> templateParams) {
+    protected SendBatchSmsRequest(String channelId, String propertiesId,
+                                  String requestId, List<String> phoneNumbers, String templateId, Map<String, String> templateParams) {
         this.channelId = channelId;
         this.propertiesId = propertiesId;
+        this.requestId = requestId;
         this.phoneNumbers = phoneNumbers;
         this.templateId = templateId;
         this.templateParams = templateParams;
@@ -79,6 +85,7 @@ public class SendBatchSmsRequest implements SmsRequest<SendBatchSmsApi, SendBatc
     public static final class Builder {
         private String channelId;
         private String propertiesId;
+        private String requestId;
         private List<String> phoneNumbers;
         private String templateId;
         private Map<String, String> templateParams;
@@ -100,6 +107,11 @@ public class SendBatchSmsRequest implements SmsRequest<SendBatchSmsApi, SendBatc
             return this;
         }
 
+        public Builder requestId(String requestId) {
+            this.requestId = requestId;
+            return this;
+        }
+
         public Builder phoneNumbers(List<String> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
@@ -116,7 +128,7 @@ public class SendBatchSmsRequest implements SmsRequest<SendBatchSmsApi, SendBatc
         }
 
         public SendBatchSmsRequest build() {
-            return new SendBatchSmsRequest(channelId, propertiesId, phoneNumbers, templateId, templateParams);
+            return new SendBatchSmsRequest(channelId, propertiesId, requestId, phoneNumbers, templateId, templateParams);
         }
     }
 }

@@ -10,4 +10,14 @@ import cn.shishuihao.thirdparty.api.push.response.PushMessageResponse;
  */
 
 public interface PushMessageApi extends PushApi<PushMessageApi, PushMessageRequest, PushMessageResponse> {
+    /**
+     * get api type
+     * immutable
+     *
+     * @return api type
+     */
+    @Override
+    default Class<PushMessageApi> apiType() {
+        return PushMessageApi.class;
+    }
 }

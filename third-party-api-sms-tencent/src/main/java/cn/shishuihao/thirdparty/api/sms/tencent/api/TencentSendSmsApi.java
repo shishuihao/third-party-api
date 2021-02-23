@@ -25,6 +25,7 @@ public class TencentSendSmsApi implements SendSmsApi {
         SendBatchSmsRequest smsRequest = SendBatchSmsRequest.Builder.builder()
                 .channelId(request.channelId())
                 .propertiesId(request.getPropertiesId())
+                .requestId(request.getRequestId())
                 .phoneNumbers(Collections.singletonList(request.getPhoneNumber()))
                 .templateId(request.getTemplateId())
                 .templateParams(request.getTemplateParams())

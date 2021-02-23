@@ -10,4 +10,14 @@ import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsResponse;
  */
 
 public interface SendBatchSmsApi extends SmsApi<SendBatchSmsApi, SendBatchSmsRequest, SendBatchSmsResponse> {
+    /**
+     * get api type
+     * immutable
+     *
+     * @return api type
+     */
+    @Override
+    default Class<SendBatchSmsApi> apiType() {
+        return SendBatchSmsApi.class;
+    }
 }

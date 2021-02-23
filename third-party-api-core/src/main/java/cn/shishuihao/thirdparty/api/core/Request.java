@@ -23,10 +23,10 @@ public interface Request<A extends Api<A, T, R>, T extends Request<A, T, R>, R e
     String channelId();
 
     /**
-     * get api id
+     * get api type
      * immutable
      *
-     * @return channel id
+     * @return api type
      */
     Class<A> apiType();
 }

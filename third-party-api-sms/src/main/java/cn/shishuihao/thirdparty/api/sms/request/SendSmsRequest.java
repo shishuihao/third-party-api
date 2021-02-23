@@ -20,6 +20,10 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
      */
     private final String propertiesId;
     /**
+     * request id;
+     */
+    private final String requestId;
+    /**
      * phone number
      */
     private final String phoneNumber;
@@ -33,9 +37,10 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
     private final Map<String, String> templateParams;
 
     protected SendSmsRequest(String channelId, String propertiesId,
-                             String phoneNumber, String templateId, Map<String, String> templateParams) {
+                             String requestId, String phoneNumber, String templateId, Map<String, String> templateParams) {
         this.channelId = channelId;
         this.propertiesId = propertiesId;
+        this.requestId = requestId;
         this.phoneNumber = phoneNumber;
         this.templateId = templateId;
         this.templateParams = templateParams;
@@ -47,6 +52,10 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
 
     public String getPropertiesId() {
         return propertiesId;
+    }
+
+    public String getRequestId() {
+        return requestId;
     }
 
     public String getPhoneNumber() {
@@ -80,6 +89,7 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
     public static final class Builder {
         private String channelId;
         private String propertiesId;
+        private String requestId;
         private String phoneNumber;
         private String templateId;
         private Map<String, String> templateParams;
@@ -101,6 +111,11 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
             return this;
         }
 
+        public Builder requestId(String requestId) {
+            this.requestId = requestId;
+            return this;
+        }
+
         public Builder phoneNumber(String phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
@@ -117,7 +132,7 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
         }
 
         public SendSmsRequest build() {
-            return new SendSmsRequest(channelId, propertiesId, phoneNumber, templateId, templateParams);
+            return new SendSmsRequest(channelId, propertiesId, requestId, phoneNumber, templateId, templateParams);
         }
     }
 }

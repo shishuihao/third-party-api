@@ -17,10 +17,25 @@ public class PushMessageRequest implements PushRequest<PushMessageApi, PushMessa
      * properties id
      */
     private final String propertiesId;
+    /**
+     * title
+     */
     private final String title;
+    /**
+     * payload
+     */
     private final String payload;
+    /**
+     * description
+     */
     private final String description;
+    /**
+     * restricted package name
+     */
     private final String restrictedPackageName;
+    /**
+     * registration ids
+     */
     private final String[] registrationIds;
 
     protected PushMessageRequest(String channelId, String propertiesId,

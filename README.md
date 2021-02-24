@@ -55,3 +55,21 @@ graph LR
   G-->H(new SendSmsResponseBody)
   H-->I
 ```
+
+# 捐助作者
+
+如果您觉得我的项目对您有帮助，并且您愿意给予我一点小小的支持，您可以通过以下方式向我捐助，这样可以维持项目持续地发展，灰常感谢！(/ω＼)
+
+| Alipay | Wechat | 
+| :------: | :------: | 
+| <img width="150" src="./docs/donate/alipay.png"> | <img width="150" src="./docs/donate/wechat.jpg"> | 
+
+❤❤❤
+
+### 捐助者名单
+
+（如果这里还没有你的名字？请发邮件至 1285173409@qq.com 告诉我）
+
+| 捐助日期 | 捐助者 | 捐助金额 |
+| --- | --- | --- |
+

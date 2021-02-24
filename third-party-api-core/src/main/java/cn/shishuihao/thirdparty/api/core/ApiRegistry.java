@@ -18,8 +18,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class ApiRegistry {
-    public static final PropertiesRepository PROPERTIES_REPOSITORY;
-    public static final ChannelRepository CHANNEL_REPOSITORY;
+    public static final ApiPropertiesRepository PROPERTIES_REPOSITORY;
+    public static final ApiChannelRepository CHANNEL_REPOSITORY;
     public static final ApiRegistry INSTANCE;
     protected static final Map<String, Container> CONTAINER_MAP = new ConcurrentHashMap<>();
 
@@ -28,37 +28,45 @@ public class ApiRegistry {
         PROPERTIES_REPOSITORY = CONTAINER_MAP.values().stream()
                 .findFirst()
                 .map(container -> {
-                    // spi => container bean
-                    PropertiesRepository repository = new PropertiesRepositoryContainerImpl(container);
-                    container.awareOrHook(it -> ServiceLoader.load(Properties.class).forEach(repository::add));
+                    ApiPropertiesRepository repository = new PropertiesRepositoryContainerImpl(container);
+                    container.awareOrHook(it -> {
+                        // spi => container bean
+                        ServiceLoader.load(ApiProperties.class).forEach(repository::add);
+                        // container bean => container bean
+                        it.getBeansOfType(ApiProperties.class).values().forEach(repository::add);
+                    });
                     return repository;
                 })
                 .orElseGet(() -> {
+                    ApiPropertiesRepository repository = new PropertiesRepositoryMemoryImpl();
                     // spi => memory
-                    PropertiesRepository repository = new PropertiesRepositoryMemoryImpl();
-                    ServiceLoader.load(Properties.class).forEach(repository::add);
+                    ServiceLoader.load(ApiProperties.class).forEach(repository::add);
                     return repository;
                 });
         CHANNEL_REPOSITORY = CONTAINER_MAP.values().stream()
                 .findFirst()
                 .map(container -> {
-                    // spi => container bean
-                    ChannelRepository repository = new ChannelRepositoryContainerImpl(container);
-                    container.awareOrHook(it -> ServiceLoader.load(Channel.class).forEach(repository::add));
+                    ApiChannelRepository repository = new ChannelRepositoryContainerImpl(container);
+                    container.awareOrHook(it -> {
+                        // spi => container bean
+                        ServiceLoader.load(ApiChannel.class).forEach(repository::add);
+                        // container bean => container bean
+                        it.getBeansOfType(ApiChannel.class).values().forEach(repository::add);
+                    });
                     return repository;
                 })
                 .orElseGet(() -> {
+                    ApiChannelRepository repository = new ChannelRepositoryMemoryImpl();
                     // spi => memory
-                    ChannelRepository repository = new ChannelRepositoryMemoryImpl();
-                    ServiceLoader.load(Channel.class).forEach(repository::add);
+                    ServiceLoader.load(ApiChannel.class).forEach(repository::add);
                     return repository;
                 });
         INSTANCE = new ApiRegistry(CHANNEL_REPOSITORY);
     }
 
-    private final ChannelRepository channelRepository;
+    private final ApiChannelRepository channelRepository;
 
-    public ApiRegistry(ChannelRepository channelRepository) {
+    public ApiRegistry(ApiChannelRepository channelRepository) {
         this.channelRepository = channelRepository;
     }
 
@@ -68,8 +76,8 @@ public class ApiRegistry {
      * @param request request
      * @return optional api
      */
-    public <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> Optional<A> getApi(final T request) {
-        Channel channel = this.channelRepository.getById(request.channelId())
+    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<A> getApi(final T request) {
+        ApiChannel channel = this.channelRepository.getById(request.channelId())
                 .orElseThrow(() -> new ChannelNotFoundException("channel not found by channelId:" + request.channelId()));
         return channel.getApi(request.apiType());
     }
@@ -80,7 +88,7 @@ public class ApiRegistry {
      * @param request request
      * @return optional response
      */
-    public <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> R execute(final T request) {
+    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> R execute(final T request) {
         A api = this.getApi(request)
                 .orElseThrow(() -> new ApiNotFoundException("api not found by apiType:" + request.apiType()));
         return api.execute(request);

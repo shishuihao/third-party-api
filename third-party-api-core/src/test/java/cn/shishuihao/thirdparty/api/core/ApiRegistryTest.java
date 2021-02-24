@@ -1,7 +1,6 @@
 package cn.shishuihao.thirdparty.api.core;
 
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractChannelMemoryImpl;
-import cn.shishuihao.thirdparty.api.core.impl.memory.PropertiesRepositoryMemoryImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +13,8 @@ class ApiRegistryTest {
 
     @Test
     void execute() {
+        Assertions.assertNotNull(ApiRegistry.PROPERTIES_REPOSITORY.getById(TestProperties.class.getSimpleName()).orElse(null));
+        Assertions.assertNotNull(ApiRegistry.CHANNEL_REPOSITORY.getById(TestPayChannel.class.getSimpleName()).orElse(null));
         CodePayResponse response = ApiRegistry.INSTANCE.execute(new CodePayRequest());
         Assertions.assertNotNull(response);
     }
@@ -29,19 +30,14 @@ class ApiRegistryTest {
         }
     }
 
-    static class TestProperties implements Properties {
+    public static class TestProperties implements ApiProperties {
         @Override
         public String id() {
             return TestProperties.class.getSimpleName();
         }
     }
 
-    static class TestPropertiesRepository extends PropertiesRepositoryMemoryImpl {
-    }
-
     static class CodePayApi implements Api<CodePayApi, CodePayRequest, CodePayResponse> {
-        private final TestPropertiesRepository propertiesRepository = new TestPropertiesRepository();
-
         @Override
         public CodePayResponse execute(CodePayRequest request) throws ApiException {
             try {
@@ -57,7 +53,7 @@ class ApiRegistryTest {
         }
     }
 
-    static class CodePayRequest implements Request<CodePayApi, CodePayRequest, CodePayResponse> {
+    static class CodePayRequest implements ApiRequest<CodePayApi, CodePayRequest, CodePayResponse> {
         @Override
         public Class<CodePayResponse> responseClass() {
             return CodePayResponse.class;
@@ -74,6 +70,6 @@ class ApiRegistryTest {
         }
     }
 
-    static class CodePayResponse implements Response {
+    static class CodePayResponse implements ApiResponse {
     }
 }

@@ -1,9 +1,9 @@
 package cn.shishuihao.thirdparty.api.sms.tencent;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
-import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractChannelMemoryImpl;
-import cn.shishuihao.thirdparty.api.sms.SmsChannel;
+import cn.shishuihao.thirdparty.api.sms.SmsApiChannel;
 import cn.shishuihao.thirdparty.api.sms.tencent.api.TencentSendBatchSmsApi;
 import cn.shishuihao.thirdparty.api.sms.tencent.api.TencentSendSmsApi;
 
@@ -12,19 +12,19 @@ import cn.shishuihao.thirdparty.api.sms.tencent.api.TencentSendSmsApi;
  * @version 1.0.0
  */
 
-public class TencentSmsChannel extends AbstractChannelMemoryImpl implements SmsChannel {
-    private final TencentSmsChannelProperties channelProperties;
+public class TencentSmsApiChannel extends AbstractChannelMemoryImpl implements SmsApiChannel {
+    private final TencentSmsProperties channelProperties;
 
-    public TencentSmsChannel(TencentSmsChannelProperties channelProperties,
-                             PropertiesRepository propertiesRepository) {
+    public TencentSmsApiChannel(TencentSmsProperties channelProperties,
+                                ApiPropertiesRepository propertiesRepository) {
         this.channelProperties = channelProperties;
         TencentSendBatchSmsApi batchSmsApi = new TencentSendBatchSmsApi(propertiesRepository);
         this.add(batchSmsApi);
         this.add(new TencentSendSmsApi(batchSmsApi));
     }
 
-    public TencentSmsChannel() {
-        this(new TencentSmsChannelProperties(), ApiRegistry.PROPERTIES_REPOSITORY);
+    public TencentSmsApiChannel() {
+        this(new TencentSmsProperties(), ApiRegistry.PROPERTIES_REPOSITORY);
     }
 
     @Override

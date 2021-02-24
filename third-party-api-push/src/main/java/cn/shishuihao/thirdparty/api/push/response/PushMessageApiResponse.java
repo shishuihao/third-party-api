@@ -1,18 +1,18 @@
 package cn.shishuihao.thirdparty.api.push.response;
 
-import cn.shishuihao.thirdparty.api.push.PushResponse;
+import cn.shishuihao.thirdparty.api.push.PushApiResponse;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 
-public class PushMessageResponse implements PushResponse {
+public class PushMessageApiResponse implements PushApiResponse {
     private final String code;
     private final String message;
     private final String requestId;
 
-    protected PushMessageResponse(String code, String message, String requestId) {
+    protected PushMessageApiResponse(String code, String message, String requestId) {
         this.code = code;
         this.message = message;
         this.requestId = requestId;
@@ -57,8 +57,8 @@ public class PushMessageResponse implements PushResponse {
             return this;
         }
 
-        public PushMessageResponse build() {
-            return new PushMessageResponse(code, message, requestId);
+        public PushMessageApiResponse build() {
+            return new PushMessageApiResponse(code, message, requestId);
         }
     }
 }

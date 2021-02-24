@@ -1,9 +1,9 @@
 package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
-import cn.shishuihao.thirdparty.api.sms.request.SendSmsRequest;
-import cn.shishuihao.thirdparty.api.sms.response.SendSmsResponse;
-import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsProperties;
+import cn.shishuihao.thirdparty.api.sms.request.SendSmsApiRequest;
+import cn.shishuihao.thirdparty.api.sms.response.SendSmsApiResponse;
+import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiProperties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +16,10 @@ import java.util.TreeMap;
  */
 
 class TencentSendSmsApiTest {
+
     @Test
     void execute() {
-        TencentSmsProperties properties = new TencentSmsProperties();
+        TencentSmsApiProperties properties = new TencentSmsApiProperties();
         properties.setAppId("appId");
         properties.setSecretId("secretId");
         properties.setSecretKey("secretKey");
@@ -28,7 +29,7 @@ class TencentSendSmsApiTest {
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
-        SendSmsResponse response = ApiRegistry.INSTANCE.execute(SendSmsRequest.Builder.builder()
+        SendSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendSmsApiRequest.Builder.builder()
                 .channelId("sms.tencent")
                 .propertiesId(properties.id())
                 .phoneNumber("+8613711112222")

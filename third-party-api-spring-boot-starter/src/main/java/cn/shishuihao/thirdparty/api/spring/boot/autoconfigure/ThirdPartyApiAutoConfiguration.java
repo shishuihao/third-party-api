@@ -1,8 +1,8 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
-import cn.shishuihao.thirdparty.api.core.ChannelRepository;
-import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.ApiChannelRepository;
+import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.core.impl.memory.ChannelRepositoryMemoryImpl;
 import cn.shishuihao.thirdparty.api.core.impl.memory.PropertiesRepositoryMemoryImpl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -21,19 +21,19 @@ import org.springframework.context.annotation.Import;
 public class ThirdPartyApiAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
-    protected PropertiesRepository propertiesRepository() {
+    protected ApiPropertiesRepository propertiesRepository() {
         return new PropertiesRepositoryMemoryImpl();
     }
 
     @Bean
     @ConditionalOnMissingBean
-    protected ChannelRepository channelRepository() {
+    protected ApiChannelRepository channelRepository() {
         return new ChannelRepositoryMemoryImpl();
     }
 
     @Bean
     @ConditionalOnMissingBean
-    protected ApiRegistry apiRegistry(ChannelRepository channelRepository) {
+    protected ApiRegistry apiRegistry(ApiChannelRepository channelRepository) {
         return new ApiRegistry(channelRepository);
     }
 }

@@ -18,8 +18,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
 class ThirdPartyApiSpringContainerTest {
+
     @Test
     void execute() {
+        Assertions.assertNotNull(ApiRegistry.PROPERTIES_REPOSITORY.getById(TestProperties.class.getSimpleName()).orElse(null));
+        Assertions.assertNotNull(ApiRegistry.CHANNEL_REPOSITORY.getById(TestPayChannel.class.getSimpleName()).orElse(null));
         CodePayResponse response = ApiRegistry.INSTANCE.execute(new CodePayRequest());
         Assertions.assertNotNull(response);
     }
@@ -35,7 +38,7 @@ class ThirdPartyApiSpringContainerTest {
         }
     }
 
-    static class TestProperties implements Properties {
+    public static class TestProperties implements ApiProperties {
         @Override
         public String id() {
             return TestProperties.class.getSimpleName();
@@ -63,7 +66,7 @@ class ThirdPartyApiSpringContainerTest {
         }
     }
 
-    static class CodePayRequest implements Request<CodePayApi, CodePayRequest, CodePayResponse> {
+    static class CodePayRequest implements ApiRequest<CodePayApi, CodePayRequest, CodePayResponse> {
         @Override
         public Class<CodePayResponse> responseClass() {
             return CodePayResponse.class;
@@ -80,6 +83,6 @@ class ThirdPartyApiSpringContainerTest {
         }
     }
 
-    static class CodePayResponse implements Response {
+    static class CodePayResponse implements ApiResponse {
     }
 }

@@ -1,9 +1,9 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
-import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsProperties;
-import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsRequest;
-import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsResponse;
+import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiProperties;
+import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;
+import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,13 +20,13 @@ class AliYunBatchSendSmsApiTest {
 
     @Test
     void execute() {
-        AliYunSmsProperties properties = new AliYunSmsProperties();
+        AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
         properties.setAccessKeyId("accessKeyId");
         properties.setAccessSecret("accessSecret");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
-        SendBatchSmsResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsRequest.Builder.builder()
+        SendBatchSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsApiRequest.Builder.builder()
                 .channelId("sms.aliyun")
                 .propertiesId(properties.id())
                 .phoneNumbers(Arrays.asList("+8613711112222", "+8618511122266"))

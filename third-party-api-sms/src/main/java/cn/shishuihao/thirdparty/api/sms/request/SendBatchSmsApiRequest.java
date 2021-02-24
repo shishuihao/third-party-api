@@ -1,16 +1,17 @@
 package cn.shishuihao.thirdparty.api.sms.request;
 
-import cn.shishuihao.thirdparty.api.sms.SmsRequest;
-import cn.shishuihao.thirdparty.api.sms.api.SendSmsApi;
-import cn.shishuihao.thirdparty.api.sms.response.SendSmsResponse;
+import cn.shishuihao.thirdparty.api.sms.SmsApiRequest;
+import cn.shishuihao.thirdparty.api.sms.api.SendBatchSmsApi;
+import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, SendSmsResponse> {
+public class SendBatchSmsApiRequest implements SmsApiRequest<SendBatchSmsApi, SendBatchSmsApiRequest, SendBatchSmsApiResponse> {
     /**
      * channel id
      */
@@ -20,9 +21,9 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
      */
     private final String propertiesId;
     /**
-     * phone number
+     * phone numbers
      */
-    private final String phoneNumber;
+    private final List<String> phoneNumbers;
     /**
      * template Id
      */
@@ -32,11 +33,11 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
      */
     private final Map<String, String> templateParams;
 
-    protected SendSmsRequest(String channelId, String propertiesId,
-                             String phoneNumber, String templateId, Map<String, String> templateParams) {
+    protected SendBatchSmsApiRequest(String channelId, String propertiesId,
+                                     List<String> phoneNumbers, String templateId, Map<String, String> templateParams) {
         this.channelId = channelId;
         this.propertiesId = propertiesId;
-        this.phoneNumber = phoneNumber;
+        this.phoneNumbers = phoneNumbers;
         this.templateId = templateId;
         this.templateParams = templateParams;
     }
@@ -49,8 +50,8 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
         return propertiesId;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public List<String> getPhoneNumbers() {
+        return phoneNumbers;
     }
 
     public String getTemplateId() {
@@ -62,8 +63,8 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
     }
 
     @Override
-    public Class<SendSmsResponse> responseClass() {
-        return SendSmsResponse.class;
+    public Class<SendBatchSmsApiResponse> responseClass() {
+        return SendBatchSmsApiResponse.class;
     }
 
     @Override
@@ -72,15 +73,14 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
     }
 
     @Override
-    public Class<SendSmsApi> apiType() {
-        return SendSmsApi.class;
+    public Class<SendBatchSmsApi> apiType() {
+        return SendBatchSmsApi.class;
     }
-
 
     public static final class Builder {
         private String channelId;
         private String propertiesId;
-        private String phoneNumber;
+        private List<String> phoneNumbers;
         private String templateId;
         private Map<String, String> templateParams;
 
@@ -101,8 +101,8 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
             return this;
         }
 
-        public Builder phoneNumber(String phoneNumber) {
-            this.phoneNumber = phoneNumber;
+        public Builder phoneNumbers(List<String> phoneNumbers) {
+            this.phoneNumbers = phoneNumbers;
             return this;
         }
 
@@ -116,8 +116,8 @@ public class SendSmsRequest implements SmsRequest<SendSmsApi, SendSmsRequest, Se
             return this;
         }
 
-        public SendSmsRequest build() {
-            return new SendSmsRequest(channelId, propertiesId, phoneNumber, templateId, templateParams);
+        public SendBatchSmsApiRequest build() {
+            return new SendBatchSmsApiRequest(channelId, propertiesId, phoneNumbers, templateId, templateParams);
         }
     }
 }

@@ -7,5 +7,5 @@ package cn.shishuihao.thirdparty.api.core;
  * @version 1.0.0
  */
 
-public interface ChannelRepository extends Repository<String, Channel> {
+public interface ApiPropertiesRepository extends Repository<String, ApiProperties> {
 }

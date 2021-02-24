@@ -1,14 +1,14 @@
 package cn.shishuihao.thirdparty.api.push.request;
 
-import cn.shishuihao.thirdparty.api.push.PushRequest;
+import cn.shishuihao.thirdparty.api.push.PushApiRequest;
 import cn.shishuihao.thirdparty.api.push.api.PushMessageApi;
-import cn.shishuihao.thirdparty.api.push.response.PushMessageResponse;
+import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-public class PushMessageRequest implements PushRequest<PushMessageApi, PushMessageRequest, PushMessageResponse> {
+public class PushMessageApiRequest implements PushApiRequest<PushMessageApi, PushMessageApiRequest, PushMessageApiResponse> {
     /**
      * channel id
      */
@@ -38,8 +38,8 @@ public class PushMessageRequest implements PushRequest<PushMessageApi, PushMessa
      */
     private final String[] registrationIds;
 
-    protected PushMessageRequest(String channelId, String propertiesId,
-                                 String title, String payload, String description, String restrictedPackageName, String[] registrationIds) {
+    protected PushMessageApiRequest(String channelId, String propertiesId,
+                                    String title, String payload, String description, String restrictedPackageName, String[] registrationIds) {
         this.channelId = channelId;
         this.propertiesId = propertiesId;
         this.title = title;
@@ -78,8 +78,8 @@ public class PushMessageRequest implements PushRequest<PushMessageApi, PushMessa
     }
 
     @Override
-    public Class<PushMessageResponse> responseClass() {
-        return PushMessageResponse.class;
+    public Class<PushMessageApiResponse> responseClass() {
+        return PushMessageApiResponse.class;
     }
 
     @Override
@@ -144,8 +144,8 @@ public class PushMessageRequest implements PushRequest<PushMessageApi, PushMessa
             return this;
         }
 
-        public PushMessageRequest build() {
-            return new PushMessageRequest(channelId, propertiesId, title, payload, description, restrictedPackageName, registrationIds);
+        public PushMessageApiRequest build() {
+            return new PushMessageApiRequest(channelId, propertiesId, title, payload, description, restrictedPackageName, registrationIds);
         }
     }
 }

@@ -7,12 +7,12 @@ import java.util.Optional;
  * @version 1.0.0
  */
 
-public interface Channel extends Entity<String>, ApiRepository {
+public interface ApiChannel extends Entity<String>, ApiRepository {
     /**
      * get api by api type
      *
      * @param apiType api type
      * @return api
      */
-    <A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> Optional<A> getApi(final Class<A> apiType);
+    <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<A> getApi(final Class<A> apiType);
 }

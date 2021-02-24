@@ -5,5 +5,5 @@ package cn.shishuihao.thirdparty.api.core;
  * @version 1.0.0
  */
 
-public interface Response {
+public interface ApiProperties extends Entity<String> {
 }

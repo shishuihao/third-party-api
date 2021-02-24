@@ -7,5 +7,5 @@ import cn.shishuihao.thirdparty.api.core.Api;
  * @version 1.0.0
  */
 
-public interface SmsApi<A extends SmsApi<A, T, R>, T extends SmsRequest<A, T, R>, R extends SmsResponse> extends Api<A, T, R> {
+public interface SmsApi<A extends SmsApi<A, T, R>, T extends SmsApiRequest<A, T, R>, R extends SmsApiResponse> extends Api<A, T, R> {
 }

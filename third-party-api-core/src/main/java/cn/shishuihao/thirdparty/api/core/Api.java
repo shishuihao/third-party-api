@@ -4,7 +4,7 @@ package cn.shishuihao.thirdparty.api.core;
  * @author shishuihao
  * @version 1.0.0
  */
-public interface Api<A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> extends Entity<Class<?>> {
+public interface Api<A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> extends Entity<Class<?>> {
     /**
      * execute request
      *

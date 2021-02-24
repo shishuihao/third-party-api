@@ -1,18 +1,18 @@
 package cn.shishuihao.thirdparty.api.sms.response;
 
-import cn.shishuihao.thirdparty.api.sms.SmsResponse;
+import cn.shishuihao.thirdparty.api.sms.SmsApiResponse;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 
-public class SendSmsResponse implements SmsResponse {
+public class SendSmsApiResponse implements SmsApiResponse {
     private final String code;
     private final String message;
     private final String requestId;
 
-    protected SendSmsResponse(String code, String message, String requestId) {
+    protected SendSmsApiResponse(String code, String message, String requestId) {
         this.code = code;
         this.message = message;
         this.requestId = requestId;
@@ -57,8 +57,8 @@ public class SendSmsResponse implements SmsResponse {
             return this;
         }
 
-        public SendSmsResponse build() {
-            return new SendSmsResponse(code, message, requestId);
+        public SendSmsApiResponse build() {
+            return new SendSmsApiResponse(code, message, requestId);
         }
     }
 }

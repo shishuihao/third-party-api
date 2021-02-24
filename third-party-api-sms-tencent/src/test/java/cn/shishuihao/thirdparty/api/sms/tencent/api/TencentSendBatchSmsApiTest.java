@@ -1,9 +1,9 @@
 package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
-import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsRequest;
-import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsResponse;
-import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsProperties;
+import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;
+import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
+import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiProperties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,9 +17,10 @@ import java.util.TreeMap;
  */
 
 class TencentSendBatchSmsApiTest {
+
     @Test
     void execute() {
-        TencentSmsProperties properties = new TencentSmsProperties();
+        TencentSmsApiProperties properties = new TencentSmsApiProperties();
         properties.setAppId("appId");
         properties.setSecretId("secretId");
         properties.setSecretKey("secretKey");
@@ -29,7 +30,7 @@ class TencentSendBatchSmsApiTest {
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
-        SendBatchSmsResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsRequest.Builder.builder()
+        SendBatchSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsApiRequest.Builder.builder()
                 .channelId("sms.tencent")
                 .propertiesId(properties.id())
                 .phoneNumbers(Arrays.asList("+8613711112222", "+8618511122266"))

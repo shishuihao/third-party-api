@@ -7,5 +7,5 @@ import cn.shishuihao.thirdparty.api.core.Api;
  * @version 1.0.0
  */
 
-public interface PushApi<A extends PushApi<A, T, R>, T extends PushRequest<A, T, R>, R extends PushResponse> extends Api<A, T, R> {
+public interface PushApi<A extends PushApi<A, T, R>, T extends PushApiRequest<A, T, R>, R extends PushApiResponse> extends Api<A, T, R> {
 }

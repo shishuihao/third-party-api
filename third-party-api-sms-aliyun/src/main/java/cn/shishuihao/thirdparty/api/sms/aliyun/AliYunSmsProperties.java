@@ -1,40 +1,32 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun;
 
-import cn.shishuihao.thirdparty.api.sms.SmsProperties;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 
-public class AliYunSmsProperties implements SmsProperties {
-    /**
-     * AccessKeyId用于标识用户
-     */
-    private String accessKeyId;
-    /**
-     * AccessKeySecret是用来验证用户的密钥。AccessKeySecret必须保密。
-     */
-    private String accessSecret;
+public class AliYunSmsProperties {
+    private String channelId = "sms.aliyun";
+    private List<AliYunSmsApiProperties> properties = new ArrayList<>();
 
-    public String getAccessKeyId() {
-        return accessKeyId;
+    public String getChannelId() {
+        return channelId;
     }
 
-    public void setAccessKeyId(String accessKeyId) {
-        this.accessKeyId = accessKeyId;
+    public AliYunSmsProperties setChannelId(String channelId) {
+        this.channelId = channelId;
+        return this;
     }
 
-    public String getAccessSecret() {
-        return accessSecret;
+    public List<AliYunSmsApiProperties> getProperties() {
+        return properties;
     }
 
-    public void setAccessSecret(String accessSecret) {
-        this.accessSecret = accessSecret;
-    }
-
-    @Override
-    public String id() {
-        return accessKeyId;
+    public AliYunSmsProperties setProperties(List<AliYunSmsApiProperties> properties) {
+        this.properties = properties;
+        return this;
     }
 }

@@ -1,42 +1,32 @@
 package cn.shishuihao.thirdparty.api.push.xiaomi;
 
-import cn.shishuihao.thirdparty.api.push.PushProperties;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 
-public class XiaomiPushProperties implements PushProperties {
-    /**
-     * application id
-     */
-    private String appId;
-    /**
-     * application secret key
-     */
-    private String appSecretKey;
+public class XiaomiPushProperties {
+    private String channelId = "push.xiaomi";
+    private List<XiaomiPushApiProperties> properties = new ArrayList<>();
 
-    public String getAppId() {
-        return appId;
+    public String getChannelId() {
+        return channelId;
     }
 
-    public XiaomiPushProperties setAppId(String appId) {
-        this.appId = appId;
+    public XiaomiPushProperties setChannelId(String channelId) {
+        this.channelId = channelId;
         return this;
     }
 
-    public String getAppSecretKey() {
-        return appSecretKey;
+    public List<XiaomiPushApiProperties> getProperties() {
+        return properties;
     }
 
-    public XiaomiPushProperties setAppSecretKey(String appSecretKey) {
-        this.appSecretKey = appSecretKey;
+    public XiaomiPushProperties setProperties(List<XiaomiPushApiProperties> properties) {
+        this.properties = properties;
         return this;
-    }
-
-    @Override
-    public String id() {
-        return appId;
     }
 }

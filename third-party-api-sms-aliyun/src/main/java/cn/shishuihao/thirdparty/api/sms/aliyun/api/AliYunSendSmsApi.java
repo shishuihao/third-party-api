@@ -2,11 +2,13 @@ package cn.shishuihao.thirdparty.api.sms.aliyun.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiException;
 import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
-import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
-import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsProperties;
+import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiProperties;
 import cn.shishuihao.thirdparty.api.sms.api.SendSmsApi;
-import cn.shishuihao.thirdparty.api.sms.request.SendSmsRequest;
-import cn.shishuihao.thirdparty.api.sms.response.SendSmsResponse;
+import cn.shishuihao.thirdparty.api.sms.request.SendSmsApiRequest;
+import cn.shishuihao.thirdparty.api.sms.response.SendSmsApiResponse;
+import com.aliyun.dysmsapi20170525.Client;
+import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponseBody;
 import com.aliyun.teaopenapi.models.Config;
 
@@ -16,15 +18,15 @@ import com.aliyun.teaopenapi.models.Config;
  */
 
 public class AliYunSendSmsApi implements SendSmsApi {
-    private final PropertiesRepository propertiesRepository;
+    private final ApiPropertiesRepository propertiesRepository;
 
-    public AliYunSendSmsApi(PropertiesRepository propertiesRepository) {
+    public AliYunSendSmsApi(ApiPropertiesRepository propertiesRepository) {
         this.propertiesRepository = propertiesRepository;
     }
 
     @Override
-    public SendSmsResponse execute(SendSmsRequest request) {
-        AliYunSmsProperties properties = (AliYunSmsProperties) propertiesRepository.getById(request.getPropertiesId())
+    public SendSmsApiResponse execute(SendSmsApiRequest request) {
+        AliYunSmsApiProperties properties = (AliYunSmsApiProperties) propertiesRepository.getById(request.getPropertiesId())
                 .orElseThrow(() -> new PropertiesNotFoundException("properties not found"));
         try {
             Config config = new Config()
@@ -34,11 +36,11 @@ public class AliYunSendSmsApi implements SendSmsApi {
                     .setAccessKeySecret(properties.getAccessSecret());
             // 访问的域名
             config.endpoint = "dysmsapi.aliyuncs.com";
-            com.aliyun.dysmsapi20170525.Client client = new com.aliyun.dysmsapi20170525.Client(config);
-            com.aliyun.dysmsapi20170525.models.SendSmsRequest sendSmsRequest = new com.aliyun.dysmsapi20170525.models.SendSmsRequest();
+            Client client = new Client(config);
+            SendSmsRequest sendSmsRequest = new SendSmsRequest();
             //
             SendSmsResponseBody sendSmsResponseBody = client.sendSms(sendSmsRequest).getBody();
-            return SendSmsResponse.Builder.builder()
+            return SendSmsApiResponse.Builder.builder()
                     .code(sendSmsResponseBody.getCode())
                     .message(sendSmsResponseBody.getMessage())
                     .requestId(sendSmsResponseBody.getRequestId())

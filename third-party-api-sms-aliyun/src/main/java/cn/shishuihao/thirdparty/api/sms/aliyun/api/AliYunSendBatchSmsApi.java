@@ -2,12 +2,14 @@ package cn.shishuihao.thirdparty.api.sms.aliyun.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiException;
 import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
-import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
-import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsProperties;
+import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiProperties;
 import cn.shishuihao.thirdparty.api.sms.api.SendBatchSmsApi;
 import cn.shishuihao.thirdparty.api.sms.domain.SendStatus;
-import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsRequest;
-import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsResponse;
+import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;
+import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
+import com.aliyun.dysmsapi20170525.Client;
+import com.aliyun.dysmsapi20170525.models.SendBatchSmsRequest;
 import com.aliyun.dysmsapi20170525.models.SendBatchSmsResponseBody;
 import com.aliyun.teaopenapi.models.Config;
 
@@ -16,15 +18,15 @@ import com.aliyun.teaopenapi.models.Config;
  * @version 1.0.0
  */
 public class AliYunSendBatchSmsApi implements SendBatchSmsApi {
-    private final PropertiesRepository propertiesRepository;
+    private final ApiPropertiesRepository propertiesRepository;
 
-    public AliYunSendBatchSmsApi(PropertiesRepository propertiesRepository) {
+    public AliYunSendBatchSmsApi(ApiPropertiesRepository propertiesRepository) {
         this.propertiesRepository = propertiesRepository;
     }
 
     @Override
-    public SendBatchSmsResponse execute(SendBatchSmsRequest request) {
-        AliYunSmsProperties properties = (AliYunSmsProperties) propertiesRepository.getById(request.getPropertiesId())
+    public SendBatchSmsApiResponse execute(SendBatchSmsApiRequest request) {
+        AliYunSmsApiProperties properties = (AliYunSmsApiProperties) propertiesRepository.getById(request.getPropertiesId())
                 .orElseThrow(() -> new PropertiesNotFoundException("properties not found"));
         try {
             Config config = new Config()
@@ -34,11 +36,11 @@ public class AliYunSendBatchSmsApi implements SendBatchSmsApi {
                     .setAccessKeySecret(properties.getAccessSecret());
             // 访问的域名
             config.endpoint = "dysmsapi.aliyuncs.com";
-            com.aliyun.dysmsapi20170525.Client client = new com.aliyun.dysmsapi20170525.Client(config);
-            com.aliyun.dysmsapi20170525.models.SendBatchSmsRequest sendBatchSmsRequest = new com.aliyun.dysmsapi20170525.models.SendBatchSmsRequest();
+            Client client = new Client(config);
+            SendBatchSmsRequest sendBatchSmsRequest = new SendBatchSmsRequest();
             //
             SendBatchSmsResponseBody sendBatchSmsResponseBody = client.sendBatchSms(sendBatchSmsRequest).getBody();
-            return SendBatchSmsResponse.Builder.builder()
+            return SendBatchSmsApiResponse.Builder.builder()
                     .sendStatuses(new SendStatus[]{new SendStatus(sendBatchSmsResponseBody.getCode(), sendBatchSmsResponseBody.getMessage())})
                     .requestId(sendBatchSmsResponseBody.getRequestId())
                     .build();

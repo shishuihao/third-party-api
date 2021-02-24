@@ -5,7 +5,7 @@ package cn.shishuihao.thirdparty.api.core;
  * @version 1.0.0
  */
 
-public interface Request<A extends Api<A, T, R>, T extends Request<A, T, R>, R extends Response> {
+public interface ApiRequest<A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> {
     /**
      * get response class
      * immutable

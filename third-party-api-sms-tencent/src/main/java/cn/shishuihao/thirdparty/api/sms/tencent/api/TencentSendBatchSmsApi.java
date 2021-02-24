@@ -2,12 +2,12 @@ package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiException;
 import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
-import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.sms.api.SendBatchSmsApi;
 import cn.shishuihao.thirdparty.api.sms.domain.SendStatus;
-import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsRequest;
-import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsResponse;
-import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsProperties;
+import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;
+import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
+import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiProperties;
 import com.tencentcloudapi.common.Credential;
 import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.common.profile.ClientProfile;
@@ -20,15 +20,15 @@ import java.util.Arrays;
  * @version 1.0.0
  */
 public class TencentSendBatchSmsApi implements SendBatchSmsApi {
-    private final PropertiesRepository propertiesRepository;
+    private final ApiPropertiesRepository propertiesRepository;
 
-    public TencentSendBatchSmsApi(PropertiesRepository propertiesRepository) {
+    public TencentSendBatchSmsApi(ApiPropertiesRepository propertiesRepository) {
         this.propertiesRepository = propertiesRepository;
     }
 
     @Override
-    public SendBatchSmsResponse execute(SendBatchSmsRequest request) {
-        TencentSmsProperties properties = (TencentSmsProperties) propertiesRepository.getById(request.getPropertiesId())
+    public SendBatchSmsApiResponse execute(SendBatchSmsApiRequest request) {
+        TencentSmsApiProperties properties = (TencentSmsApiProperties) propertiesRepository.getById(request.getPropertiesId())
                 .orElseThrow(() -> new PropertiesNotFoundException("properties not found"));
         try {
             /* 必要步骤：
@@ -73,7 +73,7 @@ public class TencentSendBatchSmsApi implements SendBatchSmsApi {
             /* 通过 client 对象调用 SendSms 方法发起请求。注意请求方法名与请求对象是对应的
              * 返回的 res 是一个 SendSmsResponse 类的实例，与请求对象对应 */
             com.tencentcloudapi.sms.v20190711.models.SendSmsResponse sendSmsResponse = client.SendSms(req);
-            return SendBatchSmsResponse.Builder.builder()
+            return SendBatchSmsApiResponse.Builder.builder()
                     .sendStatuses(Arrays.stream(sendSmsResponse.getSendStatusSet())
                             .map(it -> new SendStatus(it.getCode(), it.getMessage()))
                             .toArray(SendStatus[]::new))

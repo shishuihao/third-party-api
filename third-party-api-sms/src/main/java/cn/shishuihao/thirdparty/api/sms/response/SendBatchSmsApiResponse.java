@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.response;
 
-import cn.shishuihao.thirdparty.api.sms.SmsResponse;
+import cn.shishuihao.thirdparty.api.sms.SmsApiResponse;
 import cn.shishuihao.thirdparty.api.sms.domain.SendStatus;
 
 /**
@@ -8,11 +8,11 @@ import cn.shishuihao.thirdparty.api.sms.domain.SendStatus;
  * @version 1.0.0
  */
 
-public class SendBatchSmsResponse implements SmsResponse {
+public class SendBatchSmsApiResponse implements SmsApiResponse {
     private final SendStatus[] sendStatuses;
     private final String requestId;
 
-    protected SendBatchSmsResponse(SendStatus[] sendStatuses, String requestId) {
+    protected SendBatchSmsApiResponse(SendStatus[] sendStatuses, String requestId) {
         this.sendStatuses = sendStatuses;
         this.requestId = requestId;
     }
@@ -46,8 +46,8 @@ public class SendBatchSmsResponse implements SmsResponse {
             return this;
         }
 
-        public SendBatchSmsResponse build() {
-            return new SendBatchSmsResponse(sendStatuses, requestId);
+        public SendBatchSmsApiResponse build() {
+            return new SendBatchSmsApiResponse(sendStatuses, requestId);
         }
     }
 }

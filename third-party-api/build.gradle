@@ -1,4 +1,6 @@
 plugins {
+    id 'org.springframework.boot' version '2.4.0'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
 }
 
@@ -8,13 +10,19 @@ allprojects {
     group 'cn.shishuihao'
     version '1.0-SNAPSHOT'
 
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
     repositories {
         maven { url "https://maven.aliyun.com/repository/public" }
         mavenCentral()
     }
 
     dependencies {
-        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     }
 
@@ -29,5 +37,7 @@ dependencies {
     compile project(':third-party-api-push')
     compile project(':third-party-api-push-xiaomi')
     compile project(':third-party-api-sms')
+    compile project(':third-party-api-sms-aliyun')
     compile project(':third-party-api-sms-tencent')
+    compile project(':third-party-api-spring-boot-starter')
 }

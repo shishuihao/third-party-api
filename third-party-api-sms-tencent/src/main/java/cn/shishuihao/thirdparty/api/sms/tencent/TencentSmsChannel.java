@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.sms.tencent;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
-import cn.shishuihao.thirdparty.api.core.impl.AbstractChannel;
+import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractChannelMemoryImpl;
 import cn.shishuihao.thirdparty.api.sms.SmsChannel;
 import cn.shishuihao.thirdparty.api.sms.tencent.api.TencentSendBatchSmsApi;
 import cn.shishuihao.thirdparty.api.sms.tencent.api.TencentSendSmsApi;
@@ -12,7 +12,7 @@ import cn.shishuihao.thirdparty.api.sms.tencent.api.TencentSendSmsApi;
  * @version 1.0.0
  */
 
-public class TencentSmsChannel extends AbstractChannel implements SmsChannel {
+public class TencentSmsChannel extends AbstractChannelMemoryImpl implements SmsChannel {
     private final TencentSmsChannelProperties channelProperties;
 
     public TencentSmsChannel(TencentSmsChannelProperties channelProperties,

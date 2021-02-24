@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.core.impl;
+package cn.shishuihao.thirdparty.api.core.impl.memory;
 
 import cn.shishuihao.thirdparty.api.core.Entity;
 import cn.shishuihao.thirdparty.api.core.Repository;
@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @version 1.0.0
  */
 
-public class RepositoryMemoryImpl<I, T extends Entity<I>> implements Repository<I, T> {
+public abstract class AbstractRepositoryMemoryImpl<I, T extends Entity<I>> implements Repository<I, T> {
     private final Map<I, T> map = new ConcurrentHashMap<>();
 
     @Override

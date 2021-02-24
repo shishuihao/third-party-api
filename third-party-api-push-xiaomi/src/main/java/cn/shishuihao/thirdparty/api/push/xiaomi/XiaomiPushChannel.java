@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.push.xiaomi;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.PropertiesRepository;
-import cn.shishuihao.thirdparty.api.core.impl.AbstractChannel;
+import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractChannelMemoryImpl;
 import cn.shishuihao.thirdparty.api.push.PushChannel;
 import cn.shishuihao.thirdparty.api.push.xiaomi.api.XiaomiPushMessageApi;
 
@@ -11,7 +11,7 @@ import cn.shishuihao.thirdparty.api.push.xiaomi.api.XiaomiPushMessageApi;
  * @version 1.0.0
  */
 
-public class XiaomiPushChannel extends AbstractChannel implements PushChannel {
+public class XiaomiPushChannel extends AbstractChannelMemoryImpl implements PushChannel {
     private final XiaomiPushChannelProperties channelProperties;
 
     public XiaomiPushChannel(XiaomiPushChannelProperties channelProperties,

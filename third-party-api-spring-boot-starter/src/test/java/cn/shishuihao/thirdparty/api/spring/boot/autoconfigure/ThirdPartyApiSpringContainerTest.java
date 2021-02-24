@@ -1,17 +1,23 @@
-package cn.shishuihao.thirdparty.api.core;
+package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
 
+import cn.shishuihao.thirdparty.api.core.*;
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractChannelMemoryImpl;
 import cn.shishuihao.thirdparty.api.core.impl.memory.PropertiesRepositoryMemoryImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-
-class ApiRegistryTest {
-
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {ThirdPartyApiApplication.class})
+@AutoConfigureMockMvc
+@ExtendWith(SpringExtension.class)
+class ThirdPartyApiSpringContainerTest {
     @Test
     void execute() {
         CodePayResponse response = ApiRegistry.INSTANCE.execute(new CodePayRequest());

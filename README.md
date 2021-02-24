@@ -20,7 +20,11 @@
     + [ ] 数据库
   + [x] SMS集成(sms integration)
     + [x] [阿里云](/third-party-api-sms-aliyun/README.md)
+      + [X] 发送短信
+      + [X] 批量发送短信
     + [X] [腾讯云](/third-party-api-sms-tencent/README.md)
+      + [X] 发送短信
+      + [X] 批量发送短信
   + [x] 推送集成(push integration)
     + [X] [小米](/third-party-api-push-xiaomi/README.md)
       + [X] 发送消息

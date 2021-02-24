@@ -13,7 +13,7 @@
 # 功能
   + 自动发现
     + [x] spi
-    + [ ] springboot
+    + [x] springboot
   + 配置属性获取方式
     + [x] 代码
     + [ ] yml

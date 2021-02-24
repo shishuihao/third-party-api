@@ -44,7 +44,7 @@
 
 
 
-# 流程(process)
+# 流程示例(process example)
 ```mermaid
 graph LR
   A[new SendSmsRequest]-->B(ApiRegistry.INSTANCE.execute)

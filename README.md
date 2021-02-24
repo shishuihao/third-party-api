@@ -22,7 +22,8 @@
     + [x] [阿里云](/third-party-api-sms-aliyun/README.md)
     + [X] [腾讯云](/third-party-api-sms-tencent/README.md)
   + [x] 推送集成(push integration)
-    + [X] [小米](/third-party-api-pay-xiaomi/README.md)
+    + [X] [小米](/third-party-api-push-xiaomi/README.md)
+      + [X] 发送消息
     + [ ] 华为
     + [ ] vivo
     + [ ] oppo

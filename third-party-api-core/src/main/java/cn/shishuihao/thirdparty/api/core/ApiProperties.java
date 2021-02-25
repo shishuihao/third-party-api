@@ -6,4 +6,10 @@ package cn.shishuihao.thirdparty.api.core;
  */
 
 public interface ApiProperties extends Entity<String> {
+    /**
+     * get channel id
+     *
+     * @return channel id
+     */
+    String channelId();
 }

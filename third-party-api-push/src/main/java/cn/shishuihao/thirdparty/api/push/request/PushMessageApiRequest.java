@@ -78,6 +78,11 @@ public class PushMessageApiRequest implements PushApiRequest<PushMessageApi, Pus
     }
 
     @Override
+    public Class<PushMessageApi> apiType() {
+        return PushMessageApi.class;
+    }
+
+    @Override
     public Class<PushMessageApiResponse> responseType() {
         return PushMessageApiResponse.class;
     }
@@ -88,8 +93,8 @@ public class PushMessageApiRequest implements PushApiRequest<PushMessageApi, Pus
     }
 
     @Override
-    public Class<PushMessageApi> apiType() {
-        return PushMessageApi.class;
+    public String propertiesId() {
+        return propertiesId;
     }
 
 

@@ -3,10 +3,23 @@ package cn.shishuihao.thirdparty.api.core.impl.memory;
 import cn.shishuihao.thirdparty.api.core.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
 
+import java.util.Optional;
+
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 
 public class PropertiesMemoryRepository extends AbstractMemoryRepository<String, ApiProperties> implements ApiPropertiesRepository {
+    @Override
+    public void add(ApiProperties entity) {
+        map.put(entity.channelId() + '.' + entity.id(), entity);
+        map.put(entity.id(), entity);
+    }
+
+    @Override
+    public Optional<ApiProperties> getApiProperties(String channelId, String propertiesId) {
+        return Optional.ofNullable(Optional.ofNullable(map.get(channelId + '.' + propertiesId))
+                .orElseGet(() -> map.get(propertiesId)));
+    }
 }

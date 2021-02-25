@@ -21,8 +21,9 @@ class ThirdPartyApiSpringContainerTest {
 
     @Test
     void execute() {
-        Assertions.assertNotNull(ApiRegistry.PROPERTIES_REPOSITORY.getById(TestProperties.class.getSimpleName()).orElse(null));
-        Assertions.assertNotNull(ApiRegistry.CHANNEL_REPOSITORY.getById(TestPayChannel.class.getSimpleName()).orElse(null));
+        Assertions.assertNotNull(ApiRegistry.INSTANCE.getApiChannelOrThrow(new CodePayRequest()));
+        Assertions.assertNotNull(ApiRegistry.INSTANCE.getApiOrThrow(new CodePayRequest()));
+        Assertions.assertNotNull(ApiRegistry.INSTANCE.getApiPropertiesOrThrow(new CodePayRequest()));
         CodePayResponse response = ApiRegistry.INSTANCE.execute(new CodePayRequest());
         Assertions.assertNotNull(response);
     }
@@ -44,6 +45,11 @@ class ThirdPartyApiSpringContainerTest {
     }
 
     public static class TestProperties implements ApiProperties {
+        @Override
+        public String channelId() {
+            return TestPayChannel.class.getSimpleName();
+        }
+
         @Override
         public String id() {
             return TestProperties.class.getSimpleName();
@@ -72,6 +78,12 @@ class ThirdPartyApiSpringContainerTest {
     }
 
     static class CodePayRequest implements ApiRequest<CodePayApi, CodePayRequest, CodePayResponse> {
+
+        @Override
+        public Class<CodePayApi> apiType() {
+            return CodePayApi.class;
+        }
+
         @Override
         public Class<CodePayResponse> responseType() {
             return CodePayResponse.class;
@@ -83,8 +95,8 @@ class ThirdPartyApiSpringContainerTest {
         }
 
         @Override
-        public Class<CodePayApi> apiType() {
-            return CodePayApi.class;
+        public String propertiesId() {
+            return TestProperties.class.getSimpleName();
         }
     }
 

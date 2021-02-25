@@ -1,8 +1,7 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiException;
-import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
-import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiProperties;
 import cn.shishuihao.thirdparty.api.sms.api.SendSmsApi;
 import cn.shishuihao.thirdparty.api.sms.request.SendSmsApiRequest;
@@ -18,16 +17,9 @@ import com.aliyun.teaopenapi.models.Config;
  */
 
 public class AliYunSendSmsApi implements SendSmsApi {
-    private final ApiPropertiesRepository propertiesRepository;
-
-    public AliYunSendSmsApi(ApiPropertiesRepository propertiesRepository) {
-        this.propertiesRepository = propertiesRepository;
-    }
-
     @Override
     public SendSmsApiResponse execute(SendSmsApiRequest request) {
-        AliYunSmsApiProperties properties = (AliYunSmsApiProperties) propertiesRepository.getById(request.getPropertiesId())
-                .orElseThrow(() -> new PropertiesNotFoundException("properties not found"));
+        AliYunSmsApiProperties properties = (AliYunSmsApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             Config config = new Config()
                     // 您的AccessKey ID

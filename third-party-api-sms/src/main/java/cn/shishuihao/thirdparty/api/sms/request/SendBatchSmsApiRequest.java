@@ -63,6 +63,11 @@ public class SendBatchSmsApiRequest implements SmsApiRequest<SendBatchSmsApi, Se
     }
 
     @Override
+    public Class<SendBatchSmsApi> apiType() {
+        return SendBatchSmsApi.class;
+    }
+
+    @Override
     public Class<SendBatchSmsApiResponse> responseType() {
         return SendBatchSmsApiResponse.class;
     }
@@ -73,8 +78,8 @@ public class SendBatchSmsApiRequest implements SmsApiRequest<SendBatchSmsApi, Se
     }
 
     @Override
-    public Class<SendBatchSmsApi> apiType() {
-        return SendBatchSmsApi.class;
+    public String propertiesId() {
+        return propertiesId;
     }
 
     public static final class Builder {

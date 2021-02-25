@@ -9,7 +9,13 @@ import java.util.List;
  */
 
 public class TencentSmsProperties {
-    private String channelId = "sms.tencent";
+    /**
+     * channel id
+     */
+    private String channelId = TencentSmsApiChannel.CHANNEL_ID;
+    /**
+     * properties list
+     */
     private List<TencentSmsApiProperties> properties = new ArrayList<>();
 
     public String getChannelId() {

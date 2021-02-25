@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public abstract class AbstractMemoryRepository<I, T extends Entity<I>> implements Repository<I, T> {
-    private final Map<I, T> map = new ConcurrentHashMap<>();
+    protected final Map<I, T> map = new ConcurrentHashMap<>();
 
     @Override
     public void add(final T entity) {

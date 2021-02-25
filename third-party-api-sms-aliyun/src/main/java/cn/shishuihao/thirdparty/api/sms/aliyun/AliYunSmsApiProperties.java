@@ -9,6 +9,10 @@ import cn.shishuihao.thirdparty.api.sms.SmsApiProperties;
 
 public class AliYunSmsApiProperties implements SmsApiProperties {
     /**
+     * channel id
+     */
+    private String channelId = AliYunSmsApiChannel.CHANNEL_ID;
+    /**
      * AccessKeyId用于标识用户
      */
     private String accessKeyId;
@@ -16,6 +20,14 @@ public class AliYunSmsApiProperties implements SmsApiProperties {
      * AccessKeySecret是用来验证用户的密钥。AccessKeySecret必须保密。
      */
     private String accessSecret;
+
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
 
     public String getAccessKeyId() {
         return accessKeyId;
@@ -31,6 +43,11 @@ public class AliYunSmsApiProperties implements SmsApiProperties {
 
     public void setAccessSecret(String accessSecret) {
         this.accessSecret = accessSecret;
+    }
+
+    @Override
+    public String channelId() {
+        return channelId;
     }
 
     @Override

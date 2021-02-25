@@ -9,7 +9,13 @@ import java.util.List;
  */
 
 public class XiaomiPushProperties {
-    private String channelId = "push.xiaomi";
+    /**
+     * channel id
+     */
+    private String channelId = XiaomiPushApiChannel.CHANNEL_ID;
+    /**
+     * properties list
+     */
     private List<XiaomiPushApiProperties> properties = new ArrayList<>();
 
     public String getChannelId() {

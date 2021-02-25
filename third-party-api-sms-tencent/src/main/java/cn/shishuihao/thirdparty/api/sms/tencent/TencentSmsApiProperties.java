@@ -9,6 +9,10 @@ import cn.shishuihao.thirdparty.api.sms.SmsApiProperties;
 
 public class TencentSmsApiProperties implements SmsApiProperties {
     /**
+     * channel id
+     */
+    private String channelId = TencentSmsApiChannel.CHANNEL_ID;
+    /**
      * 短信应用 ID: 在 [短信控制台] 添加应用后生成的实际 SDKAppID，例如1400006666
      */
     private String appId;
@@ -32,6 +36,14 @@ public class TencentSmsApiProperties implements SmsApiProperties {
      * 短信码号扩展号，默认未开通，如需开通请联系 sms helper。
      */
     private String extendCode;
+
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
 
     public String getAppId() {
         return appId;
@@ -79,6 +91,11 @@ public class TencentSmsApiProperties implements SmsApiProperties {
 
     public void setExtendCode(String extendCode) {
         this.extendCode = extendCode;
+    }
+
+    @Override
+    public String channelId() {
+        return channelId;
     }
 
     @Override

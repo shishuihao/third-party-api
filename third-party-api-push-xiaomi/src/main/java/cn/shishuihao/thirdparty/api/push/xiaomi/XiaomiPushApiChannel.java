@@ -1,7 +1,5 @@
 package cn.shishuihao.thirdparty.api.push.xiaomi;
 
-import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.push.PushApiChannel;
 import cn.shishuihao.thirdparty.api.push.xiaomi.api.XiaomiPushMessageApi;
@@ -12,16 +10,17 @@ import cn.shishuihao.thirdparty.api.push.xiaomi.api.XiaomiPushMessageApi;
  */
 
 public class XiaomiPushApiChannel extends AbstractMemoryChannel<XiaomiPushApiProperties> implements PushApiChannel<XiaomiPushApiProperties> {
+    public static final String CHANNEL_ID = "push.xiaomi";
+
     private final XiaomiPushProperties channelProperties;
 
-    public XiaomiPushApiChannel(XiaomiPushProperties channelProperties,
-                                ApiPropertiesRepository propertiesRepository) {
+    public XiaomiPushApiChannel(XiaomiPushProperties channelProperties) {
         this.channelProperties = channelProperties;
-        this.add(new XiaomiPushMessageApi(propertiesRepository));
+        this.add(new XiaomiPushMessageApi());
     }
 
     public XiaomiPushApiChannel() {
-        this(new XiaomiPushProperties(), ApiRegistry.PROPERTIES_REPOSITORY);
+        this(new XiaomiPushProperties());
     }
 
     @Override

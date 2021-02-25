@@ -7,6 +7,14 @@ package cn.shishuihao.thirdparty.api.core;
 
 public interface ApiRequest<A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> {
     /**
+     * get api type
+     * immutable
+     *
+     * @return api type
+     */
+    Class<A> apiType();
+
+    /**
      * get response type
      * immutable
      *
@@ -23,10 +31,10 @@ public interface ApiRequest<A extends Api<A, T, R>, T extends ApiRequest<A, T, R
     String channelId();
 
     /**
-     * get api type
+     * get properties id
      * immutable
      *
-     * @return api type
+     * @return properties id
      */
-    Class<A> apiType();
+    String propertiesId();
 }

@@ -62,6 +62,11 @@ public class SendSmsApiRequest implements SmsApiRequest<SendSmsApi, SendSmsApiRe
     }
 
     @Override
+    public Class<SendSmsApi> apiType() {
+        return SendSmsApi.class;
+    }
+
+    @Override
     public Class<SendSmsApiResponse> responseType() {
         return SendSmsApiResponse.class;
     }
@@ -72,10 +77,9 @@ public class SendSmsApiRequest implements SmsApiRequest<SendSmsApi, SendSmsApiRe
     }
 
     @Override
-    public Class<SendSmsApi> apiType() {
-        return SendSmsApi.class;
+    public String propertiesId() {
+        return propertiesId;
     }
-
 
     public static final class Builder {
         private String channelId;

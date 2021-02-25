@@ -1,8 +1,7 @@
 package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiException;
-import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
+import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.sms.api.SendBatchSmsApi;
 import cn.shishuihao.thirdparty.api.sms.domain.SendStatus;
 import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;
@@ -20,16 +19,9 @@ import java.util.Arrays;
  * @version 1.0.0
  */
 public class TencentSendBatchSmsApi implements SendBatchSmsApi {
-    private final ApiPropertiesRepository propertiesRepository;
-
-    public TencentSendBatchSmsApi(ApiPropertiesRepository propertiesRepository) {
-        this.propertiesRepository = propertiesRepository;
-    }
-
     @Override
     public SendBatchSmsApiResponse execute(SendBatchSmsApiRequest request) {
-        TencentSmsApiProperties properties = (TencentSmsApiProperties) propertiesRepository.getById(request.getPropertiesId())
-                .orElseThrow(() -> new PropertiesNotFoundException("properties not found"));
+        TencentSmsApiProperties properties = (TencentSmsApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             /* 必要步骤：
              * 实例化一个认证对象，入参需要传入腾讯云账户密钥对 secretId 和 secretKey

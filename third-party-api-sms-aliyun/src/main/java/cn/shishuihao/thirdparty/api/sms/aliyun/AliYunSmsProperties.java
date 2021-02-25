@@ -9,7 +9,13 @@ import java.util.List;
  */
 
 public class AliYunSmsProperties {
-    private String channelId = "sms.aliyun";
+    /**
+     * channel id
+     */
+    private String channelId = AliYunSmsApiChannel.CHANNEL_ID;
+    /**
+     * properties list
+     */
     private List<AliYunSmsApiProperties> properties = new ArrayList<>();
 
     public String getChannelId() {

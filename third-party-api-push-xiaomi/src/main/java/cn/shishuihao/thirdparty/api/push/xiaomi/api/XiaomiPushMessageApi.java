@@ -1,8 +1,7 @@
 package cn.shishuihao.thirdparty.api.push.xiaomi.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiException;
-import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
-import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.push.api.PushMessageApi;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
@@ -22,16 +21,9 @@ import java.util.Arrays;
  */
 
 public class XiaomiPushMessageApi implements PushMessageApi {
-    private final ApiPropertiesRepository propertiesRepository;
-
-    public XiaomiPushMessageApi(ApiPropertiesRepository propertiesRepository) {
-        this.propertiesRepository = propertiesRepository;
-    }
-
     @Override
     public PushMessageApiResponse execute(PushMessageApiRequest request) {
-        XiaomiPushApiProperties properties = (XiaomiPushApiProperties) propertiesRepository.getById(request.getPropertiesId())
-                .orElseThrow(() -> new PropertiesNotFoundException("properties not found"));
+        XiaomiPushApiProperties properties = (XiaomiPushApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         Constants.useOfficial();
         Sender sender = new Sender(properties.getAppSecretKey());
         Message message = new Message.Builder()

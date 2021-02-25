@@ -21,18 +21,16 @@ public class XiaomiPushApiProperties implements PushApiProperties {
         return appId;
     }
 
-    public XiaomiPushApiProperties setAppId(String appId) {
+    public void setAppId(String appId) {
         this.appId = appId;
-        return this;
     }
 
     public String getAppSecretKey() {
         return appSecretKey;
     }
 
-    public XiaomiPushApiProperties setAppSecretKey(String appSecretKey) {
+    public void setAppSecretKey(String appSecretKey) {
         this.appSecretKey = appSecretKey;
-        return this;
     }
 
     @Override

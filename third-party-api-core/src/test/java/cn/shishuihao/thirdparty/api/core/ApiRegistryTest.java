@@ -19,7 +19,7 @@ class ApiRegistryTest {
         Assertions.assertNotNull(response);
     }
 
-    public static class TestPayChannel extends AbstractMemoryChannel {
+    public static class TestPayChannel extends AbstractMemoryChannel<TestProperties> {
         public TestPayChannel() {
             this.add(new CodePayApi());
         }
@@ -27,6 +27,11 @@ class ApiRegistryTest {
         @Override
         public String id() {
             return TestPayChannel.class.getSimpleName();
+        }
+
+        @Override
+        public Class<TestProperties> propertiesType() {
+            return TestProperties.class;
         }
     }
 
@@ -41,7 +46,7 @@ class ApiRegistryTest {
         @Override
         public CodePayResponse execute(CodePayRequest request) throws ApiException {
             try {
-                return request.responseClass().newInstance();
+                return request.responseType().newInstance();
             } catch (InstantiationException | IllegalAccessException e) {
                 throw new ApiException(e);
             }
@@ -55,7 +60,7 @@ class ApiRegistryTest {
 
     static class CodePayRequest implements ApiRequest<CodePayApi, CodePayRequest, CodePayResponse> {
         @Override
-        public Class<CodePayResponse> responseClass() {
+        public Class<CodePayResponse> responseType() {
             return CodePayResponse.class;
         }
 

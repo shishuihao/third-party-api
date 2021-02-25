@@ -7,5 +7,5 @@ import cn.shishuihao.thirdparty.api.core.ApiChannel;
  * @version 1.0.0
  */
 
-public interface SmsApiChannel extends ApiChannel {
+public interface SmsApiChannel<P extends SmsApiProperties> extends ApiChannel<P> {
 }

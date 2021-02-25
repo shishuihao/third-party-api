@@ -16,17 +16,15 @@ public class AliYunSmsProperties {
         return channelId;
     }
 
-    public AliYunSmsProperties setChannelId(String channelId) {
+    public void setChannelId(String channelId) {
         this.channelId = channelId;
-        return this;
     }
 
     public List<AliYunSmsApiProperties> getProperties() {
         return properties;
     }
 
-    public AliYunSmsProperties setProperties(List<AliYunSmsApiProperties> properties) {
+    public void setProperties(List<AliYunSmsApiProperties> properties) {
         this.properties = properties;
-        return this;
     }
 }

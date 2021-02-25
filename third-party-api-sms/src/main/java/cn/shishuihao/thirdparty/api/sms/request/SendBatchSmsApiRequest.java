@@ -63,7 +63,7 @@ public class SendBatchSmsApiRequest implements SmsApiRequest<SendBatchSmsApi, Se
     }
 
     @Override
-    public Class<SendBatchSmsApiResponse> responseClass() {
+    public Class<SendBatchSmsApiResponse> responseType() {
         return SendBatchSmsApiResponse.class;
     }
 

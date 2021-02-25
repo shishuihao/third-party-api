@@ -78,7 +78,7 @@ public class PushMessageApiRequest implements PushApiRequest<PushMessageApi, Pus
     }
 
     @Override
-    public Class<PushMessageApiResponse> responseClass() {
+    public Class<PushMessageApiResponse> responseType() {
         return PushMessageApiResponse.class;
     }
 

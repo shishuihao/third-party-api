@@ -7,7 +7,7 @@ import java.util.Optional;
  * @version 1.0.0
  */
 
-public interface ApiChannel extends Entity<String>, ApiRepository {
+public interface ApiChannel<P extends ApiProperties> extends Entity<String>, ApiRepository {
     /**
      * get api by api type
      *
@@ -15,4 +15,12 @@ public interface ApiChannel extends Entity<String>, ApiRepository {
      * @return api
      */
     <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<A> getApi(final Class<A> apiType);
+
+    /**
+     * get properties type
+     * immutable
+     *
+     * @return properties type
+     */
+    Class<P> propertiesType();
 }

@@ -1,8 +1,8 @@
 package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiException;
-import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
 import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
 import cn.shishuihao.thirdparty.api.sms.api.SendBatchSmsApi;
 import cn.shishuihao.thirdparty.api.sms.domain.SendStatus;
 import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;

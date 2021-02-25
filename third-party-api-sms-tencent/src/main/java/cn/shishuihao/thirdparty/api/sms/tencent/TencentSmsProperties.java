@@ -16,17 +16,15 @@ public class TencentSmsProperties {
         return channelId;
     }
 
-    public TencentSmsProperties setChannelId(String channelId) {
+    public void setChannelId(String channelId) {
         this.channelId = channelId;
-        return this;
     }
 
     public List<TencentSmsApiProperties> getProperties() {
         return properties;
     }
 
-    public TencentSmsProperties setProperties(List<TencentSmsApiProperties> properties) {
+    public void setProperties(List<TencentSmsApiProperties> properties) {
         this.properties = properties;
-        return this;
     }
 }

@@ -1,9 +1,6 @@
 package cn.shishuihao.thirdparty.api.core.impl.memory;
 
-import cn.shishuihao.thirdparty.api.core.Api;
-import cn.shishuihao.thirdparty.api.core.ApiChannel;
-import cn.shishuihao.thirdparty.api.core.ApiRequest;
-import cn.shishuihao.thirdparty.api.core.ApiResponse;
+import cn.shishuihao.thirdparty.api.core.*;
 
 import java.util.Map;
 import java.util.Optional;
@@ -14,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @version 1.0.0
  */
 
-public abstract class AbstractMemoryChannel implements ApiChannel {
+public abstract class AbstractMemoryChannel<P extends ApiProperties> implements ApiChannel<P> {
     private final Map<Class<?>, Api<?, ?, ?>> map = new ConcurrentHashMap<>();
 
     @Override

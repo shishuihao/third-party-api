@@ -62,7 +62,7 @@ public class SendSmsApiRequest implements SmsApiRequest<SendSmsApi, SendSmsApiRe
     }
 
     @Override
-    public Class<SendSmsApiResponse> responseClass() {
+    public Class<SendSmsApiResponse> responseType() {
         return SendSmsApiResponse.class;
     }
 

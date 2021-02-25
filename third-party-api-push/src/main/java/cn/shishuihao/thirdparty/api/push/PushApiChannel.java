@@ -7,5 +7,5 @@ import cn.shishuihao.thirdparty.api.core.ApiChannel;
  * @version 1.0.0
  */
 
-public interface PushApiChannel extends ApiChannel {
+public interface PushApiChannel<P extends PushApiProperties> extends ApiChannel<P> {
 }

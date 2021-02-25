@@ -16,17 +16,15 @@ public class XiaomiPushProperties {
         return channelId;
     }
 
-    public XiaomiPushProperties setChannelId(String channelId) {
+    public void setChannelId(String channelId) {
         this.channelId = channelId;
-        return this;
     }
 
     public List<XiaomiPushApiProperties> getProperties() {
         return properties;
     }
 
-    public XiaomiPushProperties setProperties(List<XiaomiPushApiProperties> properties) {
+    public void setProperties(List<XiaomiPushApiProperties> properties) {
         this.properties = properties;
-        return this;
     }
 }

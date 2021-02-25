@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun;
 
-import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.sms.SmsApiChannel;
 import cn.shishuihao.thirdparty.api.sms.aliyun.api.AliYunSendBatchSmsApi;
@@ -12,7 +12,7 @@ import cn.shishuihao.thirdparty.api.sms.aliyun.api.AliYunSendSmsApi;
  * @version 1.0.0
  */
 
-public class AliYunSmsApiChannel extends AbstractMemoryChannel implements SmsApiChannel {
+public class AliYunSmsApiChannel extends AbstractMemoryChannel<AliYunSmsApiProperties> implements SmsApiChannel<AliYunSmsApiProperties> {
     private final AliYunSmsProperties channelProperties;
 
     public AliYunSmsApiChannel(AliYunSmsProperties channelProperties,
@@ -29,5 +29,10 @@ public class AliYunSmsApiChannel extends AbstractMemoryChannel implements SmsApi
     @Override
     public String id() {
         return channelProperties.getChannelId();
+    }
+
+    @Override
+    public Class<AliYunSmsApiProperties> propertiesType() {
+        return AliYunSmsApiProperties.class;
     }
 }

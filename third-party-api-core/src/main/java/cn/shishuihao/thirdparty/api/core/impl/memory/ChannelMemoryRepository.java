@@ -8,5 +8,5 @@ import cn.shishuihao.thirdparty.api.core.ApiChannelRepository;
  * @version 1.0.0
  */
 
-public class ChannelMemoryRepository extends AbstractMemoryRepository<String, ApiChannel> implements ApiChannelRepository {
+public class ChannelMemoryRepository extends AbstractMemoryRepository<String, ApiChannel<?>> implements ApiChannelRepository {
 }

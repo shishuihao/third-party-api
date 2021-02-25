@@ -13,11 +13,14 @@
 # 功能
   + 自动发现
     + [x] spi
-    + [x] springboot
+    + [x] 容器
+      + [x] springboot 
   + 配置属性获取方式
     + [x] 代码
-    + [ ] yml
-    + [ ] 数据库
+    + [x] 容器
+      + [x] springboot
+    + [x] 数据库
+      + [x] jpa
   + [x] SMS集成(sms integration)
     + [x] [阿里云](/third-party-api-sms-aliyun/README.md)
       + [X] 发送短信

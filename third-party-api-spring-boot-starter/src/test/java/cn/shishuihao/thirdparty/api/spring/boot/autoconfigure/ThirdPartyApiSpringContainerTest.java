@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.*;
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
-import cn.shishuihao.thirdparty.api.core.impl.memory.PropertiesMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.impl.memory.ApiPropertiesMemoryRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -56,12 +56,10 @@ class ThirdPartyApiSpringContainerTest {
         }
     }
 
-    static class TestPropertiesRepository extends PropertiesMemoryRepository {
+    static class TestApiPropertiesRepository extends ApiPropertiesMemoryRepository {
     }
 
     static class CodePayApi implements Api<CodePayApi, CodePayRequest, CodePayResponse> {
-        private final TestPropertiesRepository propertiesRepository = new TestPropertiesRepository();
-
         @Override
         public CodePayResponse execute(CodePayRequest request) throws ApiException {
             try {

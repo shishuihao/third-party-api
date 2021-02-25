@@ -10,7 +10,7 @@ import java.util.Optional;
  * @version 1.0.0
  */
 
-public class PropertiesMemoryRepository extends AbstractMemoryRepository<String, ApiProperties> implements ApiPropertiesRepository {
+public class ApiPropertiesMemoryRepository extends AbstractMemoryRepository<String, ApiProperties> implements ApiPropertiesRepository {
     @Override
     public void add(ApiProperties entity) {
         map.put(entity.channelId() + '.' + entity.id(), entity);

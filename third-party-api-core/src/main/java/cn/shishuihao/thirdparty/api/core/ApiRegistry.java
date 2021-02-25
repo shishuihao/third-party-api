@@ -3,10 +3,10 @@ package cn.shishuihao.thirdparty.api.core;
 import cn.shishuihao.thirdparty.api.core.exception.ApiNotFoundException;
 import cn.shishuihao.thirdparty.api.core.exception.ChannelNotFoundException;
 import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
-import cn.shishuihao.thirdparty.api.core.impl.container.ChannelContainerRepository;
-import cn.shishuihao.thirdparty.api.core.impl.container.PropertiesContainerRepository;
-import cn.shishuihao.thirdparty.api.core.impl.memory.ChannelMemoryRepository;
-import cn.shishuihao.thirdparty.api.core.impl.memory.PropertiesMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.impl.container.ApiChannelContainerRepository;
+import cn.shishuihao.thirdparty.api.core.impl.container.ApiPropertiesContainerRepository;
+import cn.shishuihao.thirdparty.api.core.impl.memory.ApiChannelMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.impl.memory.ApiPropertiesMemoryRepository;
 
 import java.util.Map;
 import java.util.Optional;
@@ -28,7 +28,7 @@ public class ApiRegistry {
         PROPERTIES_REPOSITORY = CONTAINER_MAP.values().stream()
                 .findFirst()
                 .map(container -> {
-                    ApiPropertiesRepository repository = new PropertiesContainerRepository(container);
+                    ApiPropertiesRepository repository = new ApiPropertiesContainerRepository(container);
                     container.awareOrHook(it -> {
                         // spi => container bean
                         ServiceLoader.load(ApiProperties.class).forEach(repository::add);
@@ -38,7 +38,7 @@ public class ApiRegistry {
                     return repository;
                 })
                 .orElseGet(() -> {
-                    ApiPropertiesRepository repository = new PropertiesMemoryRepository();
+                    ApiPropertiesRepository repository = new ApiPropertiesMemoryRepository();
                     // spi => memory
                     ServiceLoader.load(ApiProperties.class).forEach(repository::add);
                     return repository;
@@ -46,7 +46,7 @@ public class ApiRegistry {
         CHANNEL_REPOSITORY = CONTAINER_MAP.values().stream()
                 .findFirst()
                 .map(container -> {
-                    ApiChannelRepository repository = new ChannelContainerRepository(container);
+                    ApiChannelRepository repository = new ApiChannelContainerRepository(container);
                     container.awareOrHook(it -> {
                         // spi => container bean
                         ServiceLoader.load(ApiChannel.class).forEach(repository::add);
@@ -56,7 +56,7 @@ public class ApiRegistry {
                     return repository;
                 })
                 .orElseGet(() -> {
-                    ApiChannelRepository repository = new ChannelMemoryRepository();
+                    ApiChannelRepository repository = new ApiChannelMemoryRepository();
                     // spi => memory
                     ServiceLoader.load(ApiChannel.class).forEach(repository::add);
                     return repository;
@@ -70,14 +70,22 @@ public class ApiRegistry {
         this.channelRepository = channelRepository;
     }
 
+    public Optional<ApiChannel<?>> getApiChannel(final String channelId) {
+        return this.channelRepository.getById(channelId);
+    }
+
+    public ApiChannel<?> getApiChannelOrThrow(final String channelId) {
+        return this.getApiChannel(channelId).orElseThrow(() -> new ChannelNotFoundException("channel not found by channelId:" + channelId));
+    }
+
     public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<ApiChannel<?>>
     getApiChannel(final T request) {
-        return this.channelRepository.getById(request.channelId());
+        return this.getApiChannel(request.channelId());
     }
 
     public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> ApiChannel<?>
     getApiChannelOrThrow(final T request) {
-        return this.getApiChannel(request).orElseThrow(() -> new ChannelNotFoundException("channel not found by channelId:" + request.channelId()));
+        return this.getApiChannelOrThrow(request.channelId());
     }
 
     public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<A>

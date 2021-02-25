@@ -11,9 +11,9 @@ import java.util.Optional;
  * @version 1.0.0
  */
 
-public class PropertiesContainerRepository extends AbstractContainerRepository<String, ApiProperties, ApiPropertiesRepository>
+public class ApiPropertiesContainerRepository extends AbstractContainerRepository<String, ApiProperties, ApiPropertiesRepository>
         implements ApiPropertiesRepository {
-    public PropertiesContainerRepository(Container container) {
+    public ApiPropertiesContainerRepository(Container container) {
         super(container, ApiPropertiesRepository.class);
     }
 

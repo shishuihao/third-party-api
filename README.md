@@ -18,9 +18,9 @@
   + 配置属性获取方式
     + [x] 代码
     + [x] 容器
-      + [x] springboot
+      + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
     + [x] 数据库
-      + [x] jpa
+      + [x] [jpa](/third-party-api-spring-boot-jpa/README.md)
   + [x] SMS集成(sms integration)
     + [x] [阿里云](/third-party-api-sms-aliyun/README.md)
       + [X] 发送短信

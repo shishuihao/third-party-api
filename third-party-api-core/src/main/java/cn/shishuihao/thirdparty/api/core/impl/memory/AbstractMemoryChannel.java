@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @version 1.0.0
  */
 
-public abstract class AbstractChannelMemoryImpl implements ApiChannel {
+public abstract class AbstractMemoryChannel implements ApiChannel {
     private final Map<Class<?>, Api<?, ?, ?>> map = new ConcurrentHashMap<>();
 
     @Override

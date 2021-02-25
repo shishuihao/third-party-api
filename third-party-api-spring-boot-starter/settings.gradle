@@ -1,2 +1,2 @@
 rootProject.name = 'third-party-api-spring-boot-starter'
-
+includeFlat('third-party-api-core')

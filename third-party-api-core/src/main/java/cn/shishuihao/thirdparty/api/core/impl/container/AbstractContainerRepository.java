@@ -11,10 +11,10 @@ import java.util.Optional;
  * @version 1.0.0
  */
 
-public abstract class AbstractRepositoryContainerImpl<I, T extends Entity<I>> implements Repository<I, T> {
+public abstract class AbstractContainerRepository<I, T extends Entity<I>> implements Repository<I, T> {
     private Repository<I, T> repository;
 
-    protected AbstractRepositoryContainerImpl(Container container, Class<? extends Repository<I, T>> requiredType) {
+    protected AbstractContainerRepository(Container container, Class<? extends Repository<I, T>> requiredType) {
         container.awareOrHook(it -> repository = it.getBean(requiredType));
     }
 

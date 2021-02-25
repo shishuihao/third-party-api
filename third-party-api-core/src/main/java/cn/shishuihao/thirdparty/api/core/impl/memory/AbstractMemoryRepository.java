@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @version 1.0.0
  */
 
-public abstract class AbstractRepositoryMemoryImpl<I, T extends Entity<I>> implements Repository<I, T> {
+public abstract class AbstractMemoryRepository<I, T extends Entity<I>> implements Repository<I, T> {
     private final Map<I, T> map = new ConcurrentHashMap<>();
 
     @Override

@@ -8,5 +8,5 @@ import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
  * @version 1.0.0
  */
 
-public class PropertiesRepositoryMemoryImpl extends AbstractRepositoryMemoryImpl<String, ApiProperties> implements ApiPropertiesRepository {
+public class PropertiesMemoryRepository extends AbstractMemoryRepository<String, ApiProperties> implements ApiPropertiesRepository {
 }

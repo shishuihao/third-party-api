@@ -2,10 +2,10 @@ package cn.shishuihao.thirdparty.api.core;
 
 import cn.shishuihao.thirdparty.api.core.exception.ApiNotFoundException;
 import cn.shishuihao.thirdparty.api.core.exception.ChannelNotFoundException;
-import cn.shishuihao.thirdparty.api.core.impl.container.ChannelRepositoryContainerImpl;
-import cn.shishuihao.thirdparty.api.core.impl.container.PropertiesRepositoryContainerImpl;
-import cn.shishuihao.thirdparty.api.core.impl.memory.ChannelRepositoryMemoryImpl;
-import cn.shishuihao.thirdparty.api.core.impl.memory.PropertiesRepositoryMemoryImpl;
+import cn.shishuihao.thirdparty.api.core.impl.container.ChannelContainerRepository;
+import cn.shishuihao.thirdparty.api.core.impl.container.PropertiesContainerRepository;
+import cn.shishuihao.thirdparty.api.core.impl.memory.ChannelMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.impl.memory.PropertiesMemoryRepository;
 
 import java.util.Map;
 import java.util.Optional;
@@ -28,7 +28,7 @@ public class ApiRegistry {
         PROPERTIES_REPOSITORY = CONTAINER_MAP.values().stream()
                 .findFirst()
                 .map(container -> {
-                    ApiPropertiesRepository repository = new PropertiesRepositoryContainerImpl(container);
+                    ApiPropertiesRepository repository = new PropertiesContainerRepository(container);
                     container.awareOrHook(it -> {
                         // spi => container bean
                         ServiceLoader.load(ApiProperties.class).forEach(repository::add);
@@ -38,7 +38,7 @@ public class ApiRegistry {
                     return repository;
                 })
                 .orElseGet(() -> {
-                    ApiPropertiesRepository repository = new PropertiesRepositoryMemoryImpl();
+                    ApiPropertiesRepository repository = new PropertiesMemoryRepository();
                     // spi => memory
                     ServiceLoader.load(ApiProperties.class).forEach(repository::add);
                     return repository;
@@ -46,7 +46,7 @@ public class ApiRegistry {
         CHANNEL_REPOSITORY = CONTAINER_MAP.values().stream()
                 .findFirst()
                 .map(container -> {
-                    ApiChannelRepository repository = new ChannelRepositoryContainerImpl(container);
+                    ApiChannelRepository repository = new ChannelContainerRepository(container);
                     container.awareOrHook(it -> {
                         // spi => container bean
                         ServiceLoader.load(ApiChannel.class).forEach(repository::add);
@@ -56,7 +56,7 @@ public class ApiRegistry {
                     return repository;
                 })
                 .orElseGet(() -> {
-                    ApiChannelRepository repository = new ChannelRepositoryMemoryImpl();
+                    ApiChannelRepository repository = new ChannelMemoryRepository();
                     // spi => memory
                     ServiceLoader.load(ApiChannel.class).forEach(repository::add);
                     return repository;

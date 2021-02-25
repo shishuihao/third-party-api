@@ -1,8 +1,8 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.*;
-import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractChannelMemoryImpl;
-import cn.shishuihao.thirdparty.api.core.impl.memory.PropertiesRepositoryMemoryImpl;
+import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
+import cn.shishuihao.thirdparty.api.core.impl.memory.PropertiesMemoryRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,7 +27,7 @@ class ThirdPartyApiSpringContainerTest {
         Assertions.assertNotNull(response);
     }
 
-    public static class TestPayChannel extends AbstractChannelMemoryImpl {
+    public static class TestPayChannel extends AbstractMemoryChannel {
         public TestPayChannel() {
             this.add(new CodePayApi());
         }
@@ -45,7 +45,7 @@ class ThirdPartyApiSpringContainerTest {
         }
     }
 
-    static class TestPropertiesRepository extends PropertiesRepositoryMemoryImpl {
+    static class TestPropertiesRepository extends PropertiesMemoryRepository {
     }
 
     static class CodePayApi implements Api<CodePayApi, CodePayRequest, CodePayResponse> {

@@ -9,8 +9,8 @@ import cn.shishuihao.thirdparty.api.core.Container;
  * @version 1.0.0
  */
 
-public class ChannelRepositoryContainerImpl extends AbstractRepositoryContainerImpl<String, ApiChannel> implements ApiChannelRepository {
-    public ChannelRepositoryContainerImpl(Container container) {
+public class ChannelContainerRepository extends AbstractContainerRepository<String, ApiChannel> implements ApiChannelRepository {
+    public ChannelContainerRepository(Container container) {
         super(container, ApiChannelRepository.class);
     }
 }

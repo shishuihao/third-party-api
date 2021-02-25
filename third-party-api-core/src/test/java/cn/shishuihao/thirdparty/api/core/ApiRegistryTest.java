@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.core;
 
-import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractChannelMemoryImpl;
+import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ class ApiRegistryTest {
         Assertions.assertNotNull(response);
     }
 
-    public static class TestPayChannel extends AbstractChannelMemoryImpl {
+    public static class TestPayChannel extends AbstractMemoryChannel {
         public TestPayChannel() {
             this.add(new CodePayApi());
         }

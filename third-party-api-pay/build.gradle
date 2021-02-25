@@ -1,3 +1,7 @@
 dependencies {
     compile project(':third-party-api-core')
 }
+
+jar {
+    enabled true
+}

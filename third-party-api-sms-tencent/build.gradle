@@ -4,3 +4,7 @@ dependencies {
 
     compile 'com.tencentcloudapi:tencentcloud-sdk-java:3.1.209'
 }
+
+jar {
+    enabled true
+}

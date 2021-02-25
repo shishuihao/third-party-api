@@ -44,5 +44,10 @@ dependencies {
     compile project(':third-party-api-sms-aliyun')
     compile project(':third-party-api-sms-tencent')
     compile project(':third-party-api-spring-boot-starter')
+    compile project(':third-party-api-spring-boot-redis')
     compile project(':third-party-api-spring-boot-jpa')
+}
+
+jar {
+    enabled true
 }

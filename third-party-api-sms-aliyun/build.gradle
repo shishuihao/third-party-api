@@ -4,3 +4,7 @@ dependencies {
 
     compile 'com.aliyun:dysmsapi20170525:2.0.1'
 }
+
+jar {
+    enabled true
+}

@@ -5,11 +5,11 @@ dependencies {
     compile project(':third-party-api-core')
     compile project(':third-party-api-spring-boot-starter')
 
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile "org.springframework.boot:spring-boot-starter-data-redis"
+    compileOnly 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'com.h2database:h2:1.4.200'
 }
 
 jar {

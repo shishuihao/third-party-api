@@ -4,3 +4,7 @@ dependencies {
     compile project(':third-party-api-core')
     compile project(':third-party-api-push')
 }
+
+jar {
+    enabled true
+}

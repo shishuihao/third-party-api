@@ -14,7 +14,7 @@
   + 自动发现
     + [x] spi
     + [x] 容器
-      + [x] springboot 
+      + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
   + 配置属性获取方式
     + [x] 代码
     + [x] 容器

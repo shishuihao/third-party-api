@@ -29,6 +29,10 @@ allprojects {
     test {
         useJUnitPlatform()
     }
+
+    jar {
+        enabled true
+    }
 }
 
 dependencies {
@@ -40,4 +44,5 @@ dependencies {
     compile project(':third-party-api-sms-aliyun')
     compile project(':third-party-api-sms-tencent')
     compile project(':third-party-api-spring-boot-starter')
+    compile project(':third-party-api-spring-boot-jpa')
 }

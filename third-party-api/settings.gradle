@@ -13,6 +13,7 @@ includeFlat(
         'third-party-api-sms',
         'third-party-api-sms-aliyun',
         'third-party-api-sms-tencent',
+        'third-party-api-spring-boot-jpa',
         'third-party-api-spring-boot-starter'
 )
 

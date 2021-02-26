@@ -1,5 +1,6 @@
-package cn.shishuihao.thirdparty.api.spring.boot.jpa.po;
+package cn.shishuihao.thirdparty.api.spring.boot.jpa.repository;
 
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.entity.ApiPropertiesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.core;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
 /**
@@ -23,4 +24,14 @@ public interface ApiChannel<P extends ApiProperties> extends Entity<String>, Api
      * @return properties type
      */
     Class<P> propertiesType();
+
+    /**
+     * get new empty properties
+     * immutable
+     *
+     * @return new properties
+     */
+    default P newProperties() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        return propertiesType().getDeclaredConstructor().newInstance();
+    }
 }

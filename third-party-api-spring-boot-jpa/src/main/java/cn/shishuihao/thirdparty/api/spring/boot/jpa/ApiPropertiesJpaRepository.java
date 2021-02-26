@@ -2,9 +2,11 @@ package cn.shishuihao.thirdparty.api.spring.boot.jpa;
 
 import cn.shishuihao.thirdparty.api.core.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.po.ApiPropertiesEntity;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.po.ApiPropertiesEntityJpaRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.entity.ApiPropertiesEntity;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiPropertiesEntityJpaRepository;
+import org.springframework.cglib.beans.BeanMap;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
@@ -18,9 +20,20 @@ public class ApiPropertiesJpaRepository implements ApiPropertiesRepository {
         this.jpaRepository = jpaRepository;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public void add(final ApiProperties entity) {
-        jpaRepository.save(ApiPropertiesEntity.from(entity));
+    public void add(final ApiProperties apiProperties) {
+        Optional<ApiPropertiesEntity> optional = jpaRepository.findByPropertiesId(apiProperties.id());
+        ApiPropertiesEntity entity;
+        if (optional.isPresent()) {
+            entity = optional.get();
+            entity.setProperties(BeanMap.create(apiProperties));
+            entity.setGmtModified(LocalDateTime.now());
+            jpaRepository.save(entity);
+        } else {
+            entity = ApiPropertiesEntity.from(apiProperties);
+        }
+        jpaRepository.save(entity);
     }
 
     @Override

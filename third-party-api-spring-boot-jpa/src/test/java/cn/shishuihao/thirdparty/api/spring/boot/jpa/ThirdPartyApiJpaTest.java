@@ -46,6 +46,11 @@ class ThirdPartyApiJpaTest {
     }
 
     public static class TestProperties implements ApiProperties {
+        private String channelId;
+        private String propertiesId;
+        private String key = "key";
+        private String value = "value";
+
         @Override
         public String channelId() {
             return TestPayChannel.class.getSimpleName();
@@ -54,6 +59,38 @@ class ThirdPartyApiJpaTest {
         @Override
         public String id() {
             return TestProperties.class.getSimpleName();
+        }
+
+        public String getChannelId() {
+            return channelId;
+        }
+
+        public void setChannelId(String channelId) {
+            this.channelId = channelId;
+        }
+
+        public String getPropertiesId() {
+            return propertiesId;
+        }
+
+        public void setPropertiesId(String propertiesId) {
+            this.propertiesId = propertiesId;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public void setKey(String key) {
+            this.key = key;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
         }
     }
 

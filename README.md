@@ -50,20 +50,6 @@
   + [ ] 登录集成
   + [ ] 分享集成
 
-
-
-# 流程示例(process example)
-```mermaid
-graph LR
-  A[new SendSmsRequest]-->B(ApiRegistry.INSTANCE.execute)
-  B-->C(ChannelRepository.getById(SendSmsRequest.channelId()))
-  C-->D(AliYunSmsChannel.getApi(SendSmsRequest.apiType()))
-  D-->E(AliYunSendSmsApi.execute(SendSmsRequest))
-  E-->F(AliYunClient.sendSms(new AliYunSendSmsRequest))
-  G-->H(new SendSmsResponseBody)
-  H-->I
-```
-
 # 捐助作者
 
 如果您觉得我的项目对您有帮助，并且您愿意给予我一点小小的支持，您可以通过以下方式向我捐助，这样可以维持项目持续地发展，灰常感谢！(/ω＼)

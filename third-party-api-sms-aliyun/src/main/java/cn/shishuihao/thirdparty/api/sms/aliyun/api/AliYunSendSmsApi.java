@@ -51,10 +51,10 @@ public class AliYunSendSmsApi implements SendSmsApi {
             // 外部流水扩展字段。
             SendSmsResponseBody sendSmsResponseBody = client.sendSms(sendSmsRequest).getBody();
             return SendSmsApiResponse.Builder.builder()
+                    .requestId(sendSmsResponseBody.getRequestId())
                     .success("OK".equals(sendSmsResponseBody.getCode()))
                     .code(sendSmsResponseBody.getCode())
                     .message(sendSmsResponseBody.getMessage())
-                    .requestId(sendSmsResponseBody.getRequestId())
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);

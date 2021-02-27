@@ -57,10 +57,10 @@ public class AliYunSendBatchSmsApi implements SendBatchSmsApi {
                     .collect(Collectors.toList())));
             SendBatchSmsResponseBody sendBatchSmsResponseBody = client.sendBatchSms(sendBatchSmsRequest).getBody();
             return SendBatchSmsApiResponse.Builder.builder()
+                    .requestId(sendBatchSmsResponseBody.getRequestId())
                     .success("OK".equals(sendBatchSmsResponseBody.getCode()))
                     .code(sendBatchSmsResponseBody.getCode())
                     .message(sendBatchSmsResponseBody.getMessage())
-                    .requestId(sendBatchSmsResponseBody.getRequestId())
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);

@@ -8,14 +8,20 @@ import cn.shishuihao.thirdparty.api.sms.SmsApiResponse;
  */
 
 public class SendSmsApiResponse implements SmsApiResponse {
+    private final boolean success;
     private final String code;
     private final String message;
     private final String requestId;
 
-    protected SendSmsApiResponse(String code, String message, String requestId) {
+    protected SendSmsApiResponse(boolean success, String code, String message, String requestId) {
+        this.success = success;
         this.code = code;
         this.message = message;
         this.requestId = requestId;
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 
     public String getCode() {
@@ -31,6 +37,7 @@ public class SendSmsApiResponse implements SmsApiResponse {
     }
 
     public static final class Builder {
+        private boolean success;
         private String code;
         private String message;
         private String requestId;
@@ -40,6 +47,11 @@ public class SendSmsApiResponse implements SmsApiResponse {
 
         public static Builder builder() {
             return new Builder();
+        }
+
+        public Builder success(boolean success) {
+            this.success = success;
+            return this;
         }
 
         public Builder code(String code) {
@@ -58,7 +70,7 @@ public class SendSmsApiResponse implements SmsApiResponse {
         }
 
         public SendSmsApiResponse build() {
-            return new SendSmsApiResponse(code, message, requestId);
+            return new SendSmsApiResponse(success, code, message, requestId);
         }
     }
 }

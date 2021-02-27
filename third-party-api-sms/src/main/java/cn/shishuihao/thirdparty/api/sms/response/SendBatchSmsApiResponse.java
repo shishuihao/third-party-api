@@ -9,25 +9,47 @@ import cn.shishuihao.thirdparty.api.sms.domain.SendStatus;
  */
 
 public class SendBatchSmsApiResponse implements SmsApiResponse {
-    private final SendStatus[] sendStatuses;
+    private final boolean success;
+    private final String code;
+    private final String message;
     private final String requestId;
+    private final SendStatus[] sendStatuses;
 
-    protected SendBatchSmsApiResponse(SendStatus[] sendStatuses, String requestId) {
-        this.sendStatuses = sendStatuses;
+    protected SendBatchSmsApiResponse(boolean success, String code, String message, String requestId, SendStatus[] sendStatuses) {
+        this.success = success;
+        this.code = code;
+        this.message = message;
         this.requestId = requestId;
+        this.sendStatuses = sendStatuses;
     }
 
-    public SendStatus[] getSendStatuses() {
-        return sendStatuses;
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     public String getRequestId() {
         return requestId;
     }
 
+    public SendStatus[] getSendStatuses() {
+        return sendStatuses;
+    }
+
+
     public static final class Builder {
-        private SendStatus[] sendStatuses;
+        private boolean success;
+        private String code;
+        private String message;
         private String requestId;
+        private SendStatus[] sendStatuses;
 
         private Builder() {
         }
@@ -36,8 +58,18 @@ public class SendBatchSmsApiResponse implements SmsApiResponse {
             return new Builder();
         }
 
-        public Builder sendStatuses(SendStatus[] sendStatuses) {
-            this.sendStatuses = sendStatuses;
+        public Builder success(boolean success) {
+            this.success = success;
+            return this;
+        }
+
+        public Builder code(String code) {
+            this.code = code;
+            return this;
+        }
+
+        public Builder message(String message) {
+            this.message = message;
             return this;
         }
 
@@ -46,8 +78,13 @@ public class SendBatchSmsApiResponse implements SmsApiResponse {
             return this;
         }
 
+        public Builder sendStatuses(SendStatus[] sendStatuses) {
+            this.sendStatuses = sendStatuses;
+            return this;
+        }
+
         public SendBatchSmsApiResponse build() {
-            return new SendBatchSmsApiResponse(sendStatuses, requestId);
+            return new SendBatchSmsApiResponse(success, code, message, requestId, sendStatuses);
         }
     }
 }

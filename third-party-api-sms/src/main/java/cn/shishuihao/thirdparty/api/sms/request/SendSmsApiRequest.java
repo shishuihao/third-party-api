@@ -2,9 +2,8 @@ package cn.shishuihao.thirdparty.api.sms.request;
 
 import cn.shishuihao.thirdparty.api.sms.SmsApiRequest;
 import cn.shishuihao.thirdparty.api.sms.api.SendSmsApi;
+import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.response.SendSmsApiResponse;
-
-import java.util.Map;
 
 /**
  * @author shishuihao
@@ -20,25 +19,19 @@ public class SendSmsApiRequest implements SmsApiRequest<SendSmsApi, SendSmsApiRe
      */
     private final String propertiesId;
     /**
-     * phone number
-     */
-    private final String phoneNumber;
-    /**
      * template Id
      */
     private final String templateId;
     /**
-     * template params
+     * message
      */
-    private final Map<String, String> templateParams;
+    private final SmsMessage message;
 
-    protected SendSmsApiRequest(String channelId, String propertiesId,
-                                String phoneNumber, String templateId, Map<String, String> templateParams) {
+    protected SendSmsApiRequest(String channelId, String propertiesId, String templateId, SmsMessage message) {
         this.channelId = channelId;
         this.propertiesId = propertiesId;
-        this.phoneNumber = phoneNumber;
         this.templateId = templateId;
-        this.templateParams = templateParams;
+        this.message = message;
     }
 
     public String getChannelId() {
@@ -49,16 +42,12 @@ public class SendSmsApiRequest implements SmsApiRequest<SendSmsApi, SendSmsApiRe
         return propertiesId;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
     public String getTemplateId() {
         return templateId;
     }
 
-    public Map<String, String> getTemplateParams() {
-        return templateParams;
+    public SmsMessage getMessage() {
+        return message;
     }
 
     @Override
@@ -84,9 +73,8 @@ public class SendSmsApiRequest implements SmsApiRequest<SendSmsApi, SendSmsApiRe
     public static final class Builder {
         private String channelId;
         private String propertiesId;
-        private String phoneNumber;
         private String templateId;
-        private Map<String, String> templateParams;
+        private SmsMessage message;
 
         private Builder() {
         }
@@ -105,23 +93,18 @@ public class SendSmsApiRequest implements SmsApiRequest<SendSmsApi, SendSmsApiRe
             return this;
         }
 
-        public Builder phoneNumber(String phoneNumber) {
-            this.phoneNumber = phoneNumber;
-            return this;
-        }
-
         public Builder templateId(String templateId) {
             this.templateId = templateId;
             return this;
         }
 
-        public Builder templateParams(Map<String, String> templateParams) {
-            this.templateParams = templateParams;
+        public Builder message(SmsMessage message) {
+            this.message = message;
             return this;
         }
 
         public SendSmsApiRequest build() {
-            return new SendSmsApiRequest(channelId, propertiesId, phoneNumber, templateId, templateParams);
+            return new SendSmsApiRequest(channelId, propertiesId, templateId, message);
         }
     }
 }

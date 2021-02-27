@@ -2,10 +2,10 @@ package cn.shishuihao.thirdparty.api.sms.request;
 
 import cn.shishuihao.thirdparty.api.sms.SmsApiRequest;
 import cn.shishuihao.thirdparty.api.sms.api.SendBatchSmsApi;
+import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author shishuihao
@@ -21,25 +21,19 @@ public class SendBatchSmsApiRequest implements SmsApiRequest<SendBatchSmsApi, Se
      */
     private final String propertiesId;
     /**
-     * phone numbers
-     */
-    private final List<String> phoneNumbers;
-    /**
      * template Id
      */
     private final String templateId;
     /**
-     * template params
+     * phone numbers
      */
-    private final Map<String, String> templateParams;
+    private final List<SmsMessage> messages;
 
-    protected SendBatchSmsApiRequest(String channelId, String propertiesId,
-                                     List<String> phoneNumbers, String templateId, Map<String, String> templateParams) {
+    protected SendBatchSmsApiRequest(String channelId, String propertiesId, String templateId, List<SmsMessage> messages) {
         this.channelId = channelId;
         this.propertiesId = propertiesId;
-        this.phoneNumbers = phoneNumbers;
         this.templateId = templateId;
-        this.templateParams = templateParams;
+        this.messages = messages;
     }
 
     public String getChannelId() {
@@ -50,16 +44,12 @@ public class SendBatchSmsApiRequest implements SmsApiRequest<SendBatchSmsApi, Se
         return propertiesId;
     }
 
-    public List<String> getPhoneNumbers() {
-        return phoneNumbers;
-    }
-
     public String getTemplateId() {
         return templateId;
     }
 
-    public Map<String, String> getTemplateParams() {
-        return templateParams;
+    public List<SmsMessage> getMessages() {
+        return messages;
     }
 
     @Override
@@ -82,12 +72,12 @@ public class SendBatchSmsApiRequest implements SmsApiRequest<SendBatchSmsApi, Se
         return propertiesId;
     }
 
+
     public static final class Builder {
         private String channelId;
         private String propertiesId;
-        private List<String> phoneNumbers;
         private String templateId;
-        private Map<String, String> templateParams;
+        private List<SmsMessage> messages;
 
         private Builder() {
         }
@@ -106,23 +96,18 @@ public class SendBatchSmsApiRequest implements SmsApiRequest<SendBatchSmsApi, Se
             return this;
         }
 
-        public Builder phoneNumbers(List<String> phoneNumbers) {
-            this.phoneNumbers = phoneNumbers;
-            return this;
-        }
-
         public Builder templateId(String templateId) {
             this.templateId = templateId;
             return this;
         }
 
-        public Builder templateParams(Map<String, String> templateParams) {
-            this.templateParams = templateParams;
+        public Builder messages(List<SmsMessage> messages) {
+            this.messages = messages;
             return this;
         }
 
         public SendBatchSmsApiRequest build() {
-            return new SendBatchSmsApiRequest(channelId, propertiesId, phoneNumbers, templateId, templateParams);
+            return new SendBatchSmsApiRequest(channelId, propertiesId, templateId, messages);
         }
     }
 }

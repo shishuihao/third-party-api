@@ -14,6 +14,10 @@ public class AliYunSmsProperties {
      */
     private String channelId = AliYunSmsApiChannel.CHANNEL_ID;
     /**
+     * sms endpoint
+     */
+    private String endpoint = "dysmsapi.aliyuncs.com";
+    /**
      * properties list
      */
     private List<AliYunSmsApiProperties> properties = new ArrayList<>();
@@ -24,6 +28,14 @@ public class AliYunSmsProperties {
 
     public void setChannelId(String channelId) {
         this.channelId = channelId;
+    }
+
+    public String getEndpoint() {
+        return endpoint;
+    }
+
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
     }
 
     public List<AliYunSmsApiProperties> getProperties() {

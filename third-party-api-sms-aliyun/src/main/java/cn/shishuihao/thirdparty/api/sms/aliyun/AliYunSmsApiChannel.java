@@ -15,10 +15,14 @@ public class AliYunSmsApiChannel extends AbstractMemoryChannel<AliYunSmsApiPrope
 
     private final AliYunSmsProperties channelProperties;
 
-    public AliYunSmsApiChannel(AliYunSmsProperties channelProperties) {
+    public AliYunSmsApiChannel(AliYunSmsProperties channelProperties, AliYunSmsClient smsClient) {
         this.channelProperties = channelProperties;
-        this.add(new AliYunSendBatchSmsApi());
-        this.add(new AliYunSendSmsApi());
+        this.add(new AliYunSendBatchSmsApi(smsClient));
+        this.add(new AliYunSendSmsApi(smsClient));
+    }
+
+    public AliYunSmsApiChannel(AliYunSmsProperties channelProperties) {
+        this(channelProperties, new AliYunSmsClient(channelProperties));
     }
 
     public AliYunSmsApiChannel() {

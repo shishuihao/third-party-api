@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.request.SendSmsApiRequest;
 import cn.shishuihao.thirdparty.api.sms.response.SendSmsApiResponse;
 import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiProperties;
@@ -32,9 +33,12 @@ class TencentSendSmsApiTest {
         SendSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendSmsApiRequest.Builder.builder()
                 .channelId("sms.tencent")
                 .propertiesId(properties.id())
-                .phoneNumber("+8613711112222")
                 .templateId("1234")
-                .templateParams(params)
+                .message(SmsMessage.Builder.builder()
+                        .phoneNumber("8613711112222")
+                        .signName("test")
+                        .templateParams(params)
+                        .build())
                 .build());
         Assertions.assertNotNull(response);
     }

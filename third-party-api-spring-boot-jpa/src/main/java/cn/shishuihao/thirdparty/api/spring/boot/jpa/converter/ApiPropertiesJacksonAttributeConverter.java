@@ -9,11 +9,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
+@Converter(autoApply = true)
 public class ApiPropertiesJacksonAttributeConverter implements AttributeConverter<ApiProperties, String> {
     private static final ObjectMapper OBJECT_MAPPER;
 

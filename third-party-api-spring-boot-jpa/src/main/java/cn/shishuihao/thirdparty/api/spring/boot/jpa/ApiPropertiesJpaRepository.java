@@ -33,11 +33,13 @@ public class ApiPropertiesJpaRepository implements ApiPropertiesRepository {
 
     @Override
     public Optional<ApiProperties> getById(final String id) {
-        return jpaRepository.findByPropertiesId(id).map(ApiPropertiesEntity::getProperties);
+        return jpaRepository.findByPropertiesId(id)
+                .map(ApiPropertiesEntity::getProperties);
     }
 
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId, final String propertiesId) {
-        return jpaRepository.findByChannelIdAndPropertiesId(channelId, propertiesId).map(ApiPropertiesEntity::getProperties);
+        return jpaRepository.findByChannelIdAndPropertiesId(channelId, propertiesId)
+                .map(ApiPropertiesEntity::getProperties);
     }
 }

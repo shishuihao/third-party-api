@@ -2,6 +2,7 @@ package cn.shishuihao.thirdparty.api.sms.aliyun.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiProperties;
+import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.request.SendSmsApiRequest;
 import cn.shishuihao.thirdparty.api.sms.response.SendSmsApiResponse;
 import org.junit.jupiter.api.Assertions;
@@ -20,17 +21,20 @@ class AliYunSendSmsApiTest {
     @Test
     void execute() {
         AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
-        properties.setAccessKeyId("accessKeyId");
-        properties.setAccessSecret("accessSecret");
+        properties.setAccessKeyId("AccessKeyId");
+        properties.setAccessSecret("AccessSecret");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
         SendSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendSmsApiRequest.Builder.builder()
                 .channelId("sms.aliyun")
                 .propertiesId(properties.id())
-                .phoneNumber("+8613711112222")
-                .templateId("1234")
-                .templateParams(params)
+                .templateId("SMS_123456789")
+                .message(SmsMessage.Builder.builder()
+                        .phoneNumber("8613711112222")
+                        .signName("短信测试")
+                        .templateParams(params)
+                        .build())
                 .build());
         Assertions.assertNotNull(response);
     }

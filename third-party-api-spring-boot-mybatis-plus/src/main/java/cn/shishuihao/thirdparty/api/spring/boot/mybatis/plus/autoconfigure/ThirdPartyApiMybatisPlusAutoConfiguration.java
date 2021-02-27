@@ -10,11 +10,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
+@Import({ThirdPartyApiMybatisPlusApplicationListener.class})
 @Configuration
 @ConditionalOnProperty(name = "third-party-api.mybatis-plus.enabled", matchIfMissing = true)
 @MapperScan(basePackages = "cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper")

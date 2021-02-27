@@ -21,6 +21,7 @@
       + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
     + [x] 数据库
       + [x] [jpa](/third-party-api-spring-boot-jpa/README.md)
+      + [x] [mybatis-plus](/third-party-api-spring-boot-mybatis-plus/README.md)
       + [x] [redis](/third-party-api-spring-boot-redis/README.md)
   + [x] SMS集成(sms integration)
     + [x] [阿里云](/third-party-api-sms-aliyun/README.md)

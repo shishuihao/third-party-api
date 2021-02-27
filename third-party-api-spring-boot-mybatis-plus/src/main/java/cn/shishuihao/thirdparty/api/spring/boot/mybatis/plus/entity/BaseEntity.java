@@ -1,32 +1,34 @@
-package cn.shishuihao.thirdparty.api.spring.boot.jpa.po;
+package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity;
 
-import org.springframework.data.annotation.LastModifiedDate;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-@MappedSuperclass
 public class BaseEntity {
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_GMT_CREATE = "gmt_create";
+    public static final String COLUMN_GMT_MODIFIED = "gmt_modified";
     /**
      * 数据库主键id
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId(value = COLUMN_ID, type = IdType.AUTO)
     private Long id;
     /**
      * 创建时间 不可更新
      */
-    @Column(updatable = false)
+    @TableField(value = COLUMN_GMT_CREATE, update = "now()", fill = FieldFill.INSERT)
     private LocalDateTime gmtCreate = LocalDateTime.now();
     /**
      * 更新时间
      */
-    @LastModifiedDate
-    @Column
+    @TableField(value = COLUMN_GMT_MODIFIED, update = "now()", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime gmtModified;
 
     public Long getId() {

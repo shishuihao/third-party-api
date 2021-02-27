@@ -1,0 +1,19 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+    compile project(':third-party-api-core')
+    compile project(':third-party-api-spring-boot-starter')
+
+    compile 'com.baomidou:mybatis-plus-boot-starter:3.4.2'
+    compileOnly 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'com.h2database:h2:1.4.200'
+    testImplementation 'mysql:mysql-connector-java:8.0.23'
+}
+
+jar {
+    enabled true
+}

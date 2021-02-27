@@ -11,26 +11,26 @@ import java.time.LocalDateTime;
  */
 @MappedSuperclass
 public class BaseEntity {
-    public static final String ENTITY_ID = "id";
-    public static final String GMT_CREATE = "gmt_create";
-    public static final String GMT_MODIFIED = "gmt_modified";
+    public static final String COLUMN_ID = "`id`";
+    public static final String COLUMN_GMT_CREATE = "`gmt_create`";
+    public static final String COLUMN_GMT_MODIFIED = "`gmt_modified`";
     /**
      * 数据库主键id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = ENTITY_ID, nullable = false, updatable = false)
+    @Column(name = COLUMN_ID, nullable = false, updatable = false)
     private Long id;
     /**
      * 创建时间 不可更新
      */
-    @Column(name = GMT_CREATE, nullable = false, updatable = false)
+    @Column(name = COLUMN_GMT_CREATE, nullable = false, updatable = false)
     private LocalDateTime gmtCreate = LocalDateTime.now();
     /**
      * 更新时间
      */
     @LastModifiedDate
-    @Column(name = GMT_MODIFIED, nullable = false)
+    @Column(name = COLUMN_GMT_MODIFIED, nullable = false)
     private LocalDateTime gmtModified;
 
     public Long getId() {

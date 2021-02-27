@@ -17,30 +17,30 @@ import java.util.Optional;
  * @version 1.0.0
  */
 @Table(name = ApiPropertiesEntity.TABLE_NAME, uniqueConstraints = {
-        @UniqueConstraint(columnNames = {ApiPropertiesEntity.CHANNEL_ID, ApiPropertiesEntity.PROPERTIES_ID})
+        @UniqueConstraint(columnNames = {ApiPropertiesEntity.COLUMN_CHANNEL_ID, ApiPropertiesEntity.COLUMN_PROPERTIES_ID})
 })
 @Entity
 public class ApiPropertiesEntity extends BaseEntity {
-    public static final String TABLE_NAME = "api_properties";
-    public static final String CHANNEL_ID = "channel_id";
-    public static final String PROPERTIES_ID = "properties_id";
+    public static final String TABLE_NAME = "`api_properties`";
+    public static final String COLUMN_CHANNEL_ID = "`channel_id`";
+    public static final String COLUMN_PROPERTIES_ID = "`properties_id`";
     /**
      * channel id
      */
-    @Column(name = CHANNEL_ID, nullable = false)
+    @Column(name = COLUMN_CHANNEL_ID, nullable = false)
     private String channelId;
     /**
      * properties id
      */
-    @Column(name = PROPERTIES_ID, nullable = false)
+    @Column(name = COLUMN_PROPERTIES_ID, nullable = false)
     private String propertiesId;
     /**
      * properties
      */
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = ApiPropertyEntity.TABLE_NAME, joinColumns = @JoinColumn(name = PROPERTIES_ID))
-    @MapKeyColumn(name = ApiPropertyEntity.KEY)
-    @Column(name = ApiPropertyEntity.VALUE, length = 10240)
+    @CollectionTable(name = ApiPropertyEntity.TABLE_NAME, joinColumns = @JoinColumn(name = COLUMN_PROPERTIES_ID))
+    @MapKeyColumn(name = ApiPropertyEntity.COLUMN_KEY)
+    @Column(name = ApiPropertyEntity.COLUMN_VALUE, length = 10240)
     private Map<String, String> properties;
 
     @SuppressWarnings("unchecked")

@@ -37,7 +37,7 @@ class ThirdPartyApiTest {
     static void setUpMongo() throws Exception {
         mongodExecutable = starter.prepare(new MongodConfigBuilder()
                 .version(Version.Main.PRODUCTION)
-                .net(new Net(37017, Network.localhostIsIPv6()))
+                .net(new Net(37018, Network.localhostIsIPv6()))
                 .build());
         mongodProcess = mongodExecutable.start();
     }
@@ -51,7 +51,7 @@ class ThirdPartyApiTest {
     @BeforeAll
     static void setUpRedis() {
         redisServer = RedisServer.builder()
-                .port(16379)
+                .port(16380)
                 .setting("maxheap 200m")
                 .setting("bind localhost").build();
         redisServer.start();

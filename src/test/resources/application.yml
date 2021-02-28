@@ -6,7 +6,7 @@ spring:
     username: sa
     password: 123456
   redis:
-    port: 16379
+    port: 16380
   data:
     mongodb:
-      uri: mongodb://localhost:37017/test
+      uri: mongodb://localhost:37018/test

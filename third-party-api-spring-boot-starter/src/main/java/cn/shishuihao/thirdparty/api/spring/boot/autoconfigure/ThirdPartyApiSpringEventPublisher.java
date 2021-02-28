@@ -3,6 +3,8 @@ package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
 import cn.shishuihao.thirdparty.api.core.EventPublisher;
 import org.springframework.context.ApplicationContext;
 
+import java.util.concurrent.CompletableFuture;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -17,6 +19,6 @@ public class ThirdPartyApiSpringEventPublisher implements EventPublisher {
 
     @Override
     public void publishEvent(Object event) {
-        applicationContext.publishEvent(event);
+        CompletableFuture.runAsync(() -> applicationContext.publishEvent(event));
     }
 }

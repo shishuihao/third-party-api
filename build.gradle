@@ -26,6 +26,17 @@ allprojects {
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     }
 
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+        options.warnings = false
+        options.deprecation = true
+        options.compilerArgs += ["-parameters"]
+    }
+
+    tasks.withType(GenerateModuleMetadata) {
+        enabled = false
+    }
+
     test {
         useJUnitPlatform()
     }

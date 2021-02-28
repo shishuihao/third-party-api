@@ -23,3 +23,5 @@
 hs_err_pid*
 /third-party-api/.gradle
 /third-party-api/.idea
+/test.h2.db
+/test.lock.db

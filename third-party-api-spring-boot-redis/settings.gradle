@@ -1,2 +1,0 @@
-rootProject.name = 'third-party-api-spring-boot-redis'
-includeFlat('third-party-api-core', 'third-party-api-spring-boot-starter')

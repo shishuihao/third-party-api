@@ -3,6 +3,7 @@ package cn.shishuihao.thirdparty.api;
 import cn.shishuihao.thirdparty.api.core.*;
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.core.impl.memory.ApiPropertiesMemoryRepository;
+import com.baomidou.mybatisplus.extension.exceptions.ApiException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,11 +1,14 @@
 pluginManagement {
     repositories {
         maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
         gradlePluginPortal()
     }
 }
 rootProject.name = 'third-party-api'
-includeFlat(
+include(
         'third-party-api-core',
         'third-party-api-pay',
         'third-party-api-push',

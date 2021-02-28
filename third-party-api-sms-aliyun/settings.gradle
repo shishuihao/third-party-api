@@ -1,2 +1,0 @@
-rootProject.name = 'third-party-api-sms-aliyun'
-includeFlat('third-party-api-core', 'third-party-api-sms')

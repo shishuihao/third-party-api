@@ -35,7 +35,6 @@ compile 'cn.shishuihao:third-party-api-sms-aliyun:latest'
                         .templateParams(params)
                         .build())
                 .build());
-        Assertions.assertNotNull(response);
 ```
 
 ## batch send sms
@@ -61,5 +60,4 @@ compile 'cn.shishuihao:third-party-api-sms-aliyun:latest'
                         .templateParams(params)
                         .build()))
                 .build());
-        Assertions.assertNotNull(response);
 ```

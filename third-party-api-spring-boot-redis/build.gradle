@@ -10,6 +10,8 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation 'com.github.kstyrc:embedded-redis:0.6'
 }
 
 jar {

@@ -3,12 +3,15 @@ package cn.shishuihao.thirdparty.api.spring.boot.redis;
 import cn.shishuihao.thirdparty.api.core.*;
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.core.impl.memory.ApiPropertiesMemoryRepository;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import redis.embedded.RedisServer;
 
 /**
  * @author shishuihao
@@ -18,6 +21,21 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
 class ThirdPartyApiRedisTest {
+    private static RedisServer redisServer;
+
+    @BeforeAll
+    static void setUpRedis() {
+        redisServer = RedisServer.builder()
+                .port(16379)
+                .setting("maxheap 200m")
+                .setting("bind localhost").build();
+        redisServer.start();
+    }
+
+    @AfterAll
+    static void close() {
+        redisServer.stop();
+    }
 
     @Test
     void execute() {

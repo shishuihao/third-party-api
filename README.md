@@ -118,6 +118,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
       + [x] [jpa](/third-party-api-spring-boot-jpa/README.md)
       + [x] [mybatis-plus](/third-party-api-spring-boot-mybatis-plus/README.md)
       + [x] [redis](/third-party-api-spring-boot-redis/README.md)
+      + [x] [mongodb](/third-party-api-spring-boot-mongodb/README.md)
   + [x] SMS集成(sms integration)
     + [x] [阿里云](/third-party-api-sms-aliyun/README.md)
       + [X] 发送短信

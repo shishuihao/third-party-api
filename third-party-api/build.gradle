@@ -8,7 +8,7 @@ allprojects {
     apply plugin: 'java'
 
     group 'cn.shishuihao'
-    version '1.0-SNAPSHOT'
+    version '2021.0.0-SNAPSHOT'
 
     configurations {
         compileOnly {

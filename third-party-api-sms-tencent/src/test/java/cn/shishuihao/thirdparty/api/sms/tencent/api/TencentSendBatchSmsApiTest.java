@@ -1,9 +1,9 @@
 package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
+import cn.shishuihao.thirdparty.api.core.ApiException;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;
-import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
 import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiChannel;
 import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiProperties;
 import org.junit.jupiter.api.Assertions;
@@ -32,7 +32,7 @@ class TencentSendBatchSmsApiTest {
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
-        SendBatchSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsApiRequest.Builder.builder()
+        SendBatchSmsApiRequest request = SendBatchSmsApiRequest.Builder.builder()
                 .channelId(TencentSmsApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .templateId("1234")
@@ -45,7 +45,8 @@ class TencentSendBatchSmsApiTest {
                         .signName("test")
                         .templateParams(params)
                         .build()))
-                .build());
-        Assertions.assertNotNull(response);
+                .build();
+        ApiException apiException = Assertions.assertThrows(ApiException.class, () -> ApiRegistry.INSTANCE.execute(request));
+        Assertions.assertTrue(apiException.getMessage().startsWith("[TencentCloudSDKException]code: AuthFailure.SecretIdNotFound message:The SecretId is not found, please ensure that your SecretId is correct. requestId:"));
     }
 }

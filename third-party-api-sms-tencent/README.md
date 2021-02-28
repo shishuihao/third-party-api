@@ -39,7 +39,6 @@ compile 'cn.shishuihao:third-party-api-sms-tencent:latest'
                         .templateParams(params)
                         .build())
                 .build());
-        Assertions.assertNotNull(response);
 ```
 
 ## batch send sms
@@ -69,5 +68,4 @@ compile 'cn.shishuihao:third-party-api-sms-tencent:latest'
                         .templateParams(params)
                         .build()))
                 .build());
-        Assertions.assertNotNull(response);
 ```

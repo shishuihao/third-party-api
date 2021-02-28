@@ -78,7 +78,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 
 ### 用什么构建 Built With
 
-本节列出在构建项目时使用的所有主要框架。在致谢(acknowledgements)部分留下任何附加组件/插件。
+本节列出在构建项目时使用的所有主要框架。在<a href="#致谢-acknowledgements">致谢(Acknowledgements)</a>部分留下任何附加组件/插件。
 * [Gradle](https://gradle.org/)
 * [Java 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 

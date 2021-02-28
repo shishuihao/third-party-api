@@ -2,6 +2,6 @@ spring:
   datasource:
     platform: h2
     driverClassName: org.h2.Driver
-    url: jdbc:h2:file:./test;MV_STORE=false;DATABASE_TO_UPPER=false;
+    url: jdbc:h2:file:./test;MV_STORE=false;DATABASE_TO_UPPER=false
     username: sa
     password: 123456

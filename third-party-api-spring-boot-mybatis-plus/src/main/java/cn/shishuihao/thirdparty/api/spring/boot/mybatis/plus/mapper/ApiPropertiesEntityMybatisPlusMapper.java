@@ -3,6 +3,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiPropertiesEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.Optional;
@@ -21,7 +22,7 @@ public interface ApiPropertiesEntityMybatisPlusMapper extends BaseMapper<ApiProp
      */
     @Select("SELECT * FROM " + ApiPropertiesEntity.TABLE_NAME +
             " WHERE " + ApiPropertiesEntity.COLUMN_PROPERTIES_ID + " = #{id}")
-    Optional<ApiPropertiesEntity> findByPropertiesId(String id);
+    Optional<ApiPropertiesEntity> findByPropertiesId(@Param("id") String id);
 
     /**
      * get by channel id and properties id
@@ -33,5 +34,5 @@ public interface ApiPropertiesEntityMybatisPlusMapper extends BaseMapper<ApiProp
     @Select("SELECT * FROM " + ApiPropertiesEntity.TABLE_NAME +
             " WHERE " + ApiPropertiesEntity.COLUMN_CHANNEL_ID + " = #{channelId}" +
             " AND " + ApiPropertiesEntity.COLUMN_PROPERTIES_ID + "  = #{id}")
-    Optional<ApiPropertiesEntity> findByChannelIdAndPropertiesId(String channelId, String id);
+    Optional<ApiPropertiesEntity> findByChannelIdAndPropertiesId(@Param("channelId") String channelId, @Param("id") String id);
 }

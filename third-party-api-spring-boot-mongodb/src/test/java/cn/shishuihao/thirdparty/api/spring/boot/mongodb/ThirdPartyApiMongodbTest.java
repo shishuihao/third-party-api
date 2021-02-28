@@ -3,7 +3,16 @@ package cn.shishuihao.thirdparty.api.spring.boot.mongodb;
 import cn.shishuihao.thirdparty.api.core.*;
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.core.impl.memory.ApiPropertiesMemoryRepository;
+import de.flapdoodle.embed.mongo.MongodExecutable;
+import de.flapdoodle.embed.mongo.MongodProcess;
+import de.flapdoodle.embed.mongo.MongodStarter;
+import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
+import de.flapdoodle.embed.mongo.config.Net;
+import de.flapdoodle.embed.mongo.distribution.Version;
+import de.flapdoodle.embed.process.runtime.Network;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,6 +27,24 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
 class ThirdPartyApiMongodbTest {
+    private static final MongodStarter starter = MongodStarter.getDefaultInstance();
+    private MongodExecutable mongodExecutable;
+    private MongodProcess mongodProcess;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        mongodExecutable = starter.prepare(new MongodConfigBuilder()
+                .version(Version.Main.PRODUCTION)
+                .net(new Net(27017, Network.localhostIsIPv6()))
+                .build());
+        mongodProcess = mongodExecutable.start();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        mongodProcess.stop();
+        mongodExecutable.stop();
+    }
 
     @Test
     void execute() {

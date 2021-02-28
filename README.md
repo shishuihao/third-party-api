@@ -114,8 +114,8 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
       cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiChannel
       ```
     + [x] 通过注入容器，再从容器获取
-      + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
-        如注入容器
+      + [x] [springboot](/third-party-api-spring-boot-starter/README.md) 如注入容器
+        
         ```java
         @Bean
         @ConditionalOnMissingBean
@@ -124,26 +124,35 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
         }
         ```
   + 配置属性配置方式
-    + [x] 代码配置方式
-      如：
+    + [x] 代码 如：
       ```
       AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
       properties.setAccessKeyId("AccessKeyId");
       properties.setAccessSecret("AccessSecret");
       ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
       ```
-    + [x] 容器配置方式
+    + [x] 容器
       + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
-        ```java
-        @Bean
-        @ConditionalOnMissingBean
-        protected AliYunSmsApiProperties defaultAliYunSmsApiProperties() {
-            AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
-            properties.setAccessKeyId("AccessKeyId");
-            properties.setAccessSecret("AccessSecret");
-            return properties;
-        }
-        ```
+        + [x] 代码
+          ```java
+          @Bean
+          @ConditionalOnMissingBean
+          protected AliYunSmsApiProperties defaultAliYunSmsApiProperties() {
+              AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
+              properties.setAccessKeyId("AccessKeyId");
+              properties.setAccessSecret("AccessSecret");
+              return properties;
+          }
+          ```
+        + [x] yml（自定义）
+          ```yml
+          sms: 
+            aliyun: 
+              - access-key-id: AccessKeyId1
+                access-secret: AccessSecret1
+              - access-key-id: AccessKeyId2
+                access-secret: AccessSecret2
+          ```
     + [x] 数据库配置方式
       + [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa/README.md)
         ```java

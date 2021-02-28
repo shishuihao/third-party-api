@@ -67,6 +67,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
   + 支持多种可插拔机制，扩展性好，可按需使用
   + 支持纯java使用，也支持多种框架内使用（一般会自动配置）
   + 支持多配置参数，支持多配置参数方式
+  + 支持发布事件
   + 详细可参考<a href="#用法-usage">用法(Usage)</a>
 
 当然，由于您的需求可能不同，因此没有一个模板可以为所有项目提供服务。
@@ -186,6 +187,8 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
             return new ApiPropertiesMongodbRepository(mongoRepository);
         }
         ```
+  + 发布事件
+    + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
   + [x] SMS集成(sms integration)
     + [x] [阿里云](/third-party-api-sms-aliyun/README.md)
       + [X] 发送短信

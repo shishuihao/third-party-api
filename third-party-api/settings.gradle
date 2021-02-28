@@ -14,6 +14,7 @@ includeFlat(
         'third-party-api-sms-aliyun',
         'third-party-api-sms-tencent',
         'third-party-api-spring-boot-jpa',
+        'third-party-api-spring-boot-mongodb',
         'third-party-api-spring-boot-mybatis-plus',
         'third-party-api-spring-boot-redis',
         'third-party-api-spring-boot-starter'

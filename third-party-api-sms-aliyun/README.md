@@ -19,35 +19,47 @@ compile 'cn.shishuihao:third-party-api-sms-aliyun:latest'
 ## send sms
 
 ``` java
-AliYunSmsProperties properties = new AliYunSmsProperties();
-properties.setAccessKeyId("accessKeyId");
-properties.setAccessSecret("accessSecret");
-ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-Map<String, String> params = new TreeMap<>();
-params.put("code", "12345");
-SendSmsResponse response = ApiRegistry.INSTANCE.execute(SendSmsRequest.Builder.builder()
-    .channelId("sms.aliyun")
-    .propertiesId(properties.id())
-    .phoneNumber("+8613711112222")
-    .templateId("1234")
-    .templateParams(params)
-    .build());
+        AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
+        properties.setAccessKeyId("AccessKeyId");
+        properties.setAccessSecret("AccessSecret");
+        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+        Map<String, String> params = new TreeMap<>();
+        params.put("code", "12345");
+        SendSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendSmsApiRequest.Builder.builder()
+                .channelId(AliYunSmsApiChannel.CHANNEL_ID)
+                .propertiesId(properties.id())
+                .templateId("SMS_123456789")
+                .message(SmsMessage.Builder.builder()
+                        .phoneNumber("8613711112222")
+                        .signName("test")
+                        .templateParams(params)
+                        .build())
+                .build());
+        Assertions.assertNotNull(response);
 ```
 
-## send batch sms
+## batch send sms
 
 ``` java
-AliYunSmsProperties properties = new AliYunSmsProperties();
-properties.setAccessKeyId("accessKeyId");
-properties.setAccessSecret("accessSecret");
-ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-Map<String, String> params = new TreeMap<>();
-params.put("code", "12345");
-SendBatchSmsResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsRequest.Builder.builder()
-    .channelId("sms.aliyun")
-    .propertiesId(properties.id())
-    .phoneNumbers(Arrays.asList("+8613711112222", "+8618511122266"))
-    .templateId("1234")
-    .templateParams(params)
-    .build());
+        AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
+        properties.setAccessKeyId("AccessKeyId");
+        properties.setAccessSecret("AccessSecret");
+        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+        Map<String, String> params = new TreeMap<>();
+        params.put("code", "12345");
+        SendBatchSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsApiRequest.Builder.builder()
+                .channelId(AliYunSmsApiChannel.CHANNEL_ID)
+                .propertiesId(properties.id())
+                .templateId("SMS_123456789")
+                .messages(Arrays.asList(SmsMessage.Builder.builder()
+                        .phoneNumber("8613711112222")
+                        .signName("test")
+                        .templateParams(params)
+                        .build(), SmsMessage.Builder.builder()
+                        .phoneNumber("8618511122266")
+                        .signName("test")
+                        .templateParams(params)
+                        .build()))
+                .build());
+        Assertions.assertNotNull(response);
 ```

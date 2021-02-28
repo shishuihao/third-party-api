@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiChannel;
 import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiProperties;
 import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;
@@ -28,16 +29,16 @@ class AliYunBatchSendSmsApiTest {
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
         SendBatchSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsApiRequest.Builder.builder()
-                .channelId("sms.aliyun")
+                .channelId(AliYunSmsApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .templateId("SMS_123456789")
                 .messages(Arrays.asList(SmsMessage.Builder.builder()
                         .phoneNumber("8613711112222")
-                        .signName("短信测试")
+                        .signName("test")
                         .templateParams(params)
                         .build(), SmsMessage.Builder.builder()
                         .phoneNumber("8618511122266")
-                        .signName("短信测试")
+                        .signName("test")
                         .templateParams(params)
                         .build()))
                 .build());

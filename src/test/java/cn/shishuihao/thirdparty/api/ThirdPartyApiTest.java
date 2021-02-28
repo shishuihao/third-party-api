@@ -3,7 +3,6 @@ package cn.shishuihao.thirdparty.api;
 import cn.shishuihao.thirdparty.api.core.*;
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.core.impl.memory.ApiPropertiesMemoryRepository;
-import com.baomidou.mybatisplus.extension.exceptions.ApiException;
 import de.flapdoodle.embed.mongo.MongodExecutable;
 import de.flapdoodle.embed.mongo.MongodProcess;
 import de.flapdoodle.embed.mongo.MongodStarter;

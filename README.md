@@ -63,9 +63,11 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 我想创建一个第三方接口集成，如此出色，以至于它将成为您需要的最后一个-我想就是这样。
 
 # 特点
+  + 可不依赖任何第三方mvc框架
+  + 可根据相应模块依赖自动注入相应功能
+  + 配置参数支持多种方式添加，支持多配置，支持数据库配置
   + 模块化设计
   + 高度抽象，统一接口
-  + spi(Service Provider Interface)，可插拔
   + 方法使用更优雅
 
 当然，由于您的需求可能不同，因此没有一个模板可以为所有项目提供服务。
@@ -106,19 +108,76 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 <!-- USAGE EXAMPLES -->
 ## 用法 Usage
 
-  + 自动发现
-    + [x] spi
-    + [x] 容器
+  + 可插拔方式
+    + [x] SPI机制
+      如：[AliYunSmsApiChannel](/third-party-api-sms-aliyun/src/main/resources/META-INF/services/cn.shishuihao.thirdparty.api.core.ApiChannel)的spi机制实现
+      ```
+      cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiChannel
+      ```
+    + [x] 通过注入容器，再从容器获取
       + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
-  + 配置属性获取方式
-    + [x] 代码
-    + [x] 容器
+        如注入容器
+        ```java
+        @Bean
+        @ConditionalOnMissingBean
+        protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityJpaRepository jpaRepository) {
+            return new ApiPropertiesJpaRepository(jpaRepository);
+        }
+        ```
+  + 配置属性配置方式
+    + [x] 代码配置方式
+      如：
+      ```
+      AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
+      properties.setAccessKeyId("AccessKeyId");
+      properties.setAccessSecret("AccessSecret");
+      ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+      ```
+    + [x] 容器配置方式
       + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
-    + [x] 数据库
-      + [x] [jpa](/third-party-api-spring-boot-jpa/README.md)
-      + [x] [mybatis-plus](/third-party-api-spring-boot-mybatis-plus/README.md)
-      + [x] [redis](/third-party-api-spring-boot-redis/README.md)
-      + [x] [mongodb](/third-party-api-spring-boot-mongodb/README.md)
+        ```java
+        @Bean
+        @ConditionalOnMissingBean
+        protected AliYunSmsApiProperties defaultAliYunSmsApiProperties() {
+            AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
+            properties.setAccessKeyId("AccessKeyId");
+            properties.setAccessSecret("AccessSecret");
+            return properties;
+        }
+        ```
+    + [x] 数据库配置方式
+      + [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa/README.md)
+        ```java
+        @Bean
+        @ConditionalOnMissingBean
+        protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityJpaRepository jpaRepository) {
+            return new ApiPropertiesJpaRepository(jpaRepository);
+        }
+        ```
+      + [x] [spring-boot-mybatis-plus](/third-party-api-spring-boot-mybatis-plus/README.md)
+        ```java
+        @Bean
+        @ConditionalOnMissingBean
+        protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityMybatisPlusMapper mybatisPlusMapper) {
+            return new ApiPropertiesMybatisPlusRepository(mybatisPlusMapper);
+        }
+        ```
+      + [x] [spring-boot-redis](/third-party-api-spring-boot-redis/README.md)
+        ```java
+        @Bean
+        @ConditionalOnMissingBean
+        protected ApiPropertiesRepository propertiesRepository(RedisTemplate<String, ApiProperties> redisTemplate) {
+            return new ApiPropertiesRedisRepository(redisTemplate);
+        }
+        ```
+      + [x] [spring-boot-mongodb](/third-party-api-spring-boot-mongodb/README.md)
+        ```java
+        @Bean
+        @ConditionalOnMissingBean
+        protected ApiPropertiesRepository propertiesRepository(ApiPropertiesDocumentMongoRepository mongoRepository) {
+            return new ApiPropertiesMongodbRepository(mongoRepository);
+        }
+        ```
   + [x] SMS集成(sms integration)
     + [x] [阿里云](/third-party-api-sms-aliyun/README.md)
       + [X] 发送短信

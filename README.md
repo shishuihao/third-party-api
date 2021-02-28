@@ -57,7 +57,7 @@
 <!-- 关于该项目(ABOUT THE PROJECT) -->
 ## 关于该项目 About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://third-party-api.com)
+[![Product Name Screen Shot][product-screenshot]](https://shishuihao.github.io/third-party-api/)
 
 GitHub上有很多很棒的第三方接口集成，但是我找不到真正适合我需要的，因此我创建了这个我认为比较优雅的实现。
 我想创建一个第三方接口集成，如此出色，以至于它将成为您需要的最后一个-我想就是这样。
@@ -118,6 +118,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
       + [x] [jpa](/third-party-api-spring-boot-jpa/README.md)
       + [x] [mybatis-plus](/third-party-api-spring-boot-mybatis-plus/README.md)
       + [x] [redis](/third-party-api-spring-boot-redis/README.md)
+      + [x] [mongodb](/third-party-api-spring-boot-mongodb/README.md)
   + [x] SMS集成(sms integration)
     + [x] [阿里云](/third-party-api-sms-aliyun/README.md)
       + [X] 发送短信
@@ -146,8 +147,8 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
   + [ ] 登录集成
   + [ ] 分享集成
 
-* _有关更多示例，请参考[文档](https://third-party-api.com)_
-* _For more examples, please refer to the [Documentation](https://third-party-api.com)_
+* _有关更多示例，请参考[文档](https://shishuihao.github.io/third-party-api/)_
+* _For more examples, please refer to the [Documentation](https://shishuihao.github.io/third-party-api/)_
 
 
 
@@ -163,11 +164,11 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 <!-- CONTRIBUTING -->
 ## 贡献 Contributing
 
-1. 分叉项目(Fork the Project)
+1. 复刻该项目(Fork the Project)
 2. 创建您的功能分支(Create your Feature Branch) (`git checkout -b feature/AmazingFeature`)
 3. 提交您的更改(Commit your Changes) (`git commit -m 'Add some AmazingFeature'`)
 4. 推到分支(Push to the Branch) (`git push origin feature/AmazingFeature`)
-5. 打开拉取请求(Open a Pull Request)
+5. 提交拉取请求(Open a Pull Request)
 
 
 

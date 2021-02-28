@@ -57,7 +57,7 @@
 <!-- 关于该项目(ABOUT THE PROJECT) -->
 ## 关于该项目 About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://third-party-api.com)
+[![Product Name Screen Shot][product-screenshot]](https://shishuihao.github.io/third-party-api/)
 
 GitHub上有很多很棒的第三方接口集成，但是我找不到真正适合我需要的，因此我创建了这个我认为比较优雅的实现。
 我想创建一个第三方接口集成，如此出色，以至于它将成为您需要的最后一个-我想就是这样。
@@ -147,8 +147,8 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
   + [ ] 登录集成
   + [ ] 分享集成
 
-* _有关更多示例，请参考[文档](https://third-party-api.com)_
-* _For more examples, please refer to the [Documentation](https://third-party-api.com)_
+* _有关更多示例，请参考[文档](https://shishuihao.github.io/third-party-api/)_
+* _For more examples, please refer to the [Documentation](https://shishuihao.github.io/third-party-api/)_
 
 
 

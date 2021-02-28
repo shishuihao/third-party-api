@@ -7,7 +7,7 @@ package cn.shishuihao.thirdparty.api.core;
 
 public interface EventPublisher {
     /**
-     * push event
+     * publish event
      *
      * @param event event
      */

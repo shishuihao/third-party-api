@@ -3,15 +3,8 @@ package cn.shishuihao.thirdparty.api.core;
 import cn.shishuihao.thirdparty.api.core.exception.ApiNotFoundException;
 import cn.shishuihao.thirdparty.api.core.exception.ChannelNotFoundException;
 import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
-import cn.shishuihao.thirdparty.api.core.impl.container.ApiChannelContainerRepository;
-import cn.shishuihao.thirdparty.api.core.impl.container.ApiPropertiesContainerRepository;
-import cn.shishuihao.thirdparty.api.core.impl.memory.ApiChannelMemoryRepository;
-import cn.shishuihao.thirdparty.api.core.impl.memory.ApiPropertiesMemoryRepository;
 
-import java.util.Map;
 import java.util.Optional;
-import java.util.ServiceLoader;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author shishuihao
@@ -21,46 +14,10 @@ public class ApiRegistry {
     public static final ApiPropertiesRepository PROPERTIES_REPOSITORY;
     public static final ApiChannelRepository CHANNEL_REPOSITORY;
     public static final ApiRegistry INSTANCE;
-    protected static final Map<String, Container> CONTAINER_MAP = new ConcurrentHashMap<>();
 
     static {
-        ServiceLoader.load(Container.class).forEach(container -> CONTAINER_MAP.put(container.id(), container));
-        PROPERTIES_REPOSITORY = CONTAINER_MAP.values().stream()
-                .findFirst()
-                .map(container -> {
-                    ApiPropertiesRepository repository = new ApiPropertiesContainerRepository(container);
-                    container.awareOrHook(it -> {
-                        // spi => container bean
-                        ServiceLoader.load(ApiProperties.class).forEach(repository::add);
-                        // container bean => container bean
-                        it.getBeansOfType(ApiProperties.class).values().forEach(repository::add);
-                    });
-                    return repository;
-                })
-                .orElseGet(() -> {
-                    ApiPropertiesRepository repository = new ApiPropertiesMemoryRepository();
-                    // spi => memory
-                    ServiceLoader.load(ApiProperties.class).forEach(repository::add);
-                    return repository;
-                });
-        CHANNEL_REPOSITORY = CONTAINER_MAP.values().stream()
-                .findFirst()
-                .map(container -> {
-                    ApiChannelRepository repository = new ApiChannelContainerRepository(container);
-                    container.awareOrHook(it -> {
-                        // spi => container bean
-                        ServiceLoader.load(ApiChannel.class).forEach(repository::add);
-                        // container bean => container bean
-                        it.getBeansOfType(ApiChannel.class).values().forEach(repository::add);
-                    });
-                    return repository;
-                })
-                .orElseGet(() -> {
-                    ApiChannelRepository repository = new ApiChannelMemoryRepository();
-                    // spi => memory
-                    ServiceLoader.load(ApiChannel.class).forEach(repository::add);
-                    return repository;
-                });
+        PROPERTIES_REPOSITORY = ApiPropertiesHolder.PROPERTIES_REPOSITORY;
+        CHANNEL_REPOSITORY = ApiChannelHolder.CHANNEL_REPOSITORY;
         INSTANCE = new ApiRegistry(CHANNEL_REPOSITORY);
     }
 

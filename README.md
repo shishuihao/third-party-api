@@ -164,11 +164,11 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 <!-- CONTRIBUTING -->
 ## 贡献 Contributing
 
-1. 分叉项目(Fork the Project)
+1. 复刻该项目(Fork the Project)
 2. 创建您的功能分支(Create your Feature Branch) (`git checkout -b feature/AmazingFeature`)
 3. 提交您的更改(Commit your Changes) (`git commit -m 'Add some AmazingFeature'`)
 4. 推到分支(Push to the Branch) (`git push origin feature/AmazingFeature`)
-5. 打开拉取请求(Open a Pull Request)
+5. 提交拉取请求(Open a Pull Request)
 
 
 

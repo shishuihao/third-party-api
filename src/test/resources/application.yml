@@ -5,3 +5,8 @@ spring:
     url: jdbc:h2:file:./test;MV_STORE=false;DATABASE_TO_UPPER=false;
     username: sa
     password: 123456
+  redis:
+    port: 16379
+  data:
+    mongodb:
+      uri: mongodb://localhost:37017/test

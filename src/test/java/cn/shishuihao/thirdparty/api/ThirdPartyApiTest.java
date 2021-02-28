@@ -3,12 +3,23 @@ package cn.shishuihao.thirdparty.api;
 import cn.shishuihao.thirdparty.api.core.*;
 import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.core.impl.memory.ApiPropertiesMemoryRepository;
+import com.baomidou.mybatisplus.extension.exceptions.ApiException;
+import de.flapdoodle.embed.mongo.MongodExecutable;
+import de.flapdoodle.embed.mongo.MongodProcess;
+import de.flapdoodle.embed.mongo.MongodStarter;
+import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
+import de.flapdoodle.embed.mongo.config.Net;
+import de.flapdoodle.embed.mongo.distribution.Version;
+import de.flapdoodle.embed.process.runtime.Network;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import redis.embedded.RedisServer;
 
 /**
  * @author shishuihao
@@ -18,6 +29,39 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
 class ThirdPartyApiTest {
+    private static final MongodStarter starter = MongodStarter.getDefaultInstance();
+    private static RedisServer redisServer;
+    private static MongodExecutable mongodExecutable;
+    private static MongodProcess mongodProcess;
+
+    @BeforeAll
+    static void setUpMongo() throws Exception {
+        mongodExecutable = starter.prepare(new MongodConfigBuilder()
+                .version(Version.Main.PRODUCTION)
+                .net(new Net(37017, Network.localhostIsIPv6()))
+                .build());
+        mongodProcess = mongodExecutable.start();
+    }
+
+    @AfterAll
+    static void tearDownMongo() {
+        mongodProcess.stop();
+        mongodExecutable.stop();
+    }
+
+    @BeforeAll
+    static void setUpRedis() {
+        redisServer = RedisServer.builder()
+                .port(16379)
+                .setting("maxheap 200m")
+                .setting("bind localhost").build();
+        redisServer.start();
+    }
+
+    @AfterAll
+    static void tearDownRedis() {
+        redisServer.stop();
+    }
 
     @Test
     void execute() {

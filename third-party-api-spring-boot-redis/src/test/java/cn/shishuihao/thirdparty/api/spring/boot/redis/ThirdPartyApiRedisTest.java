@@ -24,7 +24,7 @@ class ThirdPartyApiRedisTest {
     private static RedisServer redisServer;
 
     @BeforeAll
-    static void setUpRedis() {
+    static void setUp() {
         redisServer = RedisServer.builder()
                 .port(16379)
                 .setting("maxheap 200m")
@@ -33,7 +33,7 @@ class ThirdPartyApiRedisTest {
     }
 
     @AfterAll
-    static void close() {
+    static void tearDown() {
         redisServer.stop();
     }
 

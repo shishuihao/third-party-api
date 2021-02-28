@@ -4,6 +4,7 @@ import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;
 import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
+import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiChannel;
 import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiProperties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ class TencentSendBatchSmsApiTest {
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
         SendBatchSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsApiRequest.Builder.builder()
-                .channelId("sms.tencent")
+                .channelId(TencentSmsApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .templateId("1234")
                 .messages(Arrays.asList(SmsMessage.Builder.builder()

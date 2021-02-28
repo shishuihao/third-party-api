@@ -11,13 +11,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.convert.CustomConversions;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * @author shishuihao
@@ -36,10 +33,10 @@ public class ThirdPartyApiMongodbAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public CustomConversions customConversions() {
-        List<Converter<?, ?>> converterList = new ArrayList<>();
-        converterList.add(new ApiPropertiesToJacksonConverter());
-        converterList.add(new JacksonToApiPropertiesConverter());
-        return new MongoCustomConversions(converterList);
+    protected MongoCustomConversions mongoCustomConversions() {
+        return new MongoCustomConversions(Arrays.asList(
+                new ApiPropertiesToJacksonConverter(),
+                new JacksonToApiPropertiesConverter()
+        ));
     }
 }

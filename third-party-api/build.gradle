@@ -57,3 +57,7 @@ dependencies {
 jar {
     enabled true
 }
+
+bootJar {
+    enabled true
+}

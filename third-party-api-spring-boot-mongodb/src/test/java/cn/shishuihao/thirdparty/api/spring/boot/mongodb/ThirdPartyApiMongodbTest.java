@@ -10,9 +10,9 @@ import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
 import de.flapdoodle.embed.mongo.config.Net;
 import de.flapdoodle.embed.mongo.distribution.Version;
 import de.flapdoodle.embed.process.runtime.Network;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -28,20 +28,20 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 class ThirdPartyApiMongodbTest {
     private static final MongodStarter starter = MongodStarter.getDefaultInstance();
-    private MongodExecutable mongodExecutable;
-    private MongodProcess mongodProcess;
+    private static MongodExecutable mongodExecutable;
+    private static MongodProcess mongodProcess;
 
-    @BeforeEach
-    public void setUp() throws Exception {
+    @BeforeAll
+    static void setUp() throws Exception {
         mongodExecutable = starter.prepare(new MongodConfigBuilder()
                 .version(Version.Main.PRODUCTION)
-                .net(new Net(27017, Network.localhostIsIPv6()))
+                .net(new Net(37017, Network.localhostIsIPv6()))
                 .build());
         mongodProcess = mongodExecutable.start();
     }
 
-    @AfterEach
-    public void tearDown() {
+    @AfterAll
+    static void tearDown() {
         mongodProcess.stop();
         mongodExecutable.stop();
     }

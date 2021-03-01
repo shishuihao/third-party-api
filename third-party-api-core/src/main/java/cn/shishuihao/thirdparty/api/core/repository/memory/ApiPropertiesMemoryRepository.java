@@ -2,7 +2,6 @@ package cn.shishuihao.thirdparty.api.core.repository.memory;
 
 import cn.shishuihao.thirdparty.api.core.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.core.repository.AbstractMemoryRepository;
 
 import java.util.Optional;
 

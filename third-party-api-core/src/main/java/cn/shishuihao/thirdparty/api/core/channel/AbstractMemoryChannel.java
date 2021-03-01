@@ -1,6 +1,9 @@
 package cn.shishuihao.thirdparty.api.core.channel;
 
-import cn.shishuihao.thirdparty.api.core.*;
+import cn.shishuihao.thirdparty.api.core.api.Api;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
+import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
+import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
 import java.util.Map;
 import java.util.Optional;

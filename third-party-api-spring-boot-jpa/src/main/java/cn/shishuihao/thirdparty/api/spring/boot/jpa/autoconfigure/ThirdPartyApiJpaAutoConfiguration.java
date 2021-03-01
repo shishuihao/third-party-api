@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.jpa.autoconfigure;
 
-import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.ThirdPartyApiAutoConfiguration;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.ApiPropertiesJpaRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiPropertiesEntityJpaRepository;

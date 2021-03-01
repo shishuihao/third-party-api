@@ -1,8 +1,10 @@
-package cn.shishuihao.thirdparty.api.core;
+package cn.shishuihao.thirdparty.api.core.properties;
 
+import cn.shishuihao.thirdparty.api.core.api.Api;
+import cn.shishuihao.thirdparty.api.core.container.ContainerHolder;
 import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
-import cn.shishuihao.thirdparty.api.core.repository.container.ApiPropertiesContainerRepository;
-import cn.shishuihao.thirdparty.api.core.repository.memory.ApiPropertiesMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
+import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
 import java.util.Optional;
 import java.util.ServiceLoader;

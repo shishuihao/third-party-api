@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.push;
 
-import cn.shishuihao.thirdparty.api.core.ApiChannel;
+import cn.shishuihao.thirdparty.api.core.channel.ApiChannel;
 
 /**
  * @author shishuihao

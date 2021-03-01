@@ -1,4 +1,6 @@
-package cn.shishuihao.thirdparty.api.core;
+package cn.shishuihao.thirdparty.api.core.event;
+
+import cn.shishuihao.thirdparty.api.core.container.ContainerHolder;
 
 import java.util.Optional;
 

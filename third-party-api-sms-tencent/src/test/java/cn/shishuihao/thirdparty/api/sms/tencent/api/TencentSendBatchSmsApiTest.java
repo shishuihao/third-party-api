@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
-import cn.shishuihao.thirdparty.api.core.ApiException;
+import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;

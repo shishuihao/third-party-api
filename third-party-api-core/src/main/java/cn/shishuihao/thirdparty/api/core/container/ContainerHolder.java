@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.core;
+package cn.shishuihao.thirdparty.api.core.container;
 
 import java.util.ServiceLoader;
 import java.util.stream.StreamSupport;
@@ -17,5 +17,9 @@ public abstract class ContainerHolder {
     }
 
     protected ContainerHolder() {
+    }
+
+    public static <T> T getBean(Class<T> requiredType) {
+        return CONTAINER.getBean(requiredType);
     }
 }

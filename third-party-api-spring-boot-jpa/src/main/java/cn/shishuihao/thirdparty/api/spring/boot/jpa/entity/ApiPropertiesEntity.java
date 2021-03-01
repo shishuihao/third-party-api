@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.jpa.entity;
 
-import cn.shishuihao.thirdparty.api.core.ApiProperties;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiPropertiesJacksonAttributeConverter;
 
 import javax.persistence.*;

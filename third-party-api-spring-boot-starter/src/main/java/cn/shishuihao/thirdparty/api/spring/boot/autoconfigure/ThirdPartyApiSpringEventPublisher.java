@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
 
-import cn.shishuihao.thirdparty.api.core.EventPublisher;
+import cn.shishuihao.thirdparty.api.core.event.EventPublisher;
 import org.springframework.context.ApplicationContext;
 
 import java.util.concurrent.CompletableFuture;

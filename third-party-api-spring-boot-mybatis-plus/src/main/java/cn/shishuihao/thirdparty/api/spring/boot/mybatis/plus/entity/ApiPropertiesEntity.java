@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity;
 
-import cn.shishuihao.thirdparty.api.core.ApiProperties;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.handler.ApiPropertiesJacksonTypeHandler;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

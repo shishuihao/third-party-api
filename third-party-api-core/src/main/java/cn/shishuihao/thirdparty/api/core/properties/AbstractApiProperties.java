@@ -1,7 +1,5 @@
 package cn.shishuihao.thirdparty.api.core.properties;
 
-import cn.shishuihao.thirdparty.api.core.ApiProperties;
-
 import java.util.Objects;
 
 /**

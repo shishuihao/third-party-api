@@ -1,7 +1,4 @@
-package cn.shishuihao.thirdparty.api.core.repository.memory;
-
-import cn.shishuihao.thirdparty.api.core.Entity;
-import cn.shishuihao.thirdparty.api.core.Repository;
+package cn.shishuihao.thirdparty.api.core.repository;
 
 import java.util.Map;
 import java.util.Optional;

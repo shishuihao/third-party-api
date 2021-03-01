@@ -1,15 +1,14 @@
 package cn.shishuihao.thirdparty.api.core.request;
 
-import cn.shishuihao.thirdparty.api.core.Api;
-import cn.shishuihao.thirdparty.api.core.ApiRequest;
-import cn.shishuihao.thirdparty.api.core.ApiResponse;
+import cn.shishuihao.thirdparty.api.core.api.Api;
+import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 
-public abstract class AbstractRequest<A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse>{
+public abstract class AbstractRequest<A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> {
     /**
      * channel id
      */

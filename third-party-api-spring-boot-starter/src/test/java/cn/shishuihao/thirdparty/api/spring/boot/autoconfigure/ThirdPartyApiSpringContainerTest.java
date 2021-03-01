@@ -1,8 +1,13 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.*;
+import cn.shishuihao.thirdparty.api.core.api.Api;
 import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
-import cn.shishuihao.thirdparty.api.core.repository.memory.ApiPropertiesMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.exception.ApiException;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
+import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
+import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.push;
 
-import cn.shishuihao.thirdparty.api.core.ApiProperties;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 
 /**
  * @author shishuihao

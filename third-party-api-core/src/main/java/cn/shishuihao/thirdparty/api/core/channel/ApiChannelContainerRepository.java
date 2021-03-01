@@ -1,8 +1,7 @@
-package cn.shishuihao.thirdparty.api.core.repository.container;
+package cn.shishuihao.thirdparty.api.core.channel;
 
-import cn.shishuihao.thirdparty.api.core.ApiChannel;
-import cn.shishuihao.thirdparty.api.core.ApiChannelRepository;
-import cn.shishuihao.thirdparty.api.core.Container;
+import cn.shishuihao.thirdparty.api.core.container.AbstractContainerRepository;
+import cn.shishuihao.thirdparty.api.core.container.Container;
 
 /**
  * @author shishuihao

@@ -1,4 +1,6 @@
-package cn.shishuihao.thirdparty.api.core;
+package cn.shishuihao.thirdparty.api.core.container;
+
+import cn.shishuihao.thirdparty.api.core.repository.Entity;
 
 import java.util.Map;
 import java.util.function.Consumer;

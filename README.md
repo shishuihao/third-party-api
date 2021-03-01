@@ -110,7 +110,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 
   + 可插拔方式
     + [x] SPI机制
-      如：[AliYunSmsApiChannel](/third-party-api-sms-aliyun/src/main/resources/META-INF/services/cn.shishuihao.thirdparty.api.core.ApiChannel)的spi机制实现
+      如：[AliYunSmsApiChannel](/third-party-api-sms-aliyun/src/main/resources/META-INF/services/cn.shishuihao.thirdparty.api.core.channel.ApiChannel)的spi机制实现
       ```
       cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiChannel
       ```

@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms;
 
-import cn.shishuihao.thirdparty.api.core.ApiRequest;
+import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
 
 /**
  * @author shishuihao

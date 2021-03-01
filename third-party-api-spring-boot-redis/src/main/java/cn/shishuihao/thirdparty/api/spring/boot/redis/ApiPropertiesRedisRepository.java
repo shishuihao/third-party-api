@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.redis;
 
-import cn.shishuihao.thirdparty.api.core.ApiProperties;
-import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
+import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.Optional;

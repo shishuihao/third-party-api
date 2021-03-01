@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay;
 
-import cn.shishuihao.thirdparty.api.core.Api;
+import cn.shishuihao.thirdparty.api.core.api.Api;
 
 /**
  * @author shishuihao

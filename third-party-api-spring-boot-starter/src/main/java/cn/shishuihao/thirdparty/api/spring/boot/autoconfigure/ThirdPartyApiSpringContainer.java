@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
 
-import cn.shishuihao.thirdparty.api.core.Container;
+import cn.shishuihao.thirdparty.api.core.container.Container;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

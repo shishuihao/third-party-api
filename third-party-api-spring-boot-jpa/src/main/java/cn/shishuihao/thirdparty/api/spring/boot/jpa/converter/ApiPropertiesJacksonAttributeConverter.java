@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.jpa.converter;
 
-import cn.shishuihao.thirdparty.api.core.ApiProperties;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

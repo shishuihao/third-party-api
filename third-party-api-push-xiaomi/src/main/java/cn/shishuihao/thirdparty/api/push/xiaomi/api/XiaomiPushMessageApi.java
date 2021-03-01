@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.push.xiaomi.api;
 
-import cn.shishuihao.thirdparty.api.core.ApiException;
+import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.push.api.PushMessageApi;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;

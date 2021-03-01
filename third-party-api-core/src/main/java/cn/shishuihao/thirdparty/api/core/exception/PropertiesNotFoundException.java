@@ -1,7 +1,5 @@
 package cn.shishuihao.thirdparty.api.core.exception;
 
-import cn.shishuihao.thirdparty.api.core.ApiException;
-
 /**
  * @author shishuihao
  * @version 1.0.0

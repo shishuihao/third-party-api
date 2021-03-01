@@ -1,4 +1,9 @@
-package cn.shishuihao.thirdparty.api.core;
+package cn.shishuihao.thirdparty.api.core.api;
+
+import cn.shishuihao.thirdparty.api.core.exception.ApiException;
+import cn.shishuihao.thirdparty.api.core.repository.Entity;
+import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
+import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
 /**
  * @author shishuihao

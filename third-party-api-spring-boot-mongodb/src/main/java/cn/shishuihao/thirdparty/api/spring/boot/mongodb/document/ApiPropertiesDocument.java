@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mongodb.document;
 
-import cn.shishuihao.thirdparty.api.core.ApiProperties;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;

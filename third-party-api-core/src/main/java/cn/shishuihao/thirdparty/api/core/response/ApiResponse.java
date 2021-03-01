@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.core;
+package cn.shishuihao.thirdparty.api.core.response;
 
 /**
  * @author shishuihao

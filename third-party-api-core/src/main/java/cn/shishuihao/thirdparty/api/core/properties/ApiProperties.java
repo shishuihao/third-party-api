@@ -1,4 +1,6 @@
-package cn.shishuihao.thirdparty.api.core;
+package cn.shishuihao.thirdparty.api.core.properties;
+
+import cn.shishuihao.thirdparty.api.core.repository.Entity;
 
 /**
  * @author shishuihao

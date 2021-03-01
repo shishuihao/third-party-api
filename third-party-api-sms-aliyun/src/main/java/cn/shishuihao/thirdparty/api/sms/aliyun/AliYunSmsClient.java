@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun;
 
-import cn.shishuihao.thirdparty.api.core.ApiException;
+import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import com.aliyun.dysmsapi20170525.Client;
 import com.aliyun.teaopenapi.models.Config;
 

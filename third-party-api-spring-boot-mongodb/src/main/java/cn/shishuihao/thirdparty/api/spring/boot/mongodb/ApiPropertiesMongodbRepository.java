@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mongodb;
 
-import cn.shishuihao.thirdparty.api.core.ApiProperties;
-import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
+import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.document.ApiPropertiesDocument;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository.ApiPropertiesDocumentMongoRepository;
 

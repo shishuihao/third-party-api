@@ -1,18 +1,12 @@
 package cn.shishuihao.thirdparty.api.pay.alipay.api;
 
-import cn.shishuihao.thirdparty.api.core.ApiException;
+import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayProperties;
 import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Map;
-import java.util.TreeMap;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author shishuihao

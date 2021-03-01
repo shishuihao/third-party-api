@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.jpa;
 
-import cn.shishuihao.thirdparty.api.core.ApiProperties;
-import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
+import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.entity.ApiPropertiesEntity;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiPropertiesEntityJpaRepository;
 

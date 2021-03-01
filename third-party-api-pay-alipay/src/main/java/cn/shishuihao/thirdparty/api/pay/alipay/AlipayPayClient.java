@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.alipay;
 
-import cn.shishuihao.thirdparty.api.core.ApiException;
+import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import com.alipay.easysdk.kernel.AlipayConstants;
 import com.alipay.easysdk.kernel.Client;
 import com.alipay.easysdk.kernel.Config;

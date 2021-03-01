@@ -1,8 +1,7 @@
-package cn.shishuihao.thirdparty.api.core.repository.container;
+package cn.shishuihao.thirdparty.api.core.container;
 
-import cn.shishuihao.thirdparty.api.core.Container;
-import cn.shishuihao.thirdparty.api.core.Entity;
-import cn.shishuihao.thirdparty.api.core.Repository;
+import cn.shishuihao.thirdparty.api.core.repository.Entity;
+import cn.shishuihao.thirdparty.api.core.repository.Repository;
 
 import java.util.Optional;
 

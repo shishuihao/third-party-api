@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.core;
 
-import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
+import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

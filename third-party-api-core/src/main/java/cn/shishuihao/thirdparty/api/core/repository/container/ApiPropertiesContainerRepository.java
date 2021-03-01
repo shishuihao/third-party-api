@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.core.impl.container;
+package cn.shishuihao.thirdparty.api.core.repository.container;
 
 import cn.shishuihao.thirdparty.api.core.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.ApiPropertiesRepository;

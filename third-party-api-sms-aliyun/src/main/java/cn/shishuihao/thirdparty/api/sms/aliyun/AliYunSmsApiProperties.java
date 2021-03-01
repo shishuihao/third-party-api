@@ -1,19 +1,18 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun;
 
+import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import cn.shishuihao.thirdparty.api.sms.SmsApiProperties;
-
-import java.util.Objects;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 
-public class AliYunSmsApiProperties implements SmsApiProperties {
-    /**
-     * channel id
-     */
-    private String channelId = AliYunSmsApiChannel.CHANNEL_ID;
+public class AliYunSmsApiProperties extends AbstractApiProperties implements SmsApiProperties {
+    public AliYunSmsApiProperties() {
+        this.setChannelId(AliYunSmsApiChannel.CHANNEL_ID);
+    }
+
     /**
      * AccessKeyId用于标识用户
      */
@@ -35,21 +34,8 @@ public class AliYunSmsApiProperties implements SmsApiProperties {
     private String smsUpExtendCode;
 
     @Override
-    public String channelId() {
-        return channelId;
-    }
-
-    @Override
     public String id() {
         return accessKeyId;
-    }
-
-    public String getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
     }
 
     public String getAccessKeyId() {
@@ -82,29 +68,5 @@ public class AliYunSmsApiProperties implements SmsApiProperties {
 
     public void setSmsUpExtendCode(String smsUpExtendCode) {
         this.smsUpExtendCode = smsUpExtendCode;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        AliYunSmsApiProperties that = (AliYunSmsApiProperties) o;
-
-        if (!Objects.equals(accessKeyId, that.accessKeyId)) {
-            return false;
-        }
-        return Objects.equals(accessSecret, that.accessSecret);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = accessKeyId != null ? accessKeyId.hashCode() : 0;
-        result = 31 * result + (accessSecret != null ? accessSecret.hashCode() : 0);
-        return result;
     }
 }

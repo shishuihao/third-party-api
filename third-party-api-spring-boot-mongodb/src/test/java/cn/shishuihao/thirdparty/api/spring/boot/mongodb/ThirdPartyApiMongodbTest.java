@@ -1,8 +1,8 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mongodb;
 
 import cn.shishuihao.thirdparty.api.core.*;
-import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
-import cn.shishuihao.thirdparty.api.core.impl.memory.ApiPropertiesMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
+import cn.shishuihao.thirdparty.api.core.repository.memory.ApiPropertiesMemoryRepository;
 import de.flapdoodle.embed.mongo.MongodExecutable;
 import de.flapdoodle.embed.mongo.MongodProcess;
 import de.flapdoodle.embed.mongo.MongodStarter;

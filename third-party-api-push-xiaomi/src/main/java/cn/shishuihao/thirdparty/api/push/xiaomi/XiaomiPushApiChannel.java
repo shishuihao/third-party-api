@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.push.xiaomi;
 
-import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
+import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.push.PushApiChannel;
 import cn.shishuihao.thirdparty.api.push.xiaomi.api.XiaomiPushMessageApi;
 

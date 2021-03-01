@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.alipay;
 
-import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
+import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.pay.PayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayCodePayApi;
 

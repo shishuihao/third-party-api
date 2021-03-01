@@ -1,8 +1,8 @@
 package cn.shishuihao.thirdparty.api.core;
 
 import cn.shishuihao.thirdparty.api.core.exception.ChannelNotFoundException;
-import cn.shishuihao.thirdparty.api.core.impl.container.ApiChannelContainerRepository;
-import cn.shishuihao.thirdparty.api.core.impl.memory.ApiChannelMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.repository.container.ApiChannelContainerRepository;
+import cn.shishuihao.thirdparty.api.core.repository.memory.ApiChannelMemoryRepository;
 
 import java.util.Optional;
 import java.util.ServiceLoader;

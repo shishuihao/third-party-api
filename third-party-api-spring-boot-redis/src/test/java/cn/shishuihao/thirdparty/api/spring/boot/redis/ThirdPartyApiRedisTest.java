@@ -1,8 +1,8 @@
 package cn.shishuihao.thirdparty.api.spring.boot.redis;
 
 import cn.shishuihao.thirdparty.api.core.*;
-import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
-import cn.shishuihao.thirdparty.api.core.impl.memory.ApiPropertiesMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
+import cn.shishuihao.thirdparty.api.core.repository.memory.ApiPropertiesMemoryRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

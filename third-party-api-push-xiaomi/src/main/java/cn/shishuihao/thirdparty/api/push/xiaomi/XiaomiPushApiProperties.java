@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.push.xiaomi;
 
+import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import cn.shishuihao.thirdparty.api.push.PushApiProperties;
 
 /**
@@ -7,11 +8,11 @@ import cn.shishuihao.thirdparty.api.push.PushApiProperties;
  * @version 1.0.0
  */
 
-public class XiaomiPushApiProperties implements PushApiProperties {
-    /**
-     * channel id
-     */
-    private String channelId = XiaomiPushApiChannel.CHANNEL_ID;
+public class XiaomiPushApiProperties extends AbstractApiProperties implements PushApiProperties {
+    public XiaomiPushApiProperties() {
+        this.setChannelId(XiaomiPushApiChannel.CHANNEL_ID);
+    }
+
     /**
      * application id
      */
@@ -21,12 +22,9 @@ public class XiaomiPushApiProperties implements PushApiProperties {
      */
     private String appSecretKey;
 
-    public String getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
+    @Override
+    public String id() {
+        return appId;
     }
 
     public String getAppId() {
@@ -43,15 +41,5 @@ public class XiaomiPushApiProperties implements PushApiProperties {
 
     public void setAppSecretKey(String appSecretKey) {
         this.appSecretKey = appSecretKey;
-    }
-
-    @Override
-    public String channelId() {
-        return channelId;
-    }
-
-    @Override
-    public String id() {
-        return appId;
     }
 }

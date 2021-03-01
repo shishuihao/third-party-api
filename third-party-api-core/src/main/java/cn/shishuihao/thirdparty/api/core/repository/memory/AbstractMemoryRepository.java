@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.core.impl.memory;
+package cn.shishuihao.thirdparty.api.core.repository.memory;
 
 import cn.shishuihao.thirdparty.api.core.Entity;
 import cn.shishuihao.thirdparty.api.core.Repository;

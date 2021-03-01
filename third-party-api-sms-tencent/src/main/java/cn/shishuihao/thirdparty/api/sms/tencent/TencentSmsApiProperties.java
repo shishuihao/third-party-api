@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.tencent;
 
+import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import cn.shishuihao.thirdparty.api.sms.SmsApiProperties;
 
 /**
@@ -7,11 +8,11 @@ import cn.shishuihao.thirdparty.api.sms.SmsApiProperties;
  * @version 1.0.0
  */
 
-public class TencentSmsApiProperties implements SmsApiProperties {
-    /**
-     * channel id
-     */
-    private String channelId = TencentSmsApiChannel.CHANNEL_ID;
+public class TencentSmsApiProperties extends AbstractApiProperties implements SmsApiProperties {
+    public TencentSmsApiProperties() {
+        this.setChannelId(TencentSmsApiChannel.CHANNEL_ID);
+    }
+
     /**
      * 短信应用 ID: 在 [短信控制台] 添加应用后生成的实际 SDKAppID，例如1400006666
      */
@@ -37,12 +38,9 @@ public class TencentSmsApiProperties implements SmsApiProperties {
      */
     private String extendCode;
 
-    public String getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
+    @Override
+    public String id() {
+        return appId;
     }
 
     public String getAppId() {
@@ -91,15 +89,5 @@ public class TencentSmsApiProperties implements SmsApiProperties {
 
     public void setExtendCode(String extendCode) {
         this.extendCode = extendCode;
-    }
-
-    @Override
-    public String channelId() {
-        return channelId;
-    }
-
-    @Override
-    public String id() {
-        return appId;
     }
 }

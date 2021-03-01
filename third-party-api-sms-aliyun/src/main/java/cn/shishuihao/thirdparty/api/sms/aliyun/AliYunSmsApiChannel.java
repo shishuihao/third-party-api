@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun;
 
-import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
+import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.sms.SmsApiChannel;
 import cn.shishuihao.thirdparty.api.sms.aliyun.api.AliYunSendBatchSmsApi;
 import cn.shishuihao.thirdparty.api.sms.aliyun.api.AliYunSendSmsApi;

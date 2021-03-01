@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.alipay;
 
+import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import cn.shishuihao.thirdparty.api.pay.PayApiProperties;
 import com.aliyun.tea.NameInMap;
 import com.aliyun.tea.Validation;
@@ -9,11 +10,10 @@ import com.aliyun.tea.Validation;
  * @version 1.0.0
  */
 
-public class AlipayPayApiProperties implements PayApiProperties {
-    /**
-     * channel id
-     */
-    private String channelId = AlipayPayApiChannel.CHANNEL_ID;
+public class AlipayPayApiProperties extends AbstractApiProperties implements PayApiProperties {
+    public AlipayPayApiProperties() {
+        this.setChannelId(AlipayPayApiChannel.CHANNEL_ID);
+    }
     /**
      * 通信协议，通常填写https
      */
@@ -107,23 +107,9 @@ public class AlipayPayApiProperties implements PayApiProperties {
     private boolean ignoreSSL;
 
     @Override
-    public String channelId() {
-        return channelId;
-    }
-
-    @Override
     public String id() {
         return appId;
     }
-
-    public String getChannelId() {
-        return channelId;
-    }
-
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
-    }
-
 
     public String getProtocol() {
         return protocol;

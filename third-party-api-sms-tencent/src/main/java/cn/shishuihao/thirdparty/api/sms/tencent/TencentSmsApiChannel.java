@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.tencent;
 
-import cn.shishuihao.thirdparty.api.core.impl.memory.AbstractMemoryChannel;
+import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.sms.SmsApiChannel;
 import cn.shishuihao.thirdparty.api.sms.tencent.api.TencentSendBatchSmsApi;
 import cn.shishuihao.thirdparty.api.sms.tencent.api.TencentSendSmsApi;

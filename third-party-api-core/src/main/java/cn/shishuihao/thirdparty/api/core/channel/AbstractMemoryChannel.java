@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.core.impl.memory;
+package cn.shishuihao.thirdparty.api.core.channel;
 
 import cn.shishuihao.thirdparty.api.core.*;
 

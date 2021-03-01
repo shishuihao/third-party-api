@@ -206,8 +206,8 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
     + [ ] 苹果
     + [ ] 谷歌
     + [ ] 极光推送
-  + [x] 支付集成
-    + [x] 支付宝
+  + [x] 支付集成(pay integration)
+    + [x] [支付宝](/third-party-api-pay-alipay/README.md)
       + [x] 二维码支付
     + [ ] 微信
     + [ ] 银联

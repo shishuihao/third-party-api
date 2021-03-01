@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.response;
 
+import cn.shishuihao.thirdparty.api.core.response.BaseApiResponse;
 import cn.shishuihao.thirdparty.api.sms.SmsApiResponse;
 
 /**
@@ -7,33 +8,9 @@ import cn.shishuihao.thirdparty.api.sms.SmsApiResponse;
  * @version 1.0.0
  */
 
-public class SendSmsApiResponse implements SmsApiResponse {
-    private final boolean success;
-    private final String code;
-    private final String message;
-    private final String requestId;
-
+public class SendSmsApiResponse extends BaseApiResponse implements SmsApiResponse {
     protected SendSmsApiResponse(boolean success, String code, String message, String requestId) {
-        this.success = success;
-        this.code = code;
-        this.message = message;
-        this.requestId = requestId;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getRequestId() {
-        return requestId;
+        super(success, code, message, requestId);
     }
 
     public static final class Builder {

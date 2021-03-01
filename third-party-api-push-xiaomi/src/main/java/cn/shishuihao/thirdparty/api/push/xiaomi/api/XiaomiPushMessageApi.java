@@ -6,6 +6,7 @@ import cn.shishuihao.thirdparty.api.push.api.PushMessageApi;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
 import cn.shishuihao.thirdparty.api.push.xiaomi.XiaomiPushApiProperties;
+import com.xiaomi.push.sdk.ErrorCode;
 import com.xiaomi.xmpush.server.Constants;
 import com.xiaomi.xmpush.server.Message;
 import com.xiaomi.xmpush.server.Result;
@@ -37,6 +38,7 @@ public class XiaomiPushMessageApi implements PushMessageApi {
         try {
             Result result = sender.send(message, Arrays.asList(request.getRegistrationIds()), 3);
             return PushMessageApiResponse.Builder.builder()
+                    .success(ErrorCode.Success == result.getErrorCode())
                     .code(String.valueOf(result.getErrorCode()))
                     .message(result.getReason())
                     .requestId(result.getMessageId())

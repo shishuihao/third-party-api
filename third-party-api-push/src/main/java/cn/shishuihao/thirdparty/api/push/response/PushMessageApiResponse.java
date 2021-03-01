@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.push.response;
 
+import cn.shishuihao.thirdparty.api.core.response.BaseApiResponse;
 import cn.shishuihao.thirdparty.api.push.PushApiResponse;
 
 /**
@@ -7,30 +8,13 @@ import cn.shishuihao.thirdparty.api.push.PushApiResponse;
  * @version 1.0.0
  */
 
-public class PushMessageApiResponse implements PushApiResponse {
-    private final String code;
-    private final String message;
-    private final String requestId;
-
-    protected PushMessageApiResponse(String code, String message, String requestId) {
-        this.code = code;
-        this.message = message;
-        this.requestId = requestId;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getRequestId() {
-        return requestId;
+public class PushMessageApiResponse extends BaseApiResponse implements PushApiResponse {
+    protected PushMessageApiResponse(boolean success, String code, String message, String requestId) {
+        super(success, code, message, requestId);
     }
 
     public static final class Builder {
+        private boolean success;
         private String code;
         private String message;
         private String requestId;
@@ -40,6 +24,11 @@ public class PushMessageApiResponse implements PushApiResponse {
 
         public static Builder builder() {
             return new Builder();
+        }
+
+        public Builder success(boolean success) {
+            this.success = success;
+            return this;
         }
 
         public Builder code(String code) {
@@ -58,7 +47,7 @@ public class PushMessageApiResponse implements PushApiResponse {
         }
 
         public PushMessageApiResponse build() {
-            return new PushMessageApiResponse(code, message, requestId);
+            return new PushMessageApiResponse(success, code, message, requestId);
         }
     }
 }

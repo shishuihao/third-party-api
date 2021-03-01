@@ -8,18 +8,19 @@ pluginManagement {
     }
 }
 rootProject.name = 'third-party-api'
-include(
-        'third-party-api-core',
-        'third-party-api-pay',
-        'third-party-api-push',
-        'third-party-api-push-xiaomi',
-        'third-party-api-sms',
-        'third-party-api-sms-aliyun',
-        'third-party-api-sms-tencent',
-        'third-party-api-spring-boot-jpa',
-        'third-party-api-spring-boot-mongodb',
-        'third-party-api-spring-boot-mybatis-plus',
-        'third-party-api-spring-boot-redis',
-        'third-party-api-spring-boot-starter'
-)
+
+include 'third-party-api-core'
+include 'third-party-api-pay'
+include 'third-party-api-pay-alipay'
+include 'third-party-api-push'
+include 'third-party-api-push-xiaomi'
+include 'third-party-api-sms'
+include 'third-party-api-sms-aliyun'
+include 'third-party-api-sms-tencent'
+include 'third-party-api-spring-boot-jpa'
+include 'third-party-api-spring-boot-mongodb'
+include 'third-party-api-spring-boot-mybatis-plus'
+include 'third-party-api-spring-boot-redis'
+include 'third-party-api-spring-boot-starter'
+
 

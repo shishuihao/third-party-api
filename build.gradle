@@ -1,3 +1,9 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.4.0'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
@@ -5,10 +11,15 @@ plugins {
 }
 
 allprojects {
-    apply plugin: 'java'
-
     group 'cn.shishuihao'
     version '2021.0.0-SNAPSHOT'
+}
+
+
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
 
     configurations {
         compileOnly {
@@ -44,19 +55,4 @@ allprojects {
     jar {
         enabled true
     }
-}
-
-dependencies {
-    compile project(':third-party-api-core')
-    compile project(':third-party-api-pay')
-    compile project(':third-party-api-push')
-    compile project(':third-party-api-push-xiaomi')
-    compile project(':third-party-api-sms')
-    compile project(':third-party-api-sms-aliyun')
-    compile project(':third-party-api-sms-tencent')
-    compile project(':third-party-api-spring-boot-starter')
-    compile project(':third-party-api-spring-boot-jpa')
-    compile project(':third-party-api-spring-boot-mongodb')
-    compile project(':third-party-api-spring-boot-mybatis-plus')
-    compile project(':third-party-api-spring-boot-redis')
 }

@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.push.request;
 
+import cn.shishuihao.thirdparty.api.core.request.AbstractRequest;
 import cn.shishuihao.thirdparty.api.push.PushApiRequest;
 import cn.shishuihao.thirdparty.api.push.api.PushMessageApi;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
@@ -8,15 +9,8 @@ import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
  * @author shishuihao
  * @version 1.0.0
  */
-public class PushMessageApiRequest implements PushApiRequest<PushMessageApi, PushMessageApiRequest, PushMessageApiResponse> {
-    /**
-     * channel id
-     */
-    private final String channelId;
-    /**
-     * properties id
-     */
-    private final String propertiesId;
+public class PushMessageApiRequest extends AbstractRequest<PushMessageApi, PushMessageApiRequest, PushMessageApiResponse>
+        implements PushApiRequest<PushMessageApi, PushMessageApiRequest, PushMessageApiResponse> {
     /**
      * title
      */
@@ -40,21 +34,12 @@ public class PushMessageApiRequest implements PushApiRequest<PushMessageApi, Pus
 
     protected PushMessageApiRequest(String channelId, String propertiesId,
                                     String title, String payload, String description, String restrictedPackageName, String[] registrationIds) {
-        this.channelId = channelId;
-        this.propertiesId = propertiesId;
+        super(channelId, propertiesId);
         this.title = title;
         this.payload = payload;
         this.description = description;
         this.restrictedPackageName = restrictedPackageName;
         this.registrationIds = registrationIds;
-    }
-
-    public String getChannelId() {
-        return channelId;
-    }
-
-    public String getPropertiesId() {
-        return propertiesId;
     }
 
     public String getTitle() {
@@ -86,17 +71,6 @@ public class PushMessageApiRequest implements PushApiRequest<PushMessageApi, Pus
     public Class<PushMessageApiResponse> responseType() {
         return PushMessageApiResponse.class;
     }
-
-    @Override
-    public String channelId() {
-        return channelId;
-    }
-
-    @Override
-    public String propertiesId() {
-        return propertiesId;
-    }
-
 
     public static final class Builder {
         private String channelId;

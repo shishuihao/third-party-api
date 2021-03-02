@@ -11,6 +11,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
+ * {@link "https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3"}
+ *
  * @author shishuihao
  * @version 1.0.0
  */

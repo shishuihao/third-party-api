@@ -8,8 +8,6 @@ import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.AbstractWxPayXmlResp
  */
 
 public class ResponseChecker {
-    public static final String SUCCESS = "SUCCESS";
-
     /**
      * 判断一个请求返回的响应是否成功
      *
@@ -17,6 +15,6 @@ public class ResponseChecker {
      * @return true：成功；false：失败
      */
     public static boolean success(AbstractWxPayXmlResponse response) {
-        return SUCCESS.equals(response.getReturnCode());
+        return "SUCCESS".equals(response.getReturnCode());
     }
 }

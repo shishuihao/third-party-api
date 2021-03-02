@@ -1,6 +1,11 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.SignType;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlFieldUtils;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 /**
  * {@link "https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_10&index=1"}
@@ -98,7 +103,7 @@ public class WxPayMicropayRequest extends AbstractWxPayXmlRequest {
     protected WxPayMicropayRequest(String appId, String mchId,
                                    String subAppId, String subMchId,
                                    String deviceInfo, String nonceStr,
-                                   String sign, String signType,
+                                   String sign, SignType signType,
                                    String body, String detail, String attach, String outTradeNo, Integer totalFee, String feeType, String spBillCreateIp, String goodsTag, String limitPay, String timeStart, String timeExpire, String authCode, String receipt, String sceneInfo) {
         super(appId, mchId, subAppId, subMchId, deviceInfo, nonceStr, sign, signType);
         this.body = body;
@@ -181,7 +186,7 @@ public class WxPayMicropayRequest extends AbstractWxPayXmlRequest {
         private String deviceInfo;
         private String nonceStr;
         private String sign;
-        private String signType;
+        private SignType signType;
         private String body;
         private String detail;
         private String attach;
@@ -234,7 +239,7 @@ public class WxPayMicropayRequest extends AbstractWxPayXmlRequest {
             return this;
         }
 
-        public Builder signType(String signType) {
+        public Builder signType(SignType signType) {
             this.signType = signType;
             return this;
         }
@@ -314,8 +319,16 @@ public class WxPayMicropayRequest extends AbstractWxPayXmlRequest {
             return this;
         }
 
+        public WxPayMicropayRequest build(String signKey) throws UnsupportedEncodingException {
+            Map<String, Object> params = XmlFieldUtils.getNameValues(this);
+            return new WxPayMicropayRequest(appId, mchId, subAppId, subMchId, deviceInfo, nonceStr,
+                    signType.sign(signKey, params), signType,
+                    body, detail, attach, outTradeNo, totalFee, feeType, spBillCreateIp, goodsTag, limitPay, timeStart, timeExpire, authCode, receipt, sceneInfo);
+        }
+
         public WxPayMicropayRequest build() {
-            return new WxPayMicropayRequest(appId, mchId, subAppId, subMchId, deviceInfo, nonceStr, sign, signType,
+            return new WxPayMicropayRequest(appId, mchId, subAppId, subMchId, deviceInfo, nonceStr,
+                    sign, signType,
                     body, detail, attach, outTradeNo, totalFee, feeType, spBillCreateIp, goodsTag, limitPay, timeStart, timeExpire, authCode, receipt, sceneInfo);
         }
     }

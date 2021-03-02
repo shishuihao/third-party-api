@@ -1,7 +1,10 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.SignType;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlUtils;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamConverter;
+import com.thoughtworks.xstream.converters.enums.EnumToStringConverter;
 
 /**
  * @author shishuihao
@@ -47,13 +50,14 @@ public abstract class AbstractWxPayXmlRequest {
      * 签名类型 HMAC-SHA256
      * 签名类型，目前支持HMAC-SHA256和MD5，默认为MD5
      */
+    @XStreamConverter(EnumToStringConverter.class)
     @XStreamAlias("sign_type")
-    private final String signType;
+    private final SignType signType;
 
     protected AbstractWxPayXmlRequest(String appId, String mchId,
                                       String subAppId, String subMchId,
                                       String deviceInfo, String nonceStr,
-                                      String sign, String signType) {
+                                      String sign, SignType signType) {
         this.appId = appId;
         this.mchId = mchId;
         this.subAppId = subAppId;
@@ -92,7 +96,7 @@ public abstract class AbstractWxPayXmlRequest {
         return sign;
     }
 
-    public String getSignType() {
+    public SignType getSignType() {
         return signType;
     }
 

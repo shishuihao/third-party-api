@@ -8,15 +8,15 @@ import java.util.List;
  * @version 1.0.0
  */
 
-public class WeixinPayProperties {
+public class WxPayProperties {
     /**
      * channel id
      */
-    private String channelId = WeixinPayApiChannel.CHANNEL_ID;
+    private String channelId = WxPayApiChannel.CHANNEL_ID;
     /**
      * properties list
      */
-    private List<WeixinPayApiProperties> properties = new ArrayList<>();
+    private List<WxPayApiProperties> properties = new ArrayList<>();
 
     public String getChannelId() {
         return channelId;
@@ -26,11 +26,11 @@ public class WeixinPayProperties {
         this.channelId = channelId;
     }
 
-    public List<WeixinPayApiProperties> getProperties() {
+    public List<WxPayApiProperties> getProperties() {
         return properties;
     }
 
-    public void setProperties(List<WeixinPayApiProperties> properties) {
+    public void setProperties(List<WxPayApiProperties> properties) {
         this.properties = properties;
     }
 }

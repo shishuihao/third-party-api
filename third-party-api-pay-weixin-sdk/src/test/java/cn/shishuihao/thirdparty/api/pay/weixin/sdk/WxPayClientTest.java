@@ -30,6 +30,6 @@ class WxPayClientTest {
                 .totalFee(1)
                 .sign("C29DB7DB1FD4136B84AE35604756362C")
                 .build());
-        Assertions.assertEquals("FAIL", response.getErrCode());
+        Assertions.assertEquals("FAIL", response.getReturnCode());
     }
 }

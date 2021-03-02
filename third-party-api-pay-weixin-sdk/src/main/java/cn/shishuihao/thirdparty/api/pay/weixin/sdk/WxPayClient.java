@@ -19,6 +19,4 @@ public class WxPayClient {
     public WxPayApi getPayApi() {
         return payApi;
     }
-
-
 }

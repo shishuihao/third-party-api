@@ -5,11 +5,14 @@ import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayMicropayRespons
 import feign.RequestLine;
 
 /**
+ * 付款码支付
+ * {@link "https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=5_1"}
+ *
  * @author shishuihao
  * @version 1.0.0
  */
 
-public interface WxPayApi {
+public interface WxPayCodeApi extends WxPayCommonApi {
     /**
      * code pay
      *
@@ -17,5 +20,5 @@ public interface WxPayApi {
      * @return response
      */
     @RequestLine("POST /pay/micropay")
-    WxPayMicropayResponse payMicropay(WxPayMicropayRequest request);
+    WxPayMicropayResponse microPay(WxPayMicropayRequest request);
 }

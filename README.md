@@ -117,7 +117,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
     + [x] 通过注入容器，再从容器获取
       + [x] [springboot](/third-party-api-spring-boot-starter/README.md) 如注入容器
         
-        ```java
+        ```
         @Bean
         @ConditionalOnMissingBean
         protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityJpaRepository jpaRepository) {
@@ -135,7 +135,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
     + [x] 容器
       + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
         + [x] 代码
-          ```java
+          ```
           @Bean
           @ConditionalOnMissingBean
           protected AliYunSmsApiProperties defaultAliYunSmsApiProperties() {
@@ -156,7 +156,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
           ```
     + [x] 数据库配置方式
       + [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa/README.md)
-        ```java
+        ```
         @Bean
         @ConditionalOnMissingBean
         protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityJpaRepository jpaRepository) {
@@ -164,7 +164,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
         }
         ```
       + [x] [spring-boot-mybatis-plus](/third-party-api-spring-boot-mybatis-plus/README.md)
-        ```java
+        ```
         @Bean
         @ConditionalOnMissingBean
         protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityMybatisPlusMapper mybatisPlusMapper) {
@@ -172,7 +172,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
         }
         ```
       + [x] [spring-boot-redis](/third-party-api-spring-boot-redis/README.md)
-        ```java
+        ```
         @Bean
         @ConditionalOnMissingBean
         protected ApiPropertiesRepository propertiesRepository(RedisTemplate<String, ApiProperties> redisTemplate) {
@@ -180,7 +180,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
         }
         ```
       + [x] [spring-boot-mongodb](/third-party-api-spring-boot-mongodb/README.md)
-        ```java
+        ```
         @Bean
         @ConditionalOnMissingBean
         protected ApiPropertiesRepository propertiesRepository(ApiPropertiesDocumentMongoRepository mongoRepository) {

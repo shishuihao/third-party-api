@@ -1,0 +1,8 @@
+dependencies {
+    compile  project(':third-party-api-core')
+    compile project(':third-party-api-pay')
+}
+
+jar {
+    enabled true
+}

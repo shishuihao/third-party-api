@@ -115,7 +115,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
       cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiChannel
       ```
     + [x] 通过注入容器，再从容器获取
-      + [x] [springboot](/third-party-api-spring-boot-starter/README.md) 如注入容器
+      + [x] [springboot](/third-party-api-spring-boot-starter) 如注入容器
         
         ```
         @Bean
@@ -133,7 +133,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
       ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
       ```
     + [x] 容器
-      + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
+      + [x] [springboot](/third-party-api-spring-boot-starter)
         + [x] 代码
           ```
           @Bean
@@ -157,12 +157,16 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
     + [x] 数据库配置方式
       + [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa/README.md)
         ```
+      + [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa)
+        ```java
         @Bean
         @ConditionalOnMissingBean
         protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityJpaRepository jpaRepository) {
             return new ApiPropertiesJpaRepository(jpaRepository);
         }
         ```
+      + [x] [spring-boot-mybatis-plus](/third-party-api-spring-boot-mybatis-plus)
+        ```java
       + [x] [spring-boot-mybatis-plus](/third-party-api-spring-boot-mybatis-plus/README.md)
         ```
         @Bean
@@ -171,6 +175,8 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
             return new ApiPropertiesMybatisPlusRepository(mybatisPlusMapper);
         }
         ```
+      + [x] [spring-boot-redis](/third-party-api-spring-boot-redis)
+        ```java
       + [x] [spring-boot-redis](/third-party-api-spring-boot-redis/README.md)
         ```
         @Bean
@@ -179,6 +185,8 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
             return new ApiPropertiesRedisRepository(redisTemplate);
         }
         ```
+      + [x] [spring-boot-mongodb](/third-party-api-spring-boot-mongodb)
+        ```java
       + [x] [spring-boot-mongodb](/third-party-api-spring-boot-mongodb/README.md)
         ```
         @Bean
@@ -188,16 +196,16 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
         }
         ```
   + 发布事件
-    + [x] [springboot](/third-party-api-spring-boot-starter/README.md)
+    + [x] [springboot](/third-party-api-spring-boot-starter)
   + [x] SMS集成(sms integration)
-    + [x] [阿里云](/third-party-api-sms-aliyun/README.md)
+    + [x] [阿里云](/third-party-api-sms-aliyun)
       + [X] 发送短信
       + [X] 批量发送短信
-    + [X] [腾讯云](/third-party-api-sms-tencent/README.md)
+    + [X] [腾讯云](/third-party-api-sms-tencent)
       + [X] 发送短信
       + [X] 批量发送短信
   + [x] 推送集成(push integration)
-    + [X] [小米](/third-party-api-push-xiaomi/README.md)
+    + [X] [小米](/third-party-api-push-xiaomi)
       + [X] 发送消息
     + [ ] 华为
     + [ ] vivo
@@ -207,9 +215,9 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
     + [ ] 谷歌
     + [ ] 极光推送
   + [x] 支付集成(pay integration)
-    + [x] [支付宝](/third-party-api-pay-alipay/README.md)
+    + [x] [支付宝](/third-party-api-pay-alipay)
       + [x] 二维码支付
-    + [x] [微信](/third-party-api-pay-weixin/README.md)
+    + [x] [微信](/third-party-api-pay-weixin) [sdk](/third-party-api-pay-weixin-sdk)
       + [x] 二维码支付
     + [ ] 银联
     + [ ] 京东

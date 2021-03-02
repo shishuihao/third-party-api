@@ -1,0 +1,8 @@
+dependencies {
+    implementation 'com.netflix.feign:feign-core:8.18.0'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.11.1'
+}
+
+jar {
+    enabled true
+}

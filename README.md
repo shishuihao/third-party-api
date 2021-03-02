@@ -158,7 +158,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
       + [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa/README.md)
         ```
       + [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa)
-        ```java
+        ```
         @Bean
         @ConditionalOnMissingBean
         protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityJpaRepository jpaRepository) {
@@ -166,7 +166,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
         }
         ```
       + [x] [spring-boot-mybatis-plus](/third-party-api-spring-boot-mybatis-plus)
-        ```java
+        ```
       + [x] [spring-boot-mybatis-plus](/third-party-api-spring-boot-mybatis-plus/README.md)
         ```
         @Bean

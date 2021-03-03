@@ -46,6 +46,26 @@ public class IcbcPayApiProperties extends AbstractApiProperties implements PayAp
         return appId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        IcbcPayApiProperties that = (IcbcPayApiProperties) o;
+        return Objects.equals(appId, that.appId) && Objects.equals(merId, that.merId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), appId, merId);
+    }
+
     public String getAppId() {
         return appId;
     }
@@ -156,25 +176,5 @@ public class IcbcPayApiProperties extends AbstractApiProperties implements PayAp
 
     public void setEmProduct(String emProduct) {
         this.emProduct = emProduct;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        IcbcPayApiProperties that = (IcbcPayApiProperties) o;
-        return Objects.equals(appId, that.appId) && Objects.equals(merId, that.merId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), appId, merId);
     }
 }

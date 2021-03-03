@@ -20,12 +20,7 @@ import static com.alipay.easysdk.factory.Factory.SDK_VERSION;
  */
 
 public class AlipayPayClient {
-    private final AlipayPayProperties channelProperties;
     private final Map<AlipayPayApiProperties, com.alipay.easysdk.payment.facetoface.Client> clientMap = new ConcurrentHashMap<>();
-
-    public AlipayPayClient(AlipayPayProperties channelProperties) {
-        this.channelProperties = channelProperties;
-    }
 
     public com.alipay.easysdk.payment.facetoface.Client getFaceToFaceClient(AlipayPayApiProperties properties) {
         return clientMap.computeIfAbsent(properties, p -> {

@@ -3,6 +3,8 @@ package cn.shishuihao.thirdparty.api.sms.tencent;
 import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import cn.shishuihao.thirdparty.api.sms.SmsApiProperties;
 
+import java.util.Objects;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -41,6 +43,26 @@ public class TencentSmsApiProperties extends AbstractApiProperties implements Sm
     @Override
     public String id() {
         return appId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        TencentSmsApiProperties that = (TencentSmsApiProperties) o;
+        return Objects.equals(appId, that.appId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), appId);
     }
 
     public String getAppId() {

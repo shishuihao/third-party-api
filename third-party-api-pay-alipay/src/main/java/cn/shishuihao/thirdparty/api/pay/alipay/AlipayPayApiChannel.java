@@ -20,7 +20,7 @@ public class AlipayPayApiChannel extends AbstractMemoryChannel<AlipayPayApiPrope
     }
 
     public AlipayPayApiChannel(AlipayPayProperties channelProperties) {
-        this(channelProperties, new AlipayPayClient(channelProperties));
+        this(channelProperties, new AlipayPayClient());
     }
 
     public AlipayPayApiChannel() {

@@ -4,6 +4,8 @@ import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import cn.shishuihao.thirdparty.api.pay.PayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.SignType;
 
+import java.util.Objects;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -47,6 +49,26 @@ public class WxPayApiProperties extends AbstractApiProperties implements PayApiP
     @Override
     public String id() {
         return appId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        WxPayApiProperties that = (WxPayApiProperties) o;
+        return Objects.equals(appId, that.appId) && Objects.equals(mchId, that.mchId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), appId, mchId);
     }
 
     public String getAppId() {

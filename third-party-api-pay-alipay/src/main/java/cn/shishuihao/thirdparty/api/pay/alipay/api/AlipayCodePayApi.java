@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.alipay.api;
 
-import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayClient;
 import cn.shishuihao.thirdparty.api.pay.api.CodePayApi;

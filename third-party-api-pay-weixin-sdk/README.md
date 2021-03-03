@@ -44,6 +44,7 @@ SDK将致力于保持良好的API命名，以符合开发者的编程直觉。
 | 能力类别  | 场景类别  | 接口名称  | 接口路径 |
 | :------: | :------: | :------: |:------: | 
 | Payment</br>支付能力  | Common通用| | |
+|          |                                         | orderQuery</br>查询订单 | /pay/orderquery |
 | Payment</br>支付能力  | WxPayCodeApi</br>付款码支付   | | |
 |          |                                         | microPay</br>付款码支付 | /pay/micropay |
 | Payment</br>支付能力  | WxPayJsApi</br>JSAPI支付     | | |

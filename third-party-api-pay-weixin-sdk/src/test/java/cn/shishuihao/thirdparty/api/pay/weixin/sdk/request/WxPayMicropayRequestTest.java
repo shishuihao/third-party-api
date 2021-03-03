@@ -12,6 +12,7 @@ import java.util.HashMap;
  * @version 1.0.0
  */
 class WxPayMicropayRequestTest {
+
     @Test
     void toXml() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         String xml = "<xml>\n" +

@@ -21,8 +21,8 @@ class IcbcCodePayApiTest {
     void execute() {
         IcbcPayApiProperties properties = new IcbcPayApiProperties();
         properties.setAppId("appId");
-        properties.setPrivateKey("");
-        properties.setIcbcPublicKey("");
+        properties.setPrivateKey("privateKey");
+        properties.setIcbcPublicKey("icbcPublicKey");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         CodePayApiRequest request = CodePayApiRequest.Builder.builder()
                 .channelId(IcbcPayApiChannel.CHANNEL_ID)

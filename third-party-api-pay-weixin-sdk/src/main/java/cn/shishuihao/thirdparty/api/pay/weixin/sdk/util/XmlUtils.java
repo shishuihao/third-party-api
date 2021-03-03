@@ -1,16 +1,15 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.util;
 
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayRefundQueryResponse;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.MapEntryConverter;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.WxPayRefundQueryResponseConverter;
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.converters.Converter;
-import com.thoughtworks.xstream.converters.MarshallingContext;
-import com.thoughtworks.xstream.converters.UnmarshallingContext;
-import com.thoughtworks.xstream.io.HierarchicalStreamReader;
-import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.Xpp3Driver;
+import com.thoughtworks.xstream.mapper.CannotResolveClassException;
+import com.thoughtworks.xstream.mapper.MapperWrapper;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -50,10 +49,32 @@ public class XmlUtils {
 
     private static XStream getXmlStream(Class<?> cls) {
         return X_STREAM_MAP.computeIfAbsent(cls, k -> {
-            XStream xStream = new XStream(new Xpp3Driver(new NoNameCoder()));
+            XStream xStream = new XStream(new Xpp3Driver(new NoNameCoder())) {
+                @Override
+                protected MapperWrapper wrapMapper(MapperWrapper next) {
+                    return new MapperWrapper(next) {
+                        @Override
+                        public boolean shouldSerializeMember(Class definedIn, String fieldName) {
+                            if (definedIn == Object.class) {
+                                try {
+                                    return this.realClass(fieldName) != null;
+                                } catch (CannotResolveClassException e) {
+                                    return false;
+                                }
+                            } else {
+                                return super.shouldSerializeMember(definedIn, fieldName);
+                            }
+                        }
+                    };
+                }
+            };
             if (Map.class.isAssignableFrom(cls)) {
                 xStream.alias("xml", cls);
                 xStream.registerConverter(new MapEntryConverter());
+            }
+            if (WxPayRefundQueryResponse.class.isAssignableFrom(cls)) {
+                xStream.alias("xml", cls);
+                xStream.registerConverter(new WxPayRefundQueryResponseConverter(xStream.getMapper(), xStream.getReflectionProvider()));
             }
             // 使用注解
             xStream.processAnnotations(cls);
@@ -79,32 +100,4 @@ public class XmlUtils {
         return type;
     }
 
-    public static class MapEntryConverter implements Converter {
-        @Override
-        public boolean canConvert(Class type) {
-            return Map.class.isAssignableFrom(type);
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        public void marshal(Object value, HierarchicalStreamWriter writer, MarshallingContext context) {
-            Map<String, String> map = (Map<String, String>) value;
-            for (Map.Entry<String, String> entry : map.entrySet()) {
-                writer.startNode(entry.getKey());
-                writer.setValue(entry.getValue());
-                writer.endNode();
-            }
-        }
-
-        @Override
-        public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
-            Map<String, String> map = new HashMap<>(16);
-            while (reader.hasMoreChildren()) {
-                reader.moveDown();
-                map.put(reader.getNodeName(), reader.getValue());
-                reader.moveUp();
-            }
-            return map;
-        }
-    }
 }

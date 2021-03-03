@@ -8,8 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 /**
- * {@link "https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_10&index=1"}
- *
  * @author shishuihao
  * @version 1.0.0
  */
@@ -320,7 +318,7 @@ public class WxPayMicropayRequest extends AbstractWxPayXmlRequest {
         }
 
         public WxPayMicropayRequest build(String signKey) throws UnsupportedEncodingException {
-            Map<String, Object> params = XmlFieldUtils.getNameValues(this);
+            Map<String, Object> params = XmlFieldUtils.getNameValueMap(this);
             return new WxPayMicropayRequest(appId, mchId, subAppId, subMchId, deviceInfo, nonceStr,
                     signType.sign(signKey, params), signType,
                     body, detail, attach, outTradeNo, totalFee, feeType, spBillCreateIp, goodsTag, limitPay, timeStart, timeExpire, authCode, receipt, sceneInfo);

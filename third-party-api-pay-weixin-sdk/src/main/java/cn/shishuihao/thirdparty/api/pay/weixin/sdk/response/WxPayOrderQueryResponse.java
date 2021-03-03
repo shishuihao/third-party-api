@@ -1,11 +1,8 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.response;
 
-import com.sun.istack.internal.NotNull;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * {@link "https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_10&index=1"}
- *
  * @author shishuihao
  * @version 1.0.0
  */
@@ -35,7 +32,6 @@ public class WxPayOrderQueryResponse extends AbstractWxPayXmlResponse {
      * 交易类型  trade_type  是  String(16)  JSAPI  调用接口提交的交易类型，取值如下：JSAPI，NATIVE，APP，MICROPAY，详细说明见参数规定
      */
     @XStreamAlias("trade_type")
-    @NotNull
     private String tradeType;
     /**
      * 交易状态  trade_state  是  String(32) SUCCESS

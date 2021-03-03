@@ -2,8 +2,10 @@ package cn.shishuihao.thirdparty.api.pay.weixin.sdk;
 
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayMicropayRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayOrderQueryRequest;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayRefundQueryRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayMicropayResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayOrderQueryResponse;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayRefundQueryResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +44,21 @@ class WxFactoryTest {
                 .nonceStr("ec2316275641faa3aacf3cc599e8730f")
                 .transactionId("1008450740201411110005820873")
                 .sign("FDD167FAA73459FD921B144BAF4F4CA2")
+                .build());
+        Assertions.assertEquals("SUCCESS", response.getReturnCode());
+    }
+
+    @Test
+    void refundQuery() {
+        WxPayRefundQueryResponse response = WxFactory.Payment.commonApi().refundQuery(WxPayRefundQueryRequest.Builder.builder()
+                .appId("wx2421b1c4370ec43b")
+                .mchId("10000100")
+                .nonceStr("0b9f35f484df17a732e537c37708d1d0")
+                .outRefundNo("")
+                .outTradeNo("1415757673")
+                .refundId("")
+                .transactionId("")
+                .sign("66FFB727015F450D167EF38CCC549521")
                 .build());
         Assertions.assertEquals("SUCCESS", response.getReturnCode());
     }

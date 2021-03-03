@@ -21,7 +21,7 @@ public class XmlFieldUtils {
         return FieldUtils.getFieldsListWithAnnotation(cls, XStreamAlias.class);
     }
 
-    public static Map<String, Object> getNameValues(final Object object) {
+    public static Map<String, Object> getNameValueMap(final Object object) {
         List<Field> fieldList = getApiFields(object.getClass());
         Map<String, Object> map = new HashMap<>(fieldList.size());
         fieldList.forEach(field -> {
@@ -31,6 +31,16 @@ public class XmlFieldUtils {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
+        });
+        return map;
+    }
+
+    public static Map<String, Field> getNameFieldMap(final Class<?> cls) {
+        List<Field> fieldList = getApiFields(cls);
+        Map<String, Field> map = new HashMap<>(fieldList.size());
+        fieldList.forEach(field -> {
+            XStreamAlias xmlField = field.getAnnotation(XStreamAlias.class);
+            map.put(xmlField.value(), field);
         });
         return map;
     }

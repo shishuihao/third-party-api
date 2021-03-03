@@ -3,8 +3,6 @@ package cn.shishuihao.thirdparty.api.pay.weixin.sdk.response;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
- * {@link "https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_10&index=1"}
- *
  * @author shishuihao
  * @version 1.0.0
  */

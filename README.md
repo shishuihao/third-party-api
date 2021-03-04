@@ -6,7 +6,7 @@
 [![Apache 2.0 License][license-shield]][license-url]
 [![Latest Commit][latest-commit-shield]][latest-commit-url]
 [![Releases][releases-shield]][releases-url]
-
+[![REUSE status][reuse-shield]][reuse-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -312,4 +312,6 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 [latest-commit-url]: https://github.com/shishuihao/third-party-api/commits/main
 [releases-shield]: https://img.shields.io/github/v/release/shishuihao/third-party-api.svg?style=for-the-badge
 [releases-url]: https://github.com/shishuihao/third-party-api/releases
+[reuse-shield]: https://api.reuse.software/badge/github.com/shishuihao/third-party-api
+[reuse-url]: https://api.reuse.software/info/github.com/shishuihao/third-party-api
 [product-screenshot]: images/screenshot.png

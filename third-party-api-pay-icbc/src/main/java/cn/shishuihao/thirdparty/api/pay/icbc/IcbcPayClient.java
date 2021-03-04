@@ -1,6 +1,5 @@
 package cn.shishuihao.thirdparty.api.pay.icbc;
 
-import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import com.icbc.api.DefaultIcbcClient;
 import com.icbc.api.IcbcClient;
 
@@ -30,8 +29,10 @@ public class IcbcPayClient {
                         k.getEncryptKey(),
                         k.getCa(),
                         k.getPassword());
+            } catch (RuntimeException e) {
+                throw e;
             } catch (Exception e) {
-                throw new ApiException(e);
+                throw new IllegalArgumentException(e);
             }
         });
     }

@@ -1,6 +1,5 @@
 package cn.shishuihao.thirdparty.api.pay.alipay;
 
-import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import com.alipay.easysdk.kernel.AlipayConstants;
 import com.alipay.easysdk.kernel.Client;
 import com.alipay.easysdk.kernel.Config;
@@ -44,8 +43,10 @@ public class AlipayPayClient {
                     context.setSigner(new AliyunKMSSigner(new AliyunKMSClient(TeaModel.buildMap(config))));
                 }
                 return new com.alipay.easysdk.payment.facetoface.Client(new Client(context));
+            } catch (RuntimeException e) {
+                throw e;
             } catch (Exception e) {
-                throw new ApiException(e);
+                throw new IllegalArgumentException(e);
             }
         });
     }

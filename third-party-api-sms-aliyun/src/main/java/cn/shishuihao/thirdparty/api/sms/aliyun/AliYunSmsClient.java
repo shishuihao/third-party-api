@@ -1,6 +1,5 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun;
 
-import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import com.aliyun.dysmsapi20170525.Client;
 import com.aliyun.teaopenapi.models.Config;
 
@@ -28,8 +27,10 @@ public class AliYunSmsClient {
             config.setEndpoint(channelProperties.getEndpoint());
             try {
                 return new Client(config);
+            } catch (RuntimeException e) {
+                throw e;
             } catch (Exception e) {
-                throw new ApiException(e);
+                throw new IllegalArgumentException(e);
             }
         });
     }

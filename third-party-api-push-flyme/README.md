@@ -33,5 +33,4 @@ compile 'cn.shishuihao:third-party-api-push-flyme:latest'
                 .restrictedPackageName("restrictedPackageName")
                 .registrationIds(new String[]{"registrationId"})
                 .build());
-        Assertions.assertNotNull(response);
 ```

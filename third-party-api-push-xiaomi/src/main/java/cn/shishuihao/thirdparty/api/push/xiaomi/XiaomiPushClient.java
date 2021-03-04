@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class XiaomiPushClient {
     private final Map<XiaomiPushApiProperties, Sender> map = new ConcurrentHashMap<>();
 
-    public Sender getClient(XiaomiPushApiProperties properties) {
+    public Sender getSender(XiaomiPushApiProperties properties) {
         return map.computeIfAbsent(properties, k -> new Sender(k.getAppSecretKey()));
     }
 }

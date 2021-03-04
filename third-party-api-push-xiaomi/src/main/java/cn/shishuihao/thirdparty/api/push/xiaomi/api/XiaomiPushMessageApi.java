@@ -42,7 +42,7 @@ public class XiaomiPushMessageApi implements PushMessageApi {
                     // 使用默认提示音提示
                     .notifyType(1)
                     .build();
-            Result result = xiaomiPushClient.getClient(properties)
+            Result result = xiaomiPushClient.getSender(properties)
                     .send(message, Arrays.asList(request.getRegistrationIds()), Math.max(1, properties.getRetries()));
             return PushMessageApiResponse.Builder.builder()
                     .success(ErrorCode.Success == result.getErrorCode())

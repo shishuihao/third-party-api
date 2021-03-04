@@ -204,15 +204,16 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
       + [X] 发送短信
       + [X] 批量发送短信
   + [x] 推送集成(push integration)
-    + [X] [小米](/third-party-api-push-xiaomi)
+    + [X] [小米(xiaomi)](/third-party-api-push-xiaomi)
       + [X] 发送消息
-    + [ ] 华为
+    + [ ] 华为(huawei)
     + [ ] vivo
     + [ ] oppo
-    + [ ] 魅族
-    + [ ] 苹果
-    + [ ] 谷歌
-    + [ ] 极光推送
+    + [X] [魅族(flyme)](/third-party-api-push-flyme)
+      + [X] 推送消息
+    + [ ] 苹果(apple)
+    + [ ] 谷歌(fcm)
+    + [ ] 极光推送(jiguang)
   + [x] 支付集成(pay integration)
     + [x] [支付宝](/third-party-api-pay-alipay)
       + [x] 二维码支付

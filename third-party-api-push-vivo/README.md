@@ -1,4 +1,4 @@
-[VIVO推送官方文档(xiaomi push official document)](https://dev.vivo.com.cn/documentCenter/doc/180)
+[VIVO推送官方文档(vivo push official document)](https://dev.vivo.com.cn/documentCenter/doc/180)
 
 ## Maven
 

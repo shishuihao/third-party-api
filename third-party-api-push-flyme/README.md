@@ -1,4 +1,4 @@
-[魅族推送官方文档(xiaomi push official document)](http://open-wiki.flyme.cn/doc-wiki/index#id?129)
+[魅族推送官方文档(flyme push official document)](http://open-wiki.flyme.cn/doc-wiki/index#id?129)
 
 ## Maven
 

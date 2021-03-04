@@ -14,17 +14,17 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class AliYunSmsClient {
     private final AliYunSmsProperties channelProperties;
-    private final Map<AliYunSmsApiProperties, Client> clientMap = new ConcurrentHashMap<>();
+    private final Map<AliYunSmsApiProperties, Client> map = new ConcurrentHashMap<>();
 
     public AliYunSmsClient(AliYunSmsProperties channelProperties) {
         this.channelProperties = channelProperties;
     }
 
     public Client getAliYunClient(AliYunSmsApiProperties properties) {
-        return clientMap.computeIfAbsent(properties, p -> {
+        return map.computeIfAbsent(properties, k -> {
             Config config = new Config()
-                    .setAccessKeyId(p.getAccessKeyId())
-                    .setAccessKeySecret(p.getAccessSecret());
+                    .setAccessKeyId(k.getAccessKeyId())
+                    .setAccessKeySecret(k.getAccessSecret());
             config.setEndpoint(channelProperties.getEndpoint());
             try {
                 return new Client(config);

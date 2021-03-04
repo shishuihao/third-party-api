@@ -14,22 +14,22 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class IcbcPayClient {
-    private final Map<IcbcPayApiProperties, DefaultIcbcClient> clientMap = new ConcurrentHashMap<>();
+    private final Map<IcbcPayApiProperties, DefaultIcbcClient> map = new ConcurrentHashMap<>();
 
     public IcbcClient getClient(IcbcPayApiProperties properties) {
-        return clientMap.computeIfAbsent(properties, p -> {
+        return map.computeIfAbsent(properties, k -> {
             try {
                 return new DefaultIcbcClient(
-                        properties.getAppId(),
-                        properties.getSignType(),
-                        properties.getPrivateKey(),
-                        properties.getCharset(),
-                        properties.getFormat(),
-                        properties.getIcbcPublicKey(),
-                        Optional.ofNullable(properties.getEncryptType()).orElse(null),
-                        properties.getEncryptKey(),
-                        properties.getCa(),
-                        properties.getPassword());
+                        k.getAppId(),
+                        k.getSignType(),
+                        k.getPrivateKey(),
+                        k.getCharset(),
+                        k.getFormat(),
+                        k.getIcbcPublicKey(),
+                        Optional.ofNullable(k.getEncryptType()).orElse(null),
+                        k.getEncryptKey(),
+                        k.getCa(),
+                        k.getPassword());
             } catch (Exception e) {
                 throw new ApiException(e);
             }

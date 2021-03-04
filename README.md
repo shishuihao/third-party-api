@@ -207,7 +207,8 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
     + [X] [小米(xiaomi)](/third-party-api-push-xiaomi)
       + [X] 发送消息
     + [ ] 华为(huawei)
-    + [ ] vivo
+    + [X] [VIVO](/third-party-api-push-vivo)
+      + [X] 推送消息
     + [X] [OPPO](/third-party-api-push-oppo)
       + [X] 推送消息
     + [X] [魅族(flyme)](/third-party-api-push-flyme)

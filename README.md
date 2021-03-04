@@ -162,8 +162,6 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
                 access-secret: AccessSecret2
           ```
     + [x] 数据库配置方式
-      + [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa/README.md)
-        ```
       + [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa)
         ```
         @Bean
@@ -174,8 +172,6 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
         ```
       + [x] [spring-boot-mybatis-plus](/third-party-api-spring-boot-mybatis-plus)
         ```
-      + [x] [spring-boot-mybatis-plus](/third-party-api-spring-boot-mybatis-plus/README.md)
-        ```
         @Bean
         @ConditionalOnMissingBean
         protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityMybatisPlusMapper mybatisPlusMapper) {
@@ -183,8 +179,6 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
         }
         ```
       + [x] [spring-boot-redis](/third-party-api-spring-boot-redis)
-        ```java
-      + [x] [spring-boot-redis](/third-party-api-spring-boot-redis/README.md)
         ```
         @Bean
         @ConditionalOnMissingBean
@@ -193,8 +187,6 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
         }
         ```
       + [x] [spring-boot-mongodb](/third-party-api-spring-boot-mongodb)
-        ```java
-      + [x] [spring-boot-mongodb](/third-party-api-spring-boot-mongodb/README.md)
         ```
         @Bean
         @ConditionalOnMissingBean

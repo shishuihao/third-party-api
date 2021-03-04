@@ -298,19 +298,19 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/shishuihao/third-party-api.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/shishuihao/third-party-api
 [contributors-url]: https://github.com/shishuihao/third-party-api/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/shishuihao/third-party-api.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/shishuihao/third-party-api
 [forks-url]: https://github.com/shishuihao/third-party-api/network/members
-[stars-shield]: https://img.shields.io/github/stars/shishuihao/third-party-api.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/shishuihao/third-party-api
 [stars-url]: https://github.com/shishuihao/third-party-api/stargazers
-[issues-shield]: https://img.shields.io/github/issues/shishuihao/third-party-api.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/shishuihao/third-party-api
 [issues-url]: https://github.com/shishuihao/third-party-api/issues
-[license-shield]: https://img.shields.io/github/license/shishuihao/third-party-api.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/shishuihao/third-party-api
 [license-url]: https://github.com/shishuihao/third-party-api/blob/master/LICENSE.txt
-[latest-commit-shield]: https://img.shields.io/github/last-commit/shishuihao/third-party-api.svg?style=for-the-badge
+[latest-commit-shield]: https://img.shields.io/github/last-commit/shishuihao/third-party-api.svg
 [latest-commit-url]: https://github.com/shishuihao/third-party-api/commits/main
-[releases-shield]: https://img.shields.io/github/v/release/shishuihao/third-party-api.svg?style=for-the-badge
+[releases-shield]: https://img.shields.io/github/v/release/shishuihao/third-party-api
 [releases-url]: https://github.com/shishuihao/third-party-api/releases
 [reuse-shield]: https://api.reuse.software/badge/github.com/shishuihao/third-party-api
 [reuse-url]: https://api.reuse.software/info/github.com/shishuihao/third-party-api

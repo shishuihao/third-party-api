@@ -8,6 +8,7 @@ import cn.shishuihao.thirdparty.api.push.flyme.FlymePushClient;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
 import com.meizu.push.sdk.constant.PushType;
+import com.meizu.push.sdk.server.IFlymePush;
 import com.meizu.push.sdk.server.constant.ErrorCode;
 import com.meizu.push.sdk.server.constant.ResultPack;
 import com.meizu.push.sdk.server.model.push.VarnishedMessage;
@@ -32,6 +33,7 @@ public class FlymePushMessageApi implements PushMessageApi {
     public PushMessageApiResponse execute(PushMessageApiRequest request) {
         FlymePushApiProperties properties = (FlymePushApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
+            IFlymePush push = flymePushClient.getClient(properties);
             VarnishedMessage message = new VarnishedMessage.Builder()
                     .appId(properties.getAppId())
                     .title(request.getTitle())
@@ -39,11 +41,9 @@ public class FlymePushMessageApi implements PushMessageApi {
                     .build();
             ResultPack<?> result;
             if (request.getRegistrationIds() == null || request.getRegistrationIds().length <= 0) {
-                result = flymePushClient.getClient(properties)
-                        .pushToApp(PushType.STATUSBAR, message);
+                result = push.pushToApp(PushType.STATUSBAR, message);
             } else {
-                result = flymePushClient.getClient(properties)
-                        .pushMessage(message, Arrays.asList(request.getRegistrationIds()), Math.max(1, properties.getRetries()));
+                result = push.pushMessage(message, Arrays.asList(request.getRegistrationIds()), Math.max(1, properties.getRetries()));
             }
             return PushMessageApiResponse.Builder.builder()
                     .success(ErrorCode.SUCCESS == result.getErrorCode())

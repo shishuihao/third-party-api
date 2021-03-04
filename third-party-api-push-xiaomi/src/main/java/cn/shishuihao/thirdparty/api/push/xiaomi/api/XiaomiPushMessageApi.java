@@ -11,6 +11,7 @@ import com.xiaomi.push.sdk.ErrorCode;
 import com.xiaomi.xmpush.server.Constants;
 import com.xiaomi.xmpush.server.Message;
 import com.xiaomi.xmpush.server.Result;
+import com.xiaomi.xmpush.server.Sender;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class XiaomiPushMessageApi implements PushMessageApi {
         XiaomiPushApiProperties properties = (XiaomiPushApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             Constants.useOfficial();
+            Sender sender = xiaomiPushClient.getSender(properties);
             Message message = new Message.Builder()
                     .title(request.getTitle())
                     .description(request.getDescription())
@@ -42,8 +44,7 @@ public class XiaomiPushMessageApi implements PushMessageApi {
                     // 使用默认提示音提示
                     .notifyType(1)
                     .build();
-            Result result = xiaomiPushClient.getSender(properties)
-                    .send(message, Arrays.asList(request.getRegistrationIds()), Math.max(1, properties.getRetries()));
+            Result result = sender.send(message, Arrays.asList(request.getRegistrationIds()), Math.max(1, properties.getRetries()));
             return PushMessageApiResponse.Builder.builder()
                     .success(ErrorCode.Success == result.getErrorCode())
                     .code(Optional.ofNullable(result.getErrorCode())

@@ -9,6 +9,7 @@ import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
 import com.oppo.push.server.Notification;
 import com.oppo.push.server.Result;
+import com.oppo.push.server.Sender;
 import com.oppo.push.server.Target;
 
 import java.util.Arrays;
@@ -31,20 +32,19 @@ public class OppoPushMessageApi implements PushMessageApi {
     public PushMessageApiResponse execute(PushMessageApiRequest request) {
         OppoPushApiProperties properties = (OppoPushApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
+            Sender sender = oppoPushClient.getSender(properties);
             Notification notification = new Notification();
             notification.setTitle(request.getTitle());
             notification.setContent(request.getPayload());
             Result result;
             if (request.getRegistrationIds() == null || request.getRegistrationIds().length <= 0) {
-                result = oppoPushClient.getSender(properties).saveNotification(notification);
+                result = sender.saveNotification(notification);
                 if (result.getReturnCode().getCode() == 0) {
-                    result = oppoPushClient.getSender(properties)
-                            .broadcastNotification(result.getMessageId(), Target.build(""));
+                    result = sender.broadcastNotification(result.getMessageId(), Target.build(""));
                 }
             } else {
-                result = oppoPushClient.getSender(properties)
-                        .unicastBatchNotification(Arrays.stream(request.getRegistrationIds())
-                                .collect(Collectors.toMap(Target::build, it -> notification)));
+                result = sender.unicastBatchNotification(Arrays.stream(request.getRegistrationIds())
+                        .collect(Collectors.toMap(Target::build, it -> notification)));
             }
             return PushMessageApiResponse.Builder.builder()
                     .success(result.getReturnCode().getCode() == 0)

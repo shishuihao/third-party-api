@@ -11,10 +11,6 @@ import java.util.Objects;
  */
 
 public class XiaomiPushApiProperties extends AbstractApiProperties implements PushApiProperties {
-    public XiaomiPushApiProperties() {
-        this.setChannelId(XiaomiPushApiChannel.CHANNEL_ID);
-    }
-
     /**
      * application id
      */
@@ -23,6 +19,14 @@ public class XiaomiPushApiProperties extends AbstractApiProperties implements Pu
      * application secret key
      */
     private String appSecretKey;
+    /**
+     * 尝试次数 >=1
+     */
+    private int retries = 3;
+
+    public XiaomiPushApiProperties() {
+        this.setChannelId(XiaomiPushApiChannel.CHANNEL_ID);
+    }
 
     @Override
     public String id() {
@@ -63,5 +67,13 @@ public class XiaomiPushApiProperties extends AbstractApiProperties implements Pu
 
     public void setAppSecretKey(String appSecretKey) {
         this.appSecretKey = appSecretKey;
+    }
+
+    public int getRetries() {
+        return retries;
+    }
+
+    public void setRetries(int retries) {
+        this.retries = retries;
     }
 }

@@ -14,9 +14,13 @@ public class XiaomiPushApiChannel extends AbstractMemoryChannel<XiaomiPushApiPro
 
     private final XiaomiPushProperties channelProperties;
 
-    public XiaomiPushApiChannel(XiaomiPushProperties channelProperties) {
+    public XiaomiPushApiChannel(XiaomiPushProperties channelProperties, XiaomiPushClient xiaomiPushClient) {
         this.channelProperties = channelProperties;
-        this.add(new XiaomiPushMessageApi());
+        this.add(new XiaomiPushMessageApi(xiaomiPushClient));
+    }
+
+    public XiaomiPushApiChannel(XiaomiPushProperties channelProperties) {
+        this(channelProperties, new XiaomiPushClient());
     }
 
     public XiaomiPushApiChannel() {

@@ -20,17 +20,17 @@ compile 'cn.shishuihao:third-party-api-push-xiaomi:latest'
 ## push message
 
 ``` java
-XiaomiPushProperties properties = new XiaomiPushProperties();
-properties.setAppId("appId");
-properties.setAppSecretKey("appSecretKey");
-ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-PushMessageResponse response = ApiRegistry.INSTANCE.execute(PushMessageRequest.Builder.builder()
-    .channelId("push.xiaomi")
-    .propertiesId(properties.id())
-    .title("title")
-    .description("description")
-    .payload("payload")
-    .restrictedPackageName("restrictedPackageName")
-    .registrationIds(new String[]{"registrationId"})
-    .build());
+        XiaomiPushApiProperties properties = new XiaomiPushApiProperties();
+        properties.setAppId("appId");
+        properties.setAppSecretKey("appSecretKey");
+        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.Builder.builder()
+                .channelId(XiaomiPushApiChannel.CHANNEL_ID)
+                .propertiesId(properties.id())
+                .title("title")
+                .description("description")
+                .payload("payload")
+                .restrictedPackageName("restrictedPackageName")
+                .registrationIds(new String[]{"registrationId"})
+                .build());
 ```

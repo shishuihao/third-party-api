@@ -13,6 +13,11 @@ plugins {
 allprojects {
     group 'cn.shishuihao'
     version '2021.0.0-SNAPSHOT'
+
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
+        mavenCentral()
+    }
 }
 
 
@@ -25,11 +30,6 @@ subprojects {
         compileOnly {
             extendsFrom annotationProcessor
         }
-    }
-
-    repositories {
-        maven { url "https://maven.aliyun.com/repository/public" }
-        mavenCentral()
     }
 
     dependencies {

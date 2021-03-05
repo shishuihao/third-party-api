@@ -324,7 +324,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 [issues-shield]: https://img.shields.io/github/issues/shishuihao/third-party-api.svg
 [issues-url]: https://github.com/shishuihao/third-party-api/issues
 [license-shield]: https://img.shields.io/github/license/shishuihao/third-party-api.svg
-[license-url]: https://github.com/shishuihao/third-party-api/blob/master/LICENSE.txt
+[license-url]: https://github.com/shishuihao/third-party-api/blob/main/LICENSE
 [latest-commit-shield]: https://img.shields.io/github/last-commit/shishuihao/third-party-api.svg
 [latest-commit-url]: https://github.com/shishuihao/third-party-api/commits/main
 [releases-shield]: https://img.shields.io/github/v/release/shishuihao/third-party-api.svg

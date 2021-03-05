@@ -1,23 +1,23 @@
 <!-- PROJECT SHIELDS -->
 
-## Continuous Integration/Deployment
+##### Continuous Integration/Deployment
 [![Build Status](https://travis-ci.com/shishuihao/third-party-api.svg?branch=main)](https://travis-ci.com/shishuihao/third-party-api)
 [![CircleCI](https://circleci.com/gh/shishuihao/third-party-api.svg?style=svg)](https://circleci.com/gh/shishuihao/third-party-api)
-## Package Information
+##### Package Information
 [![Apache 2.0 License][license-shield]][license-url]
 [![REUSE status][reuse-shield]][reuse-url]
-### GitHub
+###### GitHub
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Contributors][contributors-shield]][contributors-url]
 [![Issues][issues-shield]][issues-url]
 [![Latest Commit][latest-commit-shield]][latest-commit-url]
 [![Releases][releases-shield]][releases-url]
-## Test Coverage
+##### Test Coverage
 [![codecov](https://codecov.io/gh/shishuihao/third-party-api/branch/main/graph/badge.svg?token=M458RT3TUS)](https://codecov.io/gh/shishuihao/third-party-api)
-## Code Quality
+##### Code Quality
 [![Maintainability](https://api.codeclimate.com/v1/badges/a7dc243f88ef01a4cd4b/maintainability)](https://codeclimate.com/github/shishuihao/third-party-api/maintainability)
-## Other
+##### Other
 [![Gitter](https://badges.gitter.im/third-party-api/community.svg)](https://gitter.im/third-party-api/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 <!-- PROJECT LOGO -->

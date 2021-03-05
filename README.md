@@ -7,6 +7,7 @@
 [![Latest Commit][latest-commit-shield]][latest-commit-url]
 [![Releases][releases-shield]][releases-url]
 [![REUSE status][reuse-shield]][reuse-url]
+[![Build Status](https://travis-ci.com/shishuihao/third-party-api.svg?branch=main)](https://travis-ci.com/shishuihao/third-party-api)
 
 <!-- PROJECT LOGO -->
 <br />

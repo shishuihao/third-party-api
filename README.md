@@ -9,7 +9,7 @@
 [![REUSE status][reuse-shield]][reuse-url]
 [![Build Status](https://travis-ci.com/shishuihao/third-party-api.svg?branch=main)](https://travis-ci.com/shishuihao/third-party-api)
 [![CircleCI](https://circleci.com/gh/shishuihao/third-party-api.svg?style=svg)](https://circleci.com/gh/shishuihao/third-party-api)
-[![codecov](https://codecov.io/gh/shishuihao/third-party-api/branch/main/graph/badge.svg?token=M458RT3TUS)](https://codecov.io/gh/shishuihao/third-party-api)
+[![codecov](https://codecov.io/gh/shishuihao/third-party-api/branch/main/graph/badge.svg?token=M458RT3TUS)](https://codecov.io/gh/shishuihao/third-party-api) [![Join the chat at https://gitter.im/third-party-api/community](https://badges.gitter.im/third-party-api/community.svg)](https://gitter.im/third-party-api/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 <!-- PROJECT LOGO -->
 <br />

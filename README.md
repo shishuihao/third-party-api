@@ -8,6 +8,7 @@
 [![Releases][releases-shield]][releases-url]
 [![REUSE status][reuse-shield]][reuse-url]
 [![Build Status](https://travis-ci.com/shishuihao/third-party-api.svg?branch=main)](https://travis-ci.com/shishuihao/third-party-api)
+[![CircleCI](https://circleci.com/gh/shishuihao/third-party-api.svg?style=svg)](https://circleci.com/gh/shishuihao/third-party-api)
 
 <!-- PROJECT LOGO -->
 <br />

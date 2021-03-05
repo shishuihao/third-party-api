@@ -10,8 +10,6 @@
 ###### GitHub
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
-[![Contributors][contributors-shield]][contributors-url]
-[![Issues][issues-shield]][issues-url]
 [![Latest Commit][latest-commit-shield]][latest-commit-url]
 [![Releases][releases-shield]][releases-url]
 ##### Test Coverage
@@ -20,7 +18,12 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/a7dc243f88ef01a4cd4b/maintainability)](https://codeclimate.com/github/shishuihao/third-party-api/maintainability)
 [![codebeat badge](https://codebeat.co/badges/c37b42ee-9ee7-44d9-879f-6c717a8f8408)](https://codebeat.co/projects/github-com-shishuihao-third-party-api-main)
 ##### Other
+###### Chat
 [![Gitter](https://badges.gitter.im/third-party-api/community.svg)](https://gitter.im/third-party-api/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+###### Contribution
+[![Contributors][contributors-shield]][contributors-url]
+[![Issues][issues-shield]][issues-url]
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 <!-- PROJECT LOGO -->
 <br />

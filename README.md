@@ -6,6 +6,7 @@
 ##### Package Information
 [![Apache 2.0 License][license-shield]][license-url]
 [![REUSE status][reuse-shield]][reuse-url]
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 ###### GitHub
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -17,6 +18,7 @@
 [![codecov](https://codecov.io/gh/shishuihao/third-party-api/branch/main/graph/badge.svg?token=M458RT3TUS)](https://codecov.io/gh/shishuihao/third-party-api)
 ##### Code Quality
 [![Maintainability](https://api.codeclimate.com/v1/badges/a7dc243f88ef01a4cd4b/maintainability)](https://codeclimate.com/github/shishuihao/third-party-api/maintainability)
+[![codebeat badge](https://codebeat.co/badges/c37b42ee-9ee7-44d9-879f-6c717a8f8408)](https://codebeat.co/projects/github-com-shishuihao-third-party-api-main)
 ##### Other
 [![Gitter](https://badges.gitter.im/third-party-api/community.svg)](https://gitter.im/third-party-api/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 

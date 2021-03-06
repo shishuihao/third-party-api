@@ -21,14 +21,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS api_properties;
 CREATE TABLE api_properties  (
-  `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `gmt_create` datetime(0) NOT NULL,
-  `gmt_modified` datetime(0) NOT NULL,
-  `channel_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `properties` varchar(10240) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `properties_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `UK2g89p4h9vr0x67lf7ckvedttx`(`channel_id`, `properties_id`) USING BTREE
+                                 id bigint(0) NOT NULL AUTO_INCREMENT,
+                                 gmt_create datetime(0) NOT NULL,
+                                 gmt_modified datetime(0) NOT NULL,
+                                 channel_id varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                                 properties varchar(10240) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+                                 properties_id varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                                 PRIMARY KEY (id) USING BTREE,
+                                 UNIQUE INDEX UK2g89p4h9vr0x67lf7ckvedttx(channel_id, properties_id) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

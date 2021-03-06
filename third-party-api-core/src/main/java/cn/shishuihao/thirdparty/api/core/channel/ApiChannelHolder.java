@@ -16,16 +16,7 @@ public abstract class ApiChannelHolder {
 
     static {
         CHANNEL_REPOSITORY = Optional.ofNullable(ContainerHolder.CONTAINER)
-                .map(container -> {
-                    ApiChannelRepository repository = new ApiChannelContainerRepository(container);
-                    container.awareOrHook(it -> {
-                        // spi => container bean
-                        ServiceLoader.load(ApiChannel.class).forEach(repository::add);
-                        // container bean => container bean
-                        it.getBeansOfType(ApiChannel.class).values().forEach(repository::add);
-                    });
-                    return repository;
-                })
+                .map(container -> (ApiChannelRepository) new ApiChannelContainerRepository(container, true))
                 .orElseGet(() -> {
                     ApiChannelRepository repository = new ApiChannelMemoryRepository();
                     // spi => memory

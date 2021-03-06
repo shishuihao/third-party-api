@@ -18,16 +18,7 @@ public abstract class ApiPropertiesHolder {
 
     static {
         PROPERTIES_REPOSITORY = Optional.ofNullable(ContainerHolder.CONTAINER)
-                .map(container -> {
-                    ApiPropertiesRepository repository = new ApiPropertiesContainerRepository(container);
-                    container.awareOrHook(it -> {
-                        // spi => container bean
-                        ServiceLoader.load(ApiProperties.class).forEach(repository::add);
-                        // container bean => container bean
-                        it.getBeansOfType(ApiProperties.class).values().forEach(repository::add);
-                    });
-                    return repository;
-                })
+                .map(container -> (ApiPropertiesRepository) new ApiPropertiesContainerRepository(container, true))
                 .orElseGet(() -> {
                     ApiPropertiesRepository repository = new ApiPropertiesMemoryRepository();
                     // spi => memory

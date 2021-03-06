@@ -1,16 +1,13 @@
 package cn.shishuihao.thirdparty.api.pay.icbc;
 
-import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
-import cn.shishuihao.thirdparty.api.pay.PayApiProperties;
-
-import java.util.Objects;
+import cn.shishuihao.thirdparty.api.pay.properties.AbstractPayApiProperties;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 
-public class IcbcPayApiProperties extends AbstractApiProperties implements PayApiProperties {
+public class IcbcPayApiProperties extends AbstractPayApiProperties {
     /**
      * APP的编号,应用在API开放平台注册时生成
      */
@@ -43,27 +40,7 @@ public class IcbcPayApiProperties extends AbstractApiProperties implements PayAp
 
     @Override
     public String id() {
-        return appId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        IcbcPayApiProperties that = (IcbcPayApiProperties) o;
-        return Objects.equals(appId, that.appId) && Objects.equals(merId, that.merId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), appId, merId);
+        return String.join(":", appId, merId);
     }
 
     public String getAppId() {

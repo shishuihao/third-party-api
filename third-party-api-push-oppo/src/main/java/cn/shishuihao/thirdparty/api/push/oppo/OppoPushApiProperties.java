@@ -2,8 +2,6 @@ package cn.shishuihao.thirdparty.api.push.oppo;
 
 import cn.shishuihao.thirdparty.api.push.properties.AbstractPushApiProperties;
 
-import java.util.Objects;
-
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -42,25 +40,5 @@ public class OppoPushApiProperties extends AbstractPushApiProperties {
 
     public void setMasterSecret(String masterSecret) {
         this.masterSecret = masterSecret;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        OppoPushApiProperties that = (OppoPushApiProperties) o;
-        return Objects.equals(appKey, that.appKey) && Objects.equals(masterSecret, that.masterSecret);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), appKey, masterSecret);
     }
 }

@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.icbc;
 
+import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import com.icbc.api.DefaultIcbcClient;
 import com.icbc.api.IcbcClient;
 
@@ -13,22 +14,22 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class IcbcPayClient {
-    private final Map<IcbcPayApiProperties, DefaultIcbcClient> map = new ConcurrentHashMap<>();
+    private final Map<AbstractApiProperties, DefaultIcbcClient> map = new ConcurrentHashMap<>();
 
     public IcbcClient getClient(IcbcPayApiProperties properties) {
         return map.computeIfAbsent(properties, k -> {
             try {
                 return new DefaultIcbcClient(
-                        k.getAppId(),
-                        k.getSignType(),
-                        k.getPrivateKey(),
-                        k.getCharset(),
-                        k.getFormat(),
-                        k.getIcbcPublicKey(),
-                        Optional.ofNullable(k.getEncryptType()).orElse(null),
-                        k.getEncryptKey(),
-                        k.getCa(),
-                        k.getPassword());
+                        properties.getAppId(),
+                        properties.getSignType(),
+                        properties.getPrivateKey(),
+                        properties.getCharset(),
+                        properties.getFormat(),
+                        properties.getIcbcPublicKey(),
+                        Optional.ofNullable(properties.getEncryptType()).orElse(null),
+                        properties.getEncryptKey(),
+                        properties.getCa(),
+                        properties.getPassword());
             } catch (RuntimeException e) {
                 throw e;
             } catch (Exception e) {

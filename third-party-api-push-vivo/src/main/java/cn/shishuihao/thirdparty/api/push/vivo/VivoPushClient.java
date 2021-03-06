@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.push.vivo;
 
+import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import com.vivo.push.sdk.server.Sender;
 
 import java.util.Map;
@@ -11,12 +12,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class VivoPushClient {
-    private final Map<VivoPushApiProperties, Sender> map = new ConcurrentHashMap<>();
+    private final Map<AbstractApiProperties, Sender> map = new ConcurrentHashMap<>();
 
     public Sender getSender(VivoPushApiProperties properties) {
         return map.computeIfAbsent(properties, k -> {
             try {
-                return new Sender(k.getSecret());
+                return new Sender(properties.getSecret());
             } catch (RuntimeException e) {
                 throw e;
             } catch (Exception e) {

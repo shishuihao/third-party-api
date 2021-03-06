@@ -1,19 +1,16 @@
 package cn.shishuihao.thirdparty.api.pay.weixin;
 
-import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
-import cn.shishuihao.thirdparty.api.pay.PayApiProperties;
+import cn.shishuihao.thirdparty.api.pay.properties.AbstractPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.AppId;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.MchId;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.SignType;
-
-import java.util.Objects;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 
-public class WxPayApiProperties extends AbstractApiProperties implements PayApiProperties {
+public class WxPayApiProperties extends AbstractPayApiProperties {
     /**
      * 公众账号ID wx8888888888888888 微信支付分配的公众账号ID（企业号corpid即为此appId）
      */
@@ -50,27 +47,8 @@ public class WxPayApiProperties extends AbstractApiProperties implements PayApiP
 
     @Override
     public String id() {
-        return appId.getId();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        WxPayApiProperties that = (WxPayApiProperties) o;
-        return Objects.equals(appId, that.appId) && Objects.equals(mchId, that.mchId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), appId, mchId);
+        return String.join(":", String.valueOf(appId), String.valueOf(mchId),
+                String.valueOf(subAppId), String.valueOf(subMchId));
     }
 
     public AppId getAppId() {

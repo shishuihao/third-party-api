@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.push.flyme;
 
+import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import com.meizu.push.sdk.server.IFlymePush;
 
 import java.util.Map;
@@ -11,9 +12,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class FlymePushClient {
-    private final Map<FlymePushApiProperties, IFlymePush> map = new ConcurrentHashMap<>();
+    private final Map<AbstractApiProperties, IFlymePush> map = new ConcurrentHashMap<>();
 
     public IFlymePush getClient(FlymePushApiProperties properties) {
-        return map.computeIfAbsent(properties, k -> new IFlymePush(k.getAppSecret(), k.isUseSSL()));
+        return map.computeIfAbsent(properties, k -> new IFlymePush(properties.getAppSecret(), properties.isUseSSL()));
     }
 }

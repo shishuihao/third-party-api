@@ -15,11 +15,15 @@ public class TencentSmsApiChannel extends AbstractMemoryChannel<TencentSmsApiPro
 
     private final TencentSmsProperties channelProperties;
 
-    public TencentSmsApiChannel(TencentSmsProperties channelProperties) {
+    public TencentSmsApiChannel(TencentSmsProperties channelProperties, TencentSmsClient tencentSmsClient) {
         this.channelProperties = channelProperties;
-        TencentSendBatchSmsApi batchSmsApi = new TencentSendBatchSmsApi();
+        TencentSendBatchSmsApi batchSmsApi = new TencentSendBatchSmsApi(tencentSmsClient);
         this.add(batchSmsApi);
         this.add(new TencentSendSmsApi(batchSmsApi));
+    }
+
+    public TencentSmsApiChannel(TencentSmsProperties channelProperties) {
+        this(channelProperties, new TencentSmsClient(channelProperties));
     }
 
     public TencentSmsApiChannel() {

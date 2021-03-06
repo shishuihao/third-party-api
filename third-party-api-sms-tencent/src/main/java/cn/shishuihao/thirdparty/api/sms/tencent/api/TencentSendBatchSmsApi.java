@@ -1,16 +1,15 @@
 package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
-import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.sms.api.SendBatchSmsApi;
 import cn.shishuihao.thirdparty.api.sms.domain.SendStatus;
 import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;
 import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
 import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiProperties;
-import com.tencentcloudapi.common.Credential;
+import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsClient;
 import com.tencentcloudapi.common.exception.TencentCloudSDKException;
-import com.tencentcloudapi.common.profile.ClientProfile;
 import com.tencentcloudapi.sms.v20190711.SmsClient;
 
 import java.util.Arrays;
@@ -21,25 +20,17 @@ import java.util.stream.Collectors;
  * @version 1.0.0
  */
 public class TencentSendBatchSmsApi implements SendBatchSmsApi {
+    private final TencentSmsClient tencentSmsClient;
+
+    public TencentSendBatchSmsApi(TencentSmsClient tencentSmsClient) {
+        this.tencentSmsClient = tencentSmsClient;
+    }
+
     @Override
     public SendBatchSmsApiResponse execute(SendBatchSmsApiRequest request) {
         TencentSmsApiProperties properties = (TencentSmsApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            /* 必要步骤：
-             * 实例化一个认证对象，入参需要传入腾讯云账户密钥对 secretId 和 secretKey
-             * 本示例采用从环境变量读取的方式，需要预先在环境变量中设置这两个值
-             * 您也可以直接在代码中写入密钥对，但需谨防泄露，不要将代码复制、上传或者分享给他人
-             * CAM 密钥查询：https://console.cloud.tencent.com/cam/capi
-             */
-            Credential cred = new Credential(properties.getSecretId(), properties.getSecretKey());
-            /* 非必要步骤:
-             * 实例化一个客户端配置对象，可以指定超时时间等配置 */
-            ClientProfile clientProfile = new ClientProfile();
-            /* SDK 默认用 TC3-HMAC-SHA256 进行签名
-             * 非必要请不要修改该字段 */
-            clientProfile.setSignMethod("HmacSHA256");
-            /* 实例化 SMS 的 client 对象第二个参数是地域信息，可以直接填写字符串 ap-guangzhou，或者引用预设的常量 */
-            SmsClient client = new SmsClient(cred, "", clientProfile);
+            SmsClient client = tencentSmsClient.getClient(properties);
             /* 实例化一个请求对象，根据调用的接口和实际情况，可以进一步设置请求参数
              * 您可以直接查询 SDK 源码确定接口有哪些属性可以设置
              * 属性可能是基本类型，也可能引用了另一个数据结构

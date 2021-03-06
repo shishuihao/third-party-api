@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun;
 
+import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import com.aliyun.dysmsapi20170525.Client;
 import com.aliyun.teaopenapi.models.Config;
 
@@ -13,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class AliYunSmsClient {
     private final AliYunSmsProperties channelProperties;
-    private final Map<AliYunSmsApiProperties, Client> map = new ConcurrentHashMap<>();
+    private final Map<AbstractApiProperties, Client> map = new ConcurrentHashMap<>();
 
     public AliYunSmsClient(AliYunSmsProperties channelProperties) {
         this.channelProperties = channelProperties;
@@ -22,8 +23,8 @@ public class AliYunSmsClient {
     public Client getAliYunClient(AliYunSmsApiProperties properties) {
         return map.computeIfAbsent(properties, k -> {
             Config config = new Config()
-                    .setAccessKeyId(k.getAccessKeyId())
-                    .setAccessKeySecret(k.getAccessSecret());
+                    .setAccessKeyId(properties.getAccessKeyId())
+                    .setAccessKeySecret(properties.getAccessSecret());
             config.setEndpoint(channelProperties.getEndpoint());
             try {
                 return new Client(config);

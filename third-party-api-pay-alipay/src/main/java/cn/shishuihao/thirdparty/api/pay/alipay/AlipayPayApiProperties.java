@@ -1,18 +1,15 @@
 package cn.shishuihao.thirdparty.api.pay.alipay;
 
-import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
-import cn.shishuihao.thirdparty.api.pay.PayApiProperties;
+import cn.shishuihao.thirdparty.api.pay.properties.AbstractPayApiProperties;
 import com.aliyun.tea.NameInMap;
 import com.aliyun.tea.Validation;
-
-import java.util.Objects;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 
-public class AlipayPayApiProperties extends AbstractApiProperties implements PayApiProperties {
+public class AlipayPayApiProperties extends AbstractPayApiProperties {
     /**
      * 通信协议，通常填写https
      */
@@ -99,26 +96,6 @@ public class AlipayPayApiProperties extends AbstractApiProperties implements Pay
     @Override
     public String id() {
         return appId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        AlipayPayApiProperties that = (AlipayPayApiProperties) o;
-        return Objects.equals(appId, that.appId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), appId);
     }
 
     public String getProtocol() {

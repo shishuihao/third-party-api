@@ -2,8 +2,6 @@ package cn.shishuihao.thirdparty.api.push.flyme;
 
 import cn.shishuihao.thirdparty.api.push.properties.AbstractPushApiProperties;
 
-import java.util.Objects;
-
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -66,25 +64,5 @@ public class FlymePushApiProperties extends AbstractPushApiProperties {
 
     public void setRetries(int retries) {
         this.retries = retries;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        FlymePushApiProperties that = (FlymePushApiProperties) o;
-        return Objects.equals(appId, that.appId) && Objects.equals(appSecret, that.appSecret);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), appId, appSecret);
     }
 }

@@ -1,16 +1,12 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun;
 
-import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
-import cn.shishuihao.thirdparty.api.sms.SmsApiProperties;
-
-import java.util.Objects;
+import cn.shishuihao.thirdparty.api.sms.properties.AbstractSmsApiProperties;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-
-public class AliYunSmsApiProperties extends AbstractApiProperties implements SmsApiProperties {
+public class AliYunSmsApiProperties extends AbstractSmsApiProperties {
     public AliYunSmsApiProperties() {
         this.setChannelId(AliYunSmsApiChannel.CHANNEL_ID);
     }
@@ -38,26 +34,6 @@ public class AliYunSmsApiProperties extends AbstractApiProperties implements Sms
     @Override
     public String id() {
         return accessKeyId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        AliYunSmsApiProperties that = (AliYunSmsApiProperties) o;
-        return Objects.equals(accessKeyId, that.accessKeyId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), accessKeyId);
     }
 
     public String getAccessKeyId() {

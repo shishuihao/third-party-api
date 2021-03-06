@@ -2,8 +2,6 @@ package cn.shishuihao.thirdparty.api.push.vivo;
 
 import cn.shishuihao.thirdparty.api.push.properties.AbstractPushApiProperties;
 
-import java.util.Objects;
-
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -42,25 +40,5 @@ public class VivoPushApiProperties extends AbstractPushApiProperties {
 
     public void setSecret(String secret) {
         this.secret = secret;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        VivoPushApiProperties that = (VivoPushApiProperties) o;
-        return Objects.equals(appKey, that.appKey) && Objects.equals(secret, that.secret);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), appKey, secret);
     }
 }

@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.alipay;
 
+import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import com.alipay.easysdk.kernel.AlipayConstants;
 import com.alipay.easysdk.kernel.Client;
 import com.alipay.easysdk.kernel.Config;
@@ -19,25 +20,25 @@ import static com.alipay.easysdk.factory.Factory.SDK_VERSION;
  */
 
 public class AlipayPayClient {
-    private final Map<AlipayPayApiProperties, com.alipay.easysdk.payment.facetoface.Client> faceToFaceClientMap = new ConcurrentHashMap<>();
+    private final Map<AbstractApiProperties, com.alipay.easysdk.payment.facetoface.Client> faceToFaceClientMap = new ConcurrentHashMap<>();
 
     public com.alipay.easysdk.payment.facetoface.Client getFaceToFaceClient(AlipayPayApiProperties properties) {
         return faceToFaceClientMap.computeIfAbsent(properties, k -> {
             try {
                 Config config = new Config();
-                config.protocol = k.getProtocol();
-                config.gatewayHost = k.getGatewayHost();
-                config.appId = k.getAppId();
-                config.signType = k.getSignType();
-                config.alipayPublicKey = k.getAlipayPublicKey();
-                config.merchantPrivateKey = k.getMerchantPrivateKey();
-                config.merchantCertPath = k.getMerchantCertPath();
-                config.alipayCertPath = k.getAlipayCertPath();
-                config.alipayRootCertPath = k.getAlipayRootCertPath();
-                config.notifyUrl = k.getNotifyUrl();
-                config.encryptKey = k.getEncryptKey();
-                config.signProvider = k.getSignProvider();
-                config.httpProxy = k.getHttpProxy();
+                config.protocol = properties.getProtocol();
+                config.gatewayHost = properties.getGatewayHost();
+                config.appId = properties.getAppId();
+                config.signType = properties.getSignType();
+                config.alipayPublicKey = properties.getAlipayPublicKey();
+                config.merchantPrivateKey = properties.getMerchantPrivateKey();
+                config.merchantCertPath = properties.getMerchantCertPath();
+                config.alipayCertPath = properties.getAlipayCertPath();
+                config.alipayRootCertPath = properties.getAlipayRootCertPath();
+                config.notifyUrl = properties.getNotifyUrl();
+                config.encryptKey = properties.getEncryptKey();
+                config.signProvider = properties.getSignProvider();
+                config.httpProxy = properties.getHttpProxy();
                 Context context = new Context(config, SDK_VERSION);
                 if (AlipayConstants.AliyunKMS.equals(context.getConfig(AlipayConstants.SIGN_PROVIDER_CONFIG_KEY))) {
                     context.setSigner(new AliyunKMSSigner(new AliyunKMSClient(TeaModel.buildMap(config))));

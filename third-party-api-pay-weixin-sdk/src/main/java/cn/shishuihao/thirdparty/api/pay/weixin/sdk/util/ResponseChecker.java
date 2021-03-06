@@ -8,6 +8,9 @@ import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.AbstractWxPayXmlResp
  */
 
 public class ResponseChecker {
+    private ResponseChecker() {
+    }
+
     /**
      * 判断一个请求返回的响应是否成功
      *

@@ -22,7 +22,7 @@ public class ThirdPartyApiSpringContainer implements Container, ApplicationConte
     private final List<Consumer<Container>> hooks = new ArrayList<>();
 
     @Override
-    public void setApplicationContext(@NonNull final ApplicationContext context) throws BeansException {
+    public synchronized void setApplicationContext(@NonNull final ApplicationContext context) throws BeansException {
         ThirdPartyApiSpringContainer.applicationContext = context;
         Iterator<Consumer<Container>> it = this.hooks.iterator();
         while (it.hasNext()) {

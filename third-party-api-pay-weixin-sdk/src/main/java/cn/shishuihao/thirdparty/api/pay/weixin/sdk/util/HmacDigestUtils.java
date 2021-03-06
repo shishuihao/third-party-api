@@ -14,12 +14,19 @@ import java.util.concurrent.ConcurrentHashMap;
 public class HmacDigestUtils {
     private static final Map<String, HmacUtils> UTILS_MAP = new ConcurrentHashMap<>();
 
+    private HmacDigestUtils() {
+    }
+
     private static HmacUtils getHmacUtils(final HmacAlgorithms algorithm, final String key) {
-        return UTILS_MAP.computeIfAbsent(algorithm.getName() + key, (k) ->
+        return UTILS_MAP.computeIfAbsent(algorithm.getName() + key, k ->
                 new HmacUtils(HmacAlgorithms.HMAC_SHA_256, key));
     }
 
     public static String hmacSha256(final byte[] data, final String key) {
         return getHmacUtils(HmacAlgorithms.HMAC_SHA_256, key).hmacHex(data);
+    }
+
+    public static String hmacSha512(final byte[] data, final String key) {
+        return getHmacUtils(HmacAlgorithms.HMAC_SHA_512, key).hmacHex(data);
     }
 }

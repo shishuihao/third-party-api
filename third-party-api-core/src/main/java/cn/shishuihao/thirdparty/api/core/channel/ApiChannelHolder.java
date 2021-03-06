@@ -10,6 +10,7 @@ import java.util.ServiceLoader;
  * @author shishuihao
  * @version 1.0.0
  */
+@SuppressWarnings("rawtypes")
 public abstract class ApiChannelHolder {
     public static final ApiChannelRepository CHANNEL_REPOSITORY;
 
@@ -33,11 +34,11 @@ public abstract class ApiChannelHolder {
                 });
     }
 
-    public Optional<ApiChannel<?>> getApiChannel(final String channelId) {
-        return CHANNEL_REPOSITORY.getById(channelId);
+    public Optional<ApiChannel> getApiChannel(final String channelId) {
+        return CHANNEL_REPOSITORY.getById(channelId).map(it -> it);
     }
 
-    public ApiChannel<?> getApiChannelOrThrow(final String channelId) {
+    public ApiChannel getApiChannelOrThrow(final String channelId) {
         return this.getApiChannel(channelId).orElseThrow(() -> new ChannelNotFoundException("channel not found by channelId:" + channelId));
     }
 }

@@ -20,6 +20,7 @@ import java.util.Optional;
  * @author shishuihao
  * @version 1.0.0
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class ApiRegistry {
     public static final ApiPropertiesRepository PROPERTIES_REPOSITORY;
     public static final ApiChannelRepository CHANNEL_REPOSITORY;
@@ -39,21 +40,21 @@ public class ApiRegistry {
 
     // region getApiChannel
 
-    public Optional<ApiChannel<?>> getApiChannel(final String channelId) {
-        return this.channelRepository.getById(channelId);
+    public Optional<ApiChannel> getApiChannel(final String channelId) {
+        return this.channelRepository.getById(channelId).map(it -> it);
     }
 
-    public ApiChannel<?> getApiChannelOrThrow(final String channelId) {
+    public ApiChannel getApiChannelOrThrow(final String channelId) {
         return this.getApiChannel(channelId).orElseThrow(() ->
                 new ChannelNotFoundException("channel not found by channelId:" + channelId));
     }
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<ApiChannel<?>>
+    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<ApiChannel>
     getApiChannel(final T request) {
         return this.getApiChannel(request.channelId());
     }
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> ApiChannel<?>
+    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> ApiChannel
     getApiChannelOrThrow(final T request) {
         return this.getApiChannelOrThrow(request.channelId());
     }

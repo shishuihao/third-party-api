@@ -19,7 +19,7 @@ public class WxPayOrderQueryRequest extends AbstractWxPayXmlRequest {
      * 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*且在同一个商户号下唯一。详见商户订单号
      */
     @XStreamAlias("transaction_id")
-    private final String transactionId;
+    private String transactionId;
     /**
      * 商户订单号	out_trade_no
      * String(32)
@@ -27,24 +27,22 @@ public class WxPayOrderQueryRequest extends AbstractWxPayXmlRequest {
      * 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。 详见商户订单号
      */
     @XStreamAlias("out_trade_no")
-    private final String outTradeNo;
-
-    protected WxPayOrderQueryRequest(AppId appId, MchId mchId,
-                                     AppId subAppId, MchId subMchId,
-                                     String deviceInfo, String nonceStr,
-                                     String sign, SignType signType,
-                                     String transactionId, String outTradeNo) {
-        super(appId, mchId, subAppId, subMchId, deviceInfo, nonceStr, sign, signType);
-        this.transactionId = transactionId;
-        this.outTradeNo = outTradeNo;
-    }
+    private String outTradeNo;
 
     public String getTransactionId() {
         return transactionId;
     }
 
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
+
     public String getOutTradeNo() {
         return outTradeNo;
+    }
+
+    public void setOutTradeNo(String outTradeNo) {
+        this.outTradeNo = outTradeNo;
     }
 
     public static final class Builder {
@@ -117,7 +115,18 @@ public class WxPayOrderQueryRequest extends AbstractWxPayXmlRequest {
         }
 
         public WxPayOrderQueryRequest build() {
-            return new WxPayOrderQueryRequest(appId, mchId, subAppId, subMchId, deviceInfo, nonceStr, sign, signType, transactionId, outTradeNo);
+            WxPayOrderQueryRequest wxPayOrderQueryRequest = new WxPayOrderQueryRequest();
+            wxPayOrderQueryRequest.setAppId(appId);
+            wxPayOrderQueryRequest.setMchId(mchId);
+            wxPayOrderQueryRequest.setSubAppId(subAppId);
+            wxPayOrderQueryRequest.setSubMchId(subMchId);
+            wxPayOrderQueryRequest.setDeviceInfo(deviceInfo);
+            wxPayOrderQueryRequest.setNonceStr(nonceStr);
+            wxPayOrderQueryRequest.setSign(sign);
+            wxPayOrderQueryRequest.setSignType(signType);
+            wxPayOrderQueryRequest.setTransactionId(transactionId);
+            wxPayOrderQueryRequest.setOutTradeNo(outTradeNo);
+            return wxPayOrderQueryRequest;
         }
     }
 }

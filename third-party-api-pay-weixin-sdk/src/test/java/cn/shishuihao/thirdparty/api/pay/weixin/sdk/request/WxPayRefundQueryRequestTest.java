@@ -38,6 +38,6 @@ class WxPayRefundQueryRequestTest {
                 .transactionId("")
                 .sign("66FFB727015F450D167EF38CCC549521")
                 .build();
-        Assertions.assertEquals(XmlUtils.fromXml(xml, HashMap.class), XmlUtils.fromXml(request.toXml(), HashMap.class));
+        Assertions.assertEquals(XmlUtils.fromXml(xml, HashMap.class), XmlUtils.fromXml(XmlUtils.toXml(request), HashMap.class));
     }
 }

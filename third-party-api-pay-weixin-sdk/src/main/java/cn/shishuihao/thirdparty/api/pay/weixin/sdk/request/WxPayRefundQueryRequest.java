@@ -16,63 +16,69 @@ public class WxPayRefundQueryRequest extends AbstractWxPayXmlRequest {
      * 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。
      */
     @XStreamAlias("transaction_id")
-    private final String transactionId;
+    private String transactionId;
     /**
      * 商户订单号 1217752501201407033233368018
      * 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*且在同一个商户号下唯一。详见商户订单号
      */
     @XStreamAlias("out_trade_no")
-    private final String outTradeNo;
+    private String outTradeNo;
     /**
      * 商户退款单号 out_refund_no String(64) 1217752501201407033233368018
      * 商户系统内部的退款单号，商户系统内部唯一，只能是数字、大小写字母_-|*@ ，同一退款单号多次请求只退一笔。
      */
     @XStreamAlias("out_refund_no")
-    private final String outRefundNo;
+    private String outRefundNo;
     /**
      * 微信退款单号 refund_id String(32) 1217752501201407033233368018
      * 微信生成的退款单号，在申请退款接口有返回
      */
     @XStreamAlias("refund_id")
-    private final String refundId;
+    private String refundId;
     /**
      * 偏移量 offset 否 Int 15 偏移量，当部分退款次数超过10次时可使用，表示返回的查询结果从这个偏移量开始取记录
      */
     @XStreamAlias("offset")
-    private final Integer offset;
-
-    protected WxPayRefundQueryRequest(AppId appId, MchId mchId,
-                                      AppId subAppId, MchId subMchId,
-                                      String deviceInfo, String nonceStr,
-                                      String sign, SignType signType,
-                                      String transactionId, String outTradeNo, String outRefundNo, String refundId,
-                                      Integer offset) {
-        super(appId, mchId, subAppId, subMchId, deviceInfo, nonceStr, sign, signType);
-        this.transactionId = transactionId;
-        this.outTradeNo = outTradeNo;
-        this.outRefundNo = outRefundNo;
-        this.refundId = refundId;
-        this.offset = offset;
-    }
+    private Integer offset;
 
     public String getTransactionId() {
         return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 
     public String getOutTradeNo() {
         return outTradeNo;
     }
 
+    public void setOutTradeNo(String outTradeNo) {
+        this.outTradeNo = outTradeNo;
+    }
+
     public String getOutRefundNo() {
         return outRefundNo;
+    }
+
+    public void setOutRefundNo(String outRefundNo) {
+        this.outRefundNo = outRefundNo;
     }
 
     public String getRefundId() {
         return refundId;
     }
 
+    public void setRefundId(String refundId) {
+        this.refundId = refundId;
+    }
+
     public Integer getOffset() {
         return offset;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
     }
 
     public static final class Builder {
@@ -163,7 +169,21 @@ public class WxPayRefundQueryRequest extends AbstractWxPayXmlRequest {
         }
 
         public WxPayRefundQueryRequest build() {
-            return new WxPayRefundQueryRequest(appId, mchId, subAppId, subMchId, deviceInfo, nonceStr, sign, signType, transactionId, outTradeNo, outRefundNo, refundId, offset);
+            WxPayRefundQueryRequest wxPayRefundQueryRequest = new WxPayRefundQueryRequest();
+            wxPayRefundQueryRequest.setAppId(appId);
+            wxPayRefundQueryRequest.setMchId(mchId);
+            wxPayRefundQueryRequest.setSubAppId(subAppId);
+            wxPayRefundQueryRequest.setSubMchId(subMchId);
+            wxPayRefundQueryRequest.setDeviceInfo(deviceInfo);
+            wxPayRefundQueryRequest.setNonceStr(nonceStr);
+            wxPayRefundQueryRequest.setSign(sign);
+            wxPayRefundQueryRequest.setSignType(signType);
+            wxPayRefundQueryRequest.setTransactionId(transactionId);
+            wxPayRefundQueryRequest.setOutTradeNo(outTradeNo);
+            wxPayRefundQueryRequest.setOutRefundNo(outRefundNo);
+            wxPayRefundQueryRequest.setRefundId(refundId);
+            wxPayRefundQueryRequest.setOffset(offset);
+            return wxPayRefundQueryRequest;
         }
     }
 }

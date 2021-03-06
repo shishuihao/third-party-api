@@ -47,6 +47,6 @@ class WxPayMicropayRequestTest {
                 .totalFee(1)
                 .sign("C29DB7DB1FD4136B84AE35604756362C")
                 .build();
-        Assertions.assertEquals(XmlUtils.fromXml(xml, HashMap.class), XmlUtils.fromXml(request.toXml(), HashMap.class));
+        Assertions.assertEquals(XmlUtils.fromXml(xml, HashMap.class), XmlUtils.fromXml(XmlUtils.toXml(request), HashMap.class));
     }
 }

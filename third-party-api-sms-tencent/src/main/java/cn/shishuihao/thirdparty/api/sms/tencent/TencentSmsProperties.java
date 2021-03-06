@@ -18,6 +18,11 @@ public class TencentSmsProperties {
      */
     private List<TencentSmsApiProperties> properties = new ArrayList<>();
 
+    /**
+     * region
+     */
+    private String region = "";
+
     public String getChannelId() {
         return channelId;
     }
@@ -32,5 +37,13 @@ public class TencentSmsProperties {
 
     public void setProperties(List<TencentSmsApiProperties> properties) {
         this.properties = properties;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 }

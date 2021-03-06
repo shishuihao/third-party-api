@@ -1,16 +1,29 @@
 <!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![Apache 2.0 License][license-shield]][license-url]
-[![Latest Commit][latest-commit-shield]][latest-commit-url]
-[![Releases][releases-shield]][releases-url]
-[![REUSE status][reuse-shield]][reuse-url]
+
+##### Continuous Integration/Deployment
 [![Build Status](https://travis-ci.com/shishuihao/third-party-api.svg?branch=main)](https://travis-ci.com/shishuihao/third-party-api)
 [![CircleCI](https://circleci.com/gh/shishuihao/third-party-api.svg?style=svg)](https://circleci.com/gh/shishuihao/third-party-api)
+##### Package Information
+[![Apache 2.0 License][license-shield]][license-url]
+[![REUSE status][reuse-shield]][reuse-url]
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+###### GitHub
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Latest Commit][latest-commit-shield]][latest-commit-url]
+[![Releases][releases-shield]][releases-url]
+##### Test Coverage
 [![codecov](https://codecov.io/gh/shishuihao/third-party-api/branch/main/graph/badge.svg?token=M458RT3TUS)](https://codecov.io/gh/shishuihao/third-party-api)
+##### Code Quality
+[![Maintainability](https://api.codeclimate.com/v1/badges/a7dc243f88ef01a4cd4b/maintainability)](https://codeclimate.com/github/shishuihao/third-party-api/maintainability)
+[![codebeat badge](https://codebeat.co/badges/c37b42ee-9ee7-44d9-879f-6c717a8f8408)](https://codebeat.co/projects/github-com-shishuihao-third-party-api-main)
+##### Other
+###### Chat
 [![Gitter](https://badges.gitter.im/third-party-api/community.svg)](https://gitter.im/third-party-api/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+###### Contribution
+[![Contributors][contributors-shield]][contributors-url]
+[![Issues][issues-shield]][issues-url]
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 <!-- PROJECT LOGO -->
 <br />
@@ -311,7 +324,7 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 [issues-shield]: https://img.shields.io/github/issues/shishuihao/third-party-api.svg
 [issues-url]: https://github.com/shishuihao/third-party-api/issues
 [license-shield]: https://img.shields.io/github/license/shishuihao/third-party-api.svg
-[license-url]: https://github.com/shishuihao/third-party-api/blob/master/LICENSE.txt
+[license-url]: https://github.com/shishuihao/third-party-api/blob/main/LICENSE
 [latest-commit-shield]: https://img.shields.io/github/last-commit/shishuihao/third-party-api.svg
 [latest-commit-url]: https://github.com/shishuihao/third-party-api/commits/main
 [releases-shield]: https://img.shields.io/github/v/release/shishuihao/third-party-api.svg

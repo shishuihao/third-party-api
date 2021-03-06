@@ -324,6 +324,9 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 | 捐助日期 | 捐助者 | 捐助金额 |
 | --- | --- | --- |
 
+# Star 趋势
+[![Stargazers over time](https://starchart.cc/shishuihao/third-party-api.svg)](https://starchart.cc/shishuihao/third-party-api)
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/shishuihao/third-party-api.svg

@@ -1,43 +1,43 @@
-package cn.shishuihao.thirdparty.api.spring.boot.jpa.entity;
+package cn.shishuihao.thirdparty.api.spring.boot.mongodb.document;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-@MappedSuperclass
-public class BaseEntity {
-    public static final String COLUMN_ID = "`id`";
-    public static final String COLUMN_GMT_CREATE = "`gmt_create`";
-    public static final String COLUMN_GMT_MODIFIED = "`gmt_modified`";
+public abstract class BaseMongodbDocument {
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_GMT_CREATE = "gmt_create";
+    public static final String COLUMN_GMT_MODIFIED = "gmt_modified";
     /**
      * 数据库主键id
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COLUMN_ID, nullable = false, updatable = false)
-    private Long id;
+    @Field(name = COLUMN_ID)
+    private ObjectId id;
     /**
      * 创建时间 不可更新
      */
-    @Column(name = COLUMN_GMT_CREATE, nullable = false, updatable = false)
+    @Field(name = COLUMN_GMT_CREATE)
     private LocalDateTime gmtCreate = LocalDateTime.now();
     /**
      * 更新时间
      */
     @LastModifiedDate
-    @Column(name = COLUMN_GMT_MODIFIED, nullable = false)
+    @Field(name = COLUMN_GMT_MODIFIED)
     private LocalDateTime gmtModified;
 
-    public Long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

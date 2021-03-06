@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.jpa.repository;
 
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.entity.ApiPropertiesEntity;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.entity.ApiPropertiesJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,14 +11,14 @@ import java.util.Optional;
  * @version 1.0.0
  */
 @Repository
-public interface ApiPropertiesEntityJpaRepository extends JpaRepository<ApiPropertiesEntity, Long> {
+public interface ApiPropertiesEntityJpaRepository extends JpaRepository<ApiPropertiesJpaEntity, Long> {
     /**
      * get by properties id
      *
      * @param id properties id
      * @return properties
      */
-    Optional<ApiPropertiesEntity> findByPropertiesId(String id);
+    Optional<ApiPropertiesJpaEntity> findByPropertiesId(String id);
 
     /**
      * get by channel id and properties id
@@ -27,5 +27,5 @@ public interface ApiPropertiesEntityJpaRepository extends JpaRepository<ApiPrope
      * @param id        properties id
      * @return properties
      */
-    Optional<ApiPropertiesEntity> findByChannelIdAndPropertiesId(String channelId, String id);
+    Optional<ApiPropertiesJpaEntity> findByChannelIdAndPropertiesId(String channelId, String id);
 }

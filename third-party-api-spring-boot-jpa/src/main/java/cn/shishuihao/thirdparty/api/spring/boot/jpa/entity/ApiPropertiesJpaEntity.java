@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
  * @author shishuihao
  * @version 1.0.0
  */
-@Table(name = ApiPropertiesEntity.TABLE_NAME, uniqueConstraints = {
-        @UniqueConstraint(columnNames = {ApiPropertiesEntity.COLUMN_CHANNEL_ID, ApiPropertiesEntity.COLUMN_PROPERTIES_ID})
+@Table(name = ApiPropertiesJpaEntity.TABLE_NAME, uniqueConstraints = {
+        @UniqueConstraint(columnNames = {ApiPropertiesJpaEntity.COLUMN_CHANNEL_ID, ApiPropertiesJpaEntity.COLUMN_PROPERTIES_ID})
 })
 @Entity
-public class ApiPropertiesEntity extends BaseEntity {
+public class ApiPropertiesJpaEntity extends BaseJpaEntity {
     public static final String TABLE_NAME = "`api_properties`";
     public static final String COLUMN_CHANNEL_ID = "`channel_id`";
     public static final String COLUMN_PROPERTIES_ID = "`properties_id`";
@@ -36,13 +36,13 @@ public class ApiPropertiesEntity extends BaseEntity {
     @Column(name = COLUMN_PROPERTIES, length = 10240)
     private ApiProperties properties;
 
-    public static ApiPropertiesEntity from(ApiProperties apiProperties) {
-        ApiPropertiesEntity po = new ApiPropertiesEntity();
-        po.setChannelId(apiProperties.channelId());
-        po.setPropertiesId(apiProperties.id());
-        po.setProperties(apiProperties);
-        po.setGmtModified(LocalDateTime.now());
-        return po;
+    public static ApiPropertiesJpaEntity from(ApiProperties apiProperties) {
+        ApiPropertiesJpaEntity jpaEntity = new ApiPropertiesJpaEntity();
+        jpaEntity.setChannelId(apiProperties.channelId());
+        jpaEntity.setPropertiesId(apiProperties.id());
+        jpaEntity.setProperties(apiProperties);
+        jpaEntity.setGmtModified(LocalDateTime.now());
+        return jpaEntity;
     }
 
     public String getChannelId() {

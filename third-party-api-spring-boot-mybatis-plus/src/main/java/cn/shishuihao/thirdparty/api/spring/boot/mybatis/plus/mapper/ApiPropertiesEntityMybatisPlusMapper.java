@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper;
 
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiPropertiesEntity;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiPropertiesMybatisPlusEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,16 +13,16 @@ import java.util.Optional;
  * @version 1.0.0
  */
 @Mapper
-public interface ApiPropertiesEntityMybatisPlusMapper extends BaseMapper<ApiPropertiesEntity> {
+public interface ApiPropertiesEntityMybatisPlusMapper extends BaseMapper<ApiPropertiesMybatisPlusEntity> {
     /**
      * get by properties id
      *
      * @param id properties id
      * @return properties
      */
-    @Select("SELECT * FROM " + ApiPropertiesEntity.TABLE_NAME +
-            " WHERE " + ApiPropertiesEntity.COLUMN_PROPERTIES_ID + " = #{id}")
-    Optional<ApiPropertiesEntity> findByPropertiesId(@Param("id") String id);
+    @Select("SELECT * FROM " + ApiPropertiesMybatisPlusEntity.TABLE_NAME +
+            " WHERE " + ApiPropertiesMybatisPlusEntity.COLUMN_PROPERTIES_ID + " = #{id}")
+    Optional<ApiPropertiesMybatisPlusEntity> findByPropertiesId(@Param("id") String id);
 
     /**
      * get by channel id and properties id
@@ -31,8 +31,8 @@ public interface ApiPropertiesEntityMybatisPlusMapper extends BaseMapper<ApiProp
      * @param id        properties id
      * @return properties
      */
-    @Select("SELECT * FROM " + ApiPropertiesEntity.TABLE_NAME +
-            " WHERE " + ApiPropertiesEntity.COLUMN_CHANNEL_ID + " = #{channelId}" +
-            " AND " + ApiPropertiesEntity.COLUMN_PROPERTIES_ID + "  = #{id}")
-    Optional<ApiPropertiesEntity> findByChannelIdAndPropertiesId(@Param("channelId") String channelId, @Param("id") String id);
+    @Select("SELECT * FROM " + ApiPropertiesMybatisPlusEntity.TABLE_NAME +
+            " WHERE " + ApiPropertiesMybatisPlusEntity.COLUMN_CHANNEL_ID + " = #{channelId}" +
+            " AND " + ApiPropertiesMybatisPlusEntity.COLUMN_PROPERTIES_ID + "  = #{id}")
+    Optional<ApiPropertiesMybatisPlusEntity> findByChannelIdAndPropertiesId(@Param("channelId") String channelId, @Param("id") String id);
 }

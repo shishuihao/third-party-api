@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiPropertiesEntity;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiPropertiesMybatisPlusEntity;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper.ApiPropertiesEntityMybatisPlusMapper;
 
 import java.time.LocalDateTime;
@@ -21,15 +21,15 @@ public class ApiPropertiesMybatisPlusRepository implements ApiPropertiesReposito
 
     @Override
     public void add(final ApiProperties apiProperties) {
-        Optional<ApiPropertiesEntity> optional = mybatisPlusMapper.findByPropertiesId(apiProperties.id());
-        ApiPropertiesEntity entity;
+        Optional<ApiPropertiesMybatisPlusEntity> optional = mybatisPlusMapper.findByPropertiesId(apiProperties.id());
+        ApiPropertiesMybatisPlusEntity entity;
         if (optional.isPresent()) {
             entity = optional.get();
             entity.setProperties(apiProperties);
             entity.setGmtModified(LocalDateTime.now());
             mybatisPlusMapper.updateById(entity);
         } else {
-            entity = ApiPropertiesEntity.from(apiProperties);
+            entity = ApiPropertiesMybatisPlusEntity.from(apiProperties);
             mybatisPlusMapper.insert(entity);
         }
     }
@@ -37,12 +37,12 @@ public class ApiPropertiesMybatisPlusRepository implements ApiPropertiesReposito
     @Override
     public Optional<ApiProperties> getById(final String propertiesId) {
         return mybatisPlusMapper.findByPropertiesId(propertiesId)
-                .map(ApiPropertiesEntity::getProperties);
+                .map(ApiPropertiesMybatisPlusEntity::getProperties);
     }
 
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId, final String propertiesId) {
         return mybatisPlusMapper.findByChannelIdAndPropertiesId(channelId, propertiesId)
-                .map(ApiPropertiesEntity::getProperties);
+                .map(ApiPropertiesMybatisPlusEntity::getProperties);
     }
 }

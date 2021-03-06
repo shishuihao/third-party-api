@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.jpa;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.entity.ApiPropertiesEntity;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.entity.ApiPropertiesJpaEntity;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiPropertiesEntityJpaRepository;
 
 import java.time.LocalDateTime;
@@ -21,25 +21,25 @@ public class ApiPropertiesJpaRepository implements ApiPropertiesRepository {
 
     @Override
     public void add(final ApiProperties apiProperties) {
-        ApiPropertiesEntity entity = jpaRepository.findByPropertiesId(apiProperties.id())
+        ApiPropertiesJpaEntity entity = jpaRepository.findByPropertiesId(apiProperties.id())
                 .map(it -> {
                     it.setProperties(apiProperties);
                     it.setGmtModified(LocalDateTime.now());
                     return it;
                 })
-                .orElseGet(() -> ApiPropertiesEntity.from(apiProperties));
+                .orElseGet(() -> ApiPropertiesJpaEntity.from(apiProperties));
         jpaRepository.save(entity);
     }
 
     @Override
     public Optional<ApiProperties> getById(final String id) {
         return jpaRepository.findByPropertiesId(id)
-                .map(ApiPropertiesEntity::getProperties);
+                .map(ApiPropertiesJpaEntity::getProperties);
     }
 
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId, final String propertiesId) {
         return jpaRepository.findByChannelIdAndPropertiesId(channelId, propertiesId)
-                .map(ApiPropertiesEntity::getProperties);
+                .map(ApiPropertiesJpaEntity::getProperties);
     }
 }

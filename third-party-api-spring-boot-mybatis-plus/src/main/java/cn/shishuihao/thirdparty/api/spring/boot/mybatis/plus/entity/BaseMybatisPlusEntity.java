@@ -1,9 +1,9 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mongodb.document;
+package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.Field;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.time.LocalDateTime;
 
@@ -11,33 +11,31 @@ import java.time.LocalDateTime;
  * @author shishuihao
  * @version 1.0.0
  */
-public class BaseDocument {
+public abstract class BaseMybatisPlusEntity {
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_GMT_CREATE = "gmt_create";
     public static final String COLUMN_GMT_MODIFIED = "gmt_modified";
     /**
      * 数据库主键id
      */
-    @Id
-    @Field(name = COLUMN_ID)
-    private ObjectId id;
+    @TableId(value = COLUMN_ID, type = IdType.AUTO)
+    private Long id;
     /**
      * 创建时间 不可更新
      */
-    @Field(name = COLUMN_GMT_CREATE)
+    @TableField(value = COLUMN_GMT_CREATE, update = "now()", fill = FieldFill.INSERT)
     private LocalDateTime gmtCreate = LocalDateTime.now();
     /**
      * 更新时间
      */
-    @LastModifiedDate
-    @Field(name = COLUMN_GMT_MODIFIED)
+    @TableField(value = COLUMN_GMT_MODIFIED, update = "now()", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime gmtModified;
 
-    public ObjectId getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

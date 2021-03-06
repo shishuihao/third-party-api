@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.mongodb;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.document.ApiPropertiesDocument;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.document.ApiPropertiesMongodbDocument;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository.ApiPropertiesDocumentMongoRepository;
 
 import java.time.LocalDateTime;
@@ -21,25 +21,25 @@ public class ApiPropertiesMongodbRepository implements ApiPropertiesRepository {
 
     @Override
     public void add(final ApiProperties apiProperties) {
-        ApiPropertiesDocument entity = mongoRepository.findByPropertiesId(apiProperties.id())
+        ApiPropertiesMongodbDocument entity = mongoRepository.findByPropertiesId(apiProperties.id())
                 .map(it -> {
                     it.setProperties(apiProperties);
                     it.setGmtModified(LocalDateTime.now());
                     return it;
                 })
-                .orElseGet(() -> ApiPropertiesDocument.from(apiProperties));
+                .orElseGet(() -> ApiPropertiesMongodbDocument.from(apiProperties));
         mongoRepository.save(entity);
     }
 
     @Override
     public Optional<ApiProperties> getById(final String id) {
         return mongoRepository.findByPropertiesId(id)
-                .map(ApiPropertiesDocument::getProperties);
+                .map(ApiPropertiesMongodbDocument::getProperties);
     }
 
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId, final String propertiesId) {
         return mongoRepository.findByChannelIdAndPropertiesId(channelId, propertiesId)
-                .map(ApiPropertiesDocument::getProperties);
+                .map(ApiPropertiesMongodbDocument::getProperties);
     }
 }

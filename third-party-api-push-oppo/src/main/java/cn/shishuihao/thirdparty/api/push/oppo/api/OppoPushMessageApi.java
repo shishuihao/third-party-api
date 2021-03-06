@@ -5,6 +5,8 @@ import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.push.api.PushMessageApi;
 import cn.shishuihao.thirdparty.api.push.oppo.OppoPushApiProperties;
 import cn.shishuihao.thirdparty.api.push.oppo.OppoPushClient;
+import cn.shishuihao.thirdparty.api.push.oppo.util.ArrayUtils;
+import cn.shishuihao.thirdparty.api.push.oppo.util.ResultChecker;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
 import com.oppo.push.server.Notification;
@@ -13,6 +15,7 @@ import com.oppo.push.server.Sender;
 import com.oppo.push.server.Target;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -36,25 +39,31 @@ public class OppoPushMessageApi implements PushMessageApi {
             Notification notification = new Notification();
             notification.setTitle(request.getTitle());
             notification.setContent(request.getPayload());
-            Result result;
-            if (request.getRegistrationIds() == null || request.getRegistrationIds().length <= 0) {
-                result = sender.saveNotification(notification);
-                if (result.getReturnCode().getCode() == 0) {
-                    result = sender.broadcastNotification(result.getMessageId(), Target.build(""));
-                }
-            } else {
-                result = sender.unicastBatchNotification(Arrays.stream(request.getRegistrationIds())
-                        .collect(Collectors.toMap(Target::build, it -> notification)));
+            // batch
+            if (ArrayUtils.isNotEmpty(request.getRegistrationIds())) {
+                Map<Target, Notification> notificationMessages = Arrays.stream(request.getRegistrationIds())
+                        .collect(Collectors.toMap(Target::build, it -> notification));
+                Result result = sender.unicastBatchNotification(notificationMessages);
+                return getPushMessageApiResponse(result);
             }
-            return PushMessageApiResponse.Builder.builder()
-                    .success(result.getReturnCode().getCode() == 0)
-                    .code(Optional.ofNullable(result.getReturnCode())
-                            .map(it -> it.getCode() + "," + it.getMessage())
-                            .orElse(null))
-                    .message(result.getReason())
-                    .build();
+            // broadcast
+            Result result = sender.saveNotification(notification);
+            if (ResultChecker.success(result)) {
+                result = sender.broadcastNotification(result.getMessageId(), Target.build(""));
+            }
+            return getPushMessageApiResponse(result);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private PushMessageApiResponse getPushMessageApiResponse(Result result) {
+        return PushMessageApiResponse.Builder.builder()
+                .success(ResultChecker.success(result))
+                .code(Optional.ofNullable(result.getReturnCode())
+                        .map(it -> it.getCode() + "," + it.getMessage())
+                        .orElse(null))
+                .message(result.getReason())
+                .build();
     }
 }

@@ -2,6 +2,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
+    compile project(':third-party-api-commons')
     compile project(':third-party-api-core')
     compile project(':third-party-api-spring-boot-starter')
 

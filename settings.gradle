@@ -9,6 +9,7 @@ pluginManagement {
 }
 rootProject.name = 'third-party-api'
 
+include 'third-party-api-commons'
 include 'third-party-api-core'
 include 'third-party-api-pay'
 include 'third-party-api-pay-alipay'

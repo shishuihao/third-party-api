@@ -1,0 +1,10 @@
+dependencies {
+    // json
+    compileOnly 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+    // xmk
+    compileOnly 'com.thoughtworks.xstream:xstream:1.4.11.1'
+}
+
+jar {
+    enabled true
+}

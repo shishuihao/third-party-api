@@ -1,6 +1,12 @@
-[腾讯短信官方文档(tencent sms official document)](https://cloud.tencent.com/document/product/382)
+# 腾讯云短信(tencent cloud sms)
 
-## Maven
+## 官方文档
+
+[腾讯云短信官方文档(tencent cloud sms official document)](https://cloud.tencent.com/document/product/382)
+
+## 安装(Installation)
+
+### Maven
 
 ```xml
 <dependency>
@@ -10,15 +16,17 @@
 </dependency>
 ```
 
-## Gradle
+### Gradle
 
-``` groovy
+```groovy
 compile 'cn.shishuihao:third-party-api-sms-tencent:latest'
 ```
 
-## send sms
+## 示例(example)
 
-``` java
+### 发送短信(send sms)
+
+```java
         TencentSmsApiProperties properties = new TencentSmsApiProperties();
         properties.setAppId("appId");
         properties.setSecretId("secretId");
@@ -41,9 +49,9 @@ compile 'cn.shishuihao:third-party-api-sms-tencent:latest'
                 .build());
 ```
 
-## batch send sms
+### 批量发送短信(batch send sms)
 
-``` java
+```java
         TencentSmsApiProperties properties = new TencentSmsApiProperties();
         properties.setAppId("appId");
         properties.setSecretId("secretId");

@@ -1,6 +1,12 @@
+# OPPO推送(OPPO push)
+
+## 官方文档
+
 [OPPO推送官方文档(oppo push official document)](https://open.oppomobile.com/wiki/doc#id=10203)
 
-## Maven
+## 安装(Installation)
+
+### Maven
 
 ```xml
 
@@ -11,15 +17,17 @@
 </dependency>
 ```
 
-## Gradle
+### Gradle
 
-``` groovy
+```groovy
 compile 'cn.shishuihao:third-party-api-push-oppo:latest'
 ```
 
-## push message
+## 示例(example)
 
-``` java
+### 推送消息(push message)
+
+```java
         OppoPushApiProperties properties = new OppoPushApiProperties();
         properties.setAppKey("appKey");
         properties.setMasterSecret("masterSecret");

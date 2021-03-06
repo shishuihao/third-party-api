@@ -1,6 +1,12 @@
+# 工商银行支付(icbc pay)
+
+## 官方文档(official document))
+
 [工商银行官方文档(weixin official document)](https://open.icbc.com.cn/icbc/apip/api_list.html#)
 
-## Maven
+## 安装(Installation)
+
+### Maven
 
 ```xml
 
@@ -11,15 +17,17 @@
 </dependency>
 ```
 
-## Gradle
+### Gradle
 
-``` groovy
+```groovy
 compile 'cn.shishuihao:third-party-api-pay-icbc:latest'
 ```
 
-## code pay
+## 示例(example)
 
-``` java
+### 扫码支付(code pay)
+
+```java
         IcbcPayApiProperties properties = new IcbcPayApiProperties();
         properties.setAppId("appId");
         properties.setPrivateKey("");

@@ -1,6 +1,12 @@
+# 小米推送(xiaomi push)
+
+## 官方文档
+
 [小米推送官方文档(xiaomi push official document)](https://dev.mi.com/console/doc/detail?pId=230)
 
-## Maven
+## 安装(Installation)
+
+### Maven
 
 ```xml
 
@@ -11,15 +17,17 @@
 </dependency>
 ```
 
-## Gradle
+### Gradle
 
-``` groovy
+```groovy
 compile 'cn.shishuihao:third-party-api-push-xiaomi:latest'
 ```
 
-## push message
+## 示例(example)
 
-``` java
+### 推送消息(push message)
+
+```java
         XiaomiPushApiProperties properties = new XiaomiPushApiProperties();
         properties.setAppId("appId");
         properties.setAppSecretKey("appSecretKey");

@@ -1,9 +1,14 @@
+# 支付宝支付(alipay pay)
+
+## 官方文档(official document))
+
 [支付宝官方文档(alipay official document)](https://openhome.alipay.com/docCenter/docCenter.htm?from=openhomemenu)
 
-## Maven
+## 安装(Installation)
+
+### Maven
 
 ```xml
-
 <dependency>
     <groupId>cn.shishuihao</groupId>
     <artifactId>third-party-api-pay-alipay</artifactId>
@@ -11,15 +16,17 @@
 </dependency>
 ```
 
-## Gradle
+### Gradle
 
-``` groovy
+```groovy
 compile 'cn.shishuihao:third-party-api-pay-alipay:latest'
 ```
 
-## code pay
+## 示例(example)
 
-``` java
+### 扫码支付(code pay)
+
+```java
         AlipayPayApiProperties properties = new AlipayPayApiProperties();
         properties.setAppId("appId");
         properties.setMerchantPrivateKey("");

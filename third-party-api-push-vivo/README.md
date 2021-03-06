@@ -1,6 +1,12 @@
+# VIVO推送(VIVO push)
+
+## 官方文档
+
 [VIVO推送官方文档(vivo push official document)](https://dev.vivo.com.cn/documentCenter/doc/180)
 
-## Maven
+## 安装(Installation)
+
+### Maven
 
 ```xml
 
@@ -11,15 +17,17 @@
 </dependency>
 ```
 
-## Gradle
+### Gradle
 
-``` groovy
+```groovy
 compile 'cn.shishuihao:third-party-api-push-vivo:latest'
 ```
 
-## push message
+## 示例(example)
 
-``` java
+### 推送消息(push message)
+
+```java
         VivoPushApiProperties properties = new VivoPushApiProperties();
         properties.setAppKey("appKey");
         properties.setSecret("secret");

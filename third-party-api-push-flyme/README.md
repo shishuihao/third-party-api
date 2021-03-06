@@ -1,6 +1,12 @@
+# 魅族推送(flyme push)
+
+## 官方文档
+
 [魅族推送官方文档(flyme push official document)](http://open-wiki.flyme.cn/doc-wiki/index#id?129)
 
-## Maven
+## 安装(Installation)
+
+### Maven
 
 ```xml
 
@@ -11,15 +17,17 @@
 </dependency>
 ```
 
-## Gradle
+### Gradle
 
-``` groovy
+```groovy
 compile 'cn.shishuihao:third-party-api-push-flyme:latest'
 ```
 
-## push message
+## 示例(example)
 
-``` java
+### 推送消息(push message)
+
+```java
         FlymePushApiProperties properties = new FlymePushApiProperties();
         properties.setAppId(0L);
         properties.setAppSecret("appSecret");

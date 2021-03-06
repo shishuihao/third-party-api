@@ -14,14 +14,13 @@
  Date: 27/02/2021 13:21:31
 */
 
-SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for api_properties
 -- ----------------------------
-DROP TABLE IF EXISTS `api_properties`;
-CREATE TABLE `api_properties`  (
+DROP TABLE IF EXISTS api_properties;
+CREATE TABLE api_properties  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `gmt_create` datetime(0) NOT NULL,
   `gmt_modified` datetime(0) NOT NULL,

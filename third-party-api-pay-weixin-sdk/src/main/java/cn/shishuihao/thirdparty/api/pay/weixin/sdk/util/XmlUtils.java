@@ -49,25 +49,7 @@ public class XmlUtils {
 
     private static XStream getXmlStream(Class<?> cls) {
         return X_STREAM_MAP.computeIfAbsent(cls, k -> {
-            XStream xStream = new XStream(new Xpp3Driver(new NoNameCoder())) {
-                @Override
-                protected MapperWrapper wrapMapper(MapperWrapper next) {
-                    return new MapperWrapper(next) {
-                        @Override
-                        public boolean shouldSerializeMember(Class definedIn, String fieldName) {
-                            if (definedIn == Object.class) {
-                                try {
-                                    return this.realClass(fieldName) != null;
-                                } catch (CannotResolveClassException e) {
-                                    return false;
-                                }
-                            } else {
-                                return super.shouldSerializeMember(definedIn, fieldName);
-                            }
-                        }
-                    };
-                }
-            };
+            XStream xStream = new CustomizedStream();
             if (Map.class.isAssignableFrom(cls)) {
                 xStream.alias("xml", cls);
                 xStream.registerConverter(new MapEntryConverter());
@@ -100,4 +82,28 @@ public class XmlUtils {
         return type;
     }
 
+
+    public static class CustomizedStream extends XStream {
+        public CustomizedStream() {
+            super(new Xpp3Driver(new NoNameCoder()));
+        }
+
+        @Override
+        protected MapperWrapper wrapMapper(MapperWrapper next) {
+            return new MapperWrapper(next) {
+                @Override
+                public boolean shouldSerializeMember(Class definedIn, String fieldName) {
+                    if (definedIn == Object.class) {
+                        try {
+                            return this.realClass(fieldName) != null;
+                        } catch (CannotResolveClassException e) {
+                            return false;
+                        }
+                    } else {
+                        return super.shouldSerializeMember(definedIn, fieldName);
+                    }
+                }
+            };
+        }
+    }
 }

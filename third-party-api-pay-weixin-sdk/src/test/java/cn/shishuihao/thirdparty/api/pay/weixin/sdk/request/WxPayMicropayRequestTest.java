@@ -1,5 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.AppId;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.MchId;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -31,13 +33,13 @@ class WxPayMicropayRequestTest {
                 "   <sign>C29DB7DB1FD4136B84AE35604756362C</sign>\n" +
                 "</xml>";
         WxPayMicropayRequest request = WxPayMicropayRequest.Builder.builder()
-                .appId("wx2421b1c4370ec43b")
+                .appId(AppId.of("wx2421b1c4370ec43b"))
                 .attach("订单额外描述")
                 .authCode("120269300684844649")
                 .body("付款码支付测试")
                 .deviceInfo("1000")
                 .goodsTag("")
-                .mchId("10000100")
+                .mchId(MchId.of("10000100"))
                 .nonceStr("8aaee146b1dee7cec9100add9b96cbe2")
                 .outTradeNo("1415757673")
                 .spBillCreateIp("14.17.22.52")

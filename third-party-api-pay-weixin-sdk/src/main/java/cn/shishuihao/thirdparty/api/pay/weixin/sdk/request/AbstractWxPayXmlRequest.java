@@ -1,5 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.AppId;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.MchId;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.SignType;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlUtils;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -15,22 +17,22 @@ public abstract class AbstractWxPayXmlRequest {
      * 公众账号ID wx8888888888888888 微信支付分配的公众账号ID（企业号corpid即为此appId）
      */
     @XStreamAlias("appid")
-    private final String appId;
+    private final AppId appId;
     /**
      * 商户号 1900000109 微信支付分配的商户号
      */
     @XStreamAlias("mch_id")
-    private final String mchId;
+    private final MchId mchId;
     /**
      * 子商户应用ID wx8888888888888888 特约商户在微信开放平台上申请的APPID
      */
     @XStreamAlias("sub_appid")
-    private final String subAppId;
+    private final AppId subAppId;
     /**
      * 子商户号 1900000109 特约商户的商户号
      */
     @XStreamAlias("sub_mch_id")
-    private final String subMchId;
+    private final MchId subMchId;
     /**
      * 设备号 013467007045764 终端设备号(商户自定义，如门店编号)
      */
@@ -54,8 +56,8 @@ public abstract class AbstractWxPayXmlRequest {
     @XStreamAlias("sign_type")
     private final SignType signType;
 
-    protected AbstractWxPayXmlRequest(String appId, String mchId,
-                                      String subAppId, String subMchId,
+    protected AbstractWxPayXmlRequest(AppId appId, MchId mchId,
+                                      AppId subAppId, MchId subMchId,
                                       String deviceInfo, String nonceStr,
                                       String sign, SignType signType) {
         this.appId = appId;
@@ -68,19 +70,19 @@ public abstract class AbstractWxPayXmlRequest {
         this.signType = signType;
     }
 
-    public String getAppId() {
+    public AppId getAppId() {
         return appId;
     }
 
-    public String getMchId() {
+    public MchId getMchId() {
         return mchId;
     }
 
-    public String getSubAppId() {
+    public AppId getSubAppId() {
         return subAppId;
     }
 
-    public String getSubMchId() {
+    public MchId getSubMchId() {
         return subMchId;
     }
 

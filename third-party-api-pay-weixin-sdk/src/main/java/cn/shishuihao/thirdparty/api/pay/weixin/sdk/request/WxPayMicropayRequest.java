@@ -1,5 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.AppId;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.MchId;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.SignType;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlFieldUtils;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -98,8 +100,8 @@ public class WxPayMicropayRequest extends AbstractWxPayXmlRequest {
     @XStreamAlias("scene_info")
     private final String sceneInfo;
 
-    protected WxPayMicropayRequest(String appId, String mchId,
-                                   String subAppId, String subMchId,
+    protected WxPayMicropayRequest(AppId appId, MchId mchId,
+                                   AppId subAppId, MchId subMchId,
                                    String deviceInfo, String nonceStr,
                                    String sign, SignType signType,
                                    String body, String detail, String attach, String outTradeNo, Integer totalFee, String feeType, String spBillCreateIp, String goodsTag, String limitPay, String timeStart, String timeExpire, String authCode, String receipt, String sceneInfo) {
@@ -177,10 +179,10 @@ public class WxPayMicropayRequest extends AbstractWxPayXmlRequest {
     }
 
     public static final class Builder {
-        private String appId;
-        private String mchId;
-        private String subAppId;
-        private String subMchId;
+        private AppId appId;
+        private MchId mchId;
+        private AppId subAppId;
+        private MchId subMchId;
         private String deviceInfo;
         private String nonceStr;
         private String sign;
@@ -207,22 +209,22 @@ public class WxPayMicropayRequest extends AbstractWxPayXmlRequest {
             return new Builder();
         }
 
-        public Builder appId(String appId) {
+        public Builder appId(AppId appId) {
             this.appId = appId;
             return this;
         }
 
-        public Builder mchId(String mchId) {
+        public Builder mchId(MchId mchId) {
             this.mchId = mchId;
             return this;
         }
 
-        public Builder subAppId(String subAppId) {
+        public Builder subAppId(AppId subAppId) {
             this.subAppId = subAppId;
             return this;
         }
 
-        public Builder subMchId(String subMchId) {
+        public Builder subMchId(MchId subMchId) {
             this.subMchId = subMchId;
             return this;
         }

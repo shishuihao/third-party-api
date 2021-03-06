@@ -5,6 +5,7 @@ import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiProperties;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.AppId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ class WxCodePayApiTest {
     @Test
     void execute() {
         WxPayApiProperties properties = new WxPayApiProperties();
-        properties.setAppId("appId");
+        properties.setAppId(AppId.of("appId"));
         properties.setKey("key");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         CodePayApiRequest request = CodePayApiRequest.Builder.builder()

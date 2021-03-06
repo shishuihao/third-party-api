@@ -2,6 +2,8 @@ package cn.shishuihao.thirdparty.api.pay.weixin;
 
 import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import cn.shishuihao.thirdparty.api.pay.PayApiProperties;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.AppId;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.MchId;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.SignType;
 
 import java.util.Objects;
@@ -15,19 +17,19 @@ public class WxPayApiProperties extends AbstractApiProperties implements PayApiP
     /**
      * 公众账号ID wx8888888888888888 微信支付分配的公众账号ID（企业号corpid即为此appId）
      */
-    private String appId;
+    private AppId appId;
     /**
      * 商户号 1900000109 微信支付分配的商户号
      */
-    private String mchId;
+    private MchId mchId;
     /**
      * 子商户应用ID wx8888888888888888 特约商户在微信开放平台上申请的APPID
      */
-    private String subAppId;
+    private AppId subAppId;
     /**
      * 子商户号 1900000109 特约商户的商户号
      */
-    private String subMchId;
+    private MchId subMchId;
     /**
      * 设备号 013467007045764 终端设备号(商户自定义，如门店编号)
      */
@@ -48,7 +50,7 @@ public class WxPayApiProperties extends AbstractApiProperties implements PayApiP
 
     @Override
     public String id() {
-        return appId;
+        return appId.getId();
     }
 
     @Override
@@ -71,35 +73,35 @@ public class WxPayApiProperties extends AbstractApiProperties implements PayApiP
         return Objects.hash(super.hashCode(), appId, mchId);
     }
 
-    public String getAppId() {
+    public AppId getAppId() {
         return appId;
     }
 
-    public void setAppId(String appId) {
+    public void setAppId(AppId appId) {
         this.appId = appId;
     }
 
-    public String getMchId() {
+    public MchId getMchId() {
         return mchId;
     }
 
-    public void setMchId(String mchId) {
+    public void setMchId(MchId mchId) {
         this.mchId = mchId;
     }
 
-    public String getSubAppId() {
+    public AppId getSubAppId() {
         return subAppId;
     }
 
-    public void setSubAppId(String subAppId) {
+    public void setSubAppId(AppId subAppId) {
         this.subAppId = subAppId;
     }
 
-    public String getSubMchId() {
+    public MchId getSubMchId() {
         return subMchId;
     }
 
-    public void setSubMchId(String subMchId) {
+    public void setSubMchId(MchId subMchId) {
         this.subMchId = subMchId;
     }
 

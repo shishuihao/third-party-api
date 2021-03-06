@@ -1,6 +1,6 @@
-package cn.shishuihao.thirdparty.api.push.oppo.util;
+package cn.shishuihao.thirdparty.api.push.vivo.util;
 
-import com.oppo.push.server.Result;
+import com.vivo.push.sdk.notofication.Result;
 
 /**
  * @author shishuihao
@@ -18,6 +18,6 @@ public class ResultChecker {
      * @return true：成功；false：失败
      */
     public static boolean success(Result result) {
-        return result != null && result.getReturnCode() != null && result.getReturnCode().getCode() == 0;
+        return result != null && result.getResult() == 0;
     }
 }

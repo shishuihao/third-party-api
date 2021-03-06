@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.push.oppo.util;
+package cn.shishuihao.thirdparty.api.push.util;
 
 import java.lang.reflect.Array;
 

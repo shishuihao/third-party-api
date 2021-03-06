@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.codec;
 
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.AbstractWxPayXmlResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlUtils;
 import feign.FeignException;
 import feign.Response;
@@ -10,7 +11,6 @@ import feign.codec.Decoder;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
 
 import static java.lang.String.format;
 
@@ -19,28 +19,19 @@ import static java.lang.String.format;
  * @version 1.0.0
  */
 
-public class WxXmlDecoder implements Decoder {
+public class WxXmlDecoder extends Decoder.Default {
     public static final WxXmlDecoder INSTANCE = new WxXmlDecoder();
 
     @Override
     public Object decode(Response response, Type type) throws IOException, FeignException {
-        if (response.status() == HttpURLConnection.HTTP_NOT_FOUND) {
-            return Util.emptyValueOf(type);
+        if (type instanceof Class<?> && AbstractWxPayXmlResponse.class.isAssignableFrom((Class<?>) type)) {
+            try {
+                String xml = Util.toString(response.body().asReader());
+                return XmlUtils.fromXml(xml, (Class<?>) type);
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                throw new DecodeException(format("%s is not a type supported by this decoder.", type), e);
+            }
         }
-        if (response.body() == null) {
-            return null;
-        }
-        if (byte[].class.equals(type)) {
-            return Util.toByteArray(response.body().asInputStream());
-        }
-        Response.Body body = response.body();
-        if (String.class.equals(type)) {
-            return Util.toString(body.asReader());
-        }
-        try {
-            return XmlUtils.fromXml(Util.toString(body.asReader()), ((Class<?>) type));
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            throw new DecodeException(format("%s is not a type supported by this decoder.", type), e);
-        }
+        return super.decode(response, type);
     }
 }

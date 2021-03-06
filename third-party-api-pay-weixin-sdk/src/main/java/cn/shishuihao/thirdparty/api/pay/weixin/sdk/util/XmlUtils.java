@@ -42,7 +42,6 @@ public class XmlUtils {
         return (T) getXmlStream(type).fromXML(xml, getInstanceType(type).getDeclaredConstructor().newInstance());
     }
 
-
     public static String toXml(Object target) {
         return getXmlStream(target.getClass()).toXML(target);
     }

@@ -87,7 +87,7 @@ public class AlipayPayApiProperties extends AbstractPayApiProperties {
      * 忽略证书校验（可选）
      */
     @NameInMap("ignoreSSL")
-    private boolean ignoreSSL;
+    private boolean ignoreSsl;
 
     public AlipayPayApiProperties() {
         this.setChannelId(AlipayPayApiChannel.CHANNEL_ID);
@@ -218,11 +218,11 @@ public class AlipayPayApiProperties extends AbstractPayApiProperties {
         this.httpProxy = httpProxy;
     }
 
-    public boolean isIgnoreSSL() {
-        return ignoreSSL;
+    public boolean isIgnoreSsl() {
+        return ignoreSsl;
     }
 
-    public void setIgnoreSSL(boolean ignoreSSL) {
-        this.ignoreSSL = ignoreSSL;
+    public void setIgnoreSsl(boolean ignoreSsl) {
+        this.ignoreSsl = ignoreSsl;
     }
 }

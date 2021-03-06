@@ -7,7 +7,7 @@ import java.util.stream.StreamSupport;
  * @author shishuihao
  * @version 1.0.0
  */
-public abstract class ContainerHolder {
+public class ContainerHolder {
     public static final Container CONTAINER;
 
     static {
@@ -16,7 +16,7 @@ public abstract class ContainerHolder {
                 .orElse(null);
     }
 
-    protected ContainerHolder() {
+    private ContainerHolder() {
     }
 
     public static <T> T getBean(Class<T> requiredType) {

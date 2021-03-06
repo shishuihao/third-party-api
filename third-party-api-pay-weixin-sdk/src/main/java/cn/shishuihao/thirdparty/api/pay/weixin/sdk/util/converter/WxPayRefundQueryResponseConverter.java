@@ -101,7 +101,7 @@ public class WxPayRefundQueryResponseConverter extends ReflectionConverter {
                         .ifPresent(index -> response.getSettlementRefundFees().put(index, Integer.valueOf(reader.getValue())));
                 Optional.of(COUPON_TYPES_PATTERN.matcher(nodeName)).filter(Matcher::find)
                         .ifPresent(it -> response.getCouponTypes()
-                                .computeIfAbsent(Integer.valueOf(it.group(1)), k -> new HashMap<>())
+                                .computeIfAbsent(Integer.valueOf(it.group(1)), k -> new HashMap<>(16))
                                 .put(Integer.valueOf(it.group(2)), reader.getValue()));
                 Optional.of(COUPON_REFUND_FEE_PATTERN.matcher(nodeName)).filter(Matcher::find).map(it -> Integer.valueOf(it.group(1)))
                         .ifPresent(index -> response.getCouponRefundFees().put(index, Integer.valueOf(reader.getValue())));
@@ -109,11 +109,11 @@ public class WxPayRefundQueryResponseConverter extends ReflectionConverter {
                         .ifPresent(index -> response.getCouponRefundCounts().put(index, Integer.valueOf(reader.getValue())));
                 Optional.of(COUPON_REFUND_ID_PATTERN.matcher(nodeName)).filter(Matcher::find)
                         .ifPresent(it -> response.getCouponRefundsIds()
-                                .computeIfAbsent(Integer.valueOf(it.group(1)), k -> new HashMap<>())
+                                .computeIfAbsent(Integer.valueOf(it.group(1)), k -> new HashMap<>(16))
                                 .put(Integer.valueOf(it.group(2)), Integer.valueOf(reader.getValue())));
                 Optional.of(COUPON_REFUND_FEES_PATTERN.matcher(nodeName)).filter(Matcher::find)
                         .ifPresent(it -> response.getCouponRefundsFees()
-                                .computeIfAbsent(Integer.valueOf(it.group(1)), k -> new HashMap<>())
+                                .computeIfAbsent(Integer.valueOf(it.group(1)), k -> new HashMap<>(16))
                                 .put(Integer.valueOf(it.group(2)), Integer.valueOf(reader.getValue())));
                 Optional.of(REFUND_STATUS_PATTERN.matcher(nodeName)).filter(Matcher::find).map(it -> Integer.valueOf(it.group(1)))
                         .ifPresent(index -> response.getRefundStatuses().put(index, reader.getValue()));

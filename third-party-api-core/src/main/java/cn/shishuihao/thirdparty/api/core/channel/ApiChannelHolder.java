@@ -11,7 +11,7 @@ import java.util.ServiceLoader;
  * @version 1.0.0
  */
 @SuppressWarnings("rawtypes")
-public abstract class ApiChannelHolder {
+public class ApiChannelHolder {
     public static final ApiChannelRepository CHANNEL_REPOSITORY;
 
     static {
@@ -23,6 +23,9 @@ public abstract class ApiChannelHolder {
                     ServiceLoader.load(ApiChannel.class).forEach(repository::add);
                     return repository;
                 });
+    }
+
+    private ApiChannelHolder() {
     }
 
     public Optional<ApiChannel> getApiChannel(final String channelId) {

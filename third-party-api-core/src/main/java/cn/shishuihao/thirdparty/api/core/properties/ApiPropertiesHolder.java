@@ -13,7 +13,7 @@ import java.util.ServiceLoader;
  * @author shishuihao
  * @version 1.0.0
  */
-public abstract class ApiPropertiesHolder {
+public class ApiPropertiesHolder {
     public static final ApiPropertiesRepository PROPERTIES_REPOSITORY;
 
     static {
@@ -25,6 +25,9 @@ public abstract class ApiPropertiesHolder {
                     ServiceLoader.load(ApiProperties.class).forEach(repository::add);
                     return repository;
                 });
+    }
+
+    private ApiPropertiesHolder() {
     }
 
     public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<ApiProperties>

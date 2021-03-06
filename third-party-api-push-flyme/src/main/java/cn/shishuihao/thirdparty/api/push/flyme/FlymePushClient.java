@@ -15,6 +15,6 @@ public class FlymePushClient {
     private final Map<AbstractApiProperties, IFlymePush> map = new ConcurrentHashMap<>();
 
     public IFlymePush getClient(FlymePushApiProperties properties) {
-        return map.computeIfAbsent(properties, k -> new IFlymePush(properties.getAppSecret(), properties.isUseSSL()));
+        return map.computeIfAbsent(properties, k -> new IFlymePush(properties.getAppSecret(), properties.isUseSsl()));
     }
 }

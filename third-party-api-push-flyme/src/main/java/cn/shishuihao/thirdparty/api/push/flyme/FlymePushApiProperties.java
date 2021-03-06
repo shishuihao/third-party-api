@@ -19,7 +19,7 @@ public class FlymePushApiProperties extends AbstractPushApiProperties {
     /**
      * 是否使用https接口调用：true 使用https连接，false使用http连接
      */
-    private boolean useSSL;
+    private boolean useSsl;
     /**
      * 尝试次数 >=1
      */
@@ -66,12 +66,12 @@ public class FlymePushApiProperties extends AbstractPushApiProperties {
         this.appSecret = appSecret;
     }
 
-    public boolean isUseSSL() {
-        return useSSL;
+    public boolean isUseSsl() {
+        return useSsl;
     }
 
-    public void setUseSSL(boolean useSSL) {
-        this.useSSL = useSSL;
+    public void setUseSsl(boolean useSsl) {
+        this.useSsl = useSsl;
     }
 
     public int getRetries() {

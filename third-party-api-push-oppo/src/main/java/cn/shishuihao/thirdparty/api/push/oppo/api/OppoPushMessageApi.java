@@ -39,22 +39,28 @@ public class OppoPushMessageApi implements PushMessageApi {
             Notification notification = new Notification();
             notification.setTitle(request.getTitle());
             notification.setContent(request.getPayload());
-            // batch
             if (ArrayUtils.isNotEmpty(request.getRegistrationIds())) {
-                Map<Target, Notification> notificationMessages = Arrays.stream(request.getRegistrationIds())
-                        .collect(Collectors.toMap(Target::build, it -> notification));
-                Result result = sender.unicastBatchNotification(notificationMessages);
-                return getPushMessageApiResponse(result);
+                return batchPush(request, sender, notification);
             }
-            // broadcast
-            Result result = sender.saveNotification(notification);
-            if (ResultChecker.success(result)) {
-                result = sender.broadcastNotification(result.getMessageId(), Target.build(""));
-            }
-            return getPushMessageApiResponse(result);
+            return broadcastPush(sender, notification);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private PushMessageApiResponse batchPush(PushMessageApiRequest request, Sender sender, Notification notification) throws Exception {
+        Map<Target, Notification> notificationMessages = Arrays.stream(request.getRegistrationIds())
+                .collect(Collectors.toMap(Target::build, it -> notification));
+        Result result = sender.unicastBatchNotification(notificationMessages);
+        return getPushMessageApiResponse(result);
+    }
+
+    private PushMessageApiResponse broadcastPush(Sender sender, Notification notification) throws Exception {
+        Result result = sender.saveNotification(notification);
+        if (ResultChecker.success(result)) {
+            result = sender.broadcastNotification(result.getMessageId(), Target.build(""));
+        }
+        return getPushMessageApiResponse(result);
     }
 
     private PushMessageApiResponse getPushMessageApiResponse(Result result) {

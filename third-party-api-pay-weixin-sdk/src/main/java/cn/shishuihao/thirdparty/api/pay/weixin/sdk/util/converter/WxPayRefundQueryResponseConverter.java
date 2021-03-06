@@ -56,21 +56,7 @@ public class WxPayRefundQueryResponseConverter extends ReflectionConverter {
                 }
                 String namePrefix = name.replace("_$n", "").replace("_$m", "");
                 if (fieldValue instanceof Map) {
-                    Map<Integer, ?> map1 = (Map<Integer, ?>) fieldValue;
-                    map1.forEach((m1, v1) -> {
-                        if (v1 instanceof Map) {
-                            Map<Integer, ?> map2 = (Map<Integer, ?>) v1;
-                            map2.forEach((m2, v2) -> {
-                                writer.startNode(namePrefix + '_' + m1 + '_' + m2);
-                                writer.setValue(String.valueOf(v2));
-                                writer.endNode();
-                            });
-                        } else {
-                            writer.startNode(namePrefix + '_' + m1);
-                            writer.setValue(String.valueOf(v1));
-                            writer.endNode();
-                        }
-                    });
+                    marshalMap(writer, (Map<Integer, ?>) fieldValue, namePrefix);
                 } else {
                     writer.startNode(namePrefix);
                     writer.setValue(String.valueOf(fieldValue));
@@ -134,5 +120,22 @@ public class WxPayRefundQueryResponseConverter extends ReflectionConverter {
         } catch (Exception e) {
             throw ExceptionUtils.<RuntimeException>rethrow(e);
         }
+    }
+
+    private void marshalMap(HierarchicalStreamWriter writer, Map<Integer, ?> fieldValue, String namePrefix) {
+        fieldValue.forEach((m1, v1) -> {
+            if (v1 instanceof Map) {
+                Map<Integer, ?> map2 = (Map<Integer, ?>) v1;
+                map2.forEach((m2, v2) -> {
+                    writer.startNode(namePrefix + '_' + m1 + '_' + m2);
+                    writer.setValue(String.valueOf(v2));
+                    writer.endNode();
+                });
+            } else {
+                writer.startNode(namePrefix + '_' + m1);
+                writer.setValue(String.valueOf(v1));
+                writer.endNode();
+            }
+        });
     }
 }

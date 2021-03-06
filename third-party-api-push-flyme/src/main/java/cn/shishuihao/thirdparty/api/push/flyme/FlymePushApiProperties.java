@@ -1,7 +1,6 @@
 package cn.shishuihao.thirdparty.api.push.flyme;
 
-import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
-import cn.shishuihao.thirdparty.api.push.PushApiProperties;
+import cn.shishuihao.thirdparty.api.push.properties.AbstractPushApiProperties;
 
 import java.util.Objects;
 
@@ -10,7 +9,7 @@ import java.util.Objects;
  * @version 1.0.0
  */
 
-public class FlymePushApiProperties extends AbstractApiProperties implements PushApiProperties {
+public class FlymePushApiProperties extends AbstractPushApiProperties {
     /**
      * 应用id
      */

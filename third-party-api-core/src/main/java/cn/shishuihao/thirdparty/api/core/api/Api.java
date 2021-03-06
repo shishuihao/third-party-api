@@ -1,26 +1,30 @@
 package cn.shishuihao.thirdparty.api.core.api;
 
-import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.core.repository.Entity;
 import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
 import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
 /**
+ * @param <A> api
+ * @param <T> request
+ * @param <R> response
  * @author shishuihao
  * @version 1.0.0
  */
-public interface Api<A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> extends Entity<Class<?>> {
+public interface Api<
+        A extends Api<A, T, R>,
+        T extends ApiRequest<A, T, R>,
+        R extends ApiResponse> extends Entity<Class<?>> {
     /**
-     * execute request
+     * execute request.
      *
      * @param request request
      * @return response
-     * @throws ApiException api exception
      */
-    R execute(final T request);
+    R execute(T request);
 
     /**
-     * get entity id
+     * get entity id.
      *
      * @return entity id
      */
@@ -30,7 +34,7 @@ public interface Api<A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R ex
     }
 
     /**
-     * get api type
+     * get api type.
      * immutable
      *
      * @return api type

@@ -6,15 +6,31 @@ package cn.shishuihao.thirdparty.api.core.exception;
  */
 
 public class ApiException extends RuntimeException {
-    public ApiException(String message) {
+    /**
+     * Constructs a new api exception.
+     *
+     * @param message the detail message.
+     */
+    public ApiException(final String message) {
         super(message);
     }
 
-    public ApiException(String message, Throwable cause) {
+    /**
+     * Constructs a new api exception.
+     *
+     * @param message the detail message.
+     * @param cause   the cause.
+     */
+    public ApiException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public ApiException(Throwable cause) {
+    /**
+     * Constructs a new api exception.
+     *
+     * @param cause the cause.
+     */
+    public ApiException(final Throwable cause) {
         super(cause);
     }
 }

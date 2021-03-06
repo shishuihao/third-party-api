@@ -6,15 +6,32 @@ package cn.shishuihao.thirdparty.api.core.exception;
  */
 
 public class ChannelNotFoundException extends ApiException {
-    public ChannelNotFoundException(String message) {
+    /**
+     * Constructs a new channel not found exception.
+     *
+     * @param message the detail message.
+     */
+    public ChannelNotFoundException(final String message) {
         super(message);
     }
 
-    public ChannelNotFoundException(String message, Throwable cause) {
+    /**
+     * Constructs a new channel not found exception.
+     *
+     * @param message the detail message.
+     * @param cause   the cause.
+     */
+    public ChannelNotFoundException(final String message,
+                                    final Throwable cause) {
         super(message, cause);
     }
 
-    public ChannelNotFoundException(Throwable cause) {
+    /**
+     * Constructs a new channel not found exception.
+     *
+     * @param cause the cause.
+     */
+    public ChannelNotFoundException(final Throwable cause) {
         super(cause);
     }
 }

@@ -10,21 +10,36 @@ import java.util.ServiceLoader;
  * @version 1.0.0
  */
 
-public class ApiChannelContainerRepository extends AbstractContainerRepository<String, ApiChannel<?>, ApiChannelRepository>
+public class ApiChannelContainerRepository extends AbstractContainerRepository<
+        String, ApiChannel<?>, ApiChannelRepository>
         implements ApiChannelRepository {
-    public ApiChannelContainerRepository(Container container, boolean load) {
+    /**
+     * new ApiChannelContainerRepository.
+     *
+     * @param container container
+     * @param load      whether load bean
+     */
+    public ApiChannelContainerRepository(final Container container,
+                                         final boolean load) {
         super(container, ApiChannelRepository.class);
         if (load) {
             container.awareOrHook(it -> {
                 // spi => container bean
-                ServiceLoader.load(ApiChannel.class).forEach(repository::add);
+                ServiceLoader.load(ApiChannel.class)
+                        .forEach(this.getRepository()::add);
                 // container bean => container bean
-                it.getBeansOfType(ApiChannel.class).values().forEach(repository::add);
+                it.getBeansOfType(ApiChannel.class).values()
+                        .forEach(this.getRepository()::add);
             });
         }
     }
 
-    public ApiChannelContainerRepository(Container container) {
+    /**
+     * new ApiChannelContainerRepository.
+     *
+     * @param container container
+     */
+    public ApiChannelContainerRepository(final Container container) {
         this(container, false);
     }
 }

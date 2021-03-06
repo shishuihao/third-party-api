@@ -4,13 +4,18 @@ import cn.shishuihao.thirdparty.api.core.api.Api;
 import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
 /**
+ * @param <A> api
+ * @param <T> request
+ * @param <R> response
  * @author shishuihao
  * @version 1.0.0
  */
-
-public interface ApiRequest<A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> {
+public interface ApiRequest<
+        A extends Api<A, T, R>,
+        T extends ApiRequest<A, T, R>,
+        R extends ApiResponse> {
     /**
-     * get api type
+     * get api type.
      * immutable
      *
      * @return api type
@@ -18,7 +23,7 @@ public interface ApiRequest<A extends Api<A, T, R>, T extends ApiRequest<A, T, R
     Class<A> apiType();
 
     /**
-     * get response type
+     * get response type.
      * immutable
      *
      * @return response type
@@ -26,7 +31,7 @@ public interface ApiRequest<A extends Api<A, T, R>, T extends ApiRequest<A, T, R
     Class<R> responseType();
 
     /**
-     * get channel id
+     * get channel id.
      * immutable
      *
      * @return channel id
@@ -34,7 +39,7 @@ public interface ApiRequest<A extends Api<A, T, R>, T extends ApiRequest<A, T, R
     String channelId();
 
     /**
-     * get properties id
+     * get properties id.
      * immutable
      *
      * @return properties id

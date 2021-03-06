@@ -11,28 +11,50 @@ import java.util.ServiceLoader;
  * @version 1.0.0
  */
 
-public class ApiPropertiesContainerRepository extends AbstractContainerRepository<String, ApiProperties, ApiPropertiesRepository>
-        implements ApiPropertiesRepository {
+public class ApiPropertiesContainerRepository
+        extends AbstractContainerRepository<String, ApiProperties,
+        ApiPropertiesRepository> implements ApiPropertiesRepository {
 
-    public ApiPropertiesContainerRepository(Container container, boolean load) {
+    /**
+     * new ApiPropertiesContainerRepository.
+     *
+     * @param container container
+     * @param load      whether load bean
+     */
+    public ApiPropertiesContainerRepository(final Container container,
+                                            final boolean load) {
         super(container, ApiPropertiesRepository.class);
         if (load) {
             container.awareOrHook(it -> {
                 // spi => container bean
-                ServiceLoader.load(ApiProperties.class).forEach(repository::add);
+                ServiceLoader.load(ApiProperties.class)
+                        .forEach(this.getRepository()::add);
                 // container bean => container bean
-                it.getBeansOfType(ApiProperties.class).values().forEach(repository::add);
+                it.getBeansOfType(ApiProperties.class).values()
+                        .forEach(this.getRepository()::add);
             });
         }
     }
 
-    public ApiPropertiesContainerRepository(Container container) {
+    /**
+     * new ApiPropertiesContainerRepository.
+     *
+     * @param container container
+     */
+    public ApiPropertiesContainerRepository(final Container container) {
         this(container, false);
     }
 
-
+    /**
+     * get api properties.
+     *
+     * @param channelId    channel id
+     * @param propertiesId properties id
+     * @return Optional<ApiProperties>
+     */
     @Override
-    public Optional<ApiProperties> getApiProperties(String channelId, String propertiesId) {
-        return repository.getApiProperties(channelId, propertiesId);
+    public Optional<ApiProperties> getApiProperties(final String channelId,
+                                                    final String propertiesId) {
+        return this.getRepository().getApiProperties(channelId, propertiesId);
     }
 }

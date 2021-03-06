@@ -9,7 +9,7 @@ import cn.shishuihao.thirdparty.api.core.repository.Entity;
 
 public interface ApiProperties extends Entity<String> {
     /**
-     * get channel id
+     * get channel id.
      *
      * @return channel id
      */

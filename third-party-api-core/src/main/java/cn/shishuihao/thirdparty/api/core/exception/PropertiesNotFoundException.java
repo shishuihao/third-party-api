@@ -6,15 +6,32 @@ package cn.shishuihao.thirdparty.api.core.exception;
  */
 
 public class PropertiesNotFoundException extends ApiException {
-    public PropertiesNotFoundException(String message) {
+    /**
+     * Constructs a new properties not found exception.
+     *
+     * @param message the detail message.
+     */
+    public PropertiesNotFoundException(final String message) {
         super(message);
     }
 
-    public PropertiesNotFoundException(String message, Throwable cause) {
+    /**
+     * Constructs a new properties not found exception.
+     *
+     * @param message the detail message.
+     * @param cause   the cause.
+     */
+    public PropertiesNotFoundException(final String message,
+                                       final Throwable cause) {
         super(message, cause);
     }
 
-    public PropertiesNotFoundException(Throwable cause) {
+    /**
+     * Constructs a new properties not found exception.
+     *
+     * @param cause the cause.
+     */
+    public PropertiesNotFoundException(final Throwable cause) {
         super(cause);
     }
 }

@@ -22,9 +22,23 @@ import java.util.Optional;
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ApiRegistry {
+    /**
+     * api properties repository.
+     */
     public static final ApiPropertiesRepository PROPERTIES_REPOSITORY;
+    /**
+     * channel_repository.
+     */
     public static final ApiChannelRepository CHANNEL_REPOSITORY;
+    /**
+     * instance.
+     */
     public static final ApiRegistry INSTANCE;
+    /**
+     * api not found message.
+     */
+    private static final String API_NOT_FOUND_MESSAGE
+            = "api not found by apiType:";
 
     static {
         PROPERTIES_REPOSITORY = ApiPropertiesHolder.PROPERTIES_REPOSITORY;
@@ -32,30 +46,75 @@ public class ApiRegistry {
         INSTANCE = new ApiRegistry(CHANNEL_REPOSITORY);
     }
 
+    /**
+     * channel repository.
+     */
     private final ApiChannelRepository channelRepository;
 
-    public ApiRegistry(ApiChannelRepository channelRepository) {
-        this.channelRepository = channelRepository;
+    /**
+     * new ApiRegistry.
+     *
+     * @param pChannelRepository channel repository
+     */
+    public ApiRegistry(final ApiChannelRepository pChannelRepository) {
+        this.channelRepository = pChannelRepository;
     }
 
     // region getApiChannel
 
+    /**
+     * get channel by channel id.
+     *
+     * @param channelId channel id
+     * @return Optional<ApiChannel>
+     */
     public Optional<ApiChannel> getApiChannel(final String channelId) {
         return this.channelRepository.getById(channelId).map(it -> it);
     }
 
+    /**
+     * get channel by channel id.
+     * if channel not exists will throw ChannelNotFoundException.
+     *
+     * @param channelId channel id
+     * @return ApiChannel
+     */
     public ApiChannel getApiChannelOrThrow(final String channelId) {
-        return this.getApiChannel(channelId).orElseThrow(() ->
-                new ChannelNotFoundException("channel not found by channelId:" + channelId));
+        return this.getApiChannel(channelId)
+                .orElseThrow(() -> new ChannelNotFoundException(
+                        ApiChannelHolder.CHANNEL_REPOSITORY + channelId));
     }
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<ApiChannel>
-    getApiChannel(final T request) {
+    /**
+     * get api channel by request.
+     *
+     * @param request request
+     * @param <A>     api
+     * @param <T>     request
+     * @param <R>     response
+     * @return Optional<ApiChannel>
+     */
+    public <A extends Api<A, T, R>,
+            T extends ApiRequest<A, T, R>,
+            R extends ApiResponse>
+    Optional<ApiChannel> getApiChannel(final T request) {
         return this.getApiChannel(request.channelId());
     }
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> ApiChannel
-    getApiChannelOrThrow(final T request) {
+    /**
+     * get api channel by request.
+     * if channel not exists will throw ChannelNotFoundException.
+     *
+     * @param request request
+     * @param <A>     api
+     * @param <T>     request
+     * @param <R>     response
+     * @return ApiChannel
+     */
+    public <A extends Api<A, T, R>,
+            T extends ApiRequest<A, T, R>,
+            R extends ApiResponse>
+    ApiChannel getApiChannelOrThrow(final T request) {
         return this.getApiChannelOrThrow(request.channelId());
     }
 
@@ -63,35 +122,106 @@ public class ApiRegistry {
 
     // region getApi
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<A>
-    getApi(final T request) {
+    /**
+     * get api by request.
+     *
+     * @param request request
+     * @param <A>     api
+     * @param <T>     request
+     * @param <R>     response
+     * @return Optional<A>
+     */
+    public <A extends Api<A, T, R>,
+            T extends ApiRequest<A, T, R>,
+            R extends ApiResponse>
+    Optional<A> getApi(final T request) {
         return this.getApiChannelOrThrow(request).getApi(request.apiType());
     }
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> A
-    getApiOrThrow(final T request) {
-        return this.getApi(request).orElseThrow(() ->
-                new ApiNotFoundException("api not found by apiType:" + request.apiType()));
+    /**
+     * get api by request.
+     * if channel not exists will throw ChannelNotFoundException.
+     * if api not exists will throw ApiNotFoundException.
+     *
+     * @param request request
+     * @param <A>     api
+     * @param <T>     request
+     * @param <R>     response
+     * @return A
+     */
+    public <A extends Api<A, T, R>,
+            T extends ApiRequest<A, T, R>,
+            R extends ApiResponse>
+    A getApiOrThrow(final T request) {
+        return this.getApi(request)
+                .orElseThrow(() -> new ApiNotFoundException(
+                        API_NOT_FOUND_MESSAGE + request.apiType()));
     }
 
     // endregion
 
     // region getApiProperties
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<ApiProperties>
-    getApiProperties(final T request) {
-        return PROPERTIES_REPOSITORY.getApiProperties(request.channelId(), request.propertiesId());
+    /**
+     * get api properties by request.
+     *
+     * @param request request
+     * @param <A>     api
+     * @param <T>     request
+     * @param <R>     response
+     * @return Optional<ApiProperties>
+     */
+    public <A extends Api<A, T, R>,
+            T extends ApiRequest<A, T, R>,
+            R extends ApiResponse>
+    Optional<ApiProperties> getApiProperties(final T request) {
+        return PROPERTIES_REPOSITORY.getApiProperties(
+                request.channelId(),
+                request.propertiesId());
     }
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> ApiProperties
-    getApiPropertiesOrThrow(final T request) {
-        return this.getApiProperties(request).orElseThrow(() ->
-                new PropertiesNotFoundException("properties not found by propertiesId:" + request.propertiesId()));
+    /**
+     * get api properties by request.
+     * if channel not exists will throw ChannelNotFoundException.
+     * if api not exists will throw ApiNotFoundException.
+     * if api properties not exists will throw PropertiesNotFoundException.
+     * if api cast fail will throw PropertiesCastException.
+     *
+     * @param request request
+     * @param <A>     api
+     * @param <T>     request
+     * @param <R>     response
+     * @return ApiProperties
+     */
+    public <A extends Api<A, T, R>,
+            T extends ApiRequest<A, T, R>,
+            R extends ApiResponse>
+    ApiProperties getApiPropertiesOrThrow(final T request) {
+        return this.getApiProperties(request)
+                .orElseThrow(() -> new PropertiesNotFoundException(
+                        ApiPropertiesHolder.PROPERTIES_REPOSITORY
+                                + request.propertiesId()));
     }
 
     // execute
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> R execute(final T request) {
+    /**
+     * execute request.
+     * if channel not exists will throw ChannelNotFoundException.
+     * if api not exists will throw ApiNotFoundException.
+     * if api properties not exists will throw PropertiesNotFoundException.
+     * if api cast fail will throw PropertiesCastException.
+     *
+     * @param request request
+     * @param <A>     api
+     * @param <T>     request
+     * @param <R>     response
+     * @return R
+     */
+    public <A extends Api<A, T, R>,
+            T extends ApiRequest<A, T, R>,
+            R extends ApiResponse>
+    R execute(final T request) {
         R response = this.getApiOrThrow(request).execute(request);
         // publish event
         EventPublisherHolder.publishEvent(response);

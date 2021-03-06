@@ -8,7 +8,10 @@ import java.util.Optional;
  * @author shishuihao
  * @version 1.0.0
  */
-public class EventPublisherHolder {
+public final class EventPublisherHolder {
+    /**
+     * event publisher.
+     */
     public static final EventPublisher EVENT_PUBLISHER;
 
     static {
@@ -21,7 +24,12 @@ public class EventPublisherHolder {
     private EventPublisherHolder() {
     }
 
-    public static void publishEvent(Object event) {
+    /**
+     * publish event.
+     *
+     * @param event event
+     */
+    public static void publishEvent(final Object event) {
         EVENT_PUBLISHER.publishEvent(event);
     }
 }

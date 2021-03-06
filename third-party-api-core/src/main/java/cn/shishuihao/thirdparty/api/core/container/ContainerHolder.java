@@ -7,11 +7,15 @@ import java.util.stream.StreamSupport;
  * @author shishuihao
  * @version 1.0.0
  */
-public class ContainerHolder {
+public final class ContainerHolder {
+    /**
+     * container.
+     */
     public static final Container CONTAINER;
 
     static {
-        CONTAINER = StreamSupport.stream(ServiceLoader.load(Container.class).spliterator(), false)
+        CONTAINER = StreamSupport.stream(ServiceLoader.load(Container.class)
+                .spliterator(), false)
                 .findFirst()
                 .orElse(null);
     }
@@ -19,7 +23,14 @@ public class ContainerHolder {
     private ContainerHolder() {
     }
 
-    public static <T> T getBean(Class<T> requiredType) {
+    /**
+     * get bean by required type.
+     *
+     * @param requiredType required type.
+     * @param <T>          required type.
+     * @return T
+     */
+    public static <T> T getBean(final Class<T> requiredType) {
         return CONTAINER.getBean(requiredType);
     }
 }

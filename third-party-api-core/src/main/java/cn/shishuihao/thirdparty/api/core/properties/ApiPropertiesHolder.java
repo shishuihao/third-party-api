@@ -7,36 +7,65 @@ import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
 import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
 import java.util.Optional;
-import java.util.ServiceLoader;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-public class ApiPropertiesHolder {
+public final class ApiPropertiesHolder {
+    /**
+     * api properties repository.
+     */
     public static final ApiPropertiesRepository PROPERTIES_REPOSITORY;
+    /**
+     * properties not found message.
+     */
+    private static final String PROPERTIES_NOT_FOUND_MESSAGE
+            = "properties not found by propertiesId:";
 
     static {
         PROPERTIES_REPOSITORY = Optional.ofNullable(ContainerHolder.CONTAINER)
-                .map(container -> (ApiPropertiesRepository) new ApiPropertiesContainerRepository(container, true))
-                .orElseGet(() -> {
-                    ApiPropertiesRepository repository = new ApiPropertiesMemoryRepository();
-                    // spi => memory
-                    ServiceLoader.load(ApiProperties.class).forEach(repository::add);
-                    return repository;
-                });
+                .map(container -> (ApiPropertiesRepository)
+                        new ApiPropertiesContainerRepository(container, true))
+                .orElseGet(() -> new ApiPropertiesMemoryRepository(true));
     }
 
     private ApiPropertiesHolder() {
     }
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> Optional<ApiProperties>
-    getApiProperties(final T request) {
-        return PROPERTIES_REPOSITORY.getApiProperties(request.channelId(), request.propertiesId());
+    /**
+     * get api properties by request.
+     *
+     * @param request request
+     * @param <A>     api
+     * @param <T>     request
+     * @param <R>     response
+     * @return Optional<ApiProperties>
+     */
+    public <A extends Api<A, T, R>,
+            T extends ApiRequest<A, T, R>,
+            R extends ApiResponse>
+    Optional<ApiProperties> getApiProperties(final T request) {
+        return PROPERTIES_REPOSITORY.getApiProperties(
+                request.channelId(),
+                request.propertiesId());
     }
 
-    public <A extends Api<A, T, R>, T extends ApiRequest<A, T, R>, R extends ApiResponse> ApiProperties
-    getApiPropertiesOrThrow(final T request) {
-        return this.getApiProperties(request).orElseThrow(() -> new PropertiesNotFoundException("properties not found by propertiesId:" + request.propertiesId()));
+    /**
+     * get api properties by request.
+     *
+     * @param request request
+     * @param <A>     api
+     * @param <T>     request
+     * @param <R>     response
+     * @return Optional<ApiProperties>
+     */
+    public <A extends Api<A, T, R>,
+            T extends ApiRequest<A, T, R>,
+            R extends ApiResponse>
+    ApiProperties getApiPropertiesOrThrow(final T request) {
+        return this.getApiProperties(request)
+                .orElseThrow(() -> new PropertiesNotFoundException(
+                        PROPERTIES_NOT_FOUND_MESSAGE + request.propertiesId()));
     }
 }

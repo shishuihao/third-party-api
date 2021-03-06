@@ -19,10 +19,13 @@
 [![REUSE status][reuse-shield]][reuse-url]
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 ###### GitHub
+[![github](https://badgen.net/badge/⭐/GitHub/blue)](https://github.com/shishuihao/third-party-api)
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Latest Commit][latest-commit-shield]][latest-commit-url]
 [![Releases][releases-shield]][releases-url]
+###### Gitee
+[![gitee](https://badgen.net/badge/⭐/Gitee/blue)](https://gitee.com/shishuihao/third-party-api)
 ##### Test Coverage
 [![codecov](https://codecov.io/gh/shishuihao/third-party-api/branch/main/graph/badge.svg?token=M458RT3TUS)](https://codecov.io/gh/shishuihao/third-party-api)
 ##### Code Quality

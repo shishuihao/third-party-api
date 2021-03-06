@@ -148,7 +148,7 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
 
 -   Gradle
 
-    ```grovvy
+    ```groovy
     compile 'cn.shishuihao:third-party-api:latest'
     ```
 
@@ -157,9 +157,7 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
 ## 用法 Usage
 
 -   可插拔方式
-    
     -   [x] SPI机制
-        
         如：[AliYunSmsApiChannel](/third-party-api-sms-aliyun/src/main/resources/META-INF/services/cn.shishuihao.thirdparty.api.core.channel.ApiChannel)的 spi 机制实现
 
         ```text
@@ -167,7 +165,6 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
         ```
 
     -   [x] 通过注入容器，再从容器获取
-
         -   [x] [springboot](/third-party-api-spring-boot-starter) 如注入容器
 
             ```java
@@ -179,7 +176,6 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
             ```
 
 -   配置属性配置方式
-
     -   [x] 代码 如：
 
         ```java
@@ -190,9 +186,7 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
         ```
 
     -   [x] 容器
-
         -   [x] [springboot](/third-party-api-spring-boot-starter)
-
             -   [x] 代码
 
                 ```java
@@ -218,7 +212,6 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
                 ```
 
     -   [x] 数据库配置方式
-
         -   [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa)
 
             ```java
@@ -260,23 +253,18 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
             ```
 
 -   发布事件
-
     -   [x] [springboot](/third-party-api-spring-boot-starter)
 
 -   SMS 集成(sms integration)
-
     -   [x] [阿里云](/third-party-api-sms-aliyun)
         -   [x] 发送短信
-
         -   [x] 批量发送短信
 
     -   [x] [腾讯云](/third-party-api-sms-tencent)
         -   [x] 发送短信
-
         -   [x] 批量发送短信
 
 -   推送集成(push integration)
-
     -   [x] [小米(xiaomi)](/third-party-api-push-xiaomi)
         -   [x] 发送消息
 
@@ -298,7 +286,6 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
     -   [ ] 极光推送(jiguang)
 
 -   支付集成(pay integration)
-
     -   [x] [支付宝](/third-party-api-pay-alipay)
         -   [x] 二维码支付
 
@@ -390,35 +377,19 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [contributors-shield]: https://img.shields.io/github/contributors/shishuihao/third-party-api.svg
-
 [contributors-url]: https://github.com/shishuihao/third-party-api/graphs/contributors
-
 [forks-shield]: https://img.shields.io/github/forks/shishuihao/third-party-api.svg
-
 [forks-url]: https://github.com/shishuihao/third-party-api/network/members
-
 [stars-shield]: https://img.shields.io/github/stars/shishuihao/third-party-api.svg
-
 [stars-url]: https://github.com/shishuihao/third-party-api/stargazers
-
 [issues-shield]: https://img.shields.io/github/issues/shishuihao/third-party-api.svg
-
 [issues-url]: https://github.com/shishuihao/third-party-api/issues
-
 [license-shield]: https://img.shields.io/github/license/shishuihao/third-party-api.svg
-
 [license-url]: https://github.com/shishuihao/third-party-api/blob/main/LICENSE
-
 [latest-commit-shield]: https://img.shields.io/github/last-commit/shishuihao/third-party-api.svg
-
 [latest-commit-url]: https://github.com/shishuihao/third-party-api/commits/main
-
 [releases-shield]: https://img.shields.io/github/v/release/shishuihao/third-party-api.svg
-
 [releases-url]: https://github.com/shishuihao/third-party-api/releases
-
 [reuse-shield]: https://api.reuse.software/badge/github.com/shishuihao/third-party-api
-
 [reuse-url]: https://api.reuse.software/info/github.com/shishuihao/third-party-api
-
 [product-screenshot]: images/screenshot.png

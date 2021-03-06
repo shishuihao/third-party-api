@@ -26,6 +26,22 @@ public class OppoPushApiProperties extends AbstractPushApiProperties {
         return String.valueOf(appKey);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof OppoPushApiProperties)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public String getAppKey() {
         return appKey;
     }

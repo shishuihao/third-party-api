@@ -98,6 +98,22 @@ public class AlipayPayApiProperties extends AbstractPayApiProperties {
         return appId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof AlipayPayApiProperties)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public String getProtocol() {
         return protocol;
     }

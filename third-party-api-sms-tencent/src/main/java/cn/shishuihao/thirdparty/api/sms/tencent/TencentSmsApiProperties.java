@@ -42,6 +42,22 @@ public class TencentSmsApiProperties extends AbstractSmsApiProperties {
         return String.join(":", secretId, appId);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof TencentSmsApiProperties)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public String getSecretId() {
         return secretId;
     }

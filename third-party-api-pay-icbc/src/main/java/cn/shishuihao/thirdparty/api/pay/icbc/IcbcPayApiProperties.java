@@ -43,6 +43,22 @@ public class IcbcPayApiProperties extends AbstractPayApiProperties {
         return String.join(":", appId, merId);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof IcbcPayApiProperties)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public String getAppId() {
         return appId;
     }

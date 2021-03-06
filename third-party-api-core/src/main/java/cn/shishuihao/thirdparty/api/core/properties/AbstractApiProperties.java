@@ -26,12 +26,13 @@ public abstract class AbstractApiProperties implements ApiProperties {
         return channelId;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof AbstractApiProperties)) {
             return false;
         }
         AbstractApiProperties that = (AbstractApiProperties) o;

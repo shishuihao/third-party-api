@@ -26,6 +26,22 @@ public class VivoPushApiProperties extends AbstractPushApiProperties {
         return String.valueOf(appKey);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof VivoPushApiProperties)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public String getAppKey() {
         return appKey;
     }

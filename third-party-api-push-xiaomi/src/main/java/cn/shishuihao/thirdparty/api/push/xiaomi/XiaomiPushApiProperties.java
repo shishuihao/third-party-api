@@ -30,6 +30,22 @@ public class XiaomiPushApiProperties extends AbstractPushApiProperties {
         return appId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof XiaomiPushApiProperties)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public String getAppId() {
         return appId;
     }

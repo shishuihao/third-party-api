@@ -34,6 +34,22 @@ public class FlymePushApiProperties extends AbstractPushApiProperties {
         return String.valueOf(appId);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof FlymePushApiProperties)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public Long getAppId() {
         return appId;
     }

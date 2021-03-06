@@ -51,6 +51,22 @@ public class WxPayApiProperties extends AbstractPayApiProperties {
                 String.valueOf(subAppId), String.valueOf(subMchId));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof WxPayApiProperties)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public AppId getAppId() {
         return appId;
     }

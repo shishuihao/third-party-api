@@ -36,6 +36,22 @@ public class AliYunSmsApiProperties extends AbstractSmsApiProperties {
         return accessKeyId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof AliYunSmsApiProperties)) {
+            return false;
+        }
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public String getAccessKeyId() {
         return accessKeyId;
     }

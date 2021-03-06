@@ -7,10 +7,6 @@ import cn.shishuihao.thirdparty.api.sms.properties.AbstractSmsApiProperties;
  * @version 1.0.0
  */
 public class AliYunSmsApiProperties extends AbstractSmsApiProperties {
-    public AliYunSmsApiProperties() {
-        this.setChannelId(AliYunSmsApiChannel.CHANNEL_ID);
-    }
-
     /**
      * AccessKeyId用于标识用户
      */
@@ -30,6 +26,9 @@ public class AliYunSmsApiProperties extends AbstractSmsApiProperties {
      * 说明 无特殊需要此字段的用户请忽略此字段。
      */
     private String smsUpExtendCode;
+    public AliYunSmsApiProperties() {
+        this.setChannelId(AliYunSmsApiChannel.CHANNEL_ID);
+    }
 
     @Override
     public String id() {

@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun.api;
 
+import cn.shishuihao.thirdparty.api.commons.json.GsonUtils;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiProperties;
@@ -10,7 +11,6 @@ import cn.shishuihao.thirdparty.api.sms.response.SendSmsApiResponse;
 import com.aliyun.dysmsapi20170525.Client;
 import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponseBody;
-import com.google.gson.Gson;
 
 import java.util.Optional;
 
@@ -38,7 +38,7 @@ public class AliYunSendSmsApi implements SendSmsApi {
             sendSmsRequest.setSignName(Optional.ofNullable(request.getMessage().getSignName())
                     .orElseGet(properties::getSignName));
             sendSmsRequest.setTemplateCode(request.getTemplateId());
-            sendSmsRequest.setTemplateParam(new Gson().toJson(request.getMessage().getTemplateParams()));
+            sendSmsRequest.setTemplateParam(GsonUtils.toJson(request.getMessage().getTemplateParams()));
             sendSmsRequest.setSmsUpExtendCode(Optional.ofNullable(request.getMessage().getExtendCode())
                     .orElseGet(properties::getSmsUpExtendCode));
             SendSmsResponseBody sendSmsResponseBody = client.sendSms(sendSmsRequest).getBody();

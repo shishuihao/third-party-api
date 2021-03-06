@@ -1,7 +1,8 @@
 dependencies {
     // json
     compileOnly 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
-    // xmk
+    compileOnly 'com.google.code.gson:gson:2.8.6'
+    // xml
     compileOnly 'com.thoughtworks.xstream:xstream:1.4.11.1'
 }
 

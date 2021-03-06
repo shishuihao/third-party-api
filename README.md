@@ -24,6 +24,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Latest Commit][latest-commit-shield]][latest-commit-url]
 [![Releases][releases-shield]][releases-url]
+[![Java CI with Gradle](https://github.com/shishuihao/third-party-api/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/shishuihao/third-party-api/actions/workflows/gradle.yml?query=workflow%3AJava) 
 ###### Gitee
 [![gitee](https://badgen.net/badge/⭐/Gitee/blue)](https://gitee.com/shishuihao/third-party-api)
 ##### Test Coverage

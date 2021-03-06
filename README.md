@@ -32,6 +32,7 @@
 ##### Code Quality
 [![Maintainability](https://api.codeclimate.com/v1/badges/a7dc243f88ef01a4cd4b/maintainability)](https://codeclimate.com/github/shishuihao/third-party-api/maintainability)
 [![codebeat badge](https://codebeat.co/badges/c37b42ee-9ee7-44d9-879f-6c717a8f8408)](https://codebeat.co/projects/github-com-shishuihao-third-party-api-main)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/52d392268f5e4e7684e1f698e86720a4)](https://www.codacy.com/gh/shishuihao/third-party-api/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=shishuihao/third-party-api&amp;utm_campaign=Badge_Grade)
 ##### Other
 ###### Chat
 [![Gitter](https://badges.gitter.im/third-party-api/community.svg)](https://gitter.im/third-party-api/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)

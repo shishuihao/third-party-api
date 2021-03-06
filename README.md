@@ -1,3 +1,14 @@
+```
+
+████████╗██╗  ██╗██╗██████╗ ██████╗     ██████╗  █████╗ ██████╗ ████████╗██╗   ██╗     █████╗ ██████╗ ██╗
+╚══██╔══╝██║  ██║██║██╔══██╗██╔══██╗    ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝╚██╗ ██╔╝    ██╔══██╗██╔══██╗██║
+   ██║   ███████║██║██████╔╝██║  ██║    ██████╔╝███████║██████╔╝   ██║    ╚████╔╝     ███████║██████╔╝██║
+   ██║   ██╔══██║██║██╔══██╗██║  ██║    ██╔═══╝ ██╔══██║██╔══██╗   ██║     ╚██╔╝      ██╔══██║██╔═══╝ ██║
+   ██║   ██║  ██║██║██║  ██║██████╔╝    ██║     ██║  ██║██║  ██║   ██║      ██║       ██║  ██║██║     ██║
+   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═════╝     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝      ╚═╝       ╚═╝  ╚═╝╚═╝     ╚═╝
+                                                                                                         
+
+```
 <!-- PROJECT SHIELDS -->
 
 ##### Continuous Integration/Deployment
@@ -8,15 +19,20 @@
 [![REUSE status][reuse-shield]][reuse-url]
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 ###### GitHub
+[![github](https://badgen.net/badge/⭐/GitHub/blue)](https://github.com/shishuihao/third-party-api)
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Latest Commit][latest-commit-shield]][latest-commit-url]
 [![Releases][releases-shield]][releases-url]
+[![Java CI with Gradle](https://github.com/shishuihao/third-party-api/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/shishuihao/third-party-api/actions/workflows/gradle.yml?query=workflow%3AJava) 
+###### Gitee
+[![gitee](https://badgen.net/badge/⭐/Gitee/blue)](https://gitee.com/shishuihao/third-party-api)
 ##### Test Coverage
 [![codecov](https://codecov.io/gh/shishuihao/third-party-api/branch/main/graph/badge.svg?token=M458RT3TUS)](https://codecov.io/gh/shishuihao/third-party-api)
 ##### Code Quality
 [![Maintainability](https://api.codeclimate.com/v1/badges/a7dc243f88ef01a4cd4b/maintainability)](https://codeclimate.com/github/shishuihao/third-party-api/maintainability)
 [![codebeat badge](https://codebeat.co/badges/c37b42ee-9ee7-44d9-879f-6c717a8f8408)](https://codebeat.co/projects/github-com-shishuihao-third-party-api-main)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/52d392268f5e4e7684e1f698e86720a4)](https://www.codacy.com/gh/shishuihao/third-party-api/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=shishuihao/third-party-api&amp;utm_campaign=Badge_Grade)
 ##### Other
 ###### Chat
 [![Gitter](https://badges.gitter.im/third-party-api/community.svg)](https://gitter.im/third-party-api/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -312,6 +328,9 @@ GitHub上有很多很棒的第三方接口集成，但是我找不到真正适�
 
 | 捐助日期 | 捐助者 | 捐助金额 |
 | --- | --- | --- |
+
+# Star 趋势
+[![Stargazers over time](https://starchart.cc/shishuihao/third-party-api.svg)](https://starchart.cc/shishuihao/third-party-api)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

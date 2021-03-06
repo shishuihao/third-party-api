@@ -70,7 +70,3 @@ SDK将致力于保持良好的API命名，以符合开发者的编程直觉。
 | Payment</br>支付能力 |     WxPayH5Api</br>H5支付     |                      |                  |
 | Payment</br>支付能力 |   WxPayApplet</br>Api小程序支付  |                      |                  |
 | Payment</br>支付能力 |    WxPayFaceApi</br>刷脸支付    |                      |                  |
-
-```
-
-```

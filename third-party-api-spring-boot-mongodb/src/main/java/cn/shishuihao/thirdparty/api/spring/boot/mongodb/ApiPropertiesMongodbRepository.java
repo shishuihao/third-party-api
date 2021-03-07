@@ -21,9 +21,9 @@ public class ApiPropertiesMongodbRepository implements ApiPropertiesRepository {
     private final ApiPropertiesDocumentMongoRepository mongoRepository;
 
     /**
-     * add apiProperties.
+     * add api properties.
      *
-     * @param apiProperties entity
+     * @param apiProperties api properties
      */
     @Override
     public void add(final ApiProperties apiProperties) {
@@ -40,23 +40,24 @@ public class ApiPropertiesMongodbRepository implements ApiPropertiesRepository {
     }
 
     /**
-     * get entity by id.
+     * get api properties by properties id.
      *
-     * @param id entity id
-     * @return optional entity
+     * @param propertiesId api properties id
+     * @return optional api properties
      */
     @Override
-    public Optional<ApiProperties> getById(final String id) {
-        return mongoRepository.findByPropertiesId(id)
+    public Optional<ApiProperties> getById(final String propertiesId) {
+        return mongoRepository
+                .findByPropertiesId(propertiesId)
                 .map(ApiPropertiesMongodbDocument::getProperties);
     }
 
     /**
-     * get api properties by api type.
+     * get api properties by channel id and properties id.
      *
      * @param channelId    channel id
      * @param propertiesId properties id
-     * @return ApiProperties
+     * @return optional api properties
      */
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,

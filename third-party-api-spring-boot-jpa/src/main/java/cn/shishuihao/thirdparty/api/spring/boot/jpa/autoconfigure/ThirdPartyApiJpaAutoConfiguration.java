@@ -16,13 +16,22 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * @version 1.0.0
  */
 @Configuration
-@ConditionalOnProperty(name = "third-party-api.jpa.enabled", matchIfMissing = true)
-@EnableJpaRepositories(basePackages = "cn.shishuihao.thirdparty.api.spring.boot.jpa.repository")
+@ConditionalOnProperty(
+        name = "third-party-api.jpa.enabled",
+        matchIfMissing = true)
+@EnableJpaRepositories(basePackages =
+        "cn.shishuihao.thirdparty.api.spring.boot.jpa.repository")
 @AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
 public class ThirdPartyApiJpaAutoConfiguration {
+    /**
+     * ApiPropertiesRepository.
+     * @param jpaRepository jpaRepository
+     * @return ApiPropertiesRepository
+     */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityJpaRepository jpaRepository) {
+    protected ApiPropertiesRepository propertiesRepository(
+            final ApiPropertiesEntityJpaRepository jpaRepository) {
         return new ApiPropertiesJpaRepository(jpaRepository);
     }
 }

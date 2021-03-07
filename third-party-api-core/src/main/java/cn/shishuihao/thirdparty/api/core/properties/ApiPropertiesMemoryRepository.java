@@ -35,12 +35,13 @@ public class ApiPropertiesMemoryRepository
     /**
      * add api properties.
      *
-     * @param entity entity
+     * @param apiProperties api properties
      */
     @Override
-    public void add(final ApiProperties entity) {
-        this.getMap().put(getKey(entity.channelId(), entity.id()), entity);
-        this.getMap().put(entity.id(), entity);
+    public void add(final ApiProperties apiProperties) {
+        String key = getKey(apiProperties.channelId(), apiProperties.id());
+        this.getMap().put(key, apiProperties);
+        this.getMap().put(apiProperties.id(), apiProperties);
     }
 
     /**
@@ -48,7 +49,7 @@ public class ApiPropertiesMemoryRepository
      *
      * @param channelId    channel id
      * @param propertiesId properties id
-     * @return Optional<ApiProperties>
+     * @return optional api properties
      */
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,

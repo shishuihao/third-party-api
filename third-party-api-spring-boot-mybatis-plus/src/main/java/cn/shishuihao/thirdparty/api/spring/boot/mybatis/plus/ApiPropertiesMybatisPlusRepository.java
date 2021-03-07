@@ -22,9 +22,9 @@ public class ApiPropertiesMybatisPlusRepository
     private final ApiPropertiesEntityMybatisPlusMapper mpMapper;
 
     /**
-     * add apiProperties.
+     * add api properties.
      *
-     * @param apiProperties entity
+     * @param apiProperties api properties
      */
     @Override
     public void add(final ApiProperties apiProperties) {
@@ -43,10 +43,10 @@ public class ApiPropertiesMybatisPlusRepository
     }
 
     /**
-     * get properties by id.
+     * get api properties by properties id.
      *
-     * @param propertiesId properties id
-     * @return Optional<ApiProperties>
+     * @param propertiesId api properties id
+     * @return optional api properties
      */
     @Override
     public Optional<ApiProperties> getById(final String propertiesId) {
@@ -56,15 +56,15 @@ public class ApiPropertiesMybatisPlusRepository
     }
 
     /**
-     * get properties by channelId and propertiesId.
+     * get api properties by channel id and properties id.
      *
+     * @param channelId    channel id
      * @param propertiesId properties id
-     * @return Optional<ApiProperties>
+     * @return optional api properties
      */
     @Override
-    public Optional<ApiProperties> getApiProperties(
-            final String channelId,
-            final String propertiesId) {
+    public Optional<ApiProperties> getApiProperties(final String channelId,
+                                                    final String propertiesId) {
         return mpMapper
                 .findByChannelIdAndPropertiesId(channelId, propertiesId)
                 .map(ApiPropertiesMybatisPlusEntity::getProperties);

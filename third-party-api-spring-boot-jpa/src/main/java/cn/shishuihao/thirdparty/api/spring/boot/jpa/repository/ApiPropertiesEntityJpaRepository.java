@@ -11,21 +11,24 @@ import java.util.Optional;
  * @version 1.0.0
  */
 @Repository
-public interface ApiPropertiesEntityJpaRepository extends JpaRepository<ApiPropertiesJpaEntity, Long> {
+public interface ApiPropertiesEntityJpaRepository
+        extends JpaRepository<ApiPropertiesJpaEntity, Long> {
     /**
-     * get by properties id
+     * get by properties id.
      *
      * @param id properties id
      * @return properties
      */
-    Optional<ApiPropertiesJpaEntity> findByPropertiesId(String id);
+    Optional<ApiPropertiesJpaEntity>
+    findByPropertiesId(String id);
 
     /**
-     * get by channel id and properties id
+     * get by channel id and properties id.
      *
      * @param channelId channel id
      * @param id        properties id
      * @return properties
      */
-    Optional<ApiPropertiesJpaEntity> findByChannelIdAndPropertiesId(String channelId, String id);
+    Optional<ApiPropertiesJpaEntity>
+    findByChannelIdAndPropertiesId(String channelId, String id);
 }

@@ -20,34 +20,36 @@ public class ApiPropertiesRedisRepository implements ApiPropertiesRepository {
     private final RedisTemplate<String, ApiProperties> redisTemplate;
 
     /**
-     * add entity.
+     * add api properties.
      *
-     * @param entity entity
+     * @param apiProperties api properties
      */
     @Override
-    public void add(final ApiProperties entity) {
+    public void add(final ApiProperties apiProperties) {
         ValueOperations<String, ApiProperties> vo = redisTemplate.opsForValue();
-        vo.set(getKey(entity.channelId(), entity.id()), entity);
-        vo.set(entity.id(), entity);
+        String key = getKey(apiProperties.channelId(), apiProperties.id());
+        vo.set(key, apiProperties);
+        vo.set(apiProperties.id(), apiProperties);
     }
 
     /**
-     * get entity by id.
+     * get api properties by properties id.
      *
-     * @param id entity id
-     * @return optional entity
+     * @param propertiesId api properties id
+     * @return optional api properties
      */
     @Override
-    public Optional<ApiProperties> getById(final String id) {
-        return Optional.ofNullable(redisTemplate.opsForValue().get(id));
+    public Optional<ApiProperties> getById(final String propertiesId) {
+        return Optional.ofNullable(redisTemplate.opsForValue()
+                .get(propertiesId));
     }
 
     /**
-     * get api properties by api type.
+     * get api properties by channel id and properties id.
      *
      * @param channelId    channel id
      * @param propertiesId properties id
-     * @return ApiProperties
+     * @return optional api properties
      */
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,

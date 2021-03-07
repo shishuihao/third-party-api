@@ -3,7 +3,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.autoconfigure;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.ThirdPartyApiAutoConfiguration;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.ApiPropertiesMybatisPlusRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper.ApiPropertiesEntityMpMapper;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper.ApiPropertiesEntityMybatisPlusMapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -34,7 +34,7 @@ public class ThirdPartyApiMybatisPlusAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     protected ApiPropertiesRepository propertiesRepository(
-            final ApiPropertiesEntityMpMapper mpMapper) {
+            final ApiPropertiesEntityMybatisPlusMapper mpMapper) {
         return new ApiPropertiesMybatisPlusRepository(mpMapper);
     }
 }

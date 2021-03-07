@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper;
 
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiPropertiesMpEntity;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiPropertiesMybatisPlusEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,18 +13,18 @@ import java.util.Optional;
  * @version 1.0.0
  */
 @Mapper
-public interface ApiPropertiesEntityMpMapper
-        extends BaseMapper<ApiPropertiesMpEntity> {
+public interface ApiPropertiesEntityMybatisPlusMapper
+        extends BaseMapper<ApiPropertiesMybatisPlusEntity> {
     /**
      * get by properties id.
      *
      * @param id properties id
      * @return properties
      */
-    @Select("SELECT * FROM " + ApiPropertiesMpEntity.TABLE_NAME
-            + " WHERE " + ApiPropertiesMpEntity.COLUMN_PROPERTIES_ID
+    @Select("SELECT * FROM " + ApiPropertiesMybatisPlusEntity.TABLE_NAME
+            + " WHERE " + ApiPropertiesMybatisPlusEntity.COLUMN_PROPERTIES_ID
             + " = #{id}")
-    Optional<ApiPropertiesMpEntity>
+    Optional<ApiPropertiesMybatisPlusEntity>
     findByPropertiesId(@Param("id") String id);
 
     /**
@@ -34,13 +34,13 @@ public interface ApiPropertiesEntityMpMapper
      * @param id        properties id
      * @return properties
      */
-    @Select("SELECT * FROM " + ApiPropertiesMpEntity.TABLE_NAME
-            + " WHERE " + ApiPropertiesMpEntity.COLUMN_CHANNEL_ID
+    @Select("SELECT * FROM " + ApiPropertiesMybatisPlusEntity.TABLE_NAME
+            + " WHERE " + ApiPropertiesMybatisPlusEntity.COLUMN_CHANNEL_ID
             + " = #{channelId}"
             + " AND "
-            + ApiPropertiesMpEntity.COLUMN_PROPERTIES_ID
+            + ApiPropertiesMybatisPlusEntity.COLUMN_PROPERTIES_ID
             + "  = #{id}")
-    Optional<ApiPropertiesMpEntity>
+    Optional<ApiPropertiesMybatisPlusEntity>
     findByChannelIdAndPropertiesId(@Param("channelId") String channelId,
                                    @Param("id") String id);
 }

@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-public abstract class BaseMpEntity {
+public abstract class BaseMybatisPlusEntity {
     /**
      * column name id.
      */

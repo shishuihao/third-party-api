@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-@TableName(value = ApiPropertiesMpEntity.TABLE_NAME)
-public class ApiPropertiesMpEntity extends BaseMpEntity {
+@TableName(value = ApiPropertiesMybatisPlusEntity.TABLE_NAME)
+public class ApiPropertiesMybatisPlusEntity extends BaseMybatisPlusEntity {
     /**
      * table name api_properties.
      */
@@ -57,8 +57,10 @@ public class ApiPropertiesMpEntity extends BaseMpEntity {
      * @param properties apiProperties
      * @return ApiPropertiesMybatisPlusEntity
      */
-    public static ApiPropertiesMpEntity from(final ApiProperties properties) {
-        ApiPropertiesMpEntity mpEntity = new ApiPropertiesMpEntity();
+    public static ApiPropertiesMybatisPlusEntity from(
+            final ApiProperties properties) {
+        ApiPropertiesMybatisPlusEntity mpEntity
+                = new ApiPropertiesMybatisPlusEntity();
         mpEntity.setChannelId(properties.channelId());
         mpEntity.setPropertiesId(properties.id());
         mpEntity.setProperties(properties);

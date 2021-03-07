@@ -39,7 +39,8 @@ public class AliYunSendBatchSmsApi implements SendBatchSmsApi {
      * @return SendBatchSmsApiResponse
      */
     @Override
-    public SendBatchSmsApiResponse execute(final SendBatchSmsApiRequest request) {
+    public SendBatchSmsApiResponse
+    execute(final SendBatchSmsApiRequest request) {
         AliYunSmsApiProperties properties = (AliYunSmsApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {

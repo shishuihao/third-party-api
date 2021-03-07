@@ -36,10 +36,10 @@ public class XiaomiPushApiChannel
     /**
      * new XiaomiPushApiChannel.
      *
-     * @param properties channelProperties
+     * @param prop channelProperties
      */
-    public XiaomiPushApiChannel(final XiaomiPushApiChannelProperties properties) {
-        this(properties, new XiaomiPushClient());
+    public XiaomiPushApiChannel(final XiaomiPushApiChannelProperties prop) {
+        this(prop, new XiaomiPushClient());
     }
 
     /**

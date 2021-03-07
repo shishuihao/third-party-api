@@ -39,10 +39,10 @@ public class TencentSmsApiChannel
     /**
      * new TencentSmsApiChannel.
      *
-     * @param properties channelProperties
+     * @param prop channelProperties
      */
-    public TencentSmsApiChannel(final TencentSmsApiChannelProperties properties) {
-        this(properties, new TencentSmsClient(properties));
+    public TencentSmsApiChannel(final TencentSmsApiChannelProperties prop) {
+        this(prop, new TencentSmsClient(prop));
     }
 
     /**

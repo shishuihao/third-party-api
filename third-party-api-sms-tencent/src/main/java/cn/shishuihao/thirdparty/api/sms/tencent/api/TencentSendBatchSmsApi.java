@@ -40,7 +40,8 @@ public class TencentSendBatchSmsApi implements SendBatchSmsApi {
      * @return SendBatchSmsApiResponse
      */
     @Override
-    public SendBatchSmsApiResponse execute(final SendBatchSmsApiRequest request) {
+    public SendBatchSmsApiResponse
+    execute(final SendBatchSmsApiRequest request) {
         TencentSmsApiProperties properties = (TencentSmsApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {

@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class HmacDigestUtils {
     /**
-     * UTILS_MAP,
+     * UTILS_MAP.
      */
     private static final Map<String, HmacUtils> UTILS_MAP
             = new ConcurrentHashMap<>();
@@ -21,7 +21,8 @@ public final class HmacDigestUtils {
     private HmacDigestUtils() {
     }
 
-    private static HmacUtils getHmacUtils(final HmacAlgorithms algorithm, final String key) {
+    private static HmacUtils getHmacUtils(final HmacAlgorithms algorithm,
+                                          final String key) {
         return UTILS_MAP.computeIfAbsent(algorithm.getName() + key, k ->
                 new HmacUtils(HmacAlgorithms.HMAC_SHA_256, key));
     }

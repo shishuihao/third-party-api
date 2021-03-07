@@ -7,6 +7,7 @@ buildscript {
 plugins {
     id 'org.springframework.boot' version '2.4.0'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id "io.freefair.lombok" version "5.3.0"
     id 'java'
     id 'jacoco'
 }
@@ -25,6 +26,7 @@ allprojects {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'jacoco'
+    apply plugin: "io.freefair.lombok"
 
     sourceCompatibility = 1.8
 

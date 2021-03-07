@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter;
 
-import cn.shishuihao.thirdparty.api.commons.json.JacksonUtils;
+import cn.shishuihao.thirdparty.api.commons.json.JacksonTypingUtils;
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.NonNull;
@@ -15,6 +15,6 @@ public class JacksonToApiPropertiesConverter implements Converter<String, ApiPro
     @Nullable
     @Override
     public ApiProperties convert(@NonNull String source) {
-        return JacksonUtils.fromJson(source, ApiProperties.class);
+        return JacksonTypingUtils.fromJson(source, ApiProperties.class);
     }
 }

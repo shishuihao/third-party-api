@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.jpa.converter;
 
-import cn.shishuihao.thirdparty.api.commons.json.JacksonUtils;
+import cn.shishuihao.thirdparty.api.commons.json.JacksonTypingUtils;
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 
 import javax.persistence.AttributeConverter;
@@ -14,11 +14,11 @@ import javax.persistence.Converter;
 public class ApiPropertiesJacksonAttributeConverter implements AttributeConverter<ApiProperties, String> {
     @Override
     public String convertToDatabaseColumn(ApiProperties attribute) {
-        return JacksonUtils.toJson(attribute);
+        return JacksonTypingUtils.toJson(attribute);
     }
 
     @Override
     public ApiProperties convertToEntityAttribute(String dbData) {
-        return JacksonUtils.fromJson(dbData, ApiProperties.class);
+        return JacksonTypingUtils.fromJson(dbData, ApiProperties.class);
     }
 }

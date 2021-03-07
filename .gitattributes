@@ -48,7 +48,14 @@
 *.woff binary
 *.pyc binary
 *.pdf binary
-
+# java
+*.class         binary
+*.dll           binary
+*.ear           binary
+*.jar           binary
+*.so            binary
+*.war           binary
+*.jks           binary
 
 #
 ## Visual Studio
@@ -65,18 +72,31 @@
 #
 
 # source code
+# java
+*.java          text diff=java
+*.gradle        text diff=java
+*.gradle.kts    text diff=java
+*.css           text diff=css
+*.df            text
+*.htm           text diff=html
+*.html          text diff=html
+*.js            text
+*.jsp           text
+*.jspf          text
+*.jspx          text
+*.properties    text
+*.tld           text
+*.tag           text
+*.tagx          text
+*.xml           text
+
 *.php text
-*.css text
 *.sass text
 *.scss text
 *.less text
 *.styl text
-*.js text
 *.coffee text
 *.json text
-*.htm text
-*.html text
-*.xml text
 *.svg text
 *.txt text
 *.ini text

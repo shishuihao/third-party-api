@@ -176,11 +176,7 @@ public class WxPayRefundQueryResponseConverter extends ReflectionConverter {
                 putIfMatchCoupon(reader, response, nodeName);
                 Field field = NAME_FIELD_MAP.get(nodeName);
                 if (field != null) {
-                    Class<?> type = mapper
-                            .defaultImplementationOf(field.getType());
-                    Object value = this
-                            .unmarshallField(context, response, type, field);
-                    FieldUtils.writeField(field, response, value, true);
+                    writeField(context, response, field);
                 }
                 reader.moveUp();
             }
@@ -188,6 +184,14 @@ public class WxPayRefundQueryResponseConverter extends ReflectionConverter {
         } catch (Exception e) {
             throw ExceptionUtils.<RuntimeException>rethrow(e);
         }
+    }
+
+    private void writeField(final UnmarshallingContext context,
+                            final WxPayRefundQueryResponse response,
+                            final Field field) throws IllegalAccessException {
+        Class<?> type = mapper.defaultImplementationOf(field.getType());
+        Object value = this.unmarshallField(context, response, type, field);
+        FieldUtils.writeField(field, response, value, true);
     }
 
     private void putIfMatchRefund(final HierarchicalStreamReader reader,

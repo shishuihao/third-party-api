@@ -13,14 +13,27 @@ import org.apache.ibatis.type.MappedTypes;
  */
 @MappedTypes({ApiProperties.class})
 @MappedJdbcTypes(JdbcType.VARCHAR)
-public class ApiPropertiesJacksonTypeHandler extends AbstractJsonTypeHandler<ApiProperties> {
+public class ApiPropertiesJacksonTypeHandler
+        extends AbstractJsonTypeHandler<ApiProperties> {
+    /**
+     * pares json.
+     *
+     * @param json json
+     * @return ApiProperties
+     */
     @Override
-    protected ApiProperties parse(String json) {
+    protected ApiProperties parse(final String json) {
         return JacksonTypingUtils.fromJson(json, ApiProperties.class);
     }
 
+    /**
+     * obj to json.
+     *
+     * @param obj object
+     * @return String
+     */
     @Override
-    protected String toJson(ApiProperties obj) {
+    protected String toJson(final ApiProperties obj) {
         return JacksonTypingUtils.toJson(obj);
     }
 }

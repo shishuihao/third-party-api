@@ -9,29 +9,62 @@ import cn.shishuihao.thirdparty.api.push.vivo.api.VivoPushMessageApi;
  * @version 1.0.0
  */
 
-public class VivoPushApiChannel extends AbstractMemoryChannel<VivoPushApiProperties> implements PushApiChannel<VivoPushApiProperties> {
+public class VivoPushApiChannel
+        extends AbstractMemoryChannel<VivoPushApiProperties>
+        implements PushApiChannel<VivoPushApiProperties> {
+    /**
+     * channel id.
+     */
     public static final String CHANNEL_ID = "push.vivo";
+    /**
+     * channel properties.
+     */
+    private final VivoPushApiChannelProperties channelProperties;
 
-    private final VivoPushProperties channelProperties;
-
-    public VivoPushApiChannel(VivoPushProperties channelProperties, VivoPushClient vivoPushClient) {
-        this.channelProperties = channelProperties;
-        this.add(new VivoPushMessageApi(vivoPushClient));
+    /**
+     * new VivoPushApiChannel.
+     *
+     * @param properties channelProperties
+     * @param client     vivo push http client
+     */
+    public VivoPushApiChannel(final VivoPushApiChannelProperties properties,
+                              final VivoPushClient client) {
+        this.channelProperties = properties;
+        this.add(new VivoPushMessageApi(client));
     }
 
-    public VivoPushApiChannel(VivoPushProperties channelProperties) {
-        this(channelProperties, new VivoPushClient());
+    /**
+     * new VivoPushApiChannel.
+     *
+     * @param properties channelProperties
+     */
+    public VivoPushApiChannel(final VivoPushApiChannelProperties properties) {
+        this(properties, new VivoPushClient());
     }
 
+    /**
+     * new VivoPushApiChannel.
+     */
     public VivoPushApiChannel() {
-        this(new VivoPushProperties());
+        this(new VivoPushApiChannelProperties());
     }
 
+    /**
+     * get entity id.
+     *
+     * @return entity id
+     */
     @Override
     public String id() {
         return channelProperties.getChannelId();
     }
 
+    /**
+     * get properties type.
+     * immutable
+     *
+     * @return properties type
+     */
     @Override
     public Class<VivoPushApiProperties> propertiesType() {
         return VivoPushApiProperties.class;

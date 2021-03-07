@@ -12,9 +12,19 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class VivoPushClient {
-    private final Map<AbstractApiProperties, Sender> map = new ConcurrentHashMap<>();
+    /**
+     * map.
+     */
+    private final Map<AbstractApiProperties, Sender>
+            map = new ConcurrentHashMap<>();
 
-    public Sender getSender(VivoPushApiProperties properties) {
+    /**
+     * get vivo push client.
+     *
+     * @param properties properties
+     * @return Sender
+     */
+    public Sender getSender(final VivoPushApiProperties properties) {
         return map.computeIfAbsent(properties, k -> {
             try {
                 return new Sender(properties.getSecret());

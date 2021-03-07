@@ -49,7 +49,7 @@ public class AlipayCodePayApi implements CodePayApi {
                     request.getOutTradeNo(),
                     AmountUtils.toYuanString(request.getTotalAmount()),
                     request.getAuthCode());
-            return CodePayApiResponse.Builder.builder()
+            return CodePayApiResponse.builder()
                     .success(ResponseChecker.success(response))
                     .code(response.code)
                     .message(response.msg)

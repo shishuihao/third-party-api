@@ -8,5 +8,6 @@ import cn.shishuihao.thirdparty.api.core.channel.ApiChannel;
  * @version 1.0.0
  */
 public interface PayApiChannel<
-        P extends PayApiProperties> extends ApiChannel<P> {
+        P extends PayApiProperties>
+        extends ApiChannel<P> {
 }

@@ -10,50 +10,94 @@ import feign.Feign;
  * @version 1.0.0
  */
 
-public class WxFactory {
+public final class WxFactory {
+    /**
+     * ENDPOINT.
+     */
     public static final String ENDPOINT = "https://api.mch.weixin.qq.com";
 
     private WxFactory() {
     }
 
-    public static class Payment {
+    public static final class Payment {
         private Payment() {
         }
 
-        public static Feign.Builder builder() {
+        private static Feign.Builder builder() {
             return Feign.builder()
                     .encoder(WxXmlEncoder.INSTANCE)
                     .decoder(WxXmlDecoder.INSTANCE);
         }
 
+        /**
+         * commonApi.
+         *
+         * @return WxPayCommonApi
+         */
         public static WxPayCommonApi commonApi() {
             return builder().target(WxPayCommonApi.class, ENDPOINT);
         }
 
+        /**
+         * codeApi.
+         *
+         * @return WxPayCodeApi
+         */
         public static WxPayCodeApi codeApi() {
             return builder().target(WxPayCodeApi.class, ENDPOINT);
         }
 
+        /**
+         * jsApi.
+         *
+         * @return WxPayJsApi
+         */
         public static WxPayJsApi jsApi() {
             return builder().target(WxPayJsApi.class, ENDPOINT);
         }
 
+        /**
+         * nativeApi.
+         *
+         * @return WxPayNativeApi
+         */
         public static WxPayNativeApi nativeApi() {
             return builder().target(WxPayNativeApi.class, ENDPOINT);
         }
 
+        /**
+         * appApi.
+         *
+         * @return WxPayAppApi
+         */
         public static WxPayAppApi appApi() {
             return builder().target(WxPayAppApi.class, ENDPOINT);
         }
 
+        /**
+         * h5Api.
+         *
+         * @return WxPayH5Api
+         */
         public static WxPayH5Api h5Api() {
             return builder().target(WxPayH5Api.class, ENDPOINT);
         }
+
+        /**
+         * appletApi.
+         *
+         * @return WxPayAppletApi
+         */
 
         public static WxPayAppletApi appletApi() {
             return builder().target(WxPayAppletApi.class, ENDPOINT);
         }
 
+        /**
+         * faceApi.
+         *
+         * @return WxPayFaceApi
+         */
         public static WxPayFaceApi faceApi() {
             return builder().target(WxPayFaceApi.class, ENDPOINT);
         }

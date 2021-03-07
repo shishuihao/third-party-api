@@ -9,29 +9,62 @@ import cn.shishuihao.thirdparty.api.push.xiaomi.api.XiaomiPushMessageApi;
  * @version 1.0.0
  */
 
-public class XiaomiPushApiChannel extends AbstractMemoryChannel<XiaomiPushApiProperties> implements PushApiChannel<XiaomiPushApiProperties> {
+public class XiaomiPushApiChannel
+        extends AbstractMemoryChannel<XiaomiPushApiProperties>
+        implements PushApiChannel<XiaomiPushApiProperties> {
+    /**
+     * channel id.
+     */
     public static final String CHANNEL_ID = "push.xiaomi";
+    /**
+     * channel properties.
+     */
+    private final XiaomiPushApiChannelProperties channelProperties;
 
-    private final XiaomiPushProperties channelProperties;
-
-    public XiaomiPushApiChannel(XiaomiPushProperties channelProperties, XiaomiPushClient xiaomiPushClient) {
-        this.channelProperties = channelProperties;
-        this.add(new XiaomiPushMessageApi(xiaomiPushClient));
+    /**
+     * new XiaomiPushApiChannel.
+     *
+     * @param properties channelProperties
+     * @param client     xiaomi push http client
+     */
+    public XiaomiPushApiChannel(final XiaomiPushApiChannelProperties properties,
+                                final XiaomiPushClient client) {
+        this.channelProperties = properties;
+        this.add(new XiaomiPushMessageApi(client));
     }
 
-    public XiaomiPushApiChannel(XiaomiPushProperties channelProperties) {
-        this(channelProperties, new XiaomiPushClient());
+    /**
+     * new XiaomiPushApiChannel.
+     *
+     * @param properties channelProperties
+     */
+    public XiaomiPushApiChannel(final XiaomiPushApiChannelProperties properties) {
+        this(properties, new XiaomiPushClient());
     }
 
+    /**
+     * new XiaomiPushApiChannel.
+     */
     public XiaomiPushApiChannel() {
-        this(new XiaomiPushProperties());
+        this(new XiaomiPushApiChannelProperties());
     }
 
+    /**
+     * get entity id.
+     *
+     * @return entity id
+     */
     @Override
     public String id() {
         return channelProperties.getChannelId();
     }
 
+    /**
+     * get properties type.
+     * immutable
+     *
+     * @return properties type
+     */
     @Override
     public Class<XiaomiPushApiProperties> propertiesType() {
         return XiaomiPushApiProperties.class;

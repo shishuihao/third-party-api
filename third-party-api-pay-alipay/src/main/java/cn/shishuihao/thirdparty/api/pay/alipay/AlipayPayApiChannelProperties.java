@@ -10,7 +10,7 @@ import cn.shishuihao.thirdparty.api.core.channel.AbstractApiChannelProperties;
 public class AlipayPayApiChannelProperties
         extends AbstractApiChannelProperties<AlipayPayApiProperties> {
     /**
-     * new AlipayPayProperties.
+     * new AlipayPayApiChannelProperties.
      */
     public AlipayPayApiChannelProperties() {
         this.setChannelId(AlipayPayApiChannel.CHANNEL_ID);

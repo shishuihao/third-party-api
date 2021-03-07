@@ -7,7 +7,7 @@ import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayRefundQueryResp
 import feign.RequestLine;
 
 /**
- * 通用
+ * 通用.
  *
  * @author shishuihao
  * @version 1.0.0
@@ -15,7 +15,7 @@ import feign.RequestLine;
 
 public interface WxPayCommonApi {
     /**
-     * 查询订单
+     * 查询订单.
      * {@link "https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_2"}
      * 该接口提供所有微信支付订单的查询，商户可以通过查询订单接口主动查询订单状态，完成下一步的业务逻辑。
      * 需要调用查询接口的情况：
@@ -31,9 +31,10 @@ public interface WxPayCommonApi {
     WxPayOrderQueryResponse orderQuery(WxPayOrderQueryRequest request);
 
     /**
-     * 查询退款
+     * 查询退款.
      * {@link "https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_5"}
-     * 提交退款申请后，通过调用该接口查询退款状态。退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态。
+     * 提交退款申请后，通过调用该接口查询退款状态。
+     * 退款有一定延时，用零钱支付的退款20分钟内到账，银行卡支付的退款3个工作日后重新查询退款状态。
      * 注意：如果单个支付订单部分退款次数超过20次请使用退款单号查询
      *
      * @param request request

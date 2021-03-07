@@ -13,14 +13,16 @@ import cn.shishuihao.thirdparty.api.push.huawei.sdk.response.HuaweiPushMessageRe
 import cn.shishuihao.thirdparty.api.push.huawei.sdk.util.ResponseChecker;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
+import lombok.AllArgsConstructor;
 
 import java.util.Arrays;
 
 /**
+ * push message.
  * @author shishuihao
  * @version 1.0.0
  */
-
+@AllArgsConstructor
 public class HuaweiPushMessageApi implements PushMessageApi {
     /**
      * huaweiPushApi.
@@ -52,7 +54,7 @@ public class HuaweiPushMessageApi implements PushMessageApi {
             HuaweiPushMessageResponse response = huaweiPushApi.sendMessage(
                     properties.getAppId(),
                     pmRequest);
-            return PushMessageApiResponse.Builder.builder()
+            return PushMessageApiResponse.builder()
                     .success(ResponseChecker.success(response))
                     .code(response.getCode())
                     .message(response.getMsg())

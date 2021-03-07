@@ -33,7 +33,7 @@ compile 'cn.shishuihao:third-party-api-pay-icbc:latest'
         properties.setPrivateKey("");
         properties.setIcbcPublicKey("");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        CodePayApiRequest request = CodePayApiRequest.Builder.builder()
+        CodePayApiRequest request = CodePayApiRequest.builder()
                 .channelId(IcbcPayApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .subject("Apple iPhone11 128G")

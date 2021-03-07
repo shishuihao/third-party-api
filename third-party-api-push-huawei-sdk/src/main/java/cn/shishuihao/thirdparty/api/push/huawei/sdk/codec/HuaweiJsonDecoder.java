@@ -1,6 +1,5 @@
 package cn.shishuihao.thirdparty.api.push.huawei.sdk.codec;
 
-import cn.shishuihao.thirdparty.api.commons.json.JacksonTypingUtils;
 import cn.shishuihao.thirdparty.api.commons.json.JacksonUtils;
 import cn.shishuihao.thirdparty.api.push.huawei.sdk.response.HuaweiPushResponse;
 import feign.FeignException;
@@ -40,10 +39,9 @@ public class HuaweiJsonDecoder extends Decoder.Default {
      * @throws FeignException FeignException
      */
     @Override
-    public Object decode(final Response response, final Type type)
-            throws IOException, FeignException {
-        if (type instanceof Class<?>
-                && HuaweiPushResponse.class.isAssignableFrom((Class<?>) type)) {
+    public Object decode(final Response response,
+                         final Type type) throws IOException, FeignException {
+        if (type instanceof Class<?> && isAssignableFrom((Class<?>) type)) {
             try {
                 String json = Util.toString(response.body().asReader());
                 return JacksonUtils.fromJson(json, (Class<?>) type);
@@ -52,5 +50,9 @@ public class HuaweiJsonDecoder extends Decoder.Default {
             }
         }
         return super.decode(response, type);
+    }
+
+    private boolean isAssignableFrom(final Class<?> type) {
+        return HuaweiPushResponse.class.isAssignableFrom(type);
     }
 }

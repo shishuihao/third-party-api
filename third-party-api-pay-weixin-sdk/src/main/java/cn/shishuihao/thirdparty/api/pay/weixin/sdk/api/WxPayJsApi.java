@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.api;
 
 /**
- * JSAPI支付
+ * JSAPI支付.
  * {@link "https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_1"}
  *
  * @author shishuihao

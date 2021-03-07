@@ -13,10 +13,23 @@ import java.lang.reflect.Type;
  */
 
 public class WxXmlEncoder implements Encoder {
+    /**
+     * INSTANCE.
+     */
     public static final WxXmlEncoder INSTANCE = new WxXmlEncoder();
 
+    /**
+     * encode request.
+     *
+     * @param object   request
+     * @param bodyType body type
+     * @param template request template
+     * @throws EncodeException EncodeException
+     */
     @Override
-    public void encode(Object object, Type bodyType, RequestTemplate template) throws EncodeException {
+    public void encode(final Object object,
+                       final Type bodyType,
+                       final RequestTemplate template) throws EncodeException {
         template.body(XmlUtils.toXml(object));
     }
 }

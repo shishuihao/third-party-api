@@ -8,7 +8,6 @@ import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayCodePayApi;
  * @author shishuihao
  * @version 1.0.0
  */
-
 public class AlipayPayApiChannel
         extends AbstractMemoryChannel<AlipayPayApiProperties>
         implements PayApiChannel<AlipayPayApiProperties> {

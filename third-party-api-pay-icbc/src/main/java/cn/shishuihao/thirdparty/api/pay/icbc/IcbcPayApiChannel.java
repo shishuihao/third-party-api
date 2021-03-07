@@ -9,29 +9,66 @@ import cn.shishuihao.thirdparty.api.pay.icbc.api.IcbcCodePayApi;
  * @version 1.0.0
  */
 
-public class IcbcPayApiChannel extends AbstractMemoryChannel<IcbcPayApiProperties> implements PayApiChannel<IcbcPayApiProperties> {
+public class IcbcPayApiChannel
+        extends AbstractMemoryChannel<IcbcPayApiProperties>
+        implements PayApiChannel<IcbcPayApiProperties> {
+    /**
+     * gateway.
+     */
+    public static final String GATEWAY = "https://gw.open.icbc.com.cn";
+    /**
+     * channel id.
+     */
     public static final String CHANNEL_ID = "pay.icbc";
+    /**
+     * channel properties.
+     */
+    private final IcbcPayApiChannelProperties channelProperties;
 
-    private final IcbcPayProperties channelProperties;
-
-    public IcbcPayApiChannel(IcbcPayProperties channelProperties, IcbcPayClient icbcPayClient) {
-        this.channelProperties = channelProperties;
-        this.add(new IcbcCodePayApi(icbcPayClient));
+    /**
+     * new IcbcPayApiChannel.
+     *
+     * @param properties channel properties
+     * @param client     icbc pay http client
+     */
+    public IcbcPayApiChannel(final IcbcPayApiChannelProperties properties,
+                             final IcbcPayClient client) {
+        this.channelProperties = properties;
+        this.add(new IcbcCodePayApi(client));
     }
 
-    public IcbcPayApiChannel(IcbcPayProperties channelProperties) {
-        this(channelProperties, new IcbcPayClient());
+    /**
+     * new IcbcPayApiChannel.
+     *
+     * @param properties channel properties
+     */
+    public IcbcPayApiChannel(final IcbcPayApiChannelProperties properties) {
+        this(properties, new IcbcPayClient());
     }
 
+    /**
+     * new IcbcPayApiChannel.
+     */
     public IcbcPayApiChannel() {
-        this(new IcbcPayProperties());
+        this(new IcbcPayApiChannelProperties());
     }
 
+    /**
+     * get entity id.
+     *
+     * @return entity id
+     */
     @Override
     public String id() {
         return channelProperties.getChannelId();
     }
 
+    /**
+     * get properties type.
+     * immutable
+     *
+     * @return properties type
+     */
     @Override
     public Class<IcbcPayApiProperties> propertiesType() {
         return IcbcPayApiProperties.class;

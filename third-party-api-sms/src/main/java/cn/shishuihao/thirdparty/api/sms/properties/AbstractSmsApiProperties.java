@@ -8,5 +8,7 @@ import cn.shishuihao.thirdparty.api.sms.SmsApiProperties;
  * @version 1.0.0
  */
 
-public abstract class AbstractSmsApiProperties extends AbstractApiProperties implements SmsApiProperties {
+public abstract class AbstractSmsApiProperties
+        extends AbstractApiProperties
+        implements SmsApiProperties {
 }

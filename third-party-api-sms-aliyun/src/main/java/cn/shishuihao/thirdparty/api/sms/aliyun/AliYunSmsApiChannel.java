@@ -10,30 +10,67 @@ import cn.shishuihao.thirdparty.api.sms.aliyun.api.AliYunSendSmsApi;
  * @version 1.0.0
  */
 
-public class AliYunSmsApiChannel extends AbstractMemoryChannel<AliYunSmsApiProperties> implements SmsApiChannel<AliYunSmsApiProperties> {
+public class AliYunSmsApiChannel
+        extends AbstractMemoryChannel<AliYunSmsApiProperties>
+        implements SmsApiChannel<AliYunSmsApiProperties> {
+    /**
+     * gateway.
+     */
+    public static final String ENDPOINT = "dysmsapi.aliyuncs.com";
+    /**
+     * channel id.
+     */
     public static final String CHANNEL_ID = "sms.aliyun";
+    /**
+     * channel properties.
+     */
+    private final AliYunSmsApiChannelProperties channelProperties;
 
-    private final AliYunSmsProperties channelProperties;
-
-    public AliYunSmsApiChannel(AliYunSmsProperties channelProperties, AliYunSmsClient smsClient) {
-        this.channelProperties = channelProperties;
-        this.add(new AliYunSendBatchSmsApi(smsClient));
-        this.add(new AliYunSendSmsApi(smsClient));
+    /**
+     * new AliYunSmsApiChannel.
+     *
+     * @param properties channelProperties
+     * @param client     aliyun sms http client
+     */
+    public AliYunSmsApiChannel(final AliYunSmsApiChannelProperties properties,
+                               final AliYunSmsClient client) {
+        this.channelProperties = properties;
+        this.add(new AliYunSendBatchSmsApi(client));
+        this.add(new AliYunSendSmsApi(client));
     }
 
-    public AliYunSmsApiChannel(AliYunSmsProperties channelProperties) {
-        this(channelProperties, new AliYunSmsClient(channelProperties));
+    /**
+     * new AliYunSmsApiChannel.
+     *
+     * @param properties channelProperties
+     */
+    public AliYunSmsApiChannel(final AliYunSmsApiChannelProperties properties) {
+        this(properties, new AliYunSmsClient());
     }
 
+    /**
+     * new AliYunSmsApiChannel.
+     */
     public AliYunSmsApiChannel() {
-        this(new AliYunSmsProperties());
+        this(new AliYunSmsApiChannelProperties());
     }
 
+    /**
+     * get entity id.
+     *
+     * @return entity id
+     */
     @Override
     public String id() {
         return channelProperties.getChannelId();
     }
 
+    /**
+     * get properties type.
+     * immutable
+     *
+     * @return properties type
+     */
     @Override
     public Class<AliYunSmsApiProperties> propertiesType() {
         return AliYunSmsApiProperties.class;

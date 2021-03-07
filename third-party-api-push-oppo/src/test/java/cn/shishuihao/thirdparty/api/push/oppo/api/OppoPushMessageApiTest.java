@@ -24,7 +24,7 @@ class OppoPushMessageApiTest {
         properties.setAppKey("appKey");
         properties.setMasterSecret("masterSecret");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiRequest request = PushMessageApiRequest.Builder.builder()
+        PushMessageApiRequest request = PushMessageApiRequest.builder()
                 .channelId(OppoPushApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .title("title")

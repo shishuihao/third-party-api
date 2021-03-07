@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.api;
 
 /**
- * Native支付
+ * Native支付.
  * {@link "https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_1"}
  *
  * @author shishuihao

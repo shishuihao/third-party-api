@@ -3,12 +3,17 @@ package cn.shishuihao.thirdparty.api.pay.alipay;
 import cn.shishuihao.thirdparty.api.pay.properties.AbstractPayApiProperties;
 import com.aliyun.tea.NameInMap;
 import com.aliyun.tea.Validation;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-
+@EqualsAndHashCode(of = "appId", callSuper = true)
+@Getter
+@Setter
 public class AlipayPayApiProperties extends AbstractPayApiProperties {
     /**
      * 通信协议，通常填写https.
@@ -91,140 +96,20 @@ public class AlipayPayApiProperties extends AbstractPayApiProperties {
     @NameInMap("ignoreSSL")
     private boolean ignoreSsl;
 
+    /**
+     * new AlipayPayApiProperties.
+     */
     public AlipayPayApiProperties() {
         this.setChannelId(AlipayPayApiChannel.CHANNEL_ID);
     }
 
+    /**
+     * get entity id.
+     *
+     * @return entity id
+     */
     @Override
     public String id() {
         return appId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof AlipayPayApiProperties)) {
-            return false;
-        }
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    public String getProtocol() {
-        return protocol;
-    }
-
-    public void setProtocol(String protocol) {
-        this.protocol = protocol;
-    }
-
-    public String getGatewayHost() {
-        return gatewayHost;
-    }
-
-    public void setGatewayHost(String gatewayHost) {
-        this.gatewayHost = gatewayHost;
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public String getSignType() {
-        return signType;
-    }
-
-    public void setSignType(String signType) {
-        this.signType = signType;
-    }
-
-    public String getAlipayPublicKey() {
-        return alipayPublicKey;
-    }
-
-    public void setAlipayPublicKey(String alipayPublicKey) {
-        this.alipayPublicKey = alipayPublicKey;
-    }
-
-    public String getMerchantPrivateKey() {
-        return merchantPrivateKey;
-    }
-
-    public void setMerchantPrivateKey(String merchantPrivateKey) {
-        this.merchantPrivateKey = merchantPrivateKey;
-    }
-
-    public String getMerchantCertPath() {
-        return merchantCertPath;
-    }
-
-    public void setMerchantCertPath(String merchantCertPath) {
-        this.merchantCertPath = merchantCertPath;
-    }
-
-    public String getAlipayCertPath() {
-        return alipayCertPath;
-    }
-
-    public void setAlipayCertPath(String alipayCertPath) {
-        this.alipayCertPath = alipayCertPath;
-    }
-
-    public String getAlipayRootCertPath() {
-        return alipayRootCertPath;
-    }
-
-    public void setAlipayRootCertPath(String alipayRootCertPath) {
-        this.alipayRootCertPath = alipayRootCertPath;
-    }
-
-    public String getNotifyUrl() {
-        return notifyUrl;
-    }
-
-    public void setNotifyUrl(String notifyUrl) {
-        this.notifyUrl = notifyUrl;
-    }
-
-    public String getEncryptKey() {
-        return encryptKey;
-    }
-
-    public void setEncryptKey(String encryptKey) {
-        this.encryptKey = encryptKey;
-    }
-
-    public String getSignProvider() {
-        return signProvider;
-    }
-
-    public void setSignProvider(String signProvider) {
-        this.signProvider = signProvider;
-    }
-
-    public String getHttpProxy() {
-        return httpProxy;
-    }
-
-    public void setHttpProxy(String httpProxy) {
-        this.httpProxy = httpProxy;
-    }
-
-    public boolean isIgnoreSsl() {
-        return ignoreSsl;
-    }
-
-    public void setIgnoreSsl(boolean ignoreSsl) {
-        this.ignoreSsl = ignoreSsl;
     }
 }

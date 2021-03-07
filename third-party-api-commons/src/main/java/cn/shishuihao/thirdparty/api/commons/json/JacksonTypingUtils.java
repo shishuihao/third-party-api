@@ -21,9 +21,6 @@ public final class JacksonTypingUtils {
      */
     public static final ObjectMapper OBJECT_MAPPER;
 
-    private JacksonTypingUtils() {
-    }
-
     static {
         // ObjectMapper
         OBJECT_MAPPER = new ObjectMapper();
@@ -44,6 +41,9 @@ public final class JacksonTypingUtils {
                 DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);
         // 通过fields来探测（不通过标准getter探测）
         OBJECT_MAPPER.configure(MapperFeature.AUTO_DETECT_FIELDS, true);
+    }
+
+    private JacksonTypingUtils() {
     }
 
     /**

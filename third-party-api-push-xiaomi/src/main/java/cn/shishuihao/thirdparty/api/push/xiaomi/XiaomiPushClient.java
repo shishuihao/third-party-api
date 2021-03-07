@@ -12,9 +12,20 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class XiaomiPushClient {
-    private final Map<AbstractApiProperties, Sender> map = new ConcurrentHashMap<>();
+    /**
+     * map.
+     */
+    private final Map<AbstractApiProperties, Sender> map
+            = new ConcurrentHashMap<>();
 
-    public Sender getSender(XiaomiPushApiProperties properties) {
-        return map.computeIfAbsent(properties, k -> new Sender(properties.getAppSecretKey()));
+    /**
+     * get xiaomi push client.
+     *
+     * @param properties properties
+     * @return Sender
+     */
+    public Sender getSender(final XiaomiPushApiProperties properties) {
+        return map.computeIfAbsent(properties, k ->
+                new Sender(properties.getAppSecretKey()));
     }
 }

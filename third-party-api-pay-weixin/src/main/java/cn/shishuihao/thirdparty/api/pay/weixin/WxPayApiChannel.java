@@ -9,25 +9,51 @@ import cn.shishuihao.thirdparty.api.pay.weixin.api.WxCodePayApi;
  * @version 1.0.0
  */
 
-public class WxPayApiChannel extends AbstractMemoryChannel<WxPayApiProperties> implements PayApiChannel<WxPayApiProperties> {
+public class WxPayApiChannel
+        extends AbstractMemoryChannel<WxPayApiProperties>
+        implements PayApiChannel<WxPayApiProperties> {
+    /**
+     * channel id.
+     */
     public static final String CHANNEL_ID = "pay.weixin";
+    /**
+     * channel properties.
+     */
+    private final WxPayApiChannelProperties channelProperties;
 
-    private final WxPayProperties channelProperties;
-
-    public WxPayApiChannel(WxPayProperties channelProperties) {
-        this.channelProperties = channelProperties;
+    /**
+     * new WxPayApiChannel.
+     *
+     * @param properties channel properties
+     */
+    public WxPayApiChannel(final WxPayApiChannelProperties properties) {
+        this.channelProperties = properties;
         this.add(new WxCodePayApi());
     }
 
+    /**
+     * new WxPayApiChannel.
+     */
     public WxPayApiChannel() {
-        this(new WxPayProperties());
+        this(new WxPayApiChannelProperties());
     }
 
+    /**
+     * get entity id.
+     *
+     * @return entity id
+     */
     @Override
     public String id() {
         return channelProperties.getChannelId();
     }
 
+    /**
+     * get properties type.
+     * immutable
+     *
+     * @return properties type
+     */
     @Override
     public Class<WxPayApiProperties> propertiesType() {
         return WxPayApiProperties.class;

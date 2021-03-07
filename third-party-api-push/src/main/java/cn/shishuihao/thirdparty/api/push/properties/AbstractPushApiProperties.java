@@ -8,5 +8,7 @@ import cn.shishuihao.thirdparty.api.push.PushApiProperties;
  * @version 1.0.0
  */
 
-public abstract class AbstractPushApiProperties extends AbstractApiProperties implements PushApiProperties {
+public abstract class AbstractPushApiProperties
+        extends AbstractApiProperties
+        implements PushApiProperties {
 }

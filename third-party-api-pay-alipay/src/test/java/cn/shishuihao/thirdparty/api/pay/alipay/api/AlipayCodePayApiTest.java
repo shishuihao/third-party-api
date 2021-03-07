@@ -22,7 +22,7 @@ class AlipayCodePayApiTest {
         properties.setMerchantPrivateKey("");
         properties.setAlipayPublicKey("");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        CodePayApiRequest request = CodePayApiRequest.Builder.builder()
+        CodePayApiRequest request = CodePayApiRequest.builder()
                 .channelId(AlipayPayApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .subject("Apple iPhone11 128G")

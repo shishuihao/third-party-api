@@ -21,7 +21,7 @@ class VivoPushMessageApiTest {
         properties.setAppKey("appKey");
         properties.setSecret("secret");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiRequest request = PushMessageApiRequest.Builder.builder()
+        PushMessageApiRequest request = PushMessageApiRequest.builder()
                 .channelId(VivoPushApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .title("title")

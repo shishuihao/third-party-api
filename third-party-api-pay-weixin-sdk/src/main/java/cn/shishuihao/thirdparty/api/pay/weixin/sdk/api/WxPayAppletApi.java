@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.api;
 
 /**
- * 小程序支付
+ * 小程序支付.
  * {@link "https://pay.weixin.qq.com/wiki/doc/api/H5.php?chapter=7_1"}
  *
  * @author shishuihao

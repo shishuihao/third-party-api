@@ -31,11 +31,11 @@ class TencentSendSmsApiTest {
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
-        SendSmsApiRequest request = SendSmsApiRequest.Builder.builder()
+        SendSmsApiRequest request = SendSmsApiRequest.builder()
                 .channelId(TencentSmsApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .templateId("1234")
-                .message(SmsMessage.Builder.builder()
+                .message(SmsMessage.builder()
                         .phoneNumber("8613711112222")
                         .signName("test")
                         .templateParams(params)

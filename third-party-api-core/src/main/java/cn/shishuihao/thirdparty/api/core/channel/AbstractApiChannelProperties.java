@@ -1,6 +1,8 @@
 package cn.shishuihao.thirdparty.api.core.channel;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,8 @@ import java.util.List;
  * @author shishuihao
  * @version 1.0.0
  */
-
+@Getter
+@Setter
 public abstract class AbstractApiChannelProperties<
         P extends ApiProperties>
         implements ApiChannelProperties<P> {
@@ -32,42 +35,5 @@ public abstract class AbstractApiChannelProperties<
     @Override
     public String channelId() {
         return channelId;
-    }
-
-    /**
-     * get channel id.
-     *
-     * @return channel id
-     */
-    public String getChannelId() {
-        return channelId;
-    }
-
-    /**
-     * set channel id.
-     *
-     * @param sChannelId channel id
-     */
-    public void setChannelId(final String sChannelId) {
-        this.channelId = sChannelId;
-    }
-
-    /**
-     * get properties list.
-     *
-     * @return properties list
-     */
-    @Override
-    public List<P> getPropertiesList() {
-        return propertiesList;
-    }
-
-    /**
-     * set properties list.
-     *
-     * @param sPropertiesList properties list
-     */
-    public void setPropertiesList(final List<P> sPropertiesList) {
-        this.propertiesList = sPropertiesList;
     }
 }

@@ -13,11 +13,11 @@ public class HuaweiPushApiChannel
         extends AbstractMemoryChannel<HuaweiPushApiProperties>
         implements PushApiChannel<HuaweiPushApiProperties> {
     /**
-     * CHANNEL_ID.
+     * channel id.
      */
     public static final String CHANNEL_ID = "push.huawei";
     /**
-     * channelProperties.
+     * channel properties.
      */
     private final HuaweiPushApiChannelProperties channelProperties;
 

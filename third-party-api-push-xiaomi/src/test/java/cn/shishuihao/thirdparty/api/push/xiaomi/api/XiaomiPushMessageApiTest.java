@@ -21,7 +21,7 @@ class XiaomiPushMessageApiTest {
         properties.setAppId("appId");
         properties.setAppSecretKey("appSecretKey");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.Builder.builder()
+        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.builder()
                 .channelId(XiaomiPushApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .title("title")

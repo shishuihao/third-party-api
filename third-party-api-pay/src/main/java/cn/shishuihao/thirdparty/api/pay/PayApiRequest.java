@@ -12,5 +12,6 @@ import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
 public interface PayApiRequest<
         A extends PayApi<A, T, R>,
         T extends PayApiRequest<A, T, R>,
-        R extends PayApiResponse> extends ApiRequest<A, T, R> {
+        R extends PayApiResponse>
+        extends ApiRequest<A, T, R> {
 }

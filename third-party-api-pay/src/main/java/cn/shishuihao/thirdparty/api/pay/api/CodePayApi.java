@@ -10,7 +10,9 @@ import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
  */
 
 public interface CodePayApi extends PayApi<
-        CodePayApi, CodePayApiRequest, CodePayApiResponse> {
+        CodePayApi,
+        CodePayApiRequest,
+        CodePayApiResponse> {
     /**
      * get api type.
      * immutable

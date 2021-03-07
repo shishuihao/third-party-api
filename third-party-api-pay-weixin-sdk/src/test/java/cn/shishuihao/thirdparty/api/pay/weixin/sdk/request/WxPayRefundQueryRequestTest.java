@@ -1,7 +1,5 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.AppId;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.MchId;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,9 +26,9 @@ class WxPayRefundQueryRequestTest {
                 "   <transaction_id></transaction_id>\n" +
                 "   <sign>66FFB727015F450D167EF38CCC549521</sign>\n" +
                 "</xml>";
-        WxPayRefundQueryRequest request = WxPayRefundQueryRequest.Builder.builder()
-                .appId(AppId.of("wx2421b1c4370ec43b"))
-                .mchId(MchId.of("10000100"))
+        WxPayRefundQueryRequest request = WxPayRefundQueryRequest.builder()
+                .appId("wx2421b1c4370ec43b")
+                .mchId("10000100")
                 .nonceStr("0b9f35f484df17a732e537c37708d1d0")
                 .outRefundNo("")
                 .outTradeNo("1415757673")

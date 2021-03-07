@@ -32,15 +32,15 @@ class TencentSendBatchSmsApiTest {
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
-        SendBatchSmsApiRequest request = SendBatchSmsApiRequest.Builder.builder()
+        SendBatchSmsApiRequest request = SendBatchSmsApiRequest.builder()
                 .channelId(TencentSmsApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .templateId("1234")
-                .messages(Arrays.asList(SmsMessage.Builder.builder()
+                .messages(Arrays.asList(SmsMessage.builder()
                         .phoneNumber("+8613711112222")
                         .signName("test")
                         .templateParams(params)
-                        .build(), SmsMessage.Builder.builder()
+                        .build(), SmsMessage.builder()
                         .phoneNumber("+8618511122266")
                         .signName("test")
                         .templateParams(params)

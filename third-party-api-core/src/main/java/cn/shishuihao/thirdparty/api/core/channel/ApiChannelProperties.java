@@ -12,7 +12,8 @@ import java.util.List;
  */
 
 public interface ApiChannelProperties<
-        P extends ApiProperties> extends Entity<String> {
+        P extends ApiProperties>
+        extends Entity<String> {
     /**
      * get channel id.
      *

@@ -14,7 +14,8 @@ import java.util.Optional;
  * @author shishuihao
  * @version 1.0.0
  */
-public interface ApiChannel<P extends ApiProperties>
+public interface ApiChannel<
+        P extends ApiProperties>
         extends Entity<String>, ApiRepository {
     /**
      * get api by api type.

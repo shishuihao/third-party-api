@@ -12,12 +12,24 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class OppoPushClient {
-    private final Map<AbstractApiProperties, Sender> map = new ConcurrentHashMap<>();
+    /**
+     * map.
+     */
+    private final Map<AbstractApiProperties, Sender> map
+            = new ConcurrentHashMap<>();
 
-    public Sender getSender(OppoPushApiProperties properties) {
+    /**
+     * get oppo push client.
+     *
+     * @param properties properties
+     * @return Sender
+     */
+    public Sender getSender(final OppoPushApiProperties properties) {
         return map.computeIfAbsent(properties, k -> {
             try {
-                return new Sender(properties.getAppKey(), properties.getMasterSecret());
+                return new Sender(
+                        properties.getAppKey(),
+                        properties.getMasterSecret());
             } catch (RuntimeException e) {
                 throw e;
             } catch (Exception e) {

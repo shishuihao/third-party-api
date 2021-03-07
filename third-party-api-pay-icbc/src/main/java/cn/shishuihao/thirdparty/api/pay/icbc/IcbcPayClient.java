@@ -14,9 +14,19 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class IcbcPayClient {
-    private final Map<AbstractApiProperties, DefaultIcbcClient> map = new ConcurrentHashMap<>();
+    /**
+     * map.
+     */
+    private final Map<AbstractApiProperties, DefaultIcbcClient> map
+            = new ConcurrentHashMap<>();
 
-    public IcbcClient getClient(IcbcPayApiProperties properties) {
+    /**
+     * get icbc client bt properties.
+     *
+     * @param properties properties
+     * @return IcbcClient
+     */
+    public IcbcClient getClient(final IcbcPayApiProperties properties) {
         return map.computeIfAbsent(properties, k -> {
             try {
                 return new DefaultIcbcClient(
@@ -26,7 +36,8 @@ public class IcbcPayClient {
                         properties.getCharset(),
                         properties.getFormat(),
                         properties.getIcbcPublicKey(),
-                        Optional.ofNullable(properties.getEncryptType()).orElse(null),
+                        Optional.ofNullable(properties.getEncryptType())
+                                .orElse(null),
                         properties.getEncryptKey(),
                         properties.getCa(),
                         properties.getPassword());

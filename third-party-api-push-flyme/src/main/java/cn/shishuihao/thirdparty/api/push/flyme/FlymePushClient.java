@@ -12,9 +12,22 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class FlymePushClient {
-    private final Map<AbstractApiProperties, IFlymePush> map = new ConcurrentHashMap<>();
+    /**
+     * map.
+     */
+    private final Map<AbstractApiProperties, IFlymePush> map
+            = new ConcurrentHashMap<>();
 
-    public IFlymePush getClient(FlymePushApiProperties properties) {
-        return map.computeIfAbsent(properties, k -> new IFlymePush(properties.getAppSecret(), properties.isUseSsl()));
+    /**
+     * get flyme push client.
+     *
+     * @param properties properties
+     * @return Sender
+     */
+    public IFlymePush getClient(final FlymePushApiProperties properties) {
+        return map.computeIfAbsent(properties, k ->
+                new IFlymePush(
+                        properties.getAppSecret(),
+                        properties.isUseSsl()));
     }
 }

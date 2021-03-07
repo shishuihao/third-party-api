@@ -21,7 +21,7 @@ class FlymePushMessageApiTest {
         properties.setAppId(0L);
         properties.setAppSecret("appSecret");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.Builder.builder()
+        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.builder()
                 .channelId(FlymePushApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .title("title")

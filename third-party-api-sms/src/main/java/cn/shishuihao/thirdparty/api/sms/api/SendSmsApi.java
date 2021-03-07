@@ -9,9 +9,12 @@ import cn.shishuihao.thirdparty.api.sms.response.SendSmsApiResponse;
  * @version 1.0.0
  */
 
-public interface SendSmsApi extends SmsApi<SendSmsApi, SendSmsApiRequest, SendSmsApiResponse> {
+public interface SendSmsApi extends SmsApi<
+        SendSmsApi,
+        SendSmsApiRequest,
+        SendSmsApiResponse> {
     /**
-     * get api type
+     * get api type.
      * immutable
      *
      * @return api type

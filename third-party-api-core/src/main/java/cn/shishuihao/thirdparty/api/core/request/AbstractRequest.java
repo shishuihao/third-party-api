@@ -2,6 +2,10 @@ package cn.shishuihao.thirdparty.api.core.request;
 
 import cn.shishuihao.thirdparty.api.core.api.Api;
 import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 /**
  * @param <A> api
@@ -10,6 +14,9 @@ import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
  * @author shishuihao
  * @version 1.0.0
  */
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@SuperBuilder
 public abstract class AbstractRequest<
         A extends Api<A, T, R>,
         T extends ApiRequest<A, T, R>,
@@ -22,36 +29,6 @@ public abstract class AbstractRequest<
      * properties id.
      */
     private final String propertiesId;
-
-    /**
-     * new AbstractRequest.
-     *
-     * @param pChannelId    channel id
-     * @param pPropertiesId properties id
-     */
-    protected AbstractRequest(final String pChannelId,
-                              final String pPropertiesId) {
-        this.channelId = pChannelId;
-        this.propertiesId = pPropertiesId;
-    }
-
-    /**
-     * get channel id.
-     *
-     * @return String
-     */
-    public String getChannelId() {
-        return channelId;
-    }
-
-    /**
-     * get properties id.
-     *
-     * @return String
-     */
-    public String getPropertiesId() {
-        return propertiesId;
-    }
 
     /**
      * get channel id.

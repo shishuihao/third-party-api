@@ -1,15 +1,11 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
-import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.AppId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author shishuihao
@@ -21,10 +17,10 @@ class WxCodePayApiTest {
     @Test
     void execute() {
         WxPayApiProperties properties = new WxPayApiProperties();
-        properties.setAppId(AppId.of("appId"));
+        properties.setAppId("appId");
         properties.setKey("key");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        CodePayApiRequest request = CodePayApiRequest.Builder.builder()
+        CodePayApiRequest request = CodePayApiRequest.builder()
                 .channelId(WxPayApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .subject("Apple iPhone11 128G")

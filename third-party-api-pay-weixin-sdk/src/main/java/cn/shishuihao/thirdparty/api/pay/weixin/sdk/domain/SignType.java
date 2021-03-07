@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
+ * 签名算法.
  * {@link "https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3"}
  *
  * @author shishuihao
@@ -19,20 +20,29 @@ import java.util.stream.Collectors;
 
 public enum SignType {
     /**
-     * 签名算法
+     * MD5.
      */
-    // MD5
     MD5 {
         @Override
-        public String sign(String signKey, Map<String, Object> params) throws UnsupportedEncodingException {
-            return DigestUtils.md5Hex(getSignString(params, signKey).getBytes(getCharset(params))).toUpperCase();
+        public String sign(final String signKey,
+                           final Map<String, Object> params)
+                throws UnsupportedEncodingException {
+            return DigestUtils.md5Hex(getSignString(params, signKey)
+                    .getBytes(getCharset(params)))
+                    .toUpperCase();
         }
     },
-    // HMAC-SHA256
+    /**
+     * HMAC_SHA256.
+     */
     HMAC_SHA256 {
         @Override
-        public String sign(String signKey, Map<String, Object> params) throws UnsupportedEncodingException {
-            return HmacDigestUtils.hmacSha256(getSignString(params, signKey).getBytes(getCharset(params)), signKey).toUpperCase();
+        public String sign(final String signKey,
+                           final Map<String, Object> params)
+                throws UnsupportedEncodingException {
+            return HmacDigestUtils.hmacSha256(getSignString(params, signKey)
+                    .getBytes(getCharset(params)), signKey)
+                    .toUpperCase();
         }
 
         @Override
@@ -41,16 +51,20 @@ public enum SignType {
         }
     };
 
-    private static String getSignString(Map<String, Object> params, String signKey) {
+    private static String getSignString(final Map<String, Object> params,
+                                        final String signKey) {
         // 字典序排序 key=value格式
         if (params == null || params.isEmpty()) {
             return "";
         }
-        Map<String, String> stringStringMap = new LinkedHashMap<>(params.size());
-        params.forEach((k, v) -> stringStringMap.put(k, v == null ? null : v.toString()));
+        Map<String, String> stringStringMap
+                = new LinkedHashMap<>(params.size());
+        params.forEach((k, v) -> stringStringMap
+                .put(k, v == null ? null : v.toString()));
         String paramsString = stringStringMap.entrySet().stream()
                 // 过滤
-                .filter(it -> it.getKey() != null && StringUtils.isNotBlank(it.getValue()))
+                .filter(it -> it.getKey() != null
+                        && StringUtils.isNotBlank(it.getValue()))
                 // 排序
                 .sorted(Map.Entry.comparingByKey())
                 // 拼接
@@ -60,11 +74,20 @@ public enum SignType {
         return paramsString + "&key=" + signKey;
     }
 
-    private static String getCharset(Map<String, Object> params) {
+    private static String getCharset(final Map<String, Object> params) {
         return Optional.ofNullable(params.get("charset"))
                 .map(Object::toString)
                 .orElse("UTF-8");
     }
 
-    public abstract String sign(String signKey, Map<String, Object> params) throws UnsupportedEncodingException;
+    /**
+     * sign params.
+     *
+     * @param signKey sign key
+     * @param params  params
+     * @return sign
+     * @throws UnsupportedEncodingException UnsupportedEncodingException
+     */
+    public abstract String sign(String signKey, Map<String, Object> params)
+            throws UnsupportedEncodingException;
 }

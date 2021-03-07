@@ -18,14 +18,14 @@ public final class JacksonUtils {
      */
     private static final ObjectMapper OBJECT_MAPPER;
 
-    private JacksonUtils() {
-    }
-
     static {
         // ObjectMapper
         OBJECT_MAPPER = new ObjectMapper();
         // 序列化时，跳过null属性
         OBJECT_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    }
+
+    private JacksonUtils() {
     }
 
     /**

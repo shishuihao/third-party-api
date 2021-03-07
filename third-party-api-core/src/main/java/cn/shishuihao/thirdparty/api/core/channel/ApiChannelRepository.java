@@ -8,6 +8,6 @@ import cn.shishuihao.thirdparty.api.core.repository.Repository;
  * @author shishuihao
  * @version 1.0.0
  */
-public interface ApiChannelRepository extends Repository<
-        String, ApiChannel<?>> {
+public interface ApiChannelRepository
+        extends Repository<String, ApiChannel<?>> {
 }

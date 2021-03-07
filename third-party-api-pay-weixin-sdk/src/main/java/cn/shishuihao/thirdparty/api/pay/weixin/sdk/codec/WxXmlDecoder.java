@@ -20,18 +20,43 @@ import static java.lang.String.format;
  */
 
 public class WxXmlDecoder extends Decoder.Default {
+    /**
+     * INSTANCE.
+     */
     public static final WxXmlDecoder INSTANCE = new WxXmlDecoder();
+    /**
+     * FORMAT.
+     */
+    public static final String FORMAT
+            = "%s is not a type supported by this decoder.";
 
+    /**
+     * decode response.
+     *
+     * @param response response
+     * @param type     response type
+     * @return response
+     * @throws IOException    IOException
+     * @throws FeignException FeignException
+     */
     @Override
-    public Object decode(Response response, Type type) throws IOException, FeignException {
-        if (type instanceof Class<?> && AbstractWxPayXmlResponse.class.isAssignableFrom((Class<?>) type)) {
+    public Object decode(final Response response,
+                         final Type type) throws IOException, FeignException {
+        if (type instanceof Class<?> && isAssignableFrom((Class<?>) type)) {
             try {
                 String xml = Util.toString(response.body().asReader());
                 return XmlUtils.fromXml(xml, (Class<?>) type);
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                throw new DecodeException(format("%s is not a type supported by this decoder.", type), e);
+            } catch (InstantiationException
+                    | IllegalAccessException
+                    | InvocationTargetException
+                    | NoSuchMethodException e) {
+                throw new DecodeException(format(FORMAT, type), e);
             }
         }
         return super.decode(response, type);
+    }
+
+    private boolean isAssignableFrom(final Class<?> type) {
+        return AbstractWxPayXmlResponse.class.isAssignableFrom(type);
     }
 }

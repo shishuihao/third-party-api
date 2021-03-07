@@ -20,7 +20,7 @@ class HuaweiPushMessageApiTest {
         HuaweiPushApiProperties properties = new HuaweiPushApiProperties();
         properties.setAppId("appId");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiRequest request = PushMessageApiRequest.Builder.builder()
+        PushMessageApiRequest request = PushMessageApiRequest.builder()
                 .channelId(HuaweiPushApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .title("title")

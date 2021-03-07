@@ -1,34 +1,21 @@
 package cn.shishuihao.thirdparty.api.core.properties;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Objects;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
+@Getter
+@Setter
 public abstract class AbstractApiProperties implements ApiProperties {
     /**
      * channel id.
      */
     private String channelId;
-
-    /**
-     * get channel id.
-     *
-     * @return channel id
-     */
-    public String getChannelId() {
-        return channelId;
-    }
-
-    /**
-     * set channel id.
-     *
-     * @param pChannelId channel id
-     */
-    public void setChannelId(final String pChannelId) {
-        this.channelId = pChannelId;
-    }
 
     /**
      * get channel id.

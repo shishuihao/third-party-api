@@ -12,6 +12,7 @@ import com.xiaomi.xmpush.server.Constants;
 import com.xiaomi.xmpush.server.Message;
 import com.xiaomi.xmpush.server.Result;
 import com.xiaomi.xmpush.server.Sender;
+import lombok.AllArgsConstructor;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -19,20 +20,27 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
+ * push message.
  * @author shishuihao
  * @version 1.0.0
  */
-
+@AllArgsConstructor
 public class XiaomiPushMessageApi implements PushMessageApi {
+    /**
+     * xiaomiPushClient.
+     */
     private final XiaomiPushClient xiaomiPushClient;
 
-    public XiaomiPushMessageApi(XiaomiPushClient xiaomiPushClient) {
-        this.xiaomiPushClient = xiaomiPushClient;
-    }
-
+    /**
+     * execute PushMessageApiRequest by xiaomi.
+     *
+     * @param request request
+     * @return PushMessageApiResponse
+     */
     @Override
-    public PushMessageApiResponse execute(PushMessageApiRequest request) {
-        XiaomiPushApiProperties properties = (XiaomiPushApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
+    public PushMessageApiResponse execute(final PushMessageApiRequest request) {
+        XiaomiPushApiProperties properties = (XiaomiPushApiProperties)
+                ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             Constants.useOfficial();
             Sender sender = xiaomiPushClient.getSender(properties);
@@ -44,11 +52,15 @@ public class XiaomiPushMessageApi implements PushMessageApi {
                     // 使用默认提示音提示
                     .notifyType(1)
                     .build();
-            Result result = sender.send(message, Arrays.asList(request.getRegistrationIds()), Math.max(1, properties.getRetries()));
-            return PushMessageApiResponse.Builder.builder()
+            Result result = sender.send(message,
+                    Arrays.asList(request.getRegistrationIds()),
+                    Math.max(1, properties.getRetries()));
+            return PushMessageApiResponse.builder()
                     .success(ErrorCode.Success == result.getErrorCode())
                     .code(Optional.ofNullable(result.getErrorCode())
-                            .map(it -> it.getValue() + "," + it.getDescription())
+                            .map(it -> it.getValue()
+                                    + ","
+                                    + it.getDescription())
                             .orElse(null))
                     .message(result.getReason())
                     .requestId(result.getMessageId())

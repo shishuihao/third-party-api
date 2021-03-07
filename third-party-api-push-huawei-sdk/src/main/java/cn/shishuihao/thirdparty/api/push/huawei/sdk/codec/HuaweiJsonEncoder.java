@@ -1,6 +1,5 @@
 package cn.shishuihao.thirdparty.api.push.huawei.sdk.codec;
 
-import cn.shishuihao.thirdparty.api.commons.json.JacksonTypingUtils;
 import cn.shishuihao.thirdparty.api.commons.json.JacksonUtils;
 import feign.RequestTemplate;
 import feign.codec.EncodeException;

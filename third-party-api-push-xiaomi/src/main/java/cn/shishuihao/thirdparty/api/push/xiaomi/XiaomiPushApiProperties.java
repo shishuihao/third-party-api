@@ -1,72 +1,50 @@
 package cn.shishuihao.thirdparty.api.push.xiaomi;
 
 import cn.shishuihao.thirdparty.api.push.properties.AbstractPushApiProperties;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-
+@EqualsAndHashCode(of = {"appId"}, callSuper = true)
+@Getter
+@Setter
 public class XiaomiPushApiProperties extends AbstractPushApiProperties {
     /**
-     * application id
+     * default retries.
+     */
+    public static final int DEFAULT_RETRIES = 3;
+
+    /**
+     * application id.
      */
     private String appId;
     /**
-     * application secret key
+     * application secret key.
      */
     private String appSecretKey;
     /**
-     * 尝试次数 >=1
+     * 尝试次数. >=1
      */
-    private int retries = 3;
+    private int retries = DEFAULT_RETRIES;
 
+    /**
+     * new XiaomiPushApiProperties.
+     */
     public XiaomiPushApiProperties() {
         this.setChannelId(XiaomiPushApiChannel.CHANNEL_ID);
     }
 
+    /**
+     * get entity id.
+     *
+     * @return entity id
+     */
     @Override
     public String id() {
         return appId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof XiaomiPushApiProperties)) {
-            return false;
-        }
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public String getAppSecretKey() {
-        return appSecretKey;
-    }
-
-    public void setAppSecretKey(String appSecretKey) {
-        this.appSecretKey = appSecretKey;
-    }
-
-    public int getRetries() {
-        return retries;
-    }
-
-    public void setRetries(int retries) {
-        this.retries = retries;
     }
 }

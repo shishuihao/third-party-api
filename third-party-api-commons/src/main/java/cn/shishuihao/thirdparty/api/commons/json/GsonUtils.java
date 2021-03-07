@@ -13,12 +13,12 @@ public final class GsonUtils {
      */
     private static final Gson GSON;
 
-    private GsonUtils() {
-    }
-
     static {
         // Gson
         GSON = new Gson();
+    }
+
+    private GsonUtils() {
     }
 
     /**

@@ -13,21 +13,34 @@ import java.util.Map;
  * @version 1.0.0
  */
 
-public class XmlFieldUtils {
+public final class XmlFieldUtils {
     private XmlFieldUtils() {
     }
 
-    public static List<Field> getApiFields(final Class<?> cls) {
+    /**
+     * get fields.
+     *
+     * @param cls class
+     * @return field list
+     */
+    public static List<Field> getFields(final Class<?> cls) {
         return FieldUtils.getFieldsListWithAnnotation(cls, XStreamAlias.class);
     }
 
+    /**
+     * get name value map.
+     *
+     * @param object object
+     * @return name value map
+     */
     public static Map<String, Object> getNameValueMap(final Object object) {
-        List<Field> fieldList = getApiFields(object.getClass());
+        List<Field> fieldList = getFields(object.getClass());
         Map<String, Object> map = new HashMap<>(fieldList.size());
         fieldList.forEach(field -> {
             XStreamAlias xmlField = field.getAnnotation(XStreamAlias.class);
             try {
-                map.put(xmlField.value(), FieldUtils.readField(field, object, true));
+                Object value = FieldUtils.readField(field, object, true);
+                map.put(xmlField.value(), value);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -35,8 +48,14 @@ public class XmlFieldUtils {
         return map;
     }
 
+    /**
+     * get name field map.
+     *
+     * @param cls cls
+     * @return name field map
+     */
     public static Map<String, Field> getNameFieldMap(final Class<?> cls) {
-        List<Field> fieldList = getApiFields(cls);
+        List<Field> fieldList = getFields(cls);
         Map<String, Field> map = new HashMap<>(fieldList.size());
         fieldList.forEach(field -> {
             XStreamAlias xmlField = field.getAnnotation(XStreamAlias.class);

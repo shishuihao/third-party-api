@@ -10,31 +10,64 @@ import cn.shishuihao.thirdparty.api.sms.tencent.api.TencentSendSmsApi;
  * @version 1.0.0
  */
 
-public class TencentSmsApiChannel extends AbstractMemoryChannel<TencentSmsApiProperties> implements SmsApiChannel<TencentSmsApiProperties> {
+public class TencentSmsApiChannel
+        extends AbstractMemoryChannel<TencentSmsApiProperties>
+        implements SmsApiChannel<TencentSmsApiProperties> {
+    /**
+     * channel id.
+     */
     public static final String CHANNEL_ID = "sms.tencent";
+    /**
+     * channel properties.
+     */
+    private final TencentSmsApiChannelProperties channelProperties;
 
-    private final TencentSmsProperties channelProperties;
-
-    public TencentSmsApiChannel(TencentSmsProperties channelProperties, TencentSmsClient tencentSmsClient) {
-        this.channelProperties = channelProperties;
-        TencentSendBatchSmsApi batchSmsApi = new TencentSendBatchSmsApi(tencentSmsClient);
+    /**
+     * new TencentSmsApiChannel.
+     *
+     * @param properties channelProperties
+     * @param client     tencent sms http client
+     */
+    public TencentSmsApiChannel(final TencentSmsApiChannelProperties properties,
+                                final TencentSmsClient client) {
+        this.channelProperties = properties;
+        TencentSendBatchSmsApi batchSmsApi = new TencentSendBatchSmsApi(client);
         this.add(batchSmsApi);
         this.add(new TencentSendSmsApi(batchSmsApi));
     }
 
-    public TencentSmsApiChannel(TencentSmsProperties channelProperties) {
-        this(channelProperties, new TencentSmsClient(channelProperties));
+    /**
+     * new TencentSmsApiChannel.
+     *
+     * @param properties channelProperties
+     */
+    public TencentSmsApiChannel(final TencentSmsApiChannelProperties properties) {
+        this(properties, new TencentSmsClient(properties));
     }
 
+    /**
+     * new TencentSmsApiChannel.
+     */
     public TencentSmsApiChannel() {
-        this(new TencentSmsProperties());
+        this(new TencentSmsApiChannelProperties());
     }
 
+    /**
+     * get entity id.
+     *
+     * @return entity id
+     */
     @Override
     public String id() {
         return channelProperties.getChannelId();
     }
 
+    /**
+     * get properties type.
+     * immutable
+     *
+     * @return properties type
+     */
     @Override
     public Class<TencentSmsApiProperties> propertiesType() {
         return TencentSmsApiProperties.class;

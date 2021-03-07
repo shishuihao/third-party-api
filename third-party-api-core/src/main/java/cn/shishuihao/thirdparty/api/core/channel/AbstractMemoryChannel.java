@@ -14,7 +14,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author shishuihao
  * @version 1.0.0
  */
-public abstract class AbstractMemoryChannel<P extends ApiProperties>
+public abstract class AbstractMemoryChannel<
+        P extends ApiProperties>
         implements ApiChannel<P> {
     /**
      * map.

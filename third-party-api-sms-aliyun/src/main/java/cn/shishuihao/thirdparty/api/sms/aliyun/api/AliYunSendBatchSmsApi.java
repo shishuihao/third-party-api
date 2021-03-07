@@ -12,44 +12,60 @@ import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
 import com.aliyun.dysmsapi20170525.Client;
 import com.aliyun.dysmsapi20170525.models.SendBatchSmsRequest;
 import com.aliyun.dysmsapi20170525.models.SendBatchSmsResponseBody;
+import lombok.AllArgsConstructor;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * {@link "https://help.aliyun.com/document_detail/102364.html?spm=a2c4g.11186623.6.627.470965f4ZszVvE"}
+ * send batch message.
+ * {@link "https://help.aliyun.com/document_detail/102364.html
+ * ?spm=a2c4g.11186623.6.627.470965f4ZszVvE"}
  *
  * @author shishuihao
  * @version 1.0.0
  */
+@AllArgsConstructor
 public class AliYunSendBatchSmsApi implements SendBatchSmsApi {
+    /**
+     * aliyun sms client.
+     */
     private final AliYunSmsClient smsClient;
 
-    public AliYunSendBatchSmsApi(AliYunSmsClient smsClient) {
-        this.smsClient = smsClient;
-    }
-
+    /**
+     * execute SendBatchSmsApiRequest by aliyun.
+     *
+     * @param request request
+     * @return SendBatchSmsApiResponse
+     */
     @Override
-    public SendBatchSmsApiResponse execute(SendBatchSmsApiRequest request) {
-        AliYunSmsApiProperties properties = (AliYunSmsApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
+    public SendBatchSmsApiResponse execute(final SendBatchSmsApiRequest request) {
+        AliYunSmsApiProperties properties = (AliYunSmsApiProperties)
+                ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             Client client = smsClient.getAliYunClient(properties);
             SendBatchSmsRequest sendBatchSmsRequest = new SendBatchSmsRequest();
-            sendBatchSmsRequest.setPhoneNumberJson(GsonUtils.toJson(request.getMessages().stream()
-                    .map(SmsMessage::getPhoneNumber)
-                    .collect(Collectors.toList())));
-            sendBatchSmsRequest.setSignNameJson(GsonUtils.toJson(request.getMessages().stream()
-                    .map(it -> Optional.ofNullable(it.getSignName()).orElseGet(properties::getSignName))
-                    .collect(Collectors.toList())));
+            sendBatchSmsRequest.setPhoneNumberJson(GsonUtils
+                    .toJson(request.getMessages().stream()
+                            .map(SmsMessage::getPhoneNumber)
+                            .collect(Collectors.toList())));
+            sendBatchSmsRequest.setSignNameJson(GsonUtils
+                    .toJson(request.getMessages().stream()
+                            .map(it -> Optional.ofNullable(it.getSignName())
+                                    .orElseGet(properties::getSignName))
+                            .collect(Collectors.toList())));
             sendBatchSmsRequest.setTemplateCode(request.getTemplateId());
-            sendBatchSmsRequest.setTemplateParamJson(GsonUtils.toJson(request.getMessages().stream()
-                    .map(SmsMessage::getTemplateParams)
-                    .collect(Collectors.toList())));
-            sendBatchSmsRequest.setSmsUpExtendCodeJson(GsonUtils.toJson(request.getMessages().stream()
-                    .map(SmsMessage::getExtendCode)
-                    .collect(Collectors.toList())));
-            SendBatchSmsResponseBody sendBatchSmsResponseBody = client.sendBatchSms(sendBatchSmsRequest).getBody();
-            return SendBatchSmsApiResponse.Builder.builder()
+            sendBatchSmsRequest.setTemplateParamJson(GsonUtils
+                    .toJson(request.getMessages().stream()
+                            .map(SmsMessage::getTemplateParams)
+                            .collect(Collectors.toList())));
+            sendBatchSmsRequest.setSmsUpExtendCodeJson(GsonUtils
+                    .toJson(request.getMessages().stream()
+                            .map(SmsMessage::getExtendCode)
+                            .collect(Collectors.toList())));
+            SendBatchSmsResponseBody sendBatchSmsResponseBody = client
+                    .sendBatchSms(sendBatchSmsRequest).getBody();
+            return SendBatchSmsApiResponse.builder()
                     .requestId(sendBatchSmsResponseBody.getRequestId())
                     .success("OK".equals(sendBatchSmsResponseBody.getCode()))
                     .code(sendBatchSmsResponseBody.getCode())

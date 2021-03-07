@@ -24,7 +24,7 @@ class IcbcCodePayApiTest {
         properties.setPrivateKey("privateKey");
         properties.setIcbcPublicKey("icbcPublicKey");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        CodePayApiRequest request = CodePayApiRequest.Builder.builder()
+        CodePayApiRequest request = CodePayApiRequest.builder()
                 .channelId(IcbcPayApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .subject("Apple iPhone11 128G")

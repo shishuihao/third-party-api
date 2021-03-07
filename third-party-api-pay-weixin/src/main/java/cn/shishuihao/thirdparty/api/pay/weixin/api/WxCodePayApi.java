@@ -22,29 +22,43 @@ import java.util.Map;
  */
 
 public class WxCodePayApi implements CodePayApi {
+    /**
+     * WxPayCodeApi.
+     */
     private final WxPayCodeApi wxPayCodeApi = WxFactory.Payment.codeApi();
 
+    /**
+     * execute CodePayApiRequest by weixin.
+     *
+     * @param request request
+     * @return CodePayApiResponse
+     */
     @Override
-    public CodePayApiResponse execute(CodePayApiRequest request) {
-        WxPayApiProperties properties = (WxPayApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
+    public CodePayApiResponse execute(final CodePayApiRequest request) {
+        WxPayApiProperties properties = (WxPayApiProperties)
+                ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            WxPayMicropayRequest wxPayMicropayRequest = WxPayMicropayRequest.Builder.builder()
+            WxPayMicropayRequest wxRequest = WxPayMicropayRequest.builder()
                     .appId(properties.getAppId())
                     .mchId(properties.getMchId())
                     .subAppId(properties.getSubAppId())
                     .subMchId(properties.getSubMchId())
                     .deviceInfo(properties.getDeviceInfo())
-                    .nonceStr(RandomStringUtils.randomAlphanumeric(32))
+                    .nonceStr(RandomStringUtils
+                            .randomAlphanumeric(Integer.SIZE))
                     .signType(properties.getSignType())
                     .body(request.getSubject())
                     .outTradeNo(request.getOutTradeNo())
                     .totalFee(request.getTotalAmount())
                     .authCode(request.getAuthCode())
                     .build();
-            Map<String, Object> params = XmlFieldUtils.getNameValueMap(wxPayMicropayRequest);
-            wxPayMicropayRequest.setSign(wxPayMicropayRequest.getSignType().sign(properties.getKey(), params));
-            WxPayMicropayResponse wxPayMicropayResponse = wxPayCodeApi.microPay(wxPayMicropayRequest);
-            return CodePayApiResponse.Builder.builder()
+            Map<String, Object> params = XmlFieldUtils
+                    .getNameValueMap(wxRequest);
+            wxRequest.setSign(wxRequest.getSignType()
+                    .sign(properties.getKey(), params));
+            WxPayMicropayResponse wxPayMicropayResponse = wxPayCodeApi
+                    .microPay(wxRequest);
+            return CodePayApiResponse.builder()
                     .success(ResponseChecker.success(wxPayMicropayResponse))
                     .code(wxPayMicropayResponse.getReturnCode())
                     .message(wxPayMicropayResponse.getReturnMsg())

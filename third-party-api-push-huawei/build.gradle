@@ -1,0 +1,9 @@
+dependencies {
+    compile project(':third-party-api-core')
+    compile project(':third-party-api-push')
+    compile project(':third-party-api-push-huawei-sdk')
+}
+
+jar {
+    enabled true
+}

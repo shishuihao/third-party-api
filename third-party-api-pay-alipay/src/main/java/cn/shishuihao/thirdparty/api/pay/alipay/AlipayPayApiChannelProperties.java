@@ -7,8 +7,8 @@ import cn.shishuihao.thirdparty.api.core.channel.AbstractApiChannelProperties;
  * @version 1.0.0
  */
 
-public class AlipayPayApiChannelProperties extends AbstractApiChannelProperties<
-        AlipayPayApiProperties> {
+public class AlipayPayApiChannelProperties
+        extends AbstractApiChannelProperties<AlipayPayApiProperties> {
     /**
      * new AlipayPayProperties.
      */

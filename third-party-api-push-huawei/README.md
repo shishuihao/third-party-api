@@ -31,7 +31,7 @@ compile 'cn.shishuihao:third-party-api-push-huawei:latest'
         HuaweiPushApiProperties properties = new HuaweiPushApiProperties();
         properties.setAppId("appId");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.Builder.builder()
+        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.builder()
         .channelId(XiaomiPushApiChannel.CHANNEL_ID)
         .propertiesId(properties.id())
         .title("title")

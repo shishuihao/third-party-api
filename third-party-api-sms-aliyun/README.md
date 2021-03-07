@@ -33,11 +33,11 @@ compile 'cn.shishuihao:third-party-api-sms-aliyun:latest'
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
-        SendSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendSmsApiRequest.Builder.builder()
+        SendSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendSmsApiRequest.builder()
                 .channelId(AliYunSmsApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .templateId("SMS_123456789")
-                .message(SmsMessage.Builder.builder()
+                .message(SmsMessage.builder()
                         .phoneNumber("8613711112222")
                         .signName("test")
                         .templateParams(params)
@@ -54,15 +54,15 @@ compile 'cn.shishuihao:third-party-api-sms-aliyun:latest'
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
-        SendBatchSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsApiRequest.Builder.builder()
+        SendBatchSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsApiRequest.builder()
                 .channelId(AliYunSmsApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .templateId("SMS_123456789")
-                .messages(Arrays.asList(SmsMessage.Builder.builder()
+                .messages(Arrays.asList(SmsMessage.builder()
                         .phoneNumber("8613711112222")
                         .signName("test")
                         .templateParams(params)
-                        .build(), SmsMessage.Builder.builder()
+                        .build(), SmsMessage.builder()
                         .phoneNumber("8618511122266")
                         .signName("test")
                         .templateParams(params)

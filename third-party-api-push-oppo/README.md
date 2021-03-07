@@ -32,7 +32,7 @@ compile 'cn.shishuihao:third-party-api-push-oppo:latest'
         properties.setAppKey("appKey");
         properties.setMasterSecret("masterSecret");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.Builder.builder()
+        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.builder()
                 .channelId(OppoPushApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())
                 .title("title")

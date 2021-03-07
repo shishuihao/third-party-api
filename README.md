@@ -26,6 +26,7 @@
 [![Apache 2.0 License][license-shield]][license-url]
 [![REUSE status][reuse-shield]][reuse-url]
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+[![Sourcegraph](https://sourcegraph.com/github.com/shishuihao/third-party-api/-/badge.svg)](https://sourcegraph.com/github.com/shishuihao/third-party-api?badge)
 
 #### GitHub
 

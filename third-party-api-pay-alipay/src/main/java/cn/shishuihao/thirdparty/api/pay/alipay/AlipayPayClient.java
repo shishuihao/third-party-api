@@ -2,11 +2,11 @@ package cn.shishuihao.thirdparty.api.pay.alipay;
 
 import cn.shishuihao.thirdparty.api.core.properties.AbstractApiProperties;
 import com.alipay.easysdk.kernel.AlipayConstants;
-import com.alipay.easysdk.kernel.Client;
 import com.alipay.easysdk.kernel.Config;
 import com.alipay.easysdk.kernel.Context;
 import com.alipay.easysdk.kms.aliyun.AliyunKMSClient;
 import com.alipay.easysdk.kms.aliyun.AliyunKMSSigner;
+import com.alipay.easysdk.payment.facetoface.Client;
 import com.aliyun.tea.TeaModel;
 
 import java.util.Map;
@@ -20,10 +20,20 @@ import static com.alipay.easysdk.factory.Factory.SDK_VERSION;
  */
 
 public class AlipayPayClient {
-    private final Map<AbstractApiProperties, com.alipay.easysdk.payment.facetoface.Client> faceToFaceClientMap = new ConcurrentHashMap<>();
+    /**
+     * FaceToFace Client Map.
+     */
+    private final Map<AbstractApiProperties, Client> ftfClientMap
+            = new ConcurrentHashMap<>();
 
-    public com.alipay.easysdk.payment.facetoface.Client getFaceToFaceClient(AlipayPayApiProperties properties) {
-        return faceToFaceClientMap.computeIfAbsent(properties, k -> {
+    /**
+     * get FaceToFace Client.
+     *
+     * @param properties properties
+     * @return Client
+     */
+    public Client getFaceToFaceClient(final AlipayPayApiProperties properties) {
+        return ftfClientMap.computeIfAbsent(properties, k -> {
             try {
                 Config config = new Config();
                 config.protocol = properties.getProtocol();
@@ -40,10 +50,13 @@ public class AlipayPayClient {
                 config.signProvider = properties.getSignProvider();
                 config.httpProxy = properties.getHttpProxy();
                 Context context = new Context(config, SDK_VERSION);
-                if (AlipayConstants.AliyunKMS.equals(context.getConfig(AlipayConstants.SIGN_PROVIDER_CONFIG_KEY))) {
-                    context.setSigner(new AliyunKMSSigner(new AliyunKMSClient(TeaModel.buildMap(config))));
+                if (AlipayConstants.AliyunKMS.equals(context.getConfig(
+                        AlipayConstants.SIGN_PROVIDER_CONFIG_KEY))) {
+                    context.setSigner(new AliyunKMSSigner(new AliyunKMSClient(
+                            TeaModel.buildMap(config))));
                 }
-                return new com.alipay.easysdk.payment.facetoface.Client(new Client(context));
+                return new Client(
+                        new com.alipay.easysdk.kernel.Client(context));
             } catch (RuntimeException e) {
                 throw e;
             } catch (Exception e) {

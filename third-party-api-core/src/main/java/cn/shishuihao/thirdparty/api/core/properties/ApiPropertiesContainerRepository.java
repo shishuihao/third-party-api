@@ -12,8 +12,10 @@ import java.util.ServiceLoader;
  */
 
 public class ApiPropertiesContainerRepository
-        extends AbstractContainerRepository<String, ApiProperties,
-        ApiPropertiesRepository> implements ApiPropertiesRepository {
+        extends AbstractContainerRepository<
+        String, ApiProperties,
+        ApiPropertiesRepository>
+        implements ApiPropertiesRepository {
 
     /**
      * new ApiPropertiesContainerRepository.

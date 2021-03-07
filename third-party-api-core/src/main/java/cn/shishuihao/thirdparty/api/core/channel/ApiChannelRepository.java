@@ -9,6 +9,5 @@ import cn.shishuihao.thirdparty.api.core.repository.Repository;
  * @version 1.0.0
  */
 public interface ApiChannelRepository extends Repository<
-        String,
-        ApiChannel<?>> {
+        String, ApiChannel<?>> {
 }

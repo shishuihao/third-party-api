@@ -17,16 +17,32 @@ import com.alipay.easysdk.payment.facetoface.models.AlipayTradePayResponse;
  */
 
 public class AlipayCodePayApi implements CodePayApi {
+    /**
+     * alipay pay client.
+     */
     private final AlipayPayClient alipayPayClient;
 
-    public AlipayCodePayApi(AlipayPayClient alipayPayClient) {
-        this.alipayPayClient = alipayPayClient;
+    /**
+     * new AlipayCodePayApi.
+     *
+     * @param client alipay pay http client
+     */
+    public AlipayCodePayApi(final AlipayPayClient client) {
+        this.alipayPayClient = client;
     }
 
+    /**
+     * execute CodePayApiRequest by alipay.
+     *
+     * @param request request
+     * @return CodePayApiResponse
+     */
     @Override
-    public CodePayApiResponse execute(CodePayApiRequest request) {
-        AlipayPayApiProperties properties = (AlipayPayApiProperties) ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
-        com.alipay.easysdk.payment.facetoface.Client client = alipayPayClient.getFaceToFaceClient(properties);
+    public CodePayApiResponse execute(final CodePayApiRequest request) {
+        AlipayPayApiProperties properties = (AlipayPayApiProperties)
+                ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
+        com.alipay.easysdk.payment.facetoface.Client client = alipayPayClient
+                .getFaceToFaceClient(properties);
         try {
             AlipayTradePayResponse response = client.pay(
                     request.getSubject(),

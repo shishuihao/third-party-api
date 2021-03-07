@@ -10,9 +10,9 @@ import java.util.ServiceLoader;
  * @version 1.0.0
  */
 
-public class ApiPropertiesMemoryRepository extends AbstractMemoryRepository<
-        String,
-        ApiProperties> implements ApiPropertiesRepository {
+public class ApiPropertiesMemoryRepository
+        extends AbstractMemoryRepository<String, ApiProperties>
+        implements ApiPropertiesRepository {
     /**
      * new ApiPropertiesMemoryRepository.
      *

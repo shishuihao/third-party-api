@@ -14,7 +14,8 @@ import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 public interface Api<
         A extends Api<A, T, R>,
         T extends ApiRequest<A, T, R>,
-        R extends ApiResponse> extends Entity<Class<?>> {
+        R extends ApiResponse>
+        extends Entity<Class<?>> {
     /**
      * execute request.
      *

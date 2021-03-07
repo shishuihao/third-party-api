@@ -19,7 +19,7 @@ public final class JacksonTypingUtils {
      * or to and from a general-purpose JSON Tree Model (JsonNode),
      * as well as related functionality for performing conversions.
      */
-    private static final ObjectMapper OBJECT_MAPPER;
+    public static final ObjectMapper OBJECT_MAPPER;
 
     private JacksonTypingUtils() {
     }

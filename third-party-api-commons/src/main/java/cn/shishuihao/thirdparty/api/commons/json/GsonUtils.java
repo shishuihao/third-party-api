@@ -7,7 +7,10 @@ import com.google.gson.Gson;
  * @version 1.0.0
  */
 
-public class GsonUtils {
+public final class GsonUtils {
+    /**
+     * This is the main class for using Gson.
+     */
     private static final Gson GSON;
 
     private GsonUtils() {
@@ -18,11 +21,32 @@ public class GsonUtils {
         GSON = new Gson();
     }
 
-    public static String toJson(Object value) {
-        return value == null ? null : GSON.toJson(value);
+    /**
+     * object to json.
+     *
+     * @param value object
+     * @return json
+     */
+    public static String toJson(final Object value) {
+        if (value == null) {
+            return null;
+        }
+        return GSON.toJson(value);
     }
 
-    public static <T> T fromJson(String content, Class<T> valueType) {
-        return content == null ? null : GSON.fromJson(content, valueType);
+    /**
+     * json to object.
+     *
+     * @param content   json
+     * @param valueType object type
+     * @param <T>       object type
+     * @return object
+     */
+    public static <T> T fromJson(final String content,
+                                 final Class<T> valueType) {
+        if (content == null) {
+            return null;
+        }
+        return GSON.fromJson(content, valueType);
     }
 }

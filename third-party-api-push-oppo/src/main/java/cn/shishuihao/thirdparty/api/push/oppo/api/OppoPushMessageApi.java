@@ -46,16 +46,21 @@ public class OppoPushMessageApi implements PushMessageApi {
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             Sender sender = oppoPushClient.getSender(properties);
-            Notification notification = new Notification();
-            notification.setTitle(request.getTitle());
-            notification.setContent(request.getPayload());
+            Notification notification = getNotification(request);
             Result result = ArrayUtils.isNotEmpty(request.getRegistrationIds())
                     ? batchPush(request, sender, notification)
                     : broadcastPush(sender, notification);
-            return getResponse(result);
+            return getApiResponse(result);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private Notification getNotification(final PushMessageApiRequest request) {
+        Notification notification = new Notification();
+        notification.setTitle(request.getTitle());
+        notification.setContent(request.getPayload());
+        return notification;
     }
 
     private Result batchPush(final PushMessageApiRequest request,
@@ -80,7 +85,7 @@ public class OppoPushMessageApi implements PushMessageApi {
         return result;
     }
 
-    private PushMessageApiResponse getResponse(final Result result) {
+    private PushMessageApiResponse getApiResponse(final Result result) {
         return PushMessageApiResponse.builder()
                 .success(ResultChecker.success(result))
                 .code(Optional.ofNullable(result.getReturnCode())

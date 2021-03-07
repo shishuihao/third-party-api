@@ -44,29 +44,37 @@ public class XiaomiPushMessageApi implements PushMessageApi {
         try {
             Constants.useOfficial();
             Sender sender = xiaomiPushClient.getSender(properties);
-            Message message = new Message.Builder()
-                    .title(request.getTitle())
-                    .description(request.getDescription())
-                    .payload(request.getPayload())
-                    .restrictedPackageName(request.getRestrictedPackageName())
-                    // 使用默认提示音提示
-                    .notifyType(1)
-                    .build();
+            Message message = getMessage(request);
             Result result = sender.send(message,
                     Arrays.asList(request.getRegistrationIds()),
                     Math.max(1, properties.getRetries()));
-            return PushMessageApiResponse.builder()
-                    .success(ErrorCode.Success == result.getErrorCode())
-                    .code(Optional.ofNullable(result.getErrorCode())
-                            .map(it -> it.getValue()
-                                    + ","
-                                    + it.getDescription())
-                            .orElse(null))
-                    .message(result.getReason())
-                    .requestId(result.getMessageId())
-                    .build();
+            return getApiResponse(result);
         } catch (IOException | ParseException e) {
             throw new ApiException(e);
         }
+    }
+
+    private Message getMessage(final PushMessageApiRequest request) {
+        return new Message.Builder()
+                .title(request.getTitle())
+                .description(request.getDescription())
+                .payload(request.getPayload())
+                .restrictedPackageName(request.getRestrictedPackageName())
+                // 使用默认提示音提示
+                .notifyType(1)
+                .build();
+    }
+
+    private PushMessageApiResponse getApiResponse(final Result result) {
+        return PushMessageApiResponse.builder()
+                .success(ErrorCode.Success == result.getErrorCode())
+                .code(Optional.ofNullable(result.getErrorCode())
+                        .map(it -> it.getValue()
+                                + ","
+                                + it.getDescription())
+                        .orElse(null))
+                .message(result.getReason())
+                .requestId(result.getMessageId())
+                .build();
     }
 }

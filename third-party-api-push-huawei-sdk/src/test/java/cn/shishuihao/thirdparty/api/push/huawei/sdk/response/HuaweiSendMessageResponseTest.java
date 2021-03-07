@@ -11,7 +11,7 @@ import java.util.Map;
  * @version 1.0.0
  */
 
-class HuaweiPushMessageResponseTest {
+class HuaweiSendMessageResponseTest {
     String json = "{\n" +
             "    \"code\": \"80100000\",\n" +
             "    \"msg\": \"{\\\"success\\\":3,\\\"failure\\\":1,\\\"illegal_tokens\\\":[\\\"xxx\\\"]}\",\n" +
@@ -22,6 +22,6 @@ class HuaweiPushMessageResponseTest {
     void toJson() {
         Assertions.assertEquals(
                 JacksonUtils.fromJson(json, Map.class),
-                JacksonUtils.fromJson(JacksonUtils.toJson(JacksonUtils.fromJson(json, HuaweiPushMessageResponse.class)), Map.class));
+                JacksonUtils.fromJson(JacksonUtils.toJson(JacksonUtils.fromJson(json, HuaweiSendMessageResponse.class)), Map.class));
     }
 }

@@ -17,7 +17,7 @@ import java.util.Map;
  * @version 1.0.0
  */
 
-class HuaweiPushMessageRequestTest {
+class HuaweiSendMessageRequestTest {
     String json = "{\n" +
             "    \"validate_only\": false,\n" +
             "    \"message\": {\n" +
@@ -44,7 +44,7 @@ class HuaweiPushMessageRequestTest {
 
     @Test
     void toJson() {
-        HuaweiPushMessageRequest request = HuaweiPushMessageRequest.builder()
+        HuaweiSendMessageRequest request = HuaweiSendMessageRequest.builder()
                 .validateOnly(false)
                 .message(Message.builder()
                         .notification(Notification.builder()

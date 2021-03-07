@@ -48,30 +48,41 @@ public class IcbcCodePayApi implements CodePayApi {
     public CodePayApiResponse execute(final CodePayApiRequest request) {
         IcbcPayApiProperties properties = (IcbcPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
-        IcbcClient client = icbcPayClient.getClient(properties);
         try {
-            QrcodePayRequestV2 qrcodePayRequestV2 = new QrcodePayRequestV2();
-            QrcodePayRequestV2.QrcodePayRequestV2Biz biz
-                    = new QrcodePayRequestV2.QrcodePayRequestV2Biz();
-            // 请求路径
-            qrcodePayRequestV2.setServiceUrl(IcbcPayApiChannel.GATEWAY
-                    + "/api/qrcode/V2/pay");
-            biz.setQrCode(request.getAuthCode());
-            biz.setMerId(properties.getMerId());
-            biz.setOutTradeNo(request.getOutTradeNo());
-            biz.setOrderAmt(String.valueOf(request.getTotalAmount()));
-            biz.setTradeDate(LocalDate.now().format(COMPACT_DATE_FORMATTER));
-            biz.setTradeTime(LocalTime.now().format(COMPACT_TIME_FORMATTER));
-            qrcodePayRequestV2.setBizContent(biz);
-            QrcodePayResponseV2 response = client.execute(qrcodePayRequestV2);
-            return CodePayApiResponse.builder()
-                    .success(response.isSuccess())
-                    .code(String.valueOf(response.getReturnCode()))
-                    .message(response.getReturnMsg())
-                    .requestId(response.getMsgId())
-                    .build();
+            IcbcClient client = icbcPayClient.getClient(properties);
+            QrcodePayRequestV2 requestV2 = getRequestV2(request, properties);
+            QrcodePayResponseV2 responseV2 = client.execute(requestV2);
+            return getApiResponse(responseV2);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private QrcodePayRequestV2 getRequestV2(
+            final CodePayApiRequest request,
+            final IcbcPayApiProperties properties) {
+        QrcodePayRequestV2 qrcodePayRequestV2 = new QrcodePayRequestV2();
+        QrcodePayRequestV2.QrcodePayRequestV2Biz biz
+                = new QrcodePayRequestV2.QrcodePayRequestV2Biz();
+        qrcodePayRequestV2.setServiceUrl(IcbcPayApiChannel.GATEWAY
+                + "/api/qrcode/V2/pay");
+        biz.setQrCode(request.getAuthCode());
+        biz.setMerId(properties.getMerId());
+        biz.setOutTradeNo(request.getOutTradeNo());
+        biz.setOrderAmt(String.valueOf(request.getTotalAmount()));
+        biz.setTradeDate(LocalDate.now().format(COMPACT_DATE_FORMATTER));
+        biz.setTradeTime(LocalTime.now().format(COMPACT_TIME_FORMATTER));
+        qrcodePayRequestV2.setBizContent(biz);
+        return qrcodePayRequestV2;
+    }
+
+    private CodePayApiResponse getApiResponse(
+            final QrcodePayResponseV2 responseV2) {
+        return CodePayApiResponse.builder()
+                .success(responseV2.isSuccess())
+                .code(String.valueOf(responseV2.getReturnCode()))
+                .message(responseV2.getReturnMsg())
+                .requestId(responseV2.getMsgId())
+                .build();
     }
 }

@@ -35,23 +35,10 @@ public class AlipayPayClient {
     public Client getFaceToFaceClient(final AlipayPayApiProperties properties) {
         return ftfClientMap.computeIfAbsent(properties, k -> {
             try {
-                Config config = new Config();
-                config.protocol = properties.getProtocol();
-                config.gatewayHost = properties.getGatewayHost();
-                config.appId = properties.getAppId();
-                config.signType = properties.getSignType();
-                config.alipayPublicKey = properties.getAlipayPublicKey();
-                config.merchantPrivateKey = properties.getMerchantPrivateKey();
-                config.merchantCertPath = properties.getMerchantCertPath();
-                config.alipayCertPath = properties.getAlipayCertPath();
-                config.alipayRootCertPath = properties.getAlipayRootCertPath();
-                config.notifyUrl = properties.getNotifyUrl();
-                config.encryptKey = properties.getEncryptKey();
-                config.signProvider = properties.getSignProvider();
-                config.httpProxy = properties.getHttpProxy();
+                Config config = getConfig(properties);
                 Context context = new Context(config, SDK_VERSION);
-                if (AlipayConstants.AliyunKMS.equals(context.getConfig(
-                        AlipayConstants.SIGN_PROVIDER_CONFIG_KEY))) {
+                if (AlipayConstants.AliyunKMS.equals(context
+                        .getConfig(AlipayConstants.SIGN_PROVIDER_CONFIG_KEY))) {
                     context.setSigner(new AliyunKMSSigner(new AliyunKMSClient(
                             TeaModel.buildMap(config))));
                 }
@@ -63,5 +50,23 @@ public class AlipayPayClient {
                 throw new IllegalArgumentException(e);
             }
         });
+    }
+
+    private Config getConfig(final AlipayPayApiProperties properties) {
+        Config config = new Config();
+        config.protocol = properties.getProtocol();
+        config.gatewayHost = properties.getGatewayHost();
+        config.appId = properties.getAppId();
+        config.signType = properties.getSignType();
+        config.alipayPublicKey = properties.getAlipayPublicKey();
+        config.merchantPrivateKey = properties.getMerchantPrivateKey();
+        config.merchantCertPath = properties.getMerchantCertPath();
+        config.alipayCertPath = properties.getAlipayCertPath();
+        config.alipayRootCertPath = properties.getAlipayRootCertPath();
+        config.notifyUrl = properties.getNotifyUrl();
+        config.encryptKey = properties.getEncryptKey();
+        config.signProvider = properties.getSignProvider();
+        config.httpProxy = properties.getHttpProxy();
+        return config;
     }
 }

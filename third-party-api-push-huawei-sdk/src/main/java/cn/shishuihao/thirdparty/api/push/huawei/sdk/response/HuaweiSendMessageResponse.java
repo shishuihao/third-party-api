@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class HuaweiPushMessageResponse implements HuaweiPushResponse {
+public class HuaweiSendMessageResponse implements HuaweiPushResponse {
     /**
      * 错误码.
      */

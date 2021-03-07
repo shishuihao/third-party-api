@@ -45,35 +45,49 @@ public class AliYunSendBatchSmsApi implements SendBatchSmsApi {
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             Client client = smsClient.getAliYunClient(properties);
-            SendBatchSmsRequest sendBatchSmsRequest = new SendBatchSmsRequest();
-            sendBatchSmsRequest.setPhoneNumberJson(GsonUtils
-                    .toJson(request.getMessages().stream()
-                            .map(SmsMessage::getPhoneNumber)
-                            .collect(Collectors.toList())));
-            sendBatchSmsRequest.setSignNameJson(GsonUtils
-                    .toJson(request.getMessages().stream()
-                            .map(it -> Optional.ofNullable(it.getSignName())
-                                    .orElseGet(properties::getSignName))
-                            .collect(Collectors.toList())));
-            sendBatchSmsRequest.setTemplateCode(request.getTemplateId());
-            sendBatchSmsRequest.setTemplateParamJson(GsonUtils
-                    .toJson(request.getMessages().stream()
-                            .map(SmsMessage::getTemplateParams)
-                            .collect(Collectors.toList())));
-            sendBatchSmsRequest.setSmsUpExtendCodeJson(GsonUtils
-                    .toJson(request.getMessages().stream()
-                            .map(SmsMessage::getExtendCode)
-                            .collect(Collectors.toList())));
-            SendBatchSmsResponseBody sendBatchSmsResponseBody = client
-                    .sendBatchSms(sendBatchSmsRequest).getBody();
+            SendBatchSmsRequest sbRequest = new SendBatchSmsRequest();
+            sbRequest.setPhoneNumberJson(getPhoneNumberJson(request));
+            sbRequest.setSignNameJson(getSignNameJson(request, properties));
+            sbRequest.setTemplateCode(request.getTemplateId());
+            sbRequest.setTemplateParamJson(getTemplateParamJson(request));
+            sbRequest.setSmsUpExtendCodeJson(getExtendCodeJson(request));
+            SendBatchSmsResponseBody sbResponseBody = client
+                    .sendBatchSms(sbRequest)
+                    .getBody();
             return SendBatchSmsApiResponse.builder()
-                    .requestId(sendBatchSmsResponseBody.getRequestId())
-                    .success("OK".equals(sendBatchSmsResponseBody.getCode()))
-                    .code(sendBatchSmsResponseBody.getCode())
-                    .message(sendBatchSmsResponseBody.getMessage())
+                    .requestId(sbResponseBody.getRequestId())
+                    .success("OK".equals(sbResponseBody.getCode()))
+                    .code(sbResponseBody.getCode())
+                    .message(sbResponseBody.getMessage())
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private String getPhoneNumberJson(final SendBatchSmsApiRequest request) {
+        return GsonUtils.toJson(request.getMessages().stream()
+                .map(SmsMessage::getPhoneNumber)
+                .collect(Collectors.toList()));
+    }
+
+    private String getSignNameJson(final SendBatchSmsApiRequest request,
+                                   final AliYunSmsApiProperties properties) {
+        return GsonUtils.toJson(request.getMessages().stream()
+                .map(it -> Optional.ofNullable(it.getSignName())
+                        .orElseGet(properties::getSignName))
+                .collect(Collectors.toList()));
+    }
+
+    private String getTemplateParamJson(final SendBatchSmsApiRequest request) {
+        return GsonUtils.toJson(request.getMessages().stream()
+                .map(SmsMessage::getTemplateParams)
+                .collect(Collectors.toList()));
+    }
+
+    private String getExtendCodeJson(final SendBatchSmsApiRequest request) {
+        return GsonUtils.toJson(request.getMessages().stream()
+                .map(SmsMessage::getExtendCode)
+                .collect(Collectors.toList()));
     }
 }

@@ -14,6 +14,7 @@ import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.ResponseChecker;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlFieldUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 /**
@@ -38,34 +39,49 @@ public class WxCodePayApi implements CodePayApi {
         WxPayApiProperties properties = (WxPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            WxPayMicropayRequest wxRequest = WxPayMicropayRequest.builder()
-                    .appId(properties.getAppId())
-                    .mchId(properties.getMchId())
-                    .subAppId(properties.getSubAppId())
-                    .subMchId(properties.getSubMchId())
-                    .deviceInfo(properties.getDeviceInfo())
-                    .nonceStr(RandomStringUtils
-                            .randomAlphanumeric(Integer.SIZE))
-                    .signType(properties.getSignType())
-                    .body(request.getSubject())
-                    .outTradeNo(request.getOutTradeNo())
-                    .totalFee(request.getTotalAmount())
-                    .authCode(request.getAuthCode())
-                    .build();
-            Map<String, Object> params = XmlFieldUtils
-                    .getNameValueMap(wxRequest);
-            wxRequest.setSign(wxRequest.getSignType()
-                    .sign(properties.getKey(), params));
-            WxPayMicropayResponse wxPayMicropayResponse = wxPayCodeApi
-                    .microPay(wxRequest);
-            return CodePayApiResponse.builder()
-                    .success(ResponseChecker.success(wxPayMicropayResponse))
-                    .code(wxPayMicropayResponse.getReturnCode())
-                    .message(wxPayMicropayResponse.getReturnMsg())
-                    .requestId(null)
-                    .build();
+            WxPayMicropayRequest wxRequest = getWxRequest(request, properties);
+            wxRequest.setSign(getSign(properties, wxRequest));
+            WxPayMicropayResponse wxResponse = wxPayCodeApi.microPay(wxRequest);
+            return getApiResponse(wxResponse);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private WxPayMicropayRequest getWxRequest(
+            final CodePayApiRequest request,
+            final WxPayApiProperties properties) {
+        return WxPayMicropayRequest.builder()
+                .appId(properties.getAppId())
+                .mchId(properties.getMchId())
+                .subAppId(properties.getSubAppId())
+                .subMchId(properties.getSubMchId())
+                .deviceInfo(properties.getDeviceInfo())
+                .nonceStr(RandomStringUtils
+                        .randomAlphanumeric(Integer.SIZE))
+                .signType(properties.getSignType())
+                .body(request.getSubject())
+                .outTradeNo(request.getOutTradeNo())
+                .totalFee(request.getTotalAmount())
+                .authCode(request.getAuthCode())
+                .build();
+    }
+
+    private String getSign(final WxPayApiProperties properties,
+                      final WxPayMicropayRequest wxRequest)
+            throws UnsupportedEncodingException {
+        Map<String, Object> params = XmlFieldUtils
+                .getNameValueMap(wxRequest);
+        return wxRequest.getSignType().sign(properties.getKey(), params);
+    }
+
+    private CodePayApiResponse getApiResponse(
+            final WxPayMicropayResponse wxPayMicropayResponse) {
+        return CodePayApiResponse.builder()
+                .success(ResponseChecker.success(wxPayMicropayResponse))
+                .code(wxPayMicropayResponse.getReturnCode())
+                .message(wxPayMicropayResponse.getReturnMsg())
+                .requestId(null)
+                .build();
     }
 }

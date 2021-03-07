@@ -42,31 +42,51 @@ public class AliYunSendSmsApi implements SendSmsApi {
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             Client client = smsClient.getAliYunClient(properties);
-            SendSmsRequest sendSmsRequest = new SendSmsRequest();
-            sendSmsRequest.setPhoneNumbers(request.getMessage()
-                    .getPhoneNumber());
-            sendSmsRequest.setSignName(Optional
-                    .ofNullable(request.getMessage()
-                            .getSignName())
-                    .orElseGet(properties::getSignName));
-            sendSmsRequest.setTemplateCode(request.getTemplateId());
-            sendSmsRequest.setTemplateParam(GsonUtils
-                    .toJson(request.getMessage()
-                            .getTemplateParams()));
-            sendSmsRequest.setSmsUpExtendCode(Optional
-                    .ofNullable(request.getMessage()
-                            .getExtendCode())
-                    .orElseGet(properties::getSmsUpExtendCode));
-            SendSmsResponseBody sendSmsResponseBody = client
-                    .sendSms(sendSmsRequest).getBody();
-            return SendSmsApiResponse.builder()
-                    .requestId(sendSmsResponseBody.getRequestId())
-                    .success("OK".equals(sendSmsResponseBody.getCode()))
-                    .code(sendSmsResponseBody.getCode())
-                    .message(sendSmsResponseBody.getMessage())
-                    .build();
+            SendSmsRequest smsRequest = getSmsRequest(request, properties);
+            SendSmsResponseBody smsResponseBody = client
+                    .sendSms(smsRequest)
+                    .getBody();
+            return getApiResponse(smsResponseBody);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private SendSmsRequest getSmsRequest(
+            final SendSmsApiRequest request,
+            final AliYunSmsApiProperties properties) {
+        SendSmsRequest alyRequest = new SendSmsRequest();
+        alyRequest.setPhoneNumbers(request.getMessage().getPhoneNumber());
+        alyRequest.setSignName(getSignName(request, properties));
+        alyRequest.setTemplateCode(request.getTemplateId());
+        alyRequest.setTemplateParam(getTemplateParam(request));
+        alyRequest.setSmsUpExtendCode(getExtendCode(request, properties));
+        return alyRequest;
+    }
+
+    private SendSmsApiResponse getApiResponse(
+            final SendSmsResponseBody smsResponseBody) {
+        return SendSmsApiResponse.builder()
+                .requestId(smsResponseBody.getRequestId())
+                .success("OK".equals(smsResponseBody.getCode()))
+                .code(smsResponseBody.getCode())
+                .message(smsResponseBody.getMessage())
+                .build();
+    }
+
+    private String getSignName(final SendSmsApiRequest request,
+                               final AliYunSmsApiProperties properties) {
+        return Optional.ofNullable(request.getMessage().getSignName())
+                .orElseGet(properties::getSignName);
+    }
+
+    private String getExtendCode(final SendSmsApiRequest request,
+                                 final AliYunSmsApiProperties properties) {
+        return Optional.ofNullable(request.getMessage().getExtendCode())
+                .orElseGet(properties::getSmsUpExtendCode);
+    }
+
+    private String getTemplateParam(final SendSmsApiRequest request) {
+        return GsonUtils.toJson(request.getMessage().getTemplateParams());
     }
 }

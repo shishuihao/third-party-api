@@ -169,40 +169,11 @@ public class WxPayRefundQueryResponseConverter extends ReflectionConverter {
                 String nodeName = reader.getNodeName().trim();
                 putMapIfMatch(OUT_REFUND_NO_PATTERN, nodeName,
                         response::getOutRefundNos, reader::getValue);
-                putMapIfMatch(REFUND_ID_PATTERN, nodeName,
-                        response::getRefundIds, reader::getValue);
-                putMapIfMatch(REFUND_CHANNEL_PATTERN, nodeName,
-                        response::getRefundChannels, reader::getValue);
-                putMapIfMatch(REFUND_FEE_PATTERN, nodeName,
-                        response::getRefundFees, () ->
-                                Integer.valueOf(reader.getValue()));
-                putMapIfMatch(OUT_REFUND_NO_PATTERN, nodeName,
-                        response::getOutRefundNos, reader::getValue);
                 putMapIfMatch(SETTLEMENT_REFUND_FEE_PATTERN, nodeName,
                         response::getSettlementRefundFees, () ->
                                 Integer.valueOf(reader.getValue()));
-                putMapIfMatch(COUPON_REFUND_FEE_PATTERN, nodeName,
-                        response::getCouponRefundFees, () ->
-                                Integer.valueOf(reader.getValue()));
-                putMapIfMatch(COUPON_REFUND_COUNT_PATTERN, nodeName,
-                        response::getCouponRefundCounts, () ->
-                                Integer.valueOf(reader.getValue()));
-                putMapIfMatch(REFUND_STATUS_PATTERN, nodeName,
-                        response::getRefundStatuses, reader::getValue);
-                putMapIfMatch(REFUND_ACCOUNT_PATTERN, nodeName,
-                        response::getRefundAccounts, reader::getValue);
-                putMapIfMatch(REFUND_RECV_ACCOUNT_PATTERN, nodeName,
-                        response::getRefundRecvAccounts, reader::getValue);
-                putMapIfMatch(REFUND_SUCCESS_TIME_PATTERN, nodeName,
-                        response::getRefundSuccessTimes, reader::getValue);
-                putMapMapIfMatch(COUPON_TYPES_PATTERN, nodeName,
-                        response::getCouponTypes, reader::getValue);
-                putMapMapIfMatch(COUPON_REFUND_ID_PATTERN, nodeName,
-                        response::getCouponRefundsIds, () ->
-                                Integer.valueOf(reader.getValue()));
-                putMapMapIfMatch(COUPON_REFUND_FEES_PATTERN, nodeName,
-                        response::getCouponRefundsFees, () ->
-                                Integer.valueOf(reader.getValue()));
+                putIfMatchRefund(reader, response, nodeName);
+                putIfMatchCoupon(reader, response, nodeName);
                 Field field = NAME_FIELD_MAP.get(nodeName);
                 if (field != null) {
                     Class<?> type = mapper
@@ -217,6 +188,45 @@ public class WxPayRefundQueryResponseConverter extends ReflectionConverter {
         } catch (Exception e) {
             throw ExceptionUtils.<RuntimeException>rethrow(e);
         }
+    }
+
+    private void putIfMatchRefund(final HierarchicalStreamReader reader,
+                                  final WxPayRefundQueryResponse response,
+                                  final String nodeName) {
+        putMapIfMatch(REFUND_ID_PATTERN, nodeName,
+                response::getRefundIds, reader::getValue);
+        putMapIfMatch(REFUND_CHANNEL_PATTERN, nodeName,
+                response::getRefundChannels, reader::getValue);
+        putMapIfMatch(REFUND_FEE_PATTERN, nodeName,
+                response::getRefundFees, () ->
+                        Integer.valueOf(reader.getValue()));
+        putMapIfMatch(REFUND_STATUS_PATTERN, nodeName,
+                response::getRefundStatuses, reader::getValue);
+        putMapIfMatch(REFUND_ACCOUNT_PATTERN, nodeName,
+                response::getRefundAccounts, reader::getValue);
+        putMapIfMatch(REFUND_RECV_ACCOUNT_PATTERN, nodeName,
+                response::getRefundRecvAccounts, reader::getValue);
+        putMapIfMatch(REFUND_SUCCESS_TIME_PATTERN, nodeName,
+                response::getRefundSuccessTimes, reader::getValue);
+    }
+
+    private void putIfMatchCoupon(final HierarchicalStreamReader reader,
+                                  final WxPayRefundQueryResponse response,
+                                  final String nodeName) {
+        putMapIfMatch(COUPON_REFUND_FEE_PATTERN, nodeName,
+                response::getCouponRefundFees, () ->
+                        Integer.valueOf(reader.getValue()));
+        putMapIfMatch(COUPON_REFUND_COUNT_PATTERN, nodeName,
+                response::getCouponRefundCounts, () ->
+                        Integer.valueOf(reader.getValue()));
+        putMapMapIfMatch(COUPON_TYPES_PATTERN, nodeName,
+                response::getCouponTypes, reader::getValue);
+        putMapMapIfMatch(COUPON_REFUND_ID_PATTERN, nodeName,
+                response::getCouponRefundsIds, () ->
+                        Integer.valueOf(reader.getValue()));
+        putMapMapIfMatch(COUPON_REFUND_FEES_PATTERN, nodeName,
+                response::getCouponRefundsFees, () ->
+                        Integer.valueOf(reader.getValue()));
     }
 
     private void marshalMap(final HierarchicalStreamWriter writer,

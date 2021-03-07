@@ -7,6 +7,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.Xpp3Driver;
 import com.thoughtworks.xstream.mapper.CannotResolveClassException;
+import com.thoughtworks.xstream.mapper.Mapper;
 import com.thoughtworks.xstream.mapper.MapperWrapper;
 
 import java.lang.reflect.InvocationTargetException;
@@ -118,7 +119,6 @@ public final class XmlUtils {
         return type;
     }
 
-
     private static class CustomizedStream extends XStream {
         CustomizedStream() {
             super(new Xpp3Driver(new NoNameCoder()));
@@ -126,20 +126,26 @@ public final class XmlUtils {
 
         @Override
         protected MapperWrapper wrapMapper(final MapperWrapper next) {
-            return new MapperWrapper(next) {
-                @Override
-                public boolean shouldSerializeMember(final Class definedIn,
-                                                     final String fieldName) {
-                    if (definedIn == Object.class) {
-                        try {
-                            return this.realClass(fieldName) != null;
-                        } catch (CannotResolveClassException e) {
-                            return false;
-                        }
-                    }
-                    return super.shouldSerializeMember(definedIn, fieldName);
+            return new CustomizedMapperWrapper(next);
+        }
+    }
+
+    private static class CustomizedMapperWrapper extends MapperWrapper {
+        CustomizedMapperWrapper(final Mapper wrapped) {
+            super(wrapped);
+        }
+
+        @Override
+        public boolean shouldSerializeMember(final Class definedIn,
+                                             final String fieldName) {
+            if (definedIn == Object.class) {
+                try {
+                    return this.realClass(fieldName) != null;
+                } catch (CannotResolveClassException e) {
+                    return false;
                 }
-            };
+            }
+            return super.shouldSerializeMember(definedIn, fieldName);
         }
     }
 }

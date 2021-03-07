@@ -40,34 +40,41 @@ public class TencentSendBatchSmsApi implements SendBatchSmsApi {
      * @return SendBatchSmsApiResponse
      */
     @Override
-    public SendBatchSmsApiResponse
-    execute(final SendBatchSmsApiRequest request) {
+    public SendBatchSmsApiResponse execute(
+            final SendBatchSmsApiRequest request) {
         TencentSmsApiProperties properties = (TencentSmsApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             SmsClient client = tencentSmsClient.getClient(properties);
-            SendSmsRequest req = new SendSmsRequest();
-            req.setSmsSdkAppid(properties.getAppId());
-            req.setSign(properties.getSign());
-            req.setSenderId(properties.getSenderId());
-            req.setExtendCode(properties.getExtendCode());
-            req.setTemplateID(request.getTemplateId());
-            req.setPhoneNumberSet(request.getMessages().stream()
-                    .map(SmsMessage::getPhoneNumber).toArray(String[]::new));
-            req.setTemplateParamSet(request.getMessages()
-                    .stream()
-                    .map(it -> it.getTemplateParams().values()
-                            .toArray(new String[0]))
-                    .findFirst()
-                    .orElseGet(() -> new String[]{""}));
-            SendSmsResponse sendSmsResponse = client.SendSms(req);
-            return getSendBatchSmsApiResponse(sendSmsResponse);
+            SendSmsRequest smsRequest = getSmsRequest(request, properties);
+            SendSmsResponse smsResponse = client.SendSms(smsRequest);
+            return getApiResponse(smsResponse);
         } catch (TencentCloudSDKException e) {
             throw new ApiException(e);
         }
     }
 
-    private SendBatchSmsApiResponse getSendBatchSmsApiResponse(
+    private SendSmsRequest getSmsRequest(
+            final SendBatchSmsApiRequest request,
+            final TencentSmsApiProperties properties) {
+        SendSmsRequest req = new SendSmsRequest();
+        req.setSmsSdkAppid(properties.getAppId());
+        req.setSign(properties.getSign());
+        req.setSenderId(properties.getSenderId());
+        req.setExtendCode(properties.getExtendCode());
+        req.setTemplateID(request.getTemplateId());
+        req.setPhoneNumberSet(request.getMessages().stream()
+                .map(SmsMessage::getPhoneNumber).toArray(String[]::new));
+        req.setTemplateParamSet(request.getMessages()
+                .stream()
+                .map(it -> it.getTemplateParams().values()
+                        .toArray(new String[0]))
+                .findFirst()
+                .orElseGet(() -> new String[]{""}));
+        return req;
+    }
+
+    private SendBatchSmsApiResponse getApiResponse(
             final SendSmsResponse sendSmsResponse) {
         return SendBatchSmsApiResponse.builder()
                 .requestId(sendSmsResponse.getRequestId())

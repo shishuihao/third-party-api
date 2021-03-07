@@ -8,8 +8,8 @@ import cn.shishuihao.thirdparty.api.push.huawei.sdk.HuaweiFactory;
 import cn.shishuihao.thirdparty.api.push.huawei.sdk.api.HuaweiPushApi;
 import cn.shishuihao.thirdparty.api.push.huawei.sdk.domain.Message;
 import cn.shishuihao.thirdparty.api.push.huawei.sdk.domain.Notification;
-import cn.shishuihao.thirdparty.api.push.huawei.sdk.request.HuaweiPushMessageRequest;
-import cn.shishuihao.thirdparty.api.push.huawei.sdk.response.HuaweiPushMessageResponse;
+import cn.shishuihao.thirdparty.api.push.huawei.sdk.request.HuaweiSendMessageRequest;
+import cn.shishuihao.thirdparty.api.push.huawei.sdk.response.HuaweiSendMessageResponse;
 import cn.shishuihao.thirdparty.api.push.huawei.sdk.util.ResponseChecker;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
@@ -19,6 +19,7 @@ import java.util.Arrays;
 
 /**
  * push message.
+ *
  * @author shishuihao
  * @version 1.0.0
  */
@@ -40,28 +41,37 @@ public class HuaweiPushMessageApi implements PushMessageApi {
         HuaweiPushApiProperties properties = (HuaweiPushApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            HuaweiPushMessageRequest pmRequest = HuaweiPushMessageRequest
-                    .builder()
-                    .validateOnly(false)
-                    .message(Message.builder()
-                            .notification(Notification.builder()
-                                    .title(request.getTitle())
-                                    .body(request.getPayload())
-                                    .build())
-                            .token(Arrays.asList(request.getRegistrationIds()))
-                            .build())
-                    .build();
-            HuaweiPushMessageResponse response = huaweiPushApi.sendMessage(
-                    properties.getAppId(),
-                    pmRequest);
-            return PushMessageApiResponse.builder()
-                    .success(ResponseChecker.success(response))
-                    .code(response.getCode())
-                    .message(response.getMsg())
-                    .requestId(response.getRequestId())
-                    .build();
+            HuaweiSendMessageRequest hwRequest = getHwRequest(request);
+            HuaweiSendMessageResponse hwResponse = huaweiPushApi
+                    .sendMessage(properties.getAppId(), hwRequest);
+            return getApiResponse(hwResponse);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private HuaweiSendMessageRequest getHwRequest(
+            final PushMessageApiRequest request) {
+        return HuaweiSendMessageRequest
+                .builder()
+                .validateOnly(false)
+                .message(Message.builder()
+                        .notification(Notification.builder()
+                                .title(request.getTitle())
+                                .body(request.getPayload())
+                                .build())
+                        .token(Arrays.asList(request.getRegistrationIds()))
+                        .build())
+                .build();
+    }
+
+    private PushMessageApiResponse getApiResponse(
+            final HuaweiSendMessageResponse hwResponse) {
+        return PushMessageApiResponse.builder()
+                .success(ResponseChecker.success(hwResponse))
+                .code(hwResponse.getCode())
+                .message(hwResponse.getMsg())
+                .requestId(hwResponse.getRequestId())
+                .build();
     }
 }

@@ -44,11 +44,7 @@ public class FlymePushMessageApi implements PushMessageApi {
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             IFlymePush push = flymePushClient.getClient(properties);
-            VarnishedMessage message = new VarnishedMessage.Builder()
-                    .appId(properties.getAppId())
-                    .title(request.getTitle())
-                    .content(request.getPayload())
-                    .build();
+            VarnishedMessage message = getMessage(request, properties);
             ResultPack<?> result;
             if (ArrayUtils.isEmpty(request.getRegistrationIds())) {
                 result = push.pushToApp(PushType.STATUSBAR, message);
@@ -57,17 +53,31 @@ public class FlymePushMessageApi implements PushMessageApi {
                         Arrays.asList(request.getRegistrationIds()),
                         Math.max(1, properties.getRetries()));
             }
-            return PushMessageApiResponse.builder()
-                    .success(ErrorCode.SUCCESS == result.getErrorCode())
-                    .code(Optional.ofNullable(result.getErrorCode())
-                            .map(it -> it.getValue()
-                                    + ","
-                                    + it.getDescription())
-                            .orElse(null))
-                    .message(result.comment())
-                    .build();
+            return getApiResponse(result);
         } catch (IOException e) {
             throw new ApiException(e);
         }
+    }
+
+    private VarnishedMessage getMessage(
+            final PushMessageApiRequest request,
+            final FlymePushApiProperties properties) {
+        return new VarnishedMessage.Builder()
+                .appId(properties.getAppId())
+                .title(request.getTitle())
+                .content(request.getPayload())
+                .build();
+    }
+
+    private PushMessageApiResponse getApiResponse(final ResultPack<?> result) {
+        return PushMessageApiResponse.builder()
+                .success(ErrorCode.SUCCESS == result.getErrorCode())
+                .code(Optional.ofNullable(result.getErrorCode())
+                        .map(it -> it.getValue()
+                                + ","
+                                + it.getDescription())
+                        .orElse(null))
+                .message(result.comment())
+                .build();
     }
 }

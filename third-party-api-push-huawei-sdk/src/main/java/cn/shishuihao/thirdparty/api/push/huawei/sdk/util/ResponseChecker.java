@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.push.huawei.sdk.util;
 
-import cn.shishuihao.thirdparty.api.push.huawei.sdk.response.HuaweiPushMessageResponse;
+import cn.shishuihao.thirdparty.api.push.huawei.sdk.response.HuaweiSendMessageResponse;
 
 /**
  * @author shishuihao
@@ -17,7 +17,7 @@ public final class ResponseChecker {
      * @param response 响应对象
      * @return true：成功；false：失败
      */
-    public static boolean success(final HuaweiPushMessageResponse response) {
+    public static boolean success(final HuaweiSendMessageResponse response) {
         return "80000000".equals(response.getCode());
     }
 }

@@ -14,7 +14,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Builder
 @Getter
-public class HuaweiPushMessageRequest {
+public class HuaweiSendMessageRequest {
     /**
      * 控制当前是否为测试消息.
      * 测试消息只做格式合法性校验，不会推送给用户设备.

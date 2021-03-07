@@ -41,9 +41,9 @@ public class AlipayCodePayApi implements CodePayApi {
     public CodePayApiResponse execute(final CodePayApiRequest request) {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
-        com.alipay.easysdk.payment.facetoface.Client client = alipayPayClient
-                .getFaceToFaceClient(properties);
         try {
+            com.alipay.easysdk.payment.facetoface.Client client
+                    = alipayPayClient.getFaceToFaceClient(properties);
             AlipayTradePayResponse response = client.pay(
                     request.getSubject(),
                     request.getOutTradeNo(),

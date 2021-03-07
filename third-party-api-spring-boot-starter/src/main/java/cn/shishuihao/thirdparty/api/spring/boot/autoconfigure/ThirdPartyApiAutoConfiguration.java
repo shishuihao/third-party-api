@@ -1,10 +1,10 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
 
-import cn.shishuihao.thirdparty.api.core.channel.ApiChannelRepository;
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.channel.ApiChannelMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.channel.ApiChannelRepository;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
@@ -20,27 +20,51 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @ConditionalOnProperty(name = "third-party-api.enabled", matchIfMissing = true)
 public class ThirdPartyApiAutoConfiguration {
+    /**
+     * propertiesRepository.
+     *
+     * @return ApiPropertiesRepository
+     */
     @Bean
     @ConditionalOnMissingBean
     protected ApiPropertiesRepository propertiesRepository() {
         return new ApiPropertiesMemoryRepository();
     }
 
+    /**
+     * channelRepository.
+     *
+     * @return ApiChannelRepository
+     */
     @Bean
     @ConditionalOnMissingBean
     protected ApiChannelRepository channelRepository() {
         return new ApiChannelMemoryRepository();
     }
 
+    /**
+     * apiRegistry.
+     *
+     * @param apiChannelRepository channelRepository
+     * @return ApiRegistry
+     */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiRegistry apiRegistry(ApiChannelRepository channelRepository) {
-        return new ApiRegistry(channelRepository);
+    protected ApiRegistry apiRegistry(
+            final ApiChannelRepository apiChannelRepository) {
+        return new ApiRegistry(apiChannelRepository);
     }
 
+    /**
+     * eventPublisher.
+     *
+     * @param applicationContext applicationContext
+     * @return ThirdPartyApiSpringEventPublisher
+     */
     @Bean
     @ConditionalOnMissingBean
-    protected ThirdPartyApiSpringEventPublisher eventPublisher(ApplicationContext applicationContext) {
+    protected ThirdPartyApiSpringEventPublisher eventPublisher(
+            final ApplicationContext applicationContext) {
         return new ThirdPartyApiSpringEventPublisher(applicationContext);
     }
 }

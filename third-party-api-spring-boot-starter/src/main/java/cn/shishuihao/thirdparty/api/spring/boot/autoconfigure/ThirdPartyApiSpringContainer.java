@@ -17,12 +17,26 @@ import java.util.function.Consumer;
  * @version 1.0.0
  */
 
-public class ThirdPartyApiSpringContainer implements Container, ApplicationContextAware {
+public class ThirdPartyApiSpringContainer
+        implements Container, ApplicationContextAware {
+    /**
+     * applicationContext.
+     */
     private static ApplicationContext applicationContext;
+    /**
+     * hooks.
+     */
     private final List<Consumer<Container>> hooks = new ArrayList<>();
 
+    /**
+     * set ApplicationContext.
+     *
+     * @param context applicationContext
+     * @throws BeansException BeansException
+     */
     @Override
-    public synchronized void setApplicationContext(@NonNull final ApplicationContext context) throws BeansException {
+    public synchronized void setApplicationContext(
+            @NonNull final ApplicationContext context) throws BeansException {
         ThirdPartyApiSpringContainer.applicationContext = context;
         Iterator<Consumer<Container>> it = this.hooks.iterator();
         while (it.hasNext()) {
@@ -32,8 +46,13 @@ public class ThirdPartyApiSpringContainer implements Container, ApplicationConte
         }
     }
 
+    /**
+     * aware or Hook.
+     *
+     * @param hook hook
+     */
     @Override
-    public void awareOrHook(Consumer<Container> hook) {
+    public void awareOrHook(final Consumer<Container> hook) {
         if (applicationContext != null) {
             hook.accept(this);
         } else {
@@ -41,13 +60,32 @@ public class ThirdPartyApiSpringContainer implements Container, ApplicationConte
         }
     }
 
+    /**
+     * Return the bean instance that uniquely matches the given object type,
+     * if any.
+     *
+     * @param requiredType type the bean must match;
+     *                     can be an interface or superclass
+     * @param <T>          requiredType
+     * @return an instance of the single bean matching the required type
+     */
     @Override
-    public <T> T getBean(Class<T> requiredType) {
-        return ThirdPartyApiSpringContainer.applicationContext.getBean(requiredType);
+    public <T> T getBean(final Class<T> requiredType) {
+        return applicationContext.getBean(requiredType);
     }
 
+    /**
+     * Return the bean instances that match the given object type
+     * (including subclasses).
+     *
+     * @param type the class or interface to match,
+     *             or {@code null} for all concrete beans
+     * @param <T>  requiredType
+     * @return a Map with the matching beans, containing the bean names as
+     * keys and the corresponding bean instances as values
+     */
     @Override
-    public <T> Map<String, T> getBeansOfType(Class<T> requiredType) {
-        return ThirdPartyApiSpringContainer.applicationContext.getBeansOfType(requiredType);
+    public <T> Map<String, T> getBeansOfType(final Class<T> type) {
+        return applicationContext.getBeansOfType(type);
     }
 }

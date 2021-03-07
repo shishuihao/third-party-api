@@ -69,7 +69,7 @@
 
 ### Social
 
-[![GitHub followers](https://img.shields.io/github/followers/shishuihao?style=social)
+![GitHub followers](https://img.shields.io/github/followers/shishuihao?style=social)
 [![GitHub forks](https://img.shields.io/github/forks/shishuihao/third-party-api)](https://github.com/shishuihao/third-party-api/network)
 ![GitHub Sponsors](https://img.shields.io/github/sponsors/shishuihao?style=social)
 [![GitHub stars](https://img.shields.io/github/stars/shishuihao/third-party-api)](https://github.com/shishuihao/third-party-api/stargazers)

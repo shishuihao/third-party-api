@@ -9,27 +9,64 @@ import java.text.DecimalFormat;
  * @version 1.0.0
  */
 
-public class AmountUtils {
+public final class AmountUtils {
+    /**
+     * Handy constants for conversion methods.
+     */
+    static final int C0 = 100;
+
     private AmountUtils() {
     }
 
-    public static Double toCentDouble(String amount) {
-        return Double.parseDouble(new DecimalFormat("#.00").format(Double.parseDouble(amount))) * 100;
+    /**
+     * yuan => cent.
+     *
+     * @param yuan yuan
+     * @return cent
+     */
+    public static Double toCentDouble(final String yuan) {
+        return Double.parseDouble(new DecimalFormat("#.00")
+                .format(Double.parseDouble(yuan))) * C0;
     }
 
-    public static int toCent(String yuan) {
+    /**
+     * yuan => cent.
+     *
+     * @param yuan yuan
+     * @return cent
+     */
+    public static int toCent(final String yuan) {
         return toCentDouble(yuan).intValue();
     }
 
-    public static int toCent(double yuan) {
+    /**
+     * yuan => cent.
+     *
+     * @param yuan yuan
+     * @return cent
+     */
+    public static int toCent(final double yuan) {
         return toCent(String.valueOf(yuan));
     }
 
-    public static BigDecimal toYuanBigDecimal(int price) {
-        return BigDecimal.valueOf(price).divide(new BigDecimal(100), 2, RoundingMode.HALF_UP);
+    /**
+     * cent => yuan.
+     *
+     * @param cent cent
+     * @return yuan
+     */
+    public static BigDecimal toYuanBigDecimal(final int cent) {
+        return BigDecimal.valueOf(cent)
+                .divide(new BigDecimal(C0), 2, RoundingMode.HALF_UP);
     }
 
-    public static String toYuanString(int price) {
-        return toYuanBigDecimal(price).toString();
+    /**
+     * cent => yuan.
+     *
+     * @param cent cent
+     * @return yuan
+     */
+    public static String toYuanString(final int cent) {
+        return toYuanBigDecimal(cent).toString();
     }
 }

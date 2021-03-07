@@ -5,8 +5,8 @@ import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
 /**
  * @param <A> api
- * @param <T> request
- * @param <R> response
+ * @param <T> api request
+ * @param <R> api response
  * @author shishuihao
  * @version 1.0.0
  */

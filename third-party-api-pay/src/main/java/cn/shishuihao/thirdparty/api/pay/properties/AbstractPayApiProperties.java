@@ -8,5 +8,7 @@ import cn.shishuihao.thirdparty.api.pay.PayApiProperties;
  * @version 1.0.0
  */
 
-public abstract class AbstractPayApiProperties extends AbstractApiProperties implements PayApiProperties {
+public abstract class AbstractPayApiProperties
+        extends AbstractApiProperties
+        implements PayApiProperties {
 }

@@ -11,10 +11,18 @@ import org.springframework.lang.Nullable;
  * @author shishuihao
  * @version 1.0.0
  */
-public class JacksonToApiPropertiesConverter implements Converter<String, ApiProperties> {
+public class JacksonToApiPropertiesConverter
+        implements Converter<String, ApiProperties> {
+    /**
+     * Convert the source object of type {@code S} to target type {@code T}.
+     *
+     * @param source the source object to convert
+     * @return the converted object
+     * @throws IllegalArgumentException if  cannot be converted
+     */
     @Nullable
     @Override
-    public ApiProperties convert(@NonNull String source) {
+    public ApiProperties convert(final @NonNull String source) {
         return JacksonTypingUtils.fromJson(source, ApiProperties.class);
     }
 }

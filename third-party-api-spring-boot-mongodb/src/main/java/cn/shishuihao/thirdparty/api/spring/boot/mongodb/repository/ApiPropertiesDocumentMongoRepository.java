@@ -11,21 +11,24 @@ import java.util.Optional;
  * @version 1.0.0
  */
 @Repository
-public interface ApiPropertiesDocumentMongoRepository extends MongoRepository<ApiPropertiesMongodbDocument, Long> {
+public interface ApiPropertiesDocumentMongoRepository
+        extends MongoRepository<ApiPropertiesMongodbDocument, Long> {
     /**
-     * get by properties id
+     * get by properties id.
      *
      * @param id properties id
      * @return properties
      */
-    Optional<ApiPropertiesMongodbDocument> findByPropertiesId(String id);
+    Optional<ApiPropertiesMongodbDocument>
+    findByPropertiesId(String id);
 
     /**
-     * get by channel id and properties id
+     * get by channel id and properties id.
      *
      * @param channelId channel id
      * @param id        properties id
      * @return properties
      */
-    Optional<ApiPropertiesMongodbDocument> findByChannelIdAndPropertiesId(String channelId, String id);
+    Optional<ApiPropertiesMongodbDocument>
+    findByChannelIdAndPropertiesId(String channelId, String id);
 }

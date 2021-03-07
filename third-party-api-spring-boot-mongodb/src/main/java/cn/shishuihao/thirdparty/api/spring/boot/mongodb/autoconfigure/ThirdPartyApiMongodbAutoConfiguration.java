@@ -21,16 +21,31 @@ import java.util.Arrays;
  * @version 1.0.0
  */
 @Configuration
-@ConditionalOnProperty(name = "third-party-api.mongodb.enabled", matchIfMissing = true)
-@EnableMongoRepositories(basePackages = "cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository")
+@ConditionalOnProperty(
+        name = "third-party-api.mongodb.enabled",
+        matchIfMissing = true)
+@EnableMongoRepositories(basePackages =
+        "cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository")
 @AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
 public class ThirdPartyApiMongodbAutoConfiguration {
+    /**
+     * propertiesRepository.
+     *
+     * @param mongoRepository mongoRepository
+     * @return ApiPropertiesRepository
+     */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiPropertiesRepository propertiesRepository(ApiPropertiesDocumentMongoRepository mongoRepository) {
+    protected ApiPropertiesRepository propertiesRepository(
+            final ApiPropertiesDocumentMongoRepository mongoRepository) {
         return new ApiPropertiesMongodbRepository(mongoRepository);
     }
 
+    /**
+     * mongoCustomConversions.
+     *
+     * @return MongoCustomConversions
+     */
     @Bean
     @ConditionalOnMissingBean
     protected MongoCustomConversions mongoCustomConversions() {

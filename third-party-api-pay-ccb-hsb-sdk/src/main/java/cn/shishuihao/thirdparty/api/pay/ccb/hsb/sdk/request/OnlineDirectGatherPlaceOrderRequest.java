@@ -1,7 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,35 +16,6 @@ import java.util.List;
  * @author shishuihao
  * @version 1.0.0
  */
-@JsonPropertyOrder({
-        "Ittparty_Stm_Id",
-        "Py_Chnl_Cd",
-        "Ittparty_Tms",
-        "Ittparty_Jrnl_No",
-        "Mkt_Id",
-        "Main_Ordr_No",
-        "Pymd_Cd",
-        "QRCODE",
-        "Py_Ordr_Tpcd",
-        "Py_Rslt_Ntc_Sn",
-        "Bnk_Cd",
-        "Opr_No",
-        "Usr_Id",
-        "Ccy",
-        "Pgfc_Ret_Url_Adr",
-        "Ordr_Tamt",
-        "Txn_Tamt",
-        "Sub_Appid",
-        "Sub_Openid",
-        "Install_Num",
-        "Hdcg_Brs_Id",
-        "Clrg_Dt",
-        "Pay_Dsc",
-        "Order_Time_Out",
-        "Orderlist",
-        "Vno",
-        "Sign_Inf"
-})
 @Getter
 @SuperBuilder
 public class OnlineDirectGatherPlaceOrderRequest extends AbstractRequest {

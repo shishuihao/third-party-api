@@ -22,7 +22,7 @@ public class OnlineDirectMergePayUrlRequest extends AbstractRequest {
     private final String mainOrderNo;
     /**
      * 支付流水号.
-     * VarChar2	40
+     * VarChar2 40
      * 必输
      **/
     @JsonProperty("Py_Trn_No")

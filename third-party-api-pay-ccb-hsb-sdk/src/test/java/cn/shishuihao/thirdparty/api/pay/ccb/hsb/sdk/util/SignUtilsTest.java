@@ -3,8 +3,6 @@ package cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author shishuihao
  * @version 1.0.0

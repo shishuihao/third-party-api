@@ -40,6 +40,6 @@ public interface WxPayCommonApi {
      * @param request request
      * @return response
      */
-    @RequestLine("POST /pay/orderquery")
+    @RequestLine("POST /pay/refundquery")
     WxPayRefundQueryResponse refundQuery(WxPayRefundQueryRequest request);
 }

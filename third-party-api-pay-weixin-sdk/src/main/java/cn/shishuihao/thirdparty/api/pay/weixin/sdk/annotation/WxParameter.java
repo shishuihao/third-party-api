@@ -34,6 +34,13 @@ public @interface WxParameter {
     boolean required();
 
     /**
+     * 必选.
+     *
+     * @return String[]
+     */
+    String[] requiredIn() default {};
+
+    /**
      * 类型.
      *
      * @return String

@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.api;
 
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayMicroPayRequest;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayMicropayResponse;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayMicroPayResponse;
 import feign.RequestLine;
 
 /**
@@ -33,5 +33,5 @@ public interface WxPayCodeApi extends WxPayCommonApi {
      * @return response
      */
     @RequestLine("POST /pay/micropay")
-    WxPayMicropayResponse microPay(WxPayMicroPayRequest request);
+    WxPayMicroPayResponse microPay(WxPayMicroPayRequest request);
 }

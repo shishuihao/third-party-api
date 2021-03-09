@@ -12,7 +12,7 @@ import java.util.HashMap;
  * @version 1.0.0
  */
 
-class WxPayMicropayResponseTest {
+class WxPayMicroPayResponseTest {
 
     @Test
     void fromXml() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
@@ -37,7 +37,7 @@ class WxPayMicropayResponseTest {
                 "   <attach><![CDATA[订单额外描述]]></attach>\n" +
                 "   <time_end><![CDATA[20141111170043]]></time_end>\n" +
                 "</xml>";
-        WxPayMicropayResponse response = XmlUtils.fromXml(xml, WxPayMicropayResponse.class);
+        WxPayMicroPayResponse response = XmlUtils.fromXml(xml, WxPayMicroPayResponse.class);
         Assertions.assertEquals(XmlUtils.fromXml(xml, HashMap.class), XmlUtils.fromXml(XmlUtils.toXml(response), HashMap.class));
     }
 }

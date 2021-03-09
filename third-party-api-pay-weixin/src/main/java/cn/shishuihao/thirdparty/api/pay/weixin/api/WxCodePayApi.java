@@ -9,7 +9,7 @@ import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.WxFactory;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayCodeApi;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayMicroPayRequest;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayMicropayResponse;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayMicroPayResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.ResponseChecker;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlFieldUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -41,7 +41,7 @@ public class WxCodePayApi implements CodePayApi {
         try {
             WxPayMicroPayRequest wxRequest = getWxRequest(request, properties);
             wxRequest.setSign(getSign(properties, wxRequest));
-            WxPayMicropayResponse wxResponse = wxPayCodeApi.microPay(wxRequest);
+            WxPayMicroPayResponse wxResponse = wxPayCodeApi.microPay(wxRequest);
             return getApiResponse(wxResponse);
         } catch (Exception e) {
             throw new ApiException(e);
@@ -76,7 +76,7 @@ public class WxCodePayApi implements CodePayApi {
     }
 
     private CodePayApiResponse getApiResponse(
-            final WxPayMicropayResponse wxPayMicropayResponse) {
+            final WxPayMicroPayResponse wxPayMicropayResponse) {
         return CodePayApiResponse.builder()
                 .success(ResponseChecker.success(wxPayMicropayResponse))
                 .code(wxPayMicropayResponse.getReturnCode())

@@ -11,7 +11,7 @@ import java.util.HashMap;
  * @author shishuihao
  * @version 1.0.0
  */
-class WxPayMicropayRequestTest {
+class WxPayMicroPayRequestTest {
 
     @Test
     void toXml() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
@@ -30,7 +30,7 @@ class WxPayMicropayRequestTest {
                 "   <total_fee>1</total_fee>\n" +
                 "   <sign>C29DB7DB1FD4136B84AE35604756362C</sign>\n" +
                 "</xml>";
-        WxPayMicropayRequest request = WxPayMicropayRequest.builder()
+        WxPayMicroPayRequest request = WxPayMicroPayRequest.builder()
                 .appId("wx2421b1c4370ec43b")
                 .attach("订单额外描述")
                 .authCode("120269300684844649")

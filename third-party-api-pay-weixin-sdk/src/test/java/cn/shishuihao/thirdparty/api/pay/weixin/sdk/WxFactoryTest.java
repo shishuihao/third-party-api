@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk;
 
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayMicropayRequest;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayMicroPayRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayOrderQueryRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayRefundQueryRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayMicropayResponse;
@@ -18,7 +18,7 @@ class WxFactoryTest {
 
     @Test
     void microPay() {
-        WxPayMicropayResponse response = WxFactory.Payment.codeApi().microPay(WxPayMicropayRequest.builder()
+        WxPayMicropayResponse response = WxFactory.Payment.codeApi().microPay(WxPayMicroPayRequest.builder()
                 .appId("wx2421b1c4370ec43b")
                 .attach("订单额外描述")
                 .authCode("120269300684844649")

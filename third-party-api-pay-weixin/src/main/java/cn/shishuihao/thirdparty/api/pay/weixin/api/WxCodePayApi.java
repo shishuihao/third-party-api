@@ -8,7 +8,7 @@ import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.WxFactory;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayCodeApi;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayMicropayRequest;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayMicroPayRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayMicropayResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.ResponseChecker;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlFieldUtils;
@@ -39,7 +39,7 @@ public class WxCodePayApi implements CodePayApi {
         WxPayApiProperties properties = (WxPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            WxPayMicropayRequest wxRequest = getWxRequest(request, properties);
+            WxPayMicroPayRequest wxRequest = getWxRequest(request, properties);
             wxRequest.setSign(getSign(properties, wxRequest));
             WxPayMicropayResponse wxResponse = wxPayCodeApi.microPay(wxRequest);
             return getApiResponse(wxResponse);
@@ -48,10 +48,10 @@ public class WxCodePayApi implements CodePayApi {
         }
     }
 
-    private WxPayMicropayRequest getWxRequest(
+    private WxPayMicroPayRequest getWxRequest(
             final CodePayApiRequest request,
             final WxPayApiProperties properties) {
-        return WxPayMicropayRequest.builder()
+        return WxPayMicroPayRequest.builder()
                 .appId(properties.getAppId())
                 .mchId(properties.getMchId())
                 .subAppId(properties.getSubAppId())
@@ -68,7 +68,7 @@ public class WxCodePayApi implements CodePayApi {
     }
 
     private String getSign(final WxPayApiProperties properties,
-                      final WxPayMicropayRequest wxRequest)
+                      final WxPayMicroPayRequest wxRequest)
             throws UnsupportedEncodingException {
         Map<String, Object> params = XmlFieldUtils
                 .getNameValueMap(wxRequest);

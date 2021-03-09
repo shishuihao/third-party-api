@@ -7,6 +7,7 @@ import feign.Response;
 import feign.Util;
 import feign.codec.DecodeException;
 import feign.codec.Decoder;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -18,7 +19,7 @@ import static java.lang.String.format;
  * @author shishuihao
  * @version 1.0.0
  */
-
+@Slf4j
 public class WxXmlDecoder extends Decoder.Default {
     /**
      * INSTANCE.
@@ -45,6 +46,7 @@ public class WxXmlDecoder extends Decoder.Default {
         if (type instanceof Class<?> && isAssignableFrom((Class<?>) type)) {
             try {
                 String xml = Util.toString(response.body().asReader());
+                log.info("response body:{}", xml);
                 return XmlUtils.fromXml(xml, (Class<?>) type);
             } catch (InstantiationException
                     | IllegalAccessException

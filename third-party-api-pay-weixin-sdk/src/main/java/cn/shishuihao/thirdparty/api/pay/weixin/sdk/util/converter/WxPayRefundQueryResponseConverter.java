@@ -226,8 +226,7 @@ public class WxPayRefundQueryResponseConverter extends ReflectionConverter {
         putMapMapIfMatch(COUPON_TYPES_PATTERN, nodeName,
                 response::getCouponTypes, reader::getValue);
         putMapMapIfMatch(COUPON_REFUND_ID_PATTERN, nodeName,
-                response::getCouponRefundsIds, () ->
-                        Integer.valueOf(reader.getValue()));
+                response::getCouponRefundsIds, reader::getValue);
         putMapMapIfMatch(COUPON_REFUND_FEES_PATTERN, nodeName,
                 response::getCouponRefundsFees, () ->
                         Integer.valueOf(reader.getValue()));

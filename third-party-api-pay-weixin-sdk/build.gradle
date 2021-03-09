@@ -1,4 +1,6 @@
 dependencies {
+    compile project(':third-party-api-commons')
+
     implementation 'com.netflix.feign:feign-core:8.18.0'
     implementation 'com.thoughtworks.xstream:xstream:1.4.11.1'
     compile 'org.apache.commons:commons-lang3:3.10'

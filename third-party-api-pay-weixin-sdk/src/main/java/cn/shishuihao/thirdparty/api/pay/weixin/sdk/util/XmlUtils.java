@@ -1,8 +1,10 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.util;
 
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.notice.WxPayResultNoticeRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayRefundQueryResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.MapEntryConverter;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.WxPayRefundQueryResponseConverter;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.WxPayResultNoticeConverter;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.Xpp3Driver;
@@ -92,6 +94,12 @@ public final class XmlUtils {
             if (WxPayRefundQueryResponse.class.isAssignableFrom(cls)) {
                 xStream.alias("xml", cls);
                 xStream.registerConverter(new WxPayRefundQueryResponseConverter(
+                        xStream.getMapper(),
+                        xStream.getReflectionProvider()));
+            }
+            if (WxPayResultNoticeRequest.class.isAssignableFrom(cls)) {
+                xStream.alias("xml", cls);
+                xStream.registerConverter(new WxPayResultNoticeConverter(
                         xStream.getMapper(),
                         xStream.getReflectionProvider()));
             }

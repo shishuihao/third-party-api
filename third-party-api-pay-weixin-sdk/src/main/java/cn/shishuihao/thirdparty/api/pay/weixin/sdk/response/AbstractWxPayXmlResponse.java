@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class AbstractWxPayXmlResponse {
+    // region 返回信息.
     /**
      * 返回状态码.
      */
@@ -33,7 +34,8 @@ public abstract class AbstractWxPayXmlResponse {
     @XStreamAlias("return_msg")
     private String returnMsg;
 
-    //region 当return_code为SUCCESS的时候，还会包括以下字段
+    // endregion
+    // region 当return_code为SUCCESS的时候，还会包括以下字段
 
     /**
      * 业务结果.
@@ -45,27 +47,17 @@ public abstract class AbstractWxPayXmlResponse {
             desc = "SUCCESS/FAIL")
     @XStreamAlias("result_code")
     private String resultCode;
-    /**
-     * 错误代码.
-     */
-    @WxParameter(
-            name = "错误代码",
-            required = true, type = "String(32)",
-            example = "SYSTEMERROR",
-            desc = "详细参见错误列表")
-    @XStreamAlias("err_code")
-    private String errCode;
-    /**
-     * 错误描述.
-     */
-    @WxParameter(
-            name = "错误描述",
-            required = true, type = "String(128)",
-            example = "系统错误",
-            desc = "结果信息描述")
-    @XStreamAlias("err_code_des")
-    private String errCodeDes;
 
+    /**
+     * 业务结果描述.
+     */
+    @WxParameter(
+            name = "业务结果描述",
+            required = true, type = "String(16)",
+            example = "OK",
+            desc = "对业务结果的补充说明")
+    @XStreamAlias("result_msg")
+    private String resultMsg;
 
     /**
      * 公众账号ID|应用ID|小程序ID.
@@ -139,4 +131,30 @@ public abstract class AbstractWxPayXmlResponse {
             desc = "签名，详见签名算法")
     @XStreamAlias("sign")
     private String sign;
+
+    // endregion
+    // region 当result_code为FAIL时，还会包括以下字段
+
+    /**
+     * 错误代码.
+     */
+    @WxParameter(
+            name = "错误代码",
+            required = true, type = "String(32)",
+            example = "SYSTEMERROR",
+            desc = "详细参见错误列表")
+    @XStreamAlias("err_code")
+    private String errCode;
+    /**
+     * 错误描述.
+     */
+    @WxParameter(
+            name = "错误描述",
+            required = true, type = "String(128)",
+            example = "系统错误",
+            desc = "结果信息描述")
+    @XStreamAlias("err_code_des")
+    private String errCodeDes;
+
+    // endregion
 }

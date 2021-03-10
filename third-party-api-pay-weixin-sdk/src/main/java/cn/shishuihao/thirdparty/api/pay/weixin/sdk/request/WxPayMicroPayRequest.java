@@ -1,7 +1,8 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.annotation.WxParameter;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -11,7 +12,7 @@ import lombok.experimental.SuperBuilder;
  */
 @Getter
 @SuperBuilder
-@XStreamAlias("xml")
+@JacksonXmlRootElement(localName = "xml")
 public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
     /**
      * 商品描述.
@@ -21,7 +22,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             required = true, type = "String(128)",
             example = "image形象店-深圳腾大- QQ公仔",
             desc = "商品简单描述，该字段须严格按照规范传递，具体请见参数规定")
-    @XStreamAlias("body")
+    @JacksonXmlProperty(localName = "body")
     private final String body;
     /**
      * 商品详情.
@@ -31,7 +32,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             required = false, type = "String(6000)",
             example = "",
             desc = "单品优惠功能字段，需要接入详见单品优惠详细说明")
-    @XStreamAlias("detail")
+    @JacksonXmlProperty(localName = "detail")
     private final String detail;
     /**
      * 附加数据.
@@ -41,7 +42,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             required = false, type = "String(127)",
             example = "说明",
             desc = "附加数据，在查询API和支付通知中原样返回，该字段主要用于商户携带订单的自定义数据")
-    @XStreamAlias("attach")
+    @JacksonXmlProperty(localName = "attach")
     private final String attach;
     /**
      * 商户订单号.
@@ -51,7 +52,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             required = true, type = "String(32)",
             example = "1217752501201407033233368018",
             desc = "商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*且在同一个商户号下唯一。详见商户订单号")
-    @XStreamAlias("out_trade_no")
+    @JacksonXmlProperty(localName = "out_trade_no")
     private final String outTradeNo;
     /**
      * 总金额.
@@ -61,7 +62,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             required = true, type = "Int",
             example = "888",
             desc = "订单总金额，单位为分，只能为整数，详见支付金额")
-    @XStreamAlias("total_fee")
+    @JacksonXmlProperty(localName = "total_fee")
     private final Integer totalFee;
     /**
      * 货币类型.
@@ -71,7 +72,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             required = false, type = "String(16)",
             example = "CNY",
             desc = "符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型")
-    @XStreamAlias("fee_type")
+    @JacksonXmlProperty(localName = "fee_type")
     private final String feeType;
     /**
      * 终端IP.
@@ -81,7 +82,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             required = true, type = "String(64)",
             example = "8.8.8.8",
             desc = "支持IPV4和IPV6两种格式的IP地址。调用微信支付API的机器IP")
-    @XStreamAlias("spbill_create_ip")
+    @JacksonXmlProperty(localName = "spbill_create_ip")
     private final String spBillCreateIp;
     /**
      * 订单优惠标记.
@@ -91,7 +92,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             required = false, type = "String(32)",
             example = "",
             desc = "订单优惠标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠")
-    @XStreamAlias("goods_tag")
+    @JacksonXmlProperty(localName = "goods_tag")
     private final String goodsTag;
     /**
      * 指定支付方式.
@@ -101,7 +102,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             required = false, type = "String(32)",
             example = "no_credit",
             desc = "no_credit--指定不能使用信用卡支付")
-    @XStreamAlias("limit_pay")
+    @JacksonXmlProperty(localName = "limit_pay")
     private final String limitPay;
     /**
      * 交易起始时间.
@@ -112,7 +113,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             example = "20091225091010",
             desc = "订单生成时间，格式为yyyyMMddHHmmss，"
                     + "如2009年12月25日9点10分10秒表示为20091225091010。其他详见时间规则")
-    @XStreamAlias("time_start")
+    @JacksonXmlProperty(localName = "time_start")
     private final String timeStart;
     /**
      * 交易结束时间.
@@ -123,7 +124,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             example = "20091227091010",
             desc = "订单失效时间，格式为yyyyMMddHHmmss，"
                     + "如2009年12月27日9点10分10秒表示为20091227091010。注意：最短失效时间间隔需大于1分钟")
-    @XStreamAlias("time_expire")
+    @JacksonXmlProperty(localName = "time_expire")
     private final String timeExpire;
     /**
      * 付款码.
@@ -134,7 +135,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             example = "120061098828009406",
             desc = "扫码支付付款码，设备读取用户微信中的条码或者二维码信息"
                     + "（注：用户付款码条形码规则：18位纯数字，以10、11、12、13、14、15开头）")
-    @XStreamAlias("auth_code")
+    @JacksonXmlProperty(localName = "auth_code")
     private final String authCode;
     /**
      * 电子发票入口开放标识.
@@ -145,7 +146,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             example = "Y",
             desc = "Y，传入Y时，支付成功消息和支付详情页将出现开票入口。"
                     + "需要在微信支付商户平台或微信公众平台开通电子发票功能，传此字段才可生效")
-    @XStreamAlias("receipt")
+    @JacksonXmlProperty(localName = "receipt")
     private final String receipt;
     /**
      * 是否需要分账.
@@ -157,7 +158,7 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
             desc = "Y-是，需要分账\n"
                     + "N-否，不分账\n"
                     + "字母要求大写，不传默认不分账")
-    @XStreamAlias("profit_sharing")
+    @JacksonXmlProperty(localName = "profit_sharing")
     private final String profitSharing;
     /**
      * 场景信息.
@@ -175,6 +176,6 @@ public class WxPayMicroPayRequest extends AbstractWxPayXmlRequest {
                     + "{\"store_info\":{\"id\": \"门店ID\",\"name\": \"名称\","
                     + "\"area_code\": \"编码\",\"address\": \"地址\" }}，"
                     + "字段详细说明请点击行前的+展开")
-    @XStreamAlias("scene_info")
+    @JacksonXmlProperty(localName = "scene_info")
     private final String sceneInfo;
 }

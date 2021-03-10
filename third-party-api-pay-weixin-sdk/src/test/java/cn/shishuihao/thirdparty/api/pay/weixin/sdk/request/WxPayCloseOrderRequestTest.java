@@ -1,10 +1,9 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlUtils;
+import cn.shishuihao.thirdparty.api.commons.xml.JacksonXmlUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 /**
@@ -15,7 +14,7 @@ import java.util.HashMap;
 class WxPayCloseOrderRequestTest {
 
     @Test
-    void toXml() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    void toXml() {
         String xml = "<xml>\n" +
                 "   <appid>wx2421b1c4370ec43b</appid>\n" +
                 "   <mch_id>10000100</mch_id>\n" +
@@ -30,6 +29,9 @@ class WxPayCloseOrderRequestTest {
                 .outTradeNo("1415983244")
                 .sign("59FF1DF214B2D279A0EA7077C54DD95D")
                 .build();
-        Assertions.assertEquals(XmlUtils.fromXml(xml, HashMap.class), XmlUtils.fromXml(XmlUtils.toXml(request), HashMap.class));
+        Assertions.assertEquals(
+                JacksonXmlUtils.fromXml(xml, HashMap.class),
+                JacksonXmlUtils.fromXml(JacksonXmlUtils.toXml(request), HashMap.class)
+        );
     }
 }

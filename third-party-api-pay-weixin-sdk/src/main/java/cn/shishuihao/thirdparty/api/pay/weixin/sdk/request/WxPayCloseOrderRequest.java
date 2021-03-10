@@ -1,7 +1,8 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.annotation.WxParameter;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -11,7 +12,7 @@ import lombok.experimental.SuperBuilder;
  */
 @Getter
 @SuperBuilder
-@XStreamAlias("xml")
+@JacksonXmlRootElement(localName = "xml")
 public class WxPayCloseOrderRequest extends AbstractWxPayXmlRequest {
     /**
      * 商户订单号.
@@ -22,6 +23,6 @@ public class WxPayCloseOrderRequest extends AbstractWxPayXmlRequest {
             type = "String(32)",
             example = "1217752501201407033233368018",
             desc = "商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。 详见商户订单号")
-    @XStreamAlias("out_trade_no")
+    @JacksonXmlProperty(localName = "out_trade_no")
     private final String outTradeNo;
 }

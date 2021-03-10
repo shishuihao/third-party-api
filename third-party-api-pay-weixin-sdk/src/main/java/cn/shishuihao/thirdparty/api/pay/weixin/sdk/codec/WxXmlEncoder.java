@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.codec;
 
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlUtils;
+import cn.shishuihao.thirdparty.api.commons.xml.JacksonXmlUtils;
 import feign.RequestTemplate;
 import feign.codec.EncodeException;
 import feign.codec.Encoder;
@@ -31,7 +31,7 @@ public class WxXmlEncoder implements Encoder {
     public void encode(final Object object,
                        final Type bodyType,
                        final RequestTemplate template) throws EncodeException {
-        String xml = XmlUtils.toXml(object);
+        String xml = JacksonXmlUtils.toXml(object);
         log.info("request body:{}", xml);
         template.body(xml);
     }

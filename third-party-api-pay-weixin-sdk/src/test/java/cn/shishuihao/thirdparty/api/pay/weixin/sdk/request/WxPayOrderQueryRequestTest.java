@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlUtils;
+import cn.shishuihao.thirdparty.api.commons.xml.JacksonXmlUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +30,9 @@ class WxPayOrderQueryRequestTest {
                 .transactionId("1008450740201411110005820873")
                 .sign("FDD167FAA73459FD921B144BAF4F4CA2")
                 .build();
-        Assertions.assertEquals(XmlUtils.fromXml(xml, HashMap.class), XmlUtils.fromXml(XmlUtils.toXml(request), HashMap.class));
+        Assertions.assertEquals(
+                JacksonXmlUtils.fromXml(xml, HashMap.class),
+                JacksonXmlUtils.fromXml(JacksonXmlUtils.toXml(request), HashMap.class)
+        );
     }
 }

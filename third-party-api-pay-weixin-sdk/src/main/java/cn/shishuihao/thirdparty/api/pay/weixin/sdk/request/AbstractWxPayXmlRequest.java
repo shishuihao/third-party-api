@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.annotation.WxParameter;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.SignType;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 import com.thoughtworks.xstream.converters.enums.EnumToStringConverter;
 import lombok.AccessLevel;
@@ -38,7 +38,7 @@ public abstract class AbstractWxPayXmlRequest {
             required = true, type = "String(32)",
             example = "wxd678efh567hg6787",
             desc = "微信分配的小程序ID")
-    @XStreamAlias("appid")
+    @JacksonXmlProperty(localName = "appid")
     private final String appId;
     /**
      * 商户号.
@@ -48,7 +48,7 @@ public abstract class AbstractWxPayXmlRequest {
             required = true, type = "String(32)",
             example = "1230000109",
             desc = "微信支付分配的商户号")
-    @XStreamAlias("mch_id")
+    @JacksonXmlProperty(localName = "mch_id")
     private final String mchId;
     /**
      * 子商户应用ID.
@@ -68,7 +68,7 @@ public abstract class AbstractWxPayXmlRequest {
             required = false, type = "String(32)",
             example = "wx8888888888888888",
             desc = "特约商户的小程序ID")
-    @XStreamAlias("sub_appid")
+    @JacksonXmlProperty(localName = "sub_appid")
     private final String subAppId;
     /**
      * 子商户号.
@@ -78,7 +78,7 @@ public abstract class AbstractWxPayXmlRequest {
             required = true, type = "String(32)",
             example = "1900000109",
             desc = "微信支付分配的子商户号|特约商户的商户号")
-    @XStreamAlias("sub_mch_id")
+    @JacksonXmlProperty(localName = "sub_mch_id")
     private final String subMchId;
     /**
      * 设备号.
@@ -93,7 +93,7 @@ public abstract class AbstractWxPayXmlRequest {
             required = false, type = "String(32)",
             example = "013467007045764",
             desc = "终端设备号(商户自定义，如门店编号)")
-    @XStreamAlias("device_info")
+    @JacksonXmlProperty(localName = "device_info")
     private final String deviceInfo;
     /**
      * 随机字符串.
@@ -103,7 +103,7 @@ public abstract class AbstractWxPayXmlRequest {
             required = true, type = "String(32)",
             example = "5K8264ILTKCH16CQ2502SI8ZNMTM67VS",
             desc = "随机字符串，不长于32位。推荐随机数生成算法")
-    @XStreamAlias("nonce_str")
+    @JacksonXmlProperty(localName = "nonce_str")
     private final String nonceStr;
     /**
      * 签名类型.
@@ -114,7 +114,7 @@ public abstract class AbstractWxPayXmlRequest {
             example = "HMAC-SHA256",
             desc = "签名类型，目前支持HMAC-SHA256和MD5，默认为MD5")
     @XStreamConverter(EnumToStringConverter.class)
-    @XStreamAlias("sign_type")
+    @JacksonXmlProperty(localName = "sign_type")
     private final SignType signType;
     /**
      * 签名.
@@ -124,6 +124,6 @@ public abstract class AbstractWxPayXmlRequest {
             required = true, type = "String(32)",
             example = "C380BEC2BFD727A4B6845133519F3AD6",
             desc = "签名，详见签名生成算法")
-    @XStreamAlias("sign")
+    @JacksonXmlProperty(localName = "sign")
     private String sign;
 }

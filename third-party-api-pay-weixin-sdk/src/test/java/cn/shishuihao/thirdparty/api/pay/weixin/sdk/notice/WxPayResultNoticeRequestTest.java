@@ -41,6 +41,9 @@ class WxPayResultNoticeRequestTest {
                 "  <transaction_id><![CDATA[1004400740201409030005092168]]></transaction_id>\n" +
                 "</xml>";
         WxPayResultNoticeRequest notice = XmlUtils.fromXml(xml, WxPayResultNoticeRequest.class);
-        Assertions.assertEquals(XmlUtils.fromXml(xml, HashMap.class), XmlUtils.fromXml(XmlUtils.toXml(notice), HashMap.class));
+        Assertions.assertEquals(
+                XmlUtils.fromXml(xml, HashMap.class),
+                XmlUtils.fromXml(XmlUtils.toXml(notice), HashMap.class)
+        );
     }
 }

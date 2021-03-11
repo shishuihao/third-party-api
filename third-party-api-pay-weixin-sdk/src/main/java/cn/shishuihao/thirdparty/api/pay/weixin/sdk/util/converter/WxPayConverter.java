@@ -15,48 +15,31 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.function.Supplier;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 @SuppressWarnings("unchecked")
-public class WxPayResultNoticeConverter extends ReflectionConverter {
+public class WxPayConverter extends ReflectionConverter {
     /**
      * String.
      */
     private static final Map<String, Field> NAME_FIELD_MAP
             = XmlFieldUtils.getNameFieldMap(WxPayResultNoticeRequest.class);
-    /**
-     * COUPON_TYPE_PATTERN.
-     */
-    private static final Pattern COUPON_TYPE_PATTERN
-            = Pattern.compile("coupon_type_(.*)");
-    /**
-     * COUPON_FEE_PATTERN.
-     */
-    private static final Pattern COUPON_FEE_PATTERN
-            = Pattern.compile("coupon_fee_(.*)");
-    /**
-     * COUPON_ID_PATTERN.
-     */
-    private static final Pattern COUPON_ID_PATTERN
-            = Pattern.compile("coupon_id_(.*)");
 
     /**
      * new WxPayResultNoticeConverter.
      *
      * @param mapper             mapper
      * @param reflectionProvider reflectionProvider
+     * @param type               the explicit type to handle
      */
-    public WxPayResultNoticeConverter(
+    public WxPayConverter(
             final Mapper mapper,
-            final ReflectionProvider reflectionProvider) {
-        super(mapper, reflectionProvider, WxPayResultNoticeRequest.class);
+            final ReflectionProvider reflectionProvider,
+            final Class type) {
+        super(mapper, reflectionProvider, type);
     }
 
     /**
@@ -71,17 +54,17 @@ public class WxPayResultNoticeConverter extends ReflectionConverter {
     public void marshal(final Object source,
                         final HierarchicalStreamWriter writer,
                         final MarshallingContext context) {
-        WxPayResultNoticeRequest response = (WxPayResultNoticeRequest) source;
         NAME_FIELD_MAP.forEach((name, field) -> {
             try {
-                Object fieldValue = FieldUtils.readField(field, response, true);
+                Object fieldValue = FieldUtils.readField(field, source, true);
                 if (fieldValue == null) {
                     return;
                 }
                 String namePrefix = name.replace("_$n", "");
                 if (fieldValue instanceof List) {
-                    List<Object> list = (List<Object>) fieldValue;
-                    marshalList(writer, list, namePrefix);
+                    marshalList(writer, (List<Object>) fieldValue, namePrefix);
+                } else if (fieldValue.getClass().isArray()) {
+                    marshalArray(writer, (Object[]) fieldValue, namePrefix);
                 } else {
                     writer.startNode(namePrefix);
                     writer.setValue(String.valueOf(fieldValue));
@@ -105,42 +88,40 @@ public class WxPayResultNoticeConverter extends ReflectionConverter {
     public Object unmarshal(final HierarchicalStreamReader reader,
                             final UnmarshallingContext context) {
         try {
-            WxPayResultNoticeRequest response = new WxPayResultNoticeRequest();
+            Object result = instantiateNewInstance(reader, context);
             while (reader.hasMoreChildren()) {
                 reader.moveDown();
                 String nodeName = reader.getNodeName().trim();
-                putIfMatchCoupon(reader, response, nodeName);
                 Field field = NAME_FIELD_MAP.get(nodeName);
-                if (field != null) {
-                    writeField(context, response, field);
-                }
+                unmarshalField(reader, context, result, field);
                 reader.moveUp();
             }
-            return response;
+            return result;
         } catch (Exception e) {
             throw ExceptionUtils.<RuntimeException>rethrow(e);
         }
     }
 
-    private void writeField(final UnmarshallingContext context,
-                            final WxPayResultNoticeRequest response,
-                            final Field field) throws IllegalAccessException {
-        Class<?> type = mapper.defaultImplementationOf(field.getType());
-        Object value = this.unmarshallField(context, response, type, field);
-        FieldUtils.writeField(field, response, value, true);
-    }
-
-
-    private void putIfMatchCoupon(final HierarchicalStreamReader reader,
-                                  final WxPayResultNoticeRequest response,
-                                  final String nodeName) {
-        putListIfMatch(COUPON_TYPE_PATTERN, nodeName,
-                response::getCouponTypes, reader::getValue);
-        putListIfMatch(COUPON_FEE_PATTERN, nodeName,
-                response::getCouponFees, () ->
-                        Integer.valueOf(reader.getValue()));
-        putListIfMatch(COUPON_ID_PATTERN, nodeName,
-                response::getCouponIds, reader::getValue);
+    /**
+     * unmarshal field.
+     *
+     * @param reader  The stream to read the text from.
+     * @param context A context that allows nested objects
+     *                to be processed by XStream.
+     * @param result  result
+     * @param field   field
+     * @throws IllegalAccessException IllegalAccessException
+     */
+    protected void unmarshalField(final HierarchicalStreamReader reader,
+                                  final UnmarshallingContext context,
+                                  final Object result,
+                                  final Field field)
+            throws IllegalAccessException {
+        if (field != null) {
+            Class<?> type = mapper.defaultImplementationOf(field.getType());
+            Object value = this.unmarshallField(context, result, type, field);
+            FieldUtils.writeField(field, result, value, true);
+        }
     }
 
     private void marshalList(final HierarchicalStreamWriter writer,
@@ -153,15 +134,13 @@ public class WxPayResultNoticeConverter extends ReflectionConverter {
         }
     }
 
-    private <T> void putListIfMatch(
-            final Pattern pattern,
-            final String nodeName,
-            final Supplier<List<T>> map,
-            final Supplier<T> valueSupplier) {
-        Optional.of(pattern.matcher(nodeName))
-                .filter(Matcher::find)
-                .ifPresent(it -> map.get()
-                        .add(Integer.parseInt(it.group(1)),
-                                valueSupplier.get()));
+    private void marshalArray(final HierarchicalStreamWriter writer,
+                              final Object[] objects,
+                              final String namePrefix) {
+        for (int i = 0; i < objects.length; i++) {
+            writer.startNode(namePrefix + '_' + i);
+            writer.setValue(String.valueOf(objects[i]));
+            writer.endNode();
+        }
     }
 }

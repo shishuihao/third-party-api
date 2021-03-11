@@ -8,7 +8,6 @@ import com.thoughtworks.xstream.converters.enums.EnumToStringConverter;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -316,7 +315,7 @@ public class WxPayResultNoticeRequest {
                     + "注意：只有下单时订单使用了优惠，回调通知才会返回券信息。\n"
                     + "下列情况可能导致订单不可以享受优惠：可能情况。")
     @XStreamAlias("coupon_type_$n")
-    private List<String> couponTypes = new ArrayList<>();
+    private List<String> couponTypes;
     /**
      * 代金券ID.
      */
@@ -328,7 +327,7 @@ public class WxPayResultNoticeRequest {
                     + "注意：只有下单时订单使用了优惠，回调通知才会返回券信息。\n"
                     + "下列情况可能导致订单不可以享受优惠：可能情况。")
     @XStreamAlias("coupon_id_$n")
-    private List<String> couponIds = new ArrayList<>();
+    private List<String> couponIds;
     /**
      * 单个代金券支付金额.
      */
@@ -338,7 +337,7 @@ public class WxPayResultNoticeRequest {
             example = "100",
             desc = "单个代金券支付金额,$n为下标，从0开始编号")
     @XStreamAlias("coupon_fee_$n")
-    private List<Integer> couponFees = new ArrayList<>();
+    private List<Integer> couponFees;
     /**
      * 微信支付订单号.
      */

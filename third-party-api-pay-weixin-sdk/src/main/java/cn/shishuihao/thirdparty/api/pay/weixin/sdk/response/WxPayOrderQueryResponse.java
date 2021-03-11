@@ -5,6 +5,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -195,6 +197,43 @@ public class WxPayOrderQueryResponse extends AbstractWxPayXmlResponse {
             desc = "代金券或立减优惠使用数量")
     @XStreamAlias("coupon_count")
     private Integer couponCount;
+    /**
+     * 代金券类型.
+     */
+    @WxParameter(
+            name = "代金券类型",
+            required = false, type = "Int",
+            example = "CASH",
+            desc = "CASH--充值代金券\n"
+                    + "NO_CASH---非充值代金券\n"
+                    + "并且订单使用了免充值券后有返回（取值：CASH、NO_CASH）。"
+                    + "$n为下标,从0开始编号，举例：coupon_type_$0\n"
+                    + "注意：只有下单时订单使用了优惠，回调通知才会返回券信息。\n"
+                    + "下列情况可能导致订单不可以享受优惠：可能情况。")
+    @XStreamAlias("coupon_type_$n")
+    private List<String> couponTypes;
+    /**
+     * 代金券ID.
+     */
+    @WxParameter(
+            name = "代金券ID",
+            required = false, type = "String(20)",
+            example = "10000",
+            desc = "代金券ID,$n为下标，从0开始编号\n"
+                    + "注意：只有下单时订单使用了优惠，回调通知才会返回券信息。\n"
+                    + "下列情况可能导致订单不可以享受优惠：可能情况。")
+    @XStreamAlias("coupon_id_$n")
+    private List<String> couponIds;
+    /**
+     * 单个代金券支付金额.
+     */
+    @WxParameter(
+            name = "单个代金券支付金额",
+            required = false, type = "Int",
+            example = "100",
+            desc = "单个代金券支付金额,$n为下标，从0开始编号")
+    @XStreamAlias("coupon_fee_$n")
+    private List<Integer> couponFees;
     /**
      * 微信支付订单号.
      */

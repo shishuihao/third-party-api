@@ -11,10 +11,16 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.mapper.Mapper;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.apache.commons.lang3.reflect.TypeUtils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 /**
  * @author shishuihao
@@ -22,6 +28,11 @@ import java.util.Map;
  */
 @SuppressWarnings("unchecked")
 public class WxPayConverter extends ReflectionConverter {
+    /**
+     * PATTERN.
+     */
+    private static final Pattern PATTERN
+            = Pattern.compile("^([a-z_]*)_([\\d]*)$");
     /**
      * String.
      */
@@ -92,8 +103,15 @@ public class WxPayConverter extends ReflectionConverter {
             while (reader.hasMoreChildren()) {
                 reader.moveDown();
                 String nodeName = reader.getNodeName().trim();
-                Field field = NAME_FIELD_MAP.get(nodeName);
-                unmarshalField(reader, context, result, field);
+                Matcher matcher = PATTERN.matcher(nodeName);
+                if (matcher.find()) {
+                    Field field = NAME_FIELD_MAP.get(matcher.group(1) + "_$n");
+                    Integer index = Integer.valueOf(matcher.group(2));
+                    unmarshalField(reader, context, result, field, index);
+                } else {
+                    Field field = NAME_FIELD_MAP.get(nodeName);
+                    unmarshalField(reader, context, result, field);
+                }
                 reader.moveUp();
             }
             return result;
@@ -124,13 +142,53 @@ public class WxPayConverter extends ReflectionConverter {
         }
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private void unmarshalField(final HierarchicalStreamReader reader,
+                                final UnmarshallingContext context,
+                                final Object result,
+                                final Field field,
+                                final Integer index)
+            throws IllegalAccessException {
+        if (field != null) {
+            if (List.class.isAssignableFrom(field.getType())) {
+                Class eType = getElementType(field);
+                if (eType == null) {
+                    return;
+                }
+                Object value = FieldUtils.readField(field, result, true);
+                if (value == null) {
+                    value = new ArrayList<>();
+                    FieldUtils.writeField(field, result, value, true);
+                }
+                if (Integer.class.isAssignableFrom(eType)) {
+                    unmarshalList(((List) value), index,
+                            Integer.valueOf(reader.getValue()));
+                } else {
+                    unmarshalList(((List) value), index, reader.getValue());
+                }
+            }
+        }
+    }
+
+    @SuppressWarnings({"rawtypes"})
+    private Class getElementType(final Field field) {
+        return (Class) TypeUtils.getTypeArguments((ParameterizedType) field
+                .getGenericType())
+                .values()
+                .stream()
+                .findFirst()
+                .orElse(null);
+    }
+
     private void marshalList(final HierarchicalStreamWriter writer,
                              final List<Object> objects,
                              final String namePrefix) {
         for (int i = 0; i < objects.size(); i++) {
-            writer.startNode(namePrefix + '_' + i);
-            writer.setValue(String.valueOf(objects.get(i)));
-            writer.endNode();
+            if (objects.get(i) != null) {
+                writer.startNode(namePrefix + '_' + i);
+                writer.setValue(String.valueOf(objects.get(i)));
+                writer.endNode();
+            }
         }
     }
 
@@ -138,9 +196,19 @@ public class WxPayConverter extends ReflectionConverter {
                               final Object[] objects,
                               final String namePrefix) {
         for (int i = 0; i < objects.length; i++) {
-            writer.startNode(namePrefix + '_' + i);
-            writer.setValue(String.valueOf(objects[i]));
-            writer.endNode();
+            if (objects[i] != null) {
+                writer.startNode(namePrefix + '_' + i);
+                writer.setValue(String.valueOf(objects[i]));
+                writer.endNode();
+            }
         }
+    }
+
+    private <T> void unmarshalList(final List<T> list,
+                                   final Integer index,
+                                   final T value) {
+        IntStream.range(0, index - list.size() + 1)
+                .forEach(it -> list.add(null));
+        list.set(index, value);
     }
 }

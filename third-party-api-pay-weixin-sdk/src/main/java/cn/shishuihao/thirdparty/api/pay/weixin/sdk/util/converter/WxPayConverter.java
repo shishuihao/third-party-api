@@ -1,6 +1,5 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter;
 
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.notice.WxPayResultNoticeRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlFieldUtils;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
@@ -36,8 +35,7 @@ public class WxPayConverter extends ReflectionConverter {
     /**
      * String.
      */
-    private static final Map<String, Field> NAME_FIELD_MAP
-            = XmlFieldUtils.getNameFieldMap(WxPayResultNoticeRequest.class);
+    private final Map<String, Field> nameFieldMap;
 
     /**
      * new WxPayResultNoticeConverter.
@@ -51,6 +49,15 @@ public class WxPayConverter extends ReflectionConverter {
             final ReflectionProvider reflectionProvider,
             final Class type) {
         super(mapper, reflectionProvider, type);
+        nameFieldMap = XmlFieldUtils.getNameFieldMap(type);
+    }
+
+    static <T> void unmarshalList(final List<T> list,
+                                  final Integer index,
+                                  final T value) {
+        IntStream.range(0, index - list.size() + 1)
+                .forEach(it -> list.add(null));
+        list.set(index, value);
     }
 
     /**
@@ -65,22 +72,16 @@ public class WxPayConverter extends ReflectionConverter {
     public void marshal(final Object source,
                         final HierarchicalStreamWriter writer,
                         final MarshallingContext context) {
-        NAME_FIELD_MAP.forEach((name, field) -> {
+        nameFieldMap.forEach((name, field) -> {
             try {
                 Object fieldValue = FieldUtils.readField(field, source, true);
                 if (fieldValue == null) {
                     return;
                 }
-                String namePrefix = name.replace("_$n", "");
-                if (fieldValue instanceof List) {
-                    marshalList(writer, (List<Object>) fieldValue, namePrefix);
-                } else if (fieldValue.getClass().isArray()) {
-                    marshalArray(writer, (Object[]) fieldValue, namePrefix);
-                } else {
-                    writer.startNode(namePrefix);
-                    writer.setValue(String.valueOf(fieldValue));
-                    writer.endNode();
-                }
+                String namePrefix = name
+                        .replace("_$n", "")
+                        .replace("_$m", "");
+                marshal(writer, fieldValue, namePrefix);
             } catch (IllegalAccessException e) {
                 throw ExceptionUtils.<RuntimeException>rethrow(e);
             }
@@ -105,11 +106,11 @@ public class WxPayConverter extends ReflectionConverter {
                 String nodeName = reader.getNodeName().trim();
                 Matcher matcher = PATTERN.matcher(nodeName);
                 if (matcher.find()) {
-                    Field field = NAME_FIELD_MAP.get(matcher.group(1) + "_$n");
+                    Field field = nameFieldMap.get(matcher.group(1) + "_$n");
                     Integer index = Integer.valueOf(matcher.group(2));
-                    unmarshalField(reader, context, result, field, index);
+                    unmarshalField(reader, result, field, index);
                 } else {
-                    Field field = NAME_FIELD_MAP.get(nodeName);
+                    Field field = nameFieldMap.get(nodeName);
                     unmarshalField(reader, context, result, field);
                 }
                 reader.moveUp();
@@ -144,7 +145,6 @@ public class WxPayConverter extends ReflectionConverter {
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     private void unmarshalField(final HierarchicalStreamReader reader,
-                                final UnmarshallingContext context,
                                 final Object result,
                                 final Field field,
                                 final Integer index)
@@ -180,14 +180,30 @@ public class WxPayConverter extends ReflectionConverter {
                 .orElse(null);
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    private void marshal(final HierarchicalStreamWriter writer,
+                         final Object object,
+                         final String namePrefix) {
+        if (object instanceof List) {
+            marshalList(writer, (List) object, namePrefix);
+        } else if (object instanceof Map) {
+            marshalMap(writer, (Map) object, namePrefix);
+        } else if (object.getClass().isArray()) {
+            marshalArray(writer, (Object[]) object, namePrefix);
+        } else {
+            writer.startNode(namePrefix);
+            writer.setValue(String.valueOf(object));
+            writer.endNode();
+        }
+    }
+
     private void marshalList(final HierarchicalStreamWriter writer,
                              final List<Object> objects,
                              final String namePrefix) {
         for (int i = 0; i < objects.size(); i++) {
-            if (objects.get(i) != null) {
-                writer.startNode(namePrefix + '_' + i);
-                writer.setValue(String.valueOf(objects.get(i)));
-                writer.endNode();
+            Object value = objects.get(i);
+            if (value != null) {
+                marshal(writer, value, namePrefix + '_' + i);
             }
         }
     }
@@ -196,19 +212,17 @@ public class WxPayConverter extends ReflectionConverter {
                               final Object[] objects,
                               final String namePrefix) {
         for (int i = 0; i < objects.length; i++) {
-            if (objects[i] != null) {
-                writer.startNode(namePrefix + '_' + i);
-                writer.setValue(String.valueOf(objects[i]));
-                writer.endNode();
+            Object value = objects[i];
+            if (value != null) {
+                marshal(writer, value, namePrefix + '_' + i);
             }
         }
     }
 
-    private <T> void unmarshalList(final List<T> list,
-                                   final Integer index,
-                                   final T value) {
-        IntStream.range(0, index - list.size() + 1)
-                .forEach(it -> list.add(null));
-        list.set(index, value);
+    private void marshalMap(final HierarchicalStreamWriter writer,
+                            final Map<Integer, ?> fieldValue,
+                            final String namePrefix) {
+        fieldValue.forEach((i, value) ->
+                marshal(writer, value, namePrefix + '_' + i));
     }
 }

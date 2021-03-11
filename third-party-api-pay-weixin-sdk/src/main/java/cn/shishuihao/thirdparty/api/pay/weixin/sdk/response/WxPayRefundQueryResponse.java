@@ -5,7 +5,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -106,7 +108,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
             example = "1217752501201407033233368018",
             desc = "商户系统内部的退款单号，商户系统内部唯一，只能是数字、大小写字母_-|*@ ，同一退款单号多次请求只退一笔。")
     @XStreamAlias("out_refund_no_$n")
-    private Map<Integer, String> outRefundNos = new HashMap<>();
+    private List<String> outRefundNos;
     /**
      * 微信退款单号.
      */
@@ -116,7 +118,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
             example = "1217752501201407033233368018",
             desc = "微信退款单号。")
     @XStreamAlias("refund_id_$n")
-    private Map<Integer, String> refundIds = new HashMap<>();
+    private List<String> refundIds;
     /**
      * 退款渠道.
      * OTHER_BANKCARD—原银行卡异常退到其他银行卡
@@ -130,7 +132,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
                     + "OTHER_BALANCE—原账户异常退到其他余额账户\n"
                     + "OTHER_BANKCARD—原银行卡异常退到其他银行卡")
     @XStreamAlias("refund_channel_$n")
-    private Map<Integer, String> refundChannels = new HashMap<>();
+    private List<String> refundChannels;
     /**
      * 申请退款金额.
      */
@@ -140,7 +142,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
             example = "100",
             desc = "退款总金额,单位为分,可以做部分退款")
     @XStreamAlias("refund_fee_$n")
-    private Map<Integer, Integer> refundFees = new HashMap<>();
+    private List<Integer> refundFees;
     /**
      * 退款金额.
      */
@@ -150,7 +152,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
             example = "100",
             desc = "退款金额=申请退款金额-非充值代金券退款金额，退款金额<=申请退款金额")
     @XStreamAlias("settlement_refund_fee_$n")
-    private Map<Integer, Integer> settlementRefundFees = new HashMap<>();
+    private List<Integer> settlementRefundFees;
     /**
      * 代金券类型.
      */
@@ -163,7 +165,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
                     + "订单使用代金券时有返回（取值：CASH、NO_CASH）。"
                     + "$n为下标,$m为下标,从0开始编号，举例：coupon_type_$0_$1")
     @XStreamAlias("coupon_type_$n_$m")
-    private Map<Integer, Map<Integer, String>> couponTypes = new HashMap<>();
+    private List<List<String>> couponTypes = new ArrayList<>();
     /**
      * 总代金券退款金额.
      */
@@ -173,7 +175,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
             example = "100",
             desc = "代金券退款金额<=退款金额，退款金额-代金券或立减优惠退款金额为现金，说明详见代金券或立减优惠")
     @XStreamAlias("coupon_refund_fee_$n")
-    private Map<Integer, Integer> couponRefundFees = new HashMap<>();
+    private List<Integer> couponRefundFees;
     /**
      * 退款代金券使用数量.
      */
@@ -183,7 +185,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
             example = "1",
             desc = "退款代金券使用数量 ,$n为下标,从0开始编号")
     @XStreamAlias("coupon_refund_count_$n")
-    private Map<Integer, Integer> couponRefundCounts = new HashMap<>();
+    private List<Integer> couponRefundCounts;
     /**
      * 退款代金券ID.
      */
@@ -193,8 +195,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
             example = "10000",
             desc = "退款代金券ID, $n为下标，$m为下标，从0开始编号")
     @XStreamAlias("coupon_refund_id_$n_$m")
-    private Map<Integer, Map<Integer, String>> couponRefundsIds
-            = new HashMap<>();
+    private List<List<String>> couponRefundsIds = new ArrayList<>();
     /**
      * 单个代金券退款金额.
      */
@@ -204,8 +205,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
             example = "100",
             desc = "单个退款代金券支付金额, $n为下标，$m为下标，从0开始编号")
     @XStreamAlias("coupon_refund_fee_$n_$m")
-    private Map<Integer, Map<Integer, Integer>> couponRefundsFees
-            = new HashMap<>();
+    private List<List<Integer>> couponRefundsFees = new ArrayList<>();
     /**
      * 退款状态.
      */
@@ -221,7 +221,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
                     + "可前往商户平台（pay.weixin.qq.com）-交易中心，手动处理此笔退款。"
                     + "$n为下标，从0开始编号。")
     @XStreamAlias("refund_status_$n")
-    private Map<Integer, String> refundStatuses = new HashMap<>();
+    private List<String> refundStatuses;
     /**
      * 退款资金来源.
      */
@@ -233,7 +233,7 @@ public class WxPayRefundQueryResponse extends AbstractWxPayXmlResponse {
                     + "REFUND_SOURCE_UNSETTLED_FUNDS---未结算资金退款\n"
                     + "$n为下标，从0开始编号。")
     @XStreamAlias("refund_account_$n")
-    private Map<Integer, String> refundAccounts = new HashMap<>();
+    private List<String> refundAccounts;
     /**
      * 退款入账账户.
      */

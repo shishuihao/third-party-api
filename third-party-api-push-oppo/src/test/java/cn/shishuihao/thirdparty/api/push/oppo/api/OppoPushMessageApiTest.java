@@ -5,11 +5,8 @@ import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.push.oppo.OppoPushApiChannel;
 import cn.shishuihao.thirdparty.api.push.oppo.OppoPushApiProperties;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
-import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author shishuihao

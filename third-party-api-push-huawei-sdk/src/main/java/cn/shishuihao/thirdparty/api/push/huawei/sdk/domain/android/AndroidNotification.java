@@ -31,5 +31,5 @@ public class AndroidNotification {
      * 如果是Android通知栏消息时，则该参数必选。
      */
     @JsonProperty("click_action")
-    private ClickAction clickAction;
+    private final ClickAction clickAction;
 }

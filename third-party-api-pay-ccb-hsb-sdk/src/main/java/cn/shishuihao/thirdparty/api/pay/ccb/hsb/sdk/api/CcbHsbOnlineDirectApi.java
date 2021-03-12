@@ -1,7 +1,15 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.api;
 
-import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.request.*;
-import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.response.*;
+import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.request.OnlineDirectEnquireRefundOrderRequest;
+import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.request.OnlineDirectGatherEnquireOrderRequest;
+import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.request.OnlineDirectGatherPlaceOrderRequest;
+import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.request.OnlineDirectMergePayUrlRequest;
+import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.request.OnlineDirectRefundOrderRequest;
+import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.response.OnlineDirectEnquireRefundOrderResponse;
+import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.response.OnlineDirectGatherEnquireOrderResponse;
+import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.response.OnlineDirectGatherPlaceOrderResponse;
+import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.response.OnlineDirectMergePayUrlResponse;
+import cn.shishuihao.thirdparty.api.pay.ccb.hsb.sdk.response.OnlineDirectRefundOrderResponse;
 import feign.Headers;
 import feign.RequestLine;
 

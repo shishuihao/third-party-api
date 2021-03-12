@@ -68,7 +68,7 @@ public class WxCodePayApi implements CodePayApi {
     }
 
     private String getSign(final WxPayApiProperties properties,
-                      final WxPayMicroPayRequest wxRequest)
+                           final WxPayMicroPayRequest wxRequest)
             throws UnsupportedEncodingException {
         Map<String, Object> params = XmlFieldUtils
                 .getNameValueMap(wxRequest);

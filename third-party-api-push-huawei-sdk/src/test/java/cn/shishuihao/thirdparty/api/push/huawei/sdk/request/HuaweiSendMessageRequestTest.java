@@ -18,7 +18,7 @@ import java.util.Map;
  */
 
 class HuaweiSendMessageRequestTest {
-    String json = "{\n" +
+    final String json = "{\n" +
             "    \"validate_only\": false,\n" +
             "    \"message\": {\n" +
             "        \"notification\": {\n" +

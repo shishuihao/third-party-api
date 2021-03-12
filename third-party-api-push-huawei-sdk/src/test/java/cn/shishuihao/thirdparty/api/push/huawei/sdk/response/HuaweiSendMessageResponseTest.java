@@ -12,7 +12,7 @@ import java.util.Map;
  */
 
 class HuaweiSendMessageResponseTest {
-    String json = "{\n" +
+    final String json = "{\n" +
             "    \"code\": \"80100000\",\n" +
             "    \"msg\": \"{\\\"success\\\":3,\\\"failure\\\":1,\\\"illegal_tokens\\\":[\\\"xxx\\\"]}\",\n" +
             "    \"requestId\": \"\"\n" +

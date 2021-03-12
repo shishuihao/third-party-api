@@ -25,6 +25,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class ThirdPartyApiJpaAutoConfiguration {
     /**
      * ApiPropertiesRepository.
+     *
      * @param jpaRepository jpaRepository
      * @return ApiPropertiesRepository
      */

@@ -1,8 +1,10 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.util;
 
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.notice.WxPayResultNoticeRequest;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayOrderQueryResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayRefundQueryResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.MapEntryConverter;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.WxPayOrderQueryResponseConverter;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.WxPayRefundQueryResponseConverter;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.WxPayResultNoticeRequestConverter;
 import com.thoughtworks.xstream.XStream;
@@ -87,18 +89,21 @@ public final class XmlUtils {
     private static XStream getXmlStream(final Class<?> cls) {
         return X_STREAM_MAP.computeIfAbsent(cls, k -> {
             XStream xStream = new CustomizedStream();
+            xStream.alias("xml", cls);
             if (Map.class.isAssignableFrom(cls)) {
-                xStream.alias("xml", cls);
                 xStream.registerConverter(new MapEntryConverter());
             }
+            if (WxPayOrderQueryResponse.class.isAssignableFrom(cls)) {
+                xStream.registerConverter(new WxPayOrderQueryResponseConverter(
+                        xStream.getMapper(),
+                        xStream.getReflectionProvider()));
+            }
             if (WxPayRefundQueryResponse.class.isAssignableFrom(cls)) {
-                xStream.alias("xml", cls);
                 xStream.registerConverter(new WxPayRefundQueryResponseConverter(
                         xStream.getMapper(),
                         xStream.getReflectionProvider()));
             }
             if (WxPayResultNoticeRequest.class.isAssignableFrom(cls)) {
-                xStream.alias("xml", cls);
                 xStream.registerConverter(new WxPayResultNoticeRequestConverter(
                         xStream.getMapper(),
                         xStream.getReflectionProvider()));

@@ -4,7 +4,6 @@ import cn.shishuihao.thirdparty.api.commons.xml.JacksonXmlUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 /**
@@ -15,7 +14,7 @@ import java.util.HashMap;
 class WxPayUnifiedOrderRequestTest {
 
     @Test
-    void toXml() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    void toXml() {
         String xml = "<xml>\n" +
                 "   <appid>wx2421b1c4370ec43b</appid>\n" +
                 "   <attach>支付测试</attach>\n" +

@@ -13,7 +13,7 @@ import lombok.Setter;
 public class BaseCcbHsbPayResponse {
     /**
      * 服务响应状态.
-     * VarChar2	2
+     * VarChar2 2
      * 必输
      * 00-成功
      * 01-失败
@@ -22,7 +22,7 @@ public class BaseCcbHsbPayResponse {
     private String serviceResponseStatus;
     /**
      * 服务响应码.
-     * VarChar2	12
+     * VarChar2 12
      * 非必输
      * 接收失败时返回
      */
@@ -30,7 +30,7 @@ public class BaseCcbHsbPayResponse {
     private String serviceResponseCode;
     /**
      * 响应信息.
-     * VarChar2	600
+     * VarChar2 600
      * 非必输
      * 接收失败时返回
      */
@@ -38,7 +38,7 @@ public class BaseCcbHsbPayResponse {
     private String responseInfo;
     /**
      * 发起方时间戳.
-     * VarChar2	23
+     * VarChar2 23
      * 必输
      * yyyymmddhhmmssfff 年月日, 时分秒，毫秒（直接返回接收到的时间）
      */
@@ -46,7 +46,7 @@ public class BaseCcbHsbPayResponse {
     private String ittPartyTms;
     /**
      * 签名信息.
-     * VarChar2	1500
+     * VarChar2 1500
      * 必输
      * 将上述参数进行拼接并用私钥生成签名
      */

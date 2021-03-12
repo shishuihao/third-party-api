@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.jpa;
 
-import cn.shishuihao.thirdparty.api.core.*;
+import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.api.Api;
 import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;

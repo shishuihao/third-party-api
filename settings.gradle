@@ -32,5 +32,5 @@ include 'third-party-api-spring-boot-mongodb'
 include 'third-party-api-spring-boot-mybatis-plus'
 include 'third-party-api-spring-boot-redis'
 include 'third-party-api-spring-boot-starter'
-
+include 'third-party-api-tts'
 

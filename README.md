@@ -210,133 +210,17 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
             }
             ```
 
--   配置属性配置方式
-    -   [x] 代码 如：
+-   [集成到springboot](/third-party-api-spring-boot-starter)
 
-        ```java
-        AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
-        properties.setAccessKeyId("AccessKeyId");
-        properties.setAccessSecret("AccessSecret");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        ```
+-   [人脸 集成(sms integration)](/third-party-api-face)
 
-    -   [x] 容器
-        -   [x] [springboot](/third-party-api-spring-boot-starter)
-            -   [x] 代码
+-   [支付集成(pay integration)](/third-party-api-pay)
 
-                ```java
-                @Bean
-                @ConditionalOnMissingBean
-                protected AliYunSmsApiProperties defaultAliYunSmsApiProperties() {
-                    AliYunSmsApiProperties properties = new AliYunSmsApiProperties();
-                    properties.setAccessKeyId("AccessKeyId");
-                    properties.setAccessSecret("AccessSecret");
-                    return properties;
-                }
-                ```
+-   [推送集成(push integration)](/third-party-api-push)
+    
+-   [SMS 集成(sms integration)](/third-party-api-sms)
 
-            -   [x] yml（自定义）
-
-                ```yml
-                sms:
-                  aliyun:
-                    - access-key-id: AccessKeyId1
-                      access-secret: AccessSecret1
-                    - access-key-id: AccessKeyId2
-                      access-secret: AccessSecret2
-                ```
-
-    -   [x] 数据库配置方式
-        -   [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa)
-
-            ```java
-            @Bean
-            @ConditionalOnMissingBean
-            protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityJpaRepository jpaRepository) {
-                return new ApiPropertiesJpaRepository(jpaRepository);
-            }
-            ```
-
-        -   [x] [spring-boot-mybatis-plus](/third-party-api-spring-boot-mybatis-plus)
-
-            ```java
-            @Bean
-            @ConditionalOnMissingBean
-            protected ApiPropertiesRepository propertiesRepository(ApiPropertiesEntityMybatisPlusMapper mybatisPlusMapper) {
-                return new ApiPropertiesMybatisPlusRepository(mybatisPlusMapper);
-            }
-            ```
-
-        -   [x] [spring-boot-redis](/third-party-api-spring-boot-redis)
-
-            ```java
-            @Bean
-            @ConditionalOnMissingBean
-            protected ApiPropertiesRepository propertiesRepository(RedisTemplate<String, ApiProperties> redisTemplate) {
-                return new ApiPropertiesRedisRepository(redisTemplate);
-            }
-            ```
-
-            -   [x] [spring-boot-mongodb](/third-party-api-spring-boot-mongodb)
-
-            ```java
-            @Bean
-            @ConditionalOnMissingBean
-            protected ApiPropertiesRepository propertiesRepository(ApiPropertiesDocumentMongoRepository mongoRepository) {
-                return new ApiPropertiesMongodbRepository(mongoRepository);
-            }
-            ```
-
--   发布事件
-    -   [x] [springboot](/third-party-api-spring-boot-starter)
-
--   SMS 集成(sms integration)
-    -   [x] [阿里云](/third-party-api-sms-aliyun)
-        -   [x] 发送短信
-        -   [x] 批量发送短信
-
-    -   [x] [腾讯云](/third-party-api-sms-tencent)
-        -   [x] 发送短信
-        -   [x] 批量发送短信
-
--   推送集成(push integration)
-    -   [x] [小米(xiaomi)](/third-party-api-push-xiaomi)
-        -   [x] 发送消息
-
-    -   [ ] 华为(huawei)
-
-    -   [x] [VIVO](/third-party-api-push-vivo)
-        -   [x] 推送消息
-
-    -   [x] [OPPO](/third-party-api-push-oppo)
-        -   [x] 推送消息
-
-    -   [x] [魅族(flyme)](/third-party-api-push-flyme)
-        -   [x] 推送消息
-
-    -   [ ] 苹果(apple)
-
-    -   [ ] 谷歌(fcm)
-
-    -   [ ] 极光推送(jiguang)
-
--   支付集成(pay integration)
-    -   [x] [支付宝](/third-party-api-pay-alipay)
-        -   [x] 二维码支付
-
-    -   [x] [微信](/third-party-api-pay-weixin) [sdk](/third-party-api-pay-weixin-sdk)
-        -   [x] 二维码支付
-
-    -   [x] [工商银行](/third-party-api-pay-icbc)
-        -   [x] 二维码支付
-
-    -   [ ] 银联
-
-    -   [ ] 京东
-
-    -   [ ] PayPal
-
-    -   [ ] 苹果内购
+-   [语音合成 集成(sms integration)](/third-party-api-tts)
 
 -   登录集成
 

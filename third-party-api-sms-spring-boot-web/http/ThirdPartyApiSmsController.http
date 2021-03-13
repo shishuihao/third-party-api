@@ -1,0 +1,42 @@
+### send sms
+POST http://localhost:8080/api/v1/sms/send
+Content-Type: application/json
+
+{
+  "channelId": "sms.aliyun",
+  "propertiesId": "AccessKeyId",
+  "templateId": "SMS_123456789",
+  "message": {
+    "phoneNumber": "8613711112222",
+    "signName": "test",
+    "templateParams": {
+      "code": "12345"
+    }
+  }
+}
+
+### send batch sms
+POST http://localhost:8080/api/v1/sms/send-batch
+Content-Type: application/json
+
+{
+  "channelId": "sms.aliyun",
+  "propertiesId": "AccessKeyId",
+  "templateId": "SMS_123456789",
+  "messages": [
+    {
+      "phoneNumber": "8613711112222",
+      "signName": "test",
+      "templateParams": {
+        "code": "12345"
+      }
+    },
+    {
+      "phoneNumber": "8618511122266",
+      "signName": "test",
+      "templateParams": {
+        "code": "12345"
+      }
+    }
+  ]
+}

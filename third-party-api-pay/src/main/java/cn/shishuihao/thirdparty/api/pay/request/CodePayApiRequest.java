@@ -6,12 +6,14 @@ import cn.shishuihao.thirdparty.api.pay.api.CodePayApi;
 import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 @Getter
+@Jacksonized
 @SuperBuilder
 public class CodePayApiRequest extends AbstractRequest<
         CodePayApi,

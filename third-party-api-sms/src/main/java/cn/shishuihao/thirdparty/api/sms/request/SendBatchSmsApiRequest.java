@@ -7,6 +7,7 @@ import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.response.SendBatchSmsApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @version 1.0.0
  */
 @Getter
+@Jacksonized
 @SuperBuilder
 public class SendBatchSmsApiRequest extends AbstractRequest<
         SendBatchSmsApi,

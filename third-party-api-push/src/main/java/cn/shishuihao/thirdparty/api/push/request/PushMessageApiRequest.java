@@ -6,12 +6,14 @@ import cn.shishuihao.thirdparty.api.push.api.PushMessageApi;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 @Getter
+@Jacksonized
 @SuperBuilder
 public class PushMessageApiRequest extends AbstractRequest<
         PushMessageApi,

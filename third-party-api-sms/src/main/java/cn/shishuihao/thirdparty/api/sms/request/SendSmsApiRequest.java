@@ -7,12 +7,14 @@ import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.response.SendSmsApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
 @Getter
+@Jacksonized
 @SuperBuilder
 public class SendSmsApiRequest extends AbstractRequest<
         SendSmsApi,

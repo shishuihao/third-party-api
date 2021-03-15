@@ -1,0 +1,13 @@
+### push message
+POST http://localhost:8080/api/v1/push
+Content-Type: application/json
+
+{
+  "channelId": "push.xiaomi",
+  "propertiesId": "appId",
+  "title": "title",
+  "payload": "payload",
+  "description": "description",
+  "restrictedPackageName": "restrictedPackageName",
+  "registrationIds": ["registrationId"]
+}

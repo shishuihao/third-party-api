@@ -1,5 +1,7 @@
 # 支付集成(pay integration)
 
+-   [x] [集成到springboot](/third-party-api-pay-spring-boot-web)
+
 -   [x] [支付宝](/third-party-api-pay-alipay)
     -   [x] 二维码支付
 

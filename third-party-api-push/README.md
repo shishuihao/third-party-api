@@ -1,5 +1,7 @@
 # 推送集成(push integration)
 
+-   [x] [集成到springboot](/third-party-api-push-spring-boot-web)
+
 -   [x] [小米(xiaomi)](/third-party-api-push-xiaomi)
     -   [x] 发送消息
 

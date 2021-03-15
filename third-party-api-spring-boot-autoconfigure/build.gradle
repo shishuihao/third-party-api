@@ -1,0 +1,36 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+dependencies {
+    compile project(':third-party-api-core')
+
+    compile "org.springframework.boot:spring-boot-autoconfigure"
+
+    compileOnly project(':third-party-api-pay-alipay')
+    compileOnly project(':third-party-api-pay-icbc')
+    compileOnly project(':third-party-api-pay-weixin')
+
+    compileOnly project(':third-party-api-push-flyme')
+    compileOnly project(':third-party-api-push-huawei')
+    compileOnly project(':third-party-api-push-oppo')
+    compileOnly project(':third-party-api-push-vivo')
+    compileOnly project(':third-party-api-push-xiaomi')
+
+    compileOnly project(':third-party-api-sms-aliyun')
+    compileOnly project(':third-party-api-sms-tencent')
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+jar {
+    enabled true
+}
+
+bootJar {
+    enabled = false
+}

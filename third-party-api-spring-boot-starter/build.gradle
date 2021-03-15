@@ -2,6 +2,10 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+dependencies {
     compile project(':third-party-api-core')
 
     compile "org.springframework.boot:spring-boot-autoconfigure"

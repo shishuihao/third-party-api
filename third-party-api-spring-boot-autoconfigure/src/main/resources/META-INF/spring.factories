@@ -1,0 +1,11 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.alipay.ThirdPartyApiPayAlipayAutoConfiguration,\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.icbc.ThirdPartyApiPayIcbcAutoConfiguration,\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.weixin.ThirdPartyApiPayWxAutoConfiguration,\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.flyme.ThirdPartyApiPushFlymeAutoConfiguration,\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.huawei.ThirdPartyApiPushHuaweiAutoConfiguration,\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.oppo.ThirdPartyApiPushOppoAutoConfiguration,\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.vivo.ThirdPartyApiPushVivoAutoConfiguration,\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.xiaomi.ThirdPartyApiPayAlipayAutoConfiguration,\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.sms.aliyun.ThirdPartyApiSmsAliyunAutoConfiguration,\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.sms.tencent.ThirdPartyApiSmsTencentAutoConfiguration

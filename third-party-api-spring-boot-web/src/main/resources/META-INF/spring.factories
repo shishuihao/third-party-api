@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  cn.shishuihao.thirdparty.api.spring.boot.web.autoconfigure.ThirdPartyApiAutoConfiguration

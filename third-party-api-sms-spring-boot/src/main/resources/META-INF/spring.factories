@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.shishuihao.thirdparty.api.sms.spring.boot.autoconfigure.ThirdPartyApiSmsAutoConfiguration

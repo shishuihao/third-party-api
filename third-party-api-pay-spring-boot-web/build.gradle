@@ -1,0 +1,23 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+    compile project(':third-party-api-core')
+    compile project(':third-party-api-pay')
+    compile project(':third-party-api-pay-alipay')
+    compile project(':third-party-api-pay-icbc')
+    compile project(':third-party-api-pay-weixin')
+
+    compile "org.springframework.boot:spring-boot-autoconfigure"
+    compile 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+jar {
+    enabled true
+}
+
+bootJar {
+    enabled true
+}

@@ -2,6 +2,13 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+dependencies {
+    compile project(':third-party-api-spring-boot-starter')
+    compile project(':third-party-api-spring-boot-autoconfigure')
+
     compile project(':third-party-api-core')
     compile project(':third-party-api-push')
     compile project(':third-party-api-push-flyme')
@@ -10,7 +17,6 @@ dependencies {
     compile project(':third-party-api-push-oppo')
     compile project(':third-party-api-push-xiaomi')
 
-    compile "org.springframework.boot:spring-boot-autoconfigure"
     compile 'org.springframework.boot:spring-boot-starter-web'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

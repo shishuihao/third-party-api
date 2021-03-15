@@ -23,7 +23,7 @@ public class ThirdPartyApiSmsController {
      * @param request request
      * @return response
      */
-    @PostMapping("/send")
+    @PostMapping
     public CompletableFuture<SendSmsApiResponse> send(
             @RequestBody final SendSmsApiRequest request) {
         return CompletableFuture.supplyAsync(() ->
@@ -36,7 +36,7 @@ public class ThirdPartyApiSmsController {
      * @param request request
      * @return response
      */
-    @PostMapping("/send-batch")
+    @PostMapping("/batch")
     public CompletableFuture<SendBatchSmsApiResponse> sendBatch(
             @RequestBody final SendBatchSmsApiRequest request) {
         return CompletableFuture.supplyAsync(() ->

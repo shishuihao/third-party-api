@@ -1,5 +1,5 @@
 ### send sms
-POST http://localhost:8080/api/v1/sms/send
+POST http://localhost:8080/api/v1/sms
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 }
 
 ### send batch sms
-POST http://localhost:8080/api/v1/sms/send-batch
+POST http://localhost:8080/api/v1/sms/batch
 Content-Type: application/json
 
 {

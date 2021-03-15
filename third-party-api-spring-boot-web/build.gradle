@@ -1,0 +1,22 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+    compile project(':third-party-api-core')
+    compile project(':third-party-api-pay-spring-boot-web')
+    compile project(':third-party-api-push-spring-boot-web')
+    compile project(':third-party-api-sms-spring-boot-web')
+
+    compile "org.springframework.boot:spring-boot-autoconfigure"
+    compile 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+jar {
+    enabled true
+}
+
+bootJar {
+    enabled true
+}

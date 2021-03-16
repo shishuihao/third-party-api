@@ -21,7 +21,7 @@ compile 'cn.shishuihao:third-party-api-spring-boot-starter:latest'
 
 ## 用法 Usage
 
--   配置属性配置方式
+-   [x] 配置属性配置方式
     -   [x] 代码
 
     ```java
@@ -35,16 +35,7 @@ compile 'cn.shishuihao:third-party-api-spring-boot-starter:latest'
     }
     ```
   
--   [x] yml（自定义）
-
-    ```yml
-    sms:
-      aliyun:
-        - access-key-id: AccessKeyId1
-          access-secret: AccessSecret1
-        - access-key-id: AccessKeyId2
-          access-secret: AccessSecret2
-    ```
+    -   [x] [yml](/third-party-api-spring-boot-autoconfigure/src/test/resources/application.yml)
 
 -   [x] 数据库配置方式
     -   [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa)
@@ -87,4 +78,4 @@ compile 'cn.shishuihao:third-party-api-spring-boot-starter:latest'
     }
     ```
 
--   发布事件
+-   [x] 发布事件

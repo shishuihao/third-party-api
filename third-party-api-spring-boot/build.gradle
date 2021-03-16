@@ -3,6 +3,8 @@ apply plugin: 'io.spring.dependency-management'
 
 dependencies {
     compile project(':third-party-api-core')
+    compile project(':third-party-api-spring-boot-starter')
+    compile project(':third-party-api-spring-boot-autoconfigure')
     compile project(':third-party-api-pay-spring-boot')
     compile project(':third-party-api-push-spring-boot')
     compile project(':third-party-api-sms-spring-boot')

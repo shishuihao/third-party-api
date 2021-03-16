@@ -7,6 +7,7 @@ dependencies {
 
 dependencies {
     compile project(':third-party-api-core')
+    compile project(':third-party-api-spring-boot-starter')
 
     compile "org.springframework.boot:spring-boot-autoconfigure"
 
@@ -25,6 +26,16 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation project(':third-party-api-pay-alipay')
+    testImplementation project(':third-party-api-pay-icbc')
+    testImplementation project(':third-party-api-pay-weixin')
+    testImplementation project(':third-party-api-push-flyme')
+    testImplementation project(':third-party-api-push-huawei')
+    testImplementation project(':third-party-api-push-oppo')
+    testImplementation project(':third-party-api-push-vivo')
+    testImplementation project(':third-party-api-push-xiaomi')
+    testImplementation project(':third-party-api-sms-aliyun')
+    testImplementation project(':third-party-api-sms-tencent')
 }
 
 jar {

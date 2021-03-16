@@ -193,6 +193,7 @@ GitHub 上有很多很棒的第三方接口集成，但是我找不到真正适�
 
 -   插拔机制
     -   [x] [SPI机制](https://www.baeldung.com/java-spi)
+
     -   [x] 通过容器
         -   [x] [springboot](/third-party-api-spring-boot-starter)
 

@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -28,10 +31,13 @@ public class SendBatchSmsApiRequest extends AbstractRequest<
     /**
      * template Id.
      */
+    @NotBlank
     private final String templateId;
     /**
      * phone numbers.
      */
+    @NotNull
+    @Size(min = 1)
     private final List<SmsMessage> messages;
 
     /**

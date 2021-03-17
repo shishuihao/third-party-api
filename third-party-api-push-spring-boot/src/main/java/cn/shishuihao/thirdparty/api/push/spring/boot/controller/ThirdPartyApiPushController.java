@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -23,7 +24,7 @@ public class ThirdPartyApiPushController {
      */
     @PostMapping
     public CompletableFuture<PushMessageApiResponse> pushMessage(
-            @RequestBody final PushMessageApiRequest request) {
+            @Valid @RequestBody final PushMessageApiRequest request) {
         return CompletableFuture.supplyAsync(() ->
                 ApiRegistry.INSTANCE.execute(request));
     }

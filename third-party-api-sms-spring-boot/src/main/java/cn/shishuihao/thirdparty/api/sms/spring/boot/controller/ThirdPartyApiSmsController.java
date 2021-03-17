@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -25,7 +26,7 @@ public class ThirdPartyApiSmsController {
      */
     @PostMapping
     public CompletableFuture<SendSmsApiResponse> send(
-            @RequestBody final SendSmsApiRequest request) {
+            @Valid @RequestBody final SendSmsApiRequest request) {
         return CompletableFuture.supplyAsync(() ->
                 ApiRegistry.INSTANCE.execute(request));
     }
@@ -38,7 +39,7 @@ public class ThirdPartyApiSmsController {
      */
     @PostMapping("/batch")
     public CompletableFuture<SendBatchSmsApiResponse> sendBatch(
-            @RequestBody final SendBatchSmsApiRequest request) {
+            @Valid @RequestBody final SendBatchSmsApiRequest request) {
         return CompletableFuture.supplyAsync(() ->
                 ApiRegistry.INSTANCE.execute(request));
     }

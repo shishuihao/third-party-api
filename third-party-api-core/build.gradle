@@ -1,5 +1,6 @@
 dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+    compile 'javax.validation:validation-api:2.0.1.Final'
 }
 
 jar {

@@ -8,6 +8,10 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -29,14 +33,17 @@ public class CodePayApiRequest extends AbstractRequest<
     /**
      * out trade no.
      */
+    @NotBlank
     private final String outTradeNo;
     /**
      * pay total amount.
      */
+    @Min(1)
     private final int totalAmount;
     /**
      * auth code.such as qrcode.
      */
+    @NotEmpty
     private final String authCode;
 
     /**

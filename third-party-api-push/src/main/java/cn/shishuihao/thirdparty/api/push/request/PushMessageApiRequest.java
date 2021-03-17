@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -23,13 +25,14 @@ public class PushMessageApiRequest extends AbstractRequest<
         PushMessageApiRequest,
         PushMessageApiResponse> {
     /**
+     * payload.
+     */
+    @NotBlank
+    private final String payload;
+    /**
      * title.
      */
     private final String title;
-    /**
-     * payload.
-     */
-    private final String payload;
     /**
      * description.
      */

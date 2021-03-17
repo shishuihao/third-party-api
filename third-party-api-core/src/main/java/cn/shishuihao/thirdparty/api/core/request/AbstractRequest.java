@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * @param <A> api
  * @param <T> api request
@@ -24,10 +26,12 @@ public abstract class AbstractRequest<
     /**
      * channel id.
      */
+    @NotBlank
     private final String channelId;
     /**
      * properties id.
      */
+    @NotBlank
     private final String propertiesId;
 
     /**

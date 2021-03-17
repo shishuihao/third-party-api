@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Map;
 
 /**
@@ -20,6 +21,7 @@ public class SmsMessage {
     /**
      * phone numbers.
      */
+    @NotBlank
     private final String phoneNumber;
     /**
      * sms sign name.

@@ -9,6 +9,10 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -26,10 +30,13 @@ public class SendSmsApiRequest extends AbstractRequest<
     /**
      * template Id.
      */
+    @NotBlank
     private final String templateId;
     /**
      * message.
      */
+    @Valid
+    @NotNull
     private final SmsMessage message;
 
     /**

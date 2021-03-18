@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  third-party-api:
+    image: third-party-api:${version}
+    ports:
+      - "8080:8080"
+    volumes:
+      - /log:/var/log

@@ -1,9 +1,11 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.util;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.apache.commons.lang3.reflect.FieldUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +26,10 @@ public final class XmlFieldUtils {
      * @return field list
      */
     public static List<Field> getFields(final Class<?> cls) {
-        return FieldUtils.getFieldsListWithAnnotation(cls, XStreamAlias.class);
+        List<Field> list = new ArrayList<>();
+        list.addAll(FieldUtils.getFieldsListWithAnnotation(cls, XStreamAlias.class));
+        list.addAll(FieldUtils.getFieldsListWithAnnotation(cls, JacksonXmlProperty.class));
+        return list;
     }
 
     /**
@@ -37,13 +42,8 @@ public final class XmlFieldUtils {
         List<Field> fieldList = getFields(object.getClass());
         Map<String, Object> map = new HashMap<>(fieldList.size());
         fieldList.forEach(field -> {
-            XStreamAlias xmlField = field.getAnnotation(XStreamAlias.class);
-            try {
-                Object value = FieldUtils.readField(field, object, true);
-                map.put(xmlField.value(), value);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
+            handleXStreamAlias(object, map, field);
+            handleJacksonXmlProperty(object, map, field);
         });
         return map;
     }
@@ -58,9 +58,39 @@ public final class XmlFieldUtils {
         List<Field> fieldList = getFields(cls);
         Map<String, Field> map = new HashMap<>(fieldList.size());
         fieldList.forEach(field -> {
-            XStreamAlias xmlField = field.getAnnotation(XStreamAlias.class);
-            map.put(xmlField.value(), field);
+            XStreamAlias xStreamAlias = field.getAnnotation(XStreamAlias.class);
+            if (xStreamAlias != null) {
+                map.put(xStreamAlias.value(), field);
+            }
+            JacksonXmlProperty jacksonXmlProperty = field.getAnnotation(JacksonXmlProperty.class);
+            if (jacksonXmlProperty != null) {
+                map.put(jacksonXmlProperty.localName(), field);
+            }
         });
         return map;
+    }
+
+    private static void handleJacksonXmlProperty(Object object, Map<String, Object> map, Field field) {
+        JacksonXmlProperty jacksonXmlProperty = field.getAnnotation(JacksonXmlProperty.class);
+        if (jacksonXmlProperty != null) {
+            try {
+                Object value = FieldUtils.readField(field, object, true);
+                map.put(jacksonXmlProperty.localName(), value);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void handleXStreamAlias(Object object, Map<String, Object> map, Field field) {
+        XStreamAlias xStreamAlias = field.getAnnotation(XStreamAlias.class);
+        if (xStreamAlias != null) {
+            try {
+                Object value = FieldUtils.readField(field, object, true);
+                map.put(xStreamAlias.value(), value);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

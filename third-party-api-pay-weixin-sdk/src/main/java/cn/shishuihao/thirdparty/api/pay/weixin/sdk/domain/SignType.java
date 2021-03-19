@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -63,8 +64,9 @@ public enum SignType {
                 .put(k, v == null ? null : v.toString()));
         String paramsString = stringStringMap.entrySet().stream()
                 // 过滤
-                .filter(it -> it.getKey() != null
-                        && StringUtils.isNotBlank(it.getValue()))
+                .filter(it -> it.getKey() != null)
+                .filter(it -> !Objects.equals(it.getKey(), "sign"))
+                .filter(it -> StringUtils.isNotBlank(it.getValue()))
                 // 排序
                 .sorted(Map.Entry.comparingByKey())
                 // 拼接

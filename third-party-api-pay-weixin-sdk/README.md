@@ -57,16 +57,16 @@ SDK将致力于保持良好的API命名，以符合开发者的编程直觉。
 
 ## 已支持的API列表
 
-|       能力类别       |             场景类别            |         接口名称         |       接口路径       |
-| :--------------: | :-------------------------: | :------------------: | :--------------: |
-| Payment</br>支付能力 |           Common通用          |                      |                  |
-|                  |                             |  orderQuery</br>查询订单 |  /pay/orderquery |
-|                  |                             | refundQuery</br>查询退款 | /pay/refundquery |
-| Payment</br>支付能力 |    WxPayCodeApi</br>付款码支付   |                      |                  |
-|                  |                             |  microPay</br>付款码支付  |   /pay/micropay  |
-| Payment</br>支付能力 |    WxPayJsApi</br>JSAPI支付   |                      |                  |
-| Payment</br>支付能力 | WxPayNativeApi</br>Native支付 |                      |                  |
-| Payment</br>支付能力 |    WxPayAppApi</br>App支付    |                      |                  |
-| Payment</br>支付能力 |     WxPayH5Api</br>H5支付     |                      |                  |
-| Payment</br>支付能力 |   WxPayApplet</br>Api小程序支付  |                      |                  |
-| Payment</br>支付能力 |    WxPayFaceApi</br>刷脸支付    |                      |                  |
+| 能力类别             | 场景类别                      | 接口名称                 | 接口路径         | 已测试 |
+| :------------------: | :---------------------------: | :----------------------: | :--------------: | :----: |
+| Payment</br>支付能力 |           Common通用          |                          |                  |        |
+|                      |                               | orderQuery</br>查询订单  | /pay/orderquery  | 是     |
+|                      |                               | refundQuery</br>查询退款 | /pay/refundquery |        |
+| Payment</br>支付能力 | WxPayCodeApi</br>付款码支付   |                          |                  |        |
+|                      |                               | microPay</br>付款码支付  | /pay/micropay    | 是     |
+| Payment</br>支付能力 | WxPayJsApi</br>JSAPI支付      |                          |                  |        |
+| Payment</br>支付能力 | WxPayNativeApi</br>Native支付 |                          |                  |        |
+| Payment</br>支付能力 | WxPayAppApi</br>App支付       |                          |                  |        |
+| Payment</br>支付能力 | WxPayH5Api</br>H5支付         |                          |                  |        |
+| Payment</br>支付能力 | WxPayApplet</br>Api小程序支付 |                          |                  |        |
+| Payment</br>支付能力 | WxPayFaceApi</br>刷脸支付     |                          |                  |        |

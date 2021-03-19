@@ -2,13 +2,13 @@ package cn.shishuihao.thirdparty.api.pay.weixin.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
-import cn.shishuihao.thirdparty.api.pay.api.CodePayApi;
-import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
+import cn.shishuihao.thirdparty.api.pay.api.QueryOrderPayApi;
+import cn.shishuihao.thirdparty.api.pay.request.QueryOrderApiRequest;
+import cn.shishuihao.thirdparty.api.pay.response.QueryOrderApiResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayCodeApi;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayMicroPayRequest;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayMicroPayResponse;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayOrderQueryRequest;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayOrderQueryResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.ResponseChecker;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -18,36 +18,36 @@ import org.apache.commons.lang3.RandomStringUtils;
  * @version 1.0.0
  */
 @AllArgsConstructor
-public class WxCodePayApi implements CodePayApi {
+public class WxQueryOrderPayApi implements QueryOrderPayApi {
     /**
      * WxPayCodeApi.
      */
     private final WxPayCodeApi wxPayCodeApi;
 
     /**
-     * execute CodePayApiRequest by weixin.
+     * execute QueryOrderApiRequest by weixin.
      *
      * @param request request
-     * @return CodePayApiResponse
+     * @return QueryOrderApiResponse
      */
     @Override
-    public CodePayApiResponse execute(final CodePayApiRequest request) {
+    public QueryOrderApiResponse execute(final QueryOrderApiRequest request) {
         WxPayApiProperties properties = (WxPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            WxPayMicroPayRequest wxRequest = getWxRequest(request, properties);
+            WxPayOrderQueryRequest wxRequest = getWxRequest(request, properties);
             wxRequest.sign(properties.getKey());
-            WxPayMicroPayResponse wxResponse = wxPayCodeApi.microPay(wxRequest);
+            WxPayOrderQueryResponse wxResponse = wxPayCodeApi.orderQuery(wxRequest);
             return getApiResponse(wxResponse);
         } catch (Exception e) {
             throw new ApiException(e);
         }
     }
 
-    private WxPayMicroPayRequest getWxRequest(
-            final CodePayApiRequest request,
+    private WxPayOrderQueryRequest getWxRequest(
+            final QueryOrderApiRequest request,
             final WxPayApiProperties properties) {
-        return WxPayMicroPayRequest.builder()
+        return WxPayOrderQueryRequest.builder()
                 .appId(properties.getAppId())
                 .mchId(properties.getMchId())
                 .subAppId(properties.getSubAppId())
@@ -56,16 +56,13 @@ public class WxCodePayApi implements CodePayApi {
                 .nonceStr(RandomStringUtils
                         .randomAlphanumeric(Integer.SIZE))
                 .signType(properties.getSignType())
-                .body(request.getSubject())
                 .outTradeNo(request.getOutTradeNo())
-                .totalFee(request.getTotalAmount())
-                .authCode(request.getAuthCode())
                 .build();
     }
 
-    private CodePayApiResponse getApiResponse(
-            final WxPayMicroPayResponse wxPayMicropayResponse) {
-        return CodePayApiResponse.builder()
+    private QueryOrderApiResponse getApiResponse(
+            final WxPayOrderQueryResponse wxPayMicropayResponse) {
+        return QueryOrderApiResponse.builder()
                 .success(ResponseChecker.success(wxPayMicropayResponse))
                 .code(ResponseChecker.getCode(wxPayMicropayResponse))
                 .message(ResponseChecker.getMsg(wxPayMicropayResponse))

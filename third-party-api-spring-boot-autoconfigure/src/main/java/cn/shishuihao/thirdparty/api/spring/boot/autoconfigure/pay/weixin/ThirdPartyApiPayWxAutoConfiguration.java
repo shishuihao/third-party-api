@@ -33,12 +33,14 @@ public class ThirdPartyApiPayWxAutoConfiguration {
      * wxPayApiChannel.
      *
      * @param properties properties
+     * @param codeApi    codeApi
      * @return WxPayApiChannel
      */
     @Bean
     @ConditionalOnMissingBean
     public WxPayApiChannel wxPayApiChannel(
-            final WxPayApiChannelProperties properties) {
-        return new WxPayApiChannel(properties);
+            final WxPayApiChannelProperties properties,
+            final WxPayCodeApi codeApi) {
+        return new WxPayApiChannel(properties, codeApi);
     }
 }

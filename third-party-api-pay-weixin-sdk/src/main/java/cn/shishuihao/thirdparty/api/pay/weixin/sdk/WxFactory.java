@@ -1,13 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk;
 
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayAppApi;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayAppletApi;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayCodeApi;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayCommonApi;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayFaceApi;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayH5Api;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayJsApi;
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayNativeApi;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.*;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.codec.WxXmlDecoder;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.codec.WxXmlEncoder;
 import feign.Feign;

@@ -2,6 +2,7 @@ package cn.shishuihao.thirdparty.api.pay.weixin.sdk.request;
 
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.annotation.WxParameter;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.domain.SignType;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlFieldUtils;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 import com.thoughtworks.xstream.converters.enums.EnumToStringConverter;
@@ -10,6 +11,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 /**
  * @author shishuihao
@@ -126,4 +130,16 @@ public abstract class AbstractWxPayXmlRequest {
             desc = "签名，详见签名生成算法")
     @JacksonXmlProperty(localName = "sign")
     private String sign;
+
+    /**
+     * sign by key
+     *
+     * @param key key
+     * @throws UnsupportedEncodingException UnsupportedEncodingException
+     */
+    public void sign(final String key) throws UnsupportedEncodingException {
+        Map<String, Object> params = XmlFieldUtils
+                .getNameValueMap(this);
+        this.setSign(this.getSignType().sign(key, params));
+    }
 }

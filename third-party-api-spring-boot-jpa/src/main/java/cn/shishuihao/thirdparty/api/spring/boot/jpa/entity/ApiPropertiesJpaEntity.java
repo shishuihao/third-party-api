@@ -10,7 +10,6 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import java.time.LocalDateTime;
 
 /**
  * @author shishuihao
@@ -65,20 +64,4 @@ public class ApiPropertiesJpaEntity extends BaseJpaEntity {
     @Convert(converter = ApiPropertiesJacksonAttributeConverter.class)
     @Column(name = COLUMN_PROPERTIES, length = COLUMN_PROPERTIES_LENGTH)
     private ApiProperties properties;
-
-    /**
-     * from apiProperties to ApiPropertiesJpaEntity.
-     *
-     * @param properties apiProperties
-     * @return ApiPropertiesJpaEntity
-     */
-    public static ApiPropertiesJpaEntity from(
-            final ApiProperties properties) {
-        ApiPropertiesJpaEntity jpaEntity = new ApiPropertiesJpaEntity();
-        jpaEntity.setChannelId(properties.channelId());
-        jpaEntity.setPropertiesId(properties.id());
-        jpaEntity.setProperties(properties);
-        jpaEntity.setGmtModified(LocalDateTime.now());
-        return jpaEntity;
-    }
 }

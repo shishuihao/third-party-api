@@ -12,9 +12,9 @@ import java.util.function.Consumer;
 
 public interface Container extends AggregateRoot<String> {
     /**
-     * get entity id.
+     * get id.
      *
-     * @return entity id
+     * @return id
      */
     @Override
     default String id() {

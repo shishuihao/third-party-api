@@ -7,9 +7,9 @@ package cn.shishuihao.thirdparty.api.core.repository;
  */
 public interface Aggregate<I> {
     /**
-     * get entity id.
+     * get id.
      *
-     * @return entity id
+     * @return id
      */
     I id();
 }

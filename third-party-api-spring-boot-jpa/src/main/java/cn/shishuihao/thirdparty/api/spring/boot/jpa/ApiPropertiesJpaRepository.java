@@ -2,53 +2,46 @@ package cn.shishuihao.thirdparty.api.spring.boot.jpa;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiPropertiesConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.entity.ApiPropertiesJpaEntity;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.AbstractJpaRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiPropertiesEntityJpaRepository;
-import lombok.AllArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-@AllArgsConstructor
-public class ApiPropertiesJpaRepository implements ApiPropertiesRepository {
+public class ApiPropertiesJpaRepository
+        extends AbstractJpaRepository<
+        String,
+        ApiProperties,
+        ApiPropertiesJpaEntity,
+        ApiPropertiesEntityJpaRepository>
+        implements ApiPropertiesRepository {
     /**
-     * jpaRepository.
-     */
-    private final ApiPropertiesEntityJpaRepository jpaRepository;
-
-    /**
-     * add api properties.
+     * new ApiPropertiesJpaRepository.
      *
-     * @param apiProperties api properties
+     * @param jpaRepository jpaRepository
+     * @param converter     converter
      */
-    @Override
-    public void add(final ApiProperties apiProperties) {
-        ApiPropertiesJpaEntity entity = jpaRepository
-                .findByPropertiesId(apiProperties.id())
-                .map(it -> {
-                    it.setProperties(apiProperties);
-                    it.setGmtModified(LocalDateTime.now());
-                    return it;
-                })
-                .orElseGet(() -> ApiPropertiesJpaEntity.from(apiProperties));
-        jpaRepository.save(entity);
+    public ApiPropertiesJpaRepository(
+            final ApiPropertiesEntityJpaRepository jpaRepository,
+            final ApiPropertiesConverter converter) {
+        super(jpaRepository, converter);
     }
 
     /**
-     * get api properties by properties id.
+     * get entity by id.
      *
-     * @param propertiesId api properties id
-     * @return optional api properties
+     * @param id id
+     * @return option entity
      */
     @Override
-    public Optional<ApiProperties> get(final String propertiesId) {
-        return jpaRepository
-                .findByPropertiesId(propertiesId)
-                .map(ApiPropertiesJpaEntity::getProperties);
+    public Optional<ApiPropertiesJpaEntity> findById(final String id) {
+        return this.getJpaRepository()
+                .findByPropertiesId(id);
     }
 
     /**
@@ -61,7 +54,7 @@ public class ApiPropertiesJpaRepository implements ApiPropertiesRepository {
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,
                                                     final String propertiesId) {
-        return jpaRepository
+        return this.getJpaRepository()
                 .findByChannelIdAndPropertiesId(channelId, propertiesId)
                 .map(ApiPropertiesJpaEntity::getProperties);
     }

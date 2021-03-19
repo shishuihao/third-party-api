@@ -27,9 +27,9 @@ public abstract class AbstractContainerRepository<
     }
 
     /**
-     * add aggregateRoot.
+     * add aggregate root.
      *
-     * @param aggregateRoot aggregateRoot
+     * @param aggregateRoot aggregate root
      */
     @Override
     public void add(final T aggregateRoot) {
@@ -37,10 +37,10 @@ public abstract class AbstractContainerRepository<
     }
 
     /**
-     * get aggregateRoot by id.
+     * get aggregate root by id.
      *
-     * @param id aggregateRoot id
-     * @return optional aggregateRoot
+     * @param id id
+     * @return optional aggregate root
      */
     @Override
     public Optional<T> get(final I id) {

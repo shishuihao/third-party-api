@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @param <I> id
- * @param <T> entity
+ * @param <T> aggregate root
  * @author shishuihao
  * @version 1.0.0
  */
@@ -18,9 +18,9 @@ public abstract class AbstractMemoryRepository<I, T extends AggregateRoot<I>>
     private final Map<I, T> map = new ConcurrentHashMap<>();
 
     /**
-     * add aggregateRoot.
+     * add aggregate root.
      *
-     * @param aggregateRoot aggregateRoot
+     * @param aggregateRoot aggregate root
      */
     @Override
     public void add(final T aggregateRoot) {
@@ -28,10 +28,10 @@ public abstract class AbstractMemoryRepository<I, T extends AggregateRoot<I>>
     }
 
     /**
-     * get aggregateRoot by id.
+     * get aggregate root by id.
      *
-     * @param id aggregateRoot id
-     * @return optional aggregateRoot
+     * @param id id
+     * @return optional aggregate root
      */
     @Override
     public Optional<T> get(final I id) {

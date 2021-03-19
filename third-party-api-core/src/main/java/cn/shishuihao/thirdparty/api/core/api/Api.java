@@ -25,9 +25,9 @@ public interface Api<
     R execute(T request);
 
     /**
-     * get entity id.
+     * get id.
      *
-     * @return entity id
+     * @return id
      */
     @Override
     default Class<?> id() {

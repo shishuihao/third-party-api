@@ -29,9 +29,9 @@ public interface ApiChannelProperties<
     List<P> getPropertiesList();
 
     /**
-     * get entity id.
+     * get id.
      *
-     * @return entity id
+     * @return id
      */
     @Override
     default String id() {

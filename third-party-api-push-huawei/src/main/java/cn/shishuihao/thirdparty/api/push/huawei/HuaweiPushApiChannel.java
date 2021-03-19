@@ -40,9 +40,9 @@ public class HuaweiPushApiChannel
     }
 
     /**
-     * get entity id.
+     * get id.
      *
-     * @return entity id
+     * @return id
      */
     @Override
     public String id() {

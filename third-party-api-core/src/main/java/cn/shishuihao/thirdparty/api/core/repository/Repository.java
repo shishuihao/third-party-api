@@ -4,23 +4,23 @@ import java.util.Optional;
 
 /**
  * @param <I> id
- * @param <T> entity
+ * @param <A> aggregate root
  * @author shishuihao
  * @version 1.0.0
  */
-public interface Repository<I, T extends AggregateRoot<I>> {
+public interface Repository<I, A extends AggregateRoot<I>> {
     /**
-     * add aggregateRoot.
+     * add aggregate root.
      *
-     * @param aggregateRoot aggregateRoot
+     * @param aggregateRoot aggregate root
      */
-    void add(T aggregateRoot);
+    void add(A aggregateRoot);
 
     /**
-     * get aggregateRoot by id.
+     * get aggregate root by id.
      *
-     * @param id aggregateRoot id
-     * @return optional aggregateRoot
+     * @param id id
+     * @return optional aggregate root
      */
-    Optional<T> get(I id);
+    Optional<A> get(I id);
 }

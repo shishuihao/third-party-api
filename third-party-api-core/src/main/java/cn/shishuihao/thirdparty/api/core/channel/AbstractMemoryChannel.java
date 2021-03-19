@@ -23,9 +23,9 @@ public abstract class AbstractMemoryChannel<
     private final Map<Class<?>, Api<?, ?, ?>> map = new ConcurrentHashMap<>();
 
     /**
-     * add aggregateRoot.
+     * add aggregate root.
      *
-     * @param aggregateRoot aggregateRoot
+     * @param aggregateRoot aggregate root
      */
     @Override
     public void add(final Api<?, ?, ?> aggregateRoot) {
@@ -34,10 +34,10 @@ public abstract class AbstractMemoryChannel<
     }
 
     /**
-     * get aggregateRoot by id.
+     * get aggregate root by id.
      *
-     * @param id aggregateRoot id
-     * @return optional aggregateRoot
+     * @param id id
+     * @return optional aggregate root
      */
     @Override
     public Optional<Api<?, ?, ?>> get(final Class<?> id) {

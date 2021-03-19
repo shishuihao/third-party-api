@@ -2,54 +2,46 @@ package cn.shishuihao.thirdparty.api.spring.boot.mongodb;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiPropertiesMongodbDocumentConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.document.ApiPropertiesMongodbDocument;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository.AbstractMongoRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository.ApiPropertiesDocumentMongoRepository;
-import lombok.AllArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-@AllArgsConstructor
-public class ApiPropertiesMongodbRepository implements ApiPropertiesRepository {
+public class ApiPropertiesMongodbRepository
+        extends AbstractMongoRepository<
+        String,
+        ApiProperties,
+        ApiPropertiesMongodbDocument,
+        ApiPropertiesDocumentMongoRepository>
+        implements ApiPropertiesRepository {
     /**
-     * mongoRepository.
-     */
-    private final ApiPropertiesDocumentMongoRepository mongoRepository;
-
-    /**
-     * add api properties.
+     * new ApiPropertiesMongodbRepository.
      *
-     * @param apiProperties api properties
+     * @param mongoRepository mongoRepository
+     * @param converter       converter
      */
-    @Override
-    public void add(final ApiProperties apiProperties) {
-        ApiPropertiesMongodbDocument entity = mongoRepository
-                .findByPropertiesId(apiProperties.id())
-                .map(it -> {
-                    it.setProperties(apiProperties);
-                    it.setGmtModified(LocalDateTime.now());
-                    return it;
-                })
-                .orElseGet(() -> ApiPropertiesMongodbDocument
-                        .from(apiProperties));
-        mongoRepository.save(entity);
+    public ApiPropertiesMongodbRepository(
+            final ApiPropertiesDocumentMongoRepository mongoRepository,
+            final ApiPropertiesMongodbDocumentConverter converter) {
+        super(mongoRepository, converter);
     }
 
     /**
-     * get api properties by properties id.
+     * get entity by id.
      *
-     * @param propertiesId api properties id
-     * @return optional api properties
+     * @param id id
+     * @return option entity
      */
     @Override
-    public Optional<ApiProperties> get(final String propertiesId) {
-        return mongoRepository
-                .findByPropertiesId(propertiesId)
-                .map(ApiPropertiesMongodbDocument::getProperties);
+    public Optional<ApiPropertiesMongodbDocument> findById(final String id) {
+        return this.getMongoRepository()
+                .findByPropertiesId(id);
     }
 
     /**
@@ -62,7 +54,7 @@ public class ApiPropertiesMongodbRepository implements ApiPropertiesRepository {
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,
                                                     final String propertiesId) {
-        return mongoRepository
+        return this.getMongoRepository()
                 .findByChannelIdAndPropertiesId(channelId, propertiesId)
                 .map(ApiPropertiesMongodbDocument::getProperties);
     }

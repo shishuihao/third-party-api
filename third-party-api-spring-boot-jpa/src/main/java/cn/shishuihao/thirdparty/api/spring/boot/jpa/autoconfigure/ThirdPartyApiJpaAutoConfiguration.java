@@ -3,7 +3,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.jpa.autoconfigure;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.ThirdPartyApiAutoConfiguration;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.ApiPropertiesJpaRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiPropertiesConverter;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiPropertiesJpaEntityConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiPropertiesEntityJpaRepository;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -25,14 +25,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
 public class ThirdPartyApiJpaAutoConfiguration {
     /**
-     * ApiPropertiesConverter.
+     * ApiPropertiesJpaEntityConverter.
      *
-     * @return ApiPropertiesConverter
+     * @return ApiPropertiesJpaEntityConverter
      */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiPropertiesConverter apiPropertiesConverter() {
-        return new ApiPropertiesConverter();
+    protected ApiPropertiesJpaEntityConverter
+    apiPropertiesJpaEntityConverter() {
+        return new ApiPropertiesJpaEntityConverter();
     }
 
     /**
@@ -46,7 +47,7 @@ public class ThirdPartyApiJpaAutoConfiguration {
     @ConditionalOnMissingBean
     protected ApiPropertiesRepository propertiesRepository(
             final ApiPropertiesEntityJpaRepository jpaRepository,
-            final ApiPropertiesConverter converter) {
+            final ApiPropertiesJpaEntityConverter converter) {
         return new ApiPropertiesJpaRepository(jpaRepository, converter);
     }
 }

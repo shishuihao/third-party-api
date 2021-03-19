@@ -1,11 +1,11 @@
-package cn.shishuihao.thirdparty.api.spring.boot.jpa.repository;
+package cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository;
 
 import cn.shishuihao.thirdparty.api.core.repository.AggregateRoot;
 import cn.shishuihao.thirdparty.api.core.repository.AggregateRootConverter;
 import cn.shishuihao.thirdparty.api.core.repository.Repository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
@@ -13,22 +13,22 @@ import java.util.Optional;
  * @param <I> id
  * @param <A> aggregate root
  * @param <E> entity
- * @param <R> jpa repository
+ * @param <R> mongo repository
  * @author shishuihao
  * @version 1.0.0
  */
 @AllArgsConstructor
 @Getter
-public abstract class AbstractJpaRepository<
+public abstract class AbstractMongoRepository<
         I,
         A extends AggregateRoot<I>,
         E,
-        R extends JpaRepository<E, ?>>
+        R extends MongoRepository<E, ?>>
         implements Repository<I, A> {
     /**
-     * jpa repository.
+     * mongo repository.
      */
-    private final R jpaRepository;
+    private final R mongoRepository;
     /**
      * aggregate root converter.
      */
@@ -52,7 +52,7 @@ public abstract class AbstractJpaRepository<
         E entity = findById(aggregateRoot.id())
                 .map(it -> converter.convert(it, aggregateRoot))
                 .orElseGet(() -> converter.convert(aggregateRoot));
-        jpaRepository.save(entity);
+        mongoRepository.save(entity);
     }
 
     /**

@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.jpa;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiPropertiesConverter;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiPropertiesJpaEntityConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.entity.ApiPropertiesJpaEntity;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.AbstractJpaRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiPropertiesEntityJpaRepository;
@@ -28,7 +28,7 @@ public class ApiPropertiesJpaRepository
      */
     public ApiPropertiesJpaRepository(
             final ApiPropertiesEntityJpaRepository jpaRepository,
-            final ApiPropertiesConverter converter) {
+            final ApiPropertiesJpaEntityConverter converter) {
         super(jpaRepository, converter);
     }
 

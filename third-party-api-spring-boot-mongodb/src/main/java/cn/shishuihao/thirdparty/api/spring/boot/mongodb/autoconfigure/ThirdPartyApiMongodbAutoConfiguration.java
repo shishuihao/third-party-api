@@ -3,6 +3,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.mongodb.autoconfigure;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.ThirdPartyApiAutoConfiguration;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.ApiPropertiesMongodbRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiPropertiesMongodbDocumentConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiPropertiesToJacksonConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.JacksonToApiPropertiesConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository.ApiPropertiesDocumentMongoRepository;
@@ -29,16 +30,30 @@ import java.util.Arrays;
 @AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
 public class ThirdPartyApiMongodbAutoConfiguration {
     /**
+     * ApiPropertiesMongodbDocumentConverter.
+     *
+     * @return ApiPropertiesMongodbDocumentConverter
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    protected ApiPropertiesMongodbDocumentConverter
+    apiPropertiesMongodbDocumentConverter() {
+        return new ApiPropertiesMongodbDocumentConverter();
+    }
+
+    /**
      * propertiesRepository.
      *
      * @param mongoRepository mongoRepository
+     * @param converter       converter
      * @return ApiPropertiesRepository
      */
     @Bean
     @ConditionalOnMissingBean
     protected ApiPropertiesRepository propertiesRepository(
-            final ApiPropertiesDocumentMongoRepository mongoRepository) {
-        return new ApiPropertiesMongodbRepository(mongoRepository);
+            final ApiPropertiesDocumentMongoRepository mongoRepository,
+            final ApiPropertiesMongodbDocumentConverter converter) {
+        return new ApiPropertiesMongodbRepository(mongoRepository, converter);
     }
 
     /**

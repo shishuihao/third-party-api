@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @author shishuihao
  * @version 1.0.0
  */
-public class ApiPropertiesConverter implements AggregateRootConverter<
+public class ApiPropertiesJpaEntityConverter implements AggregateRootConverter<
         String,
         ApiProperties,
         ApiPropertiesJpaEntity> {

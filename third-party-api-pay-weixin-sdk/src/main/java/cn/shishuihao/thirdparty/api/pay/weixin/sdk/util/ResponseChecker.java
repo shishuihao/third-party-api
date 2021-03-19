@@ -10,7 +10,13 @@ import java.util.Optional;
  */
 
 public final class ResponseChecker {
+    /**
+     * SUCCESS.
+     */
     public static final String SUCCESS = "SUCCESS";
+    /**
+     * FAIL.
+     */
     public static final String FAIL = "FAIL";
 
     private ResponseChecker() {

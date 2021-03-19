@@ -132,7 +132,7 @@ public abstract class AbstractWxPayXmlRequest {
     private String sign;
 
     /**
-     * sign by key
+     * sign by key.
      *
      * @param key key
      * @throws UnsupportedEncodingException UnsupportedEncodingException

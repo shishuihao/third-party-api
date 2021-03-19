@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter;
 
+import cn.shishuihao.thirdparty.api.commons.ReflectionUtils;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.XmlFieldUtils;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
@@ -83,7 +84,7 @@ public class WxPayConverter extends ReflectionConverter {
                         .replace("_$m", "");
                 marshal(writer, fieldValue, namePrefix);
             } catch (IllegalAccessException e) {
-                throw ExceptionUtils.<RuntimeException>rethrow(e);
+                ReflectionUtils.handleReflectionException(e);
             }
         });
     }
@@ -117,7 +118,7 @@ public class WxPayConverter extends ReflectionConverter {
             }
             return result;
         } catch (Exception e) {
-            throw ExceptionUtils.<RuntimeException>rethrow(e);
+            throw ExceptionUtils.<RuntimeException>wrapAndThrow(e);
         }
     }
 

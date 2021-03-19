@@ -35,9 +35,11 @@ public class WxQueryOrderPayApi implements QueryOrderPayApi {
         WxPayApiProperties properties = (WxPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            WxPayOrderQueryRequest wxRequest = getWxRequest(request, properties);
+            WxPayOrderQueryRequest wxRequest = this
+                    .getWxRequest(request, properties);
             wxRequest.sign(properties.getKey());
-            WxPayOrderQueryResponse wxResponse = wxPayCodeApi.orderQuery(wxRequest);
+            WxPayOrderQueryResponse wxResponse = wxPayCodeApi
+                    .orderQuery(wxRequest);
             return getApiResponse(wxResponse);
         } catch (Exception e) {
             throw new ApiException(e);

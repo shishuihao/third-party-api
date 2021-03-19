@@ -45,7 +45,7 @@ public class ApiPropertiesJpaRepository implements ApiPropertiesRepository {
      * @return optional api properties
      */
     @Override
-    public Optional<ApiProperties> getById(final String propertiesId) {
+    public Optional<ApiProperties> get(final String propertiesId) {
         return jpaRepository
                 .findByPropertiesId(propertiesId)
                 .map(ApiPropertiesJpaEntity::getProperties);

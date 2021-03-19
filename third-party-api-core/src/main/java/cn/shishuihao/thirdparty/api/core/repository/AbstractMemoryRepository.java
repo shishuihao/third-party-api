@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author shishuihao
  * @version 1.0.0
  */
-public abstract class AbstractMemoryRepository<I, T extends Entity<I>>
+public abstract class AbstractMemoryRepository<I, T extends AggregateRoot<I>>
         implements Repository<I, T> {
     /**
      * map.
@@ -18,23 +18,23 @@ public abstract class AbstractMemoryRepository<I, T extends Entity<I>>
     private final Map<I, T> map = new ConcurrentHashMap<>();
 
     /**
-     * add entity.
+     * add aggregateRoot.
      *
-     * @param entity entity
+     * @param aggregateRoot aggregateRoot
      */
     @Override
-    public void add(final T entity) {
-        map.put(entity.id(), entity);
+    public void add(final T aggregateRoot) {
+        map.put(aggregateRoot.id(), aggregateRoot);
     }
 
     /**
-     * get entity by id.
+     * get aggregateRoot by id.
      *
-     * @param id entity id
-     * @return Optional<T>
+     * @param id aggregateRoot id
+     * @return optional aggregateRoot
      */
     @Override
-    public Optional<T> getById(final I id) {
+    public Optional<T> get(final I id) {
         return Optional.ofNullable(map.get(id));
     }
 

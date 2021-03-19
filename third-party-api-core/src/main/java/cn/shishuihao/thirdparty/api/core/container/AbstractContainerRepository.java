@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.core.container;
 
-import cn.shishuihao.thirdparty.api.core.repository.Entity;
+import cn.shishuihao.thirdparty.api.core.repository.AggregateRoot;
 import cn.shishuihao.thirdparty.api.core.repository.Repository;
 
 import java.util.Optional;
@@ -14,7 +14,7 @@ import java.util.Optional;
  */
 public abstract class AbstractContainerRepository<
         I,
-        T extends Entity<I>,
+        T extends AggregateRoot<I>,
         R extends Repository<I, T>> implements Repository<I, T> {
     /**
      * repository.
@@ -27,24 +27,24 @@ public abstract class AbstractContainerRepository<
     }
 
     /**
-     * add entity.
+     * add aggregateRoot.
      *
-     * @param entity entity
+     * @param aggregateRoot aggregateRoot
      */
     @Override
-    public void add(final T entity) {
-        repository.add(entity);
+    public void add(final T aggregateRoot) {
+        repository.add(aggregateRoot);
     }
 
     /**
-     * get entity by id.
+     * get aggregateRoot by id.
      *
-     * @param id entity id
-     * @return optional entity
+     * @param id aggregateRoot id
+     * @return optional aggregateRoot
      */
     @Override
-    public Optional<T> getById(final I id) {
-        return repository.getById(id);
+    public Optional<T> get(final I id) {
+        return repository.get(id);
     }
 
     /**

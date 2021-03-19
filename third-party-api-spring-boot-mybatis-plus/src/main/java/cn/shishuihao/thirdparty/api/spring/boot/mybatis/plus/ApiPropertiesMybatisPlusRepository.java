@@ -49,7 +49,7 @@ public class ApiPropertiesMybatisPlusRepository
      * @return optional api properties
      */
     @Override
-    public Optional<ApiProperties> getById(final String propertiesId) {
+    public Optional<ApiProperties> get(final String propertiesId) {
         return mpMapper
                 .findByPropertiesId(propertiesId)
                 .map(ApiPropertiesMybatisPlusEntity::getProperties);

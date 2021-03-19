@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.core.container;
 
-import cn.shishuihao.thirdparty.api.core.repository.Entity;
+import cn.shishuihao.thirdparty.api.core.repository.AggregateRoot;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -10,7 +10,7 @@ import java.util.function.Consumer;
  * @version 1.0.0
  */
 
-public interface Container extends Entity<String> {
+public interface Container extends AggregateRoot<String> {
     /**
      * get entity id.
      *

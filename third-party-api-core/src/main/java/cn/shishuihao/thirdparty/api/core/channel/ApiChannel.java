@@ -3,7 +3,7 @@ package cn.shishuihao.thirdparty.api.core.channel;
 import cn.shishuihao.thirdparty.api.core.api.Api;
 import cn.shishuihao.thirdparty.api.core.api.ApiRepository;
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
-import cn.shishuihao.thirdparty.api.core.repository.Entity;
+import cn.shishuihao.thirdparty.api.core.repository.AggregateRoot;
 import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
 import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
@@ -16,7 +16,7 @@ import java.util.Optional;
  */
 public interface ApiChannel<
         P extends ApiProperties>
-        extends Entity<String>, ApiRepository {
+        extends AggregateRoot<String>, ApiRepository {
     /**
      * get api by api type.
      *

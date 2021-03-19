@@ -69,7 +69,7 @@ public class ApiRegistry {
      * @return Optional<ApiChannel>
      */
     public Optional<ApiChannel> getApiChannel(final String channelId) {
-        return this.channelRepository.getById(channelId).map(it -> it);
+        return this.channelRepository.get(channelId).map(it -> it);
     }
 
     /**

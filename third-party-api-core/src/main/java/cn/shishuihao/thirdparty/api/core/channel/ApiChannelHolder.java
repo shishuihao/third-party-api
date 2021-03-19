@@ -38,7 +38,7 @@ public final class ApiChannelHolder {
      * @return Optional<ApiChannel>
      */
     public Optional<ApiChannel> getApiChannel(final String channelId) {
-        return CHANNEL_REPOSITORY.getById(channelId).map(it -> it);
+        return CHANNEL_REPOSITORY.get(channelId).map(it -> it);
     }
 
     /**

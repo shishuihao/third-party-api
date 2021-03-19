@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.core.channel;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
-import cn.shishuihao.thirdparty.api.core.repository.Entity;
+import cn.shishuihao.thirdparty.api.core.repository.AggregateRoot;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface ApiChannelProperties<
         P extends ApiProperties>
-        extends Entity<String> {
+        extends AggregateRoot<String> {
     /**
      * get channel id.
      *

@@ -23,24 +23,24 @@ public abstract class AbstractMemoryChannel<
     private final Map<Class<?>, Api<?, ?, ?>> map = new ConcurrentHashMap<>();
 
     /**
-     * add entity.
+     * add aggregateRoot.
      *
-     * @param entity entity
+     * @param aggregateRoot aggregateRoot
      */
     @Override
-    public void add(final Api<?, ?, ?> entity) {
-        map.put(entity.id(), entity);
-        map.put(entity.apiType(), entity);
+    public void add(final Api<?, ?, ?> aggregateRoot) {
+        map.put(aggregateRoot.id(), aggregateRoot);
+        map.put(aggregateRoot.apiType(), aggregateRoot);
     }
 
     /**
-     * get entity by id.
+     * get aggregateRoot by id.
      *
-     * @param id entity id
-     * @return Optional<Api < ?, ?, ?>>
+     * @param id aggregateRoot id
+     * @return optional aggregateRoot
      */
     @Override
-    public Optional<Api<?, ?, ?>> getById(final Class<?> id) {
+    public Optional<Api<?, ?, ?>> get(final Class<?> id) {
         return Optional.ofNullable(map.get(id));
     }
 
@@ -58,6 +58,6 @@ public abstract class AbstractMemoryChannel<
     public <A extends Api<A, T, R>,
             T extends ApiRequest<A, T, R>,
             R extends ApiResponse> Optional<A> getApi(final Class<A> apiType) {
-        return Optional.ofNullable((A) this.getById(apiType).orElse(null));
+        return Optional.ofNullable((A) this.get(apiType).orElse(null));
     }
 }

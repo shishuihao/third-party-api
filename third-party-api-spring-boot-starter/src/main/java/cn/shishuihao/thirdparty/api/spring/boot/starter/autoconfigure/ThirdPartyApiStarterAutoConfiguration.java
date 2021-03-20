@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
+package cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.channel.ApiChannelMemoryRepository;
@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Import;
 @Import({ThirdPartyApiSpringContainer.class})
 @Configuration
 @ConditionalOnProperty(name = "third-party-api.enabled", matchIfMissing = true)
-public class ThirdPartyApiAutoConfiguration {
+public class ThirdPartyApiStarterAutoConfiguration {
     /**
      * propertiesRepository.
      *

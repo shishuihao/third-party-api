@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.redis.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.ThirdPartyApiAutoConfiguration;
+import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import cn.shishuihao.thirdparty.api.spring.boot.redis.ApiPropertiesRedisRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.redis.util.RedisTemplateUtils;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -24,7 +24,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 @ConditionalOnProperty(
         name = "third-party-api.redis.enabled",
         matchIfMissing = true)
-@AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
+@AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiRedisAutoConfiguration {
     /**
      * apiPropertiesRedisTemplate.

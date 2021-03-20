@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
+package cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.container.Container;
 import org.springframework.beans.BeansException;

@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.ThirdPartyApiAutoConfiguration;
+import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.ApiPropertiesMybatisPlusRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.converter.ApiPropertiesMybatisPlusEntityConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper.ApiPropertiesEntityMybatisPlusMapper;
@@ -24,7 +24,7 @@ import org.springframework.context.annotation.Import;
         matchIfMissing = true)
 @MapperScan(basePackages =
         "cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper")
-@AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
+@AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiMybatisPlusAutoConfiguration {
     /**
      * apiPropertiesMybatisPlusEntityConverter.

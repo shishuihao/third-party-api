@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mongodb.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.ThirdPartyApiAutoConfiguration;
+import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.ApiPropertiesMongodbRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiPropertiesMongodbDocumentConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiPropertiesToJacksonConverter;
@@ -27,7 +27,7 @@ import java.util.Arrays;
         matchIfMissing = true)
 @EnableMongoRepositories(basePackages =
         "cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository")
-@AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
+@AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiMongodbAutoConfiguration {
     /**
      * apiPropertiesMongodbDocumentConverter.

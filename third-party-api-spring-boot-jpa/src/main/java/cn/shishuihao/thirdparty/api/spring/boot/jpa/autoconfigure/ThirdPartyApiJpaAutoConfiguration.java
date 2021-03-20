@@ -1,7 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.jpa.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.ThirdPartyApiAutoConfiguration;
+import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.ApiPropertiesJpaRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiPropertiesJpaEntityConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiPropertiesEntityJpaRepository;
@@ -22,7 +22,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         matchIfMissing = true)
 @EnableJpaRepositories(basePackages =
         "cn.shishuihao.thirdparty.api.spring.boot.jpa.repository")
-@AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
+@AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiJpaAutoConfiguration {
     /**
      * apiPropertiesJpaEntityConverter.

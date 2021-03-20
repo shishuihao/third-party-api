@@ -13,7 +13,7 @@ import java.util.Optional;
  * @param <I> id
  * @param <A> aggregate root
  * @param <E> entity
- * @param <R> mongo repository
+ * @param <M> mybatis-plus mapper
  * @author shishuihao
  * @version 1.0.0
  */
@@ -23,12 +23,12 @@ public abstract class AbstractMybatisPlusRepository<
         I,
         A extends AggregateRoot<I>,
         E,
-        R extends BaseMapper<E>>
+        M extends BaseMapper<E>>
         implements Repository<I, A> {
     /**
-     * mongo repository.
+     * mybatis-plus base mapper.
      */
-    private final R mapper;
+    private final M baseMapper;
     /**
      * aggregate root converter.
      */
@@ -53,10 +53,10 @@ public abstract class AbstractMybatisPlusRepository<
         E entity;
         if (optional.isPresent()) {
             entity = converter.convert(optional.get(), aggregateRoot);
-            mapper.updateById(entity);
+            baseMapper.updateById(entity);
         } else {
             entity = converter.convert(aggregateRoot);
-            mapper.insert(entity);
+            baseMapper.insert(entity);
         }
     }
 

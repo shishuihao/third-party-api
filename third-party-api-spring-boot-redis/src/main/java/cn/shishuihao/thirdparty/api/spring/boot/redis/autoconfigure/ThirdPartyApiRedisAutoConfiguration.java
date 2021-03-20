@@ -1,10 +1,10 @@
 package cn.shishuihao.thirdparty.api.spring.boot.redis.autoconfigure;
 
-import cn.shishuihao.thirdparty.api.commons.json.JacksonTypingUtils;
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.ThirdPartyApiAutoConfiguration;
 import cn.shishuihao.thirdparty.api.spring.boot.redis.ApiPropertiesRedisRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.redis.util.RedisTemplateUtils;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -14,8 +14,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * @author shishuihao
@@ -29,34 +27,23 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
 public class ThirdPartyApiRedisAutoConfiguration {
     /**
-     * propertiesRedisTemplate.
+     * apiPropertiesRedisTemplate.
      *
      * @param redisConnectionFactory redisConnectionFactory
      * @return RedisTemplate<String, ApiProperties>
      */
     @Bean
     @ConditionalOnMissingBean
-    protected RedisTemplate<String, ApiProperties> propertiesRedisTemplate(
+    protected RedisTemplate<String, ApiProperties> apiPropertiesRedisTemplate(
             final RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<String, ApiProperties> redisTemplate
-                = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
-        // DefaultSerializer
-        Jackson2JsonRedisSerializer<ApiProperties> serializer
-                = new Jackson2JsonRedisSerializer<>(ApiProperties.class);
-        serializer.setObjectMapper(JacksonTypingUtils.OBJECT_MAPPER);
-        redisTemplate.setDefaultSerializer(serializer);
-        // StringRedisSerializer
-        StringRedisSerializer keySerializer = new StringRedisSerializer();
-        redisTemplate.setKeySerializer(keySerializer);
-        redisTemplate.setHashKeySerializer(keySerializer);
-        return redisTemplate;
+        return RedisTemplateUtils.newRedisTemplate(redisConnectionFactory,
+                ApiProperties.class);
     }
 
     /**
      * propertiesRepository.
      *
-     * @param redisTemplate redisTemplate
+     * @param redisTemplate redis template
      * @return ApiPropertiesRepository.
      */
     @Bean

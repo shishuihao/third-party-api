@@ -39,7 +39,7 @@ public class ApiPropertiesMongodbRepository
      */
     @Override
     public Optional<ApiPropertiesMongodbDocument> findById(final String id) {
-        return this.getRepository()
+        return this.getMongoRepository()
                 .findByPropertiesId(id);
     }
 
@@ -53,7 +53,7 @@ public class ApiPropertiesMongodbRepository
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,
                                                     final String propertiesId) {
-        return this.getRepository()
+        return this.getMongoRepository()
                 .findByChannelIdAndPropertiesId(channelId, propertiesId)
                 .map(ApiPropertiesMongodbDocument::getProperties);
     }

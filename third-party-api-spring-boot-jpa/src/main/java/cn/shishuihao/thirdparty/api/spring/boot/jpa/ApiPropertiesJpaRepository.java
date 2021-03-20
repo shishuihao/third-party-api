@@ -39,7 +39,7 @@ public class ApiPropertiesJpaRepository
      */
     @Override
     public Optional<ApiPropertiesJpaEntity> findById(final String id) {
-        return this.getRepository()
+        return this.getJpaRepository()
                 .findByPropertiesId(id);
     }
 
@@ -53,7 +53,7 @@ public class ApiPropertiesJpaRepository
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,
                                                     final String propertiesId) {
-        return this.getRepository()
+        return this.getJpaRepository()
                 .findByChannelIdAndPropertiesId(channelId, propertiesId)
                 .map(ApiPropertiesJpaEntity::getProperties);
     }

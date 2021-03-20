@@ -39,7 +39,7 @@ public class ApiPropertiesMybatisPlusRepository
      */
     @Override
     public Optional<ApiPropertiesMybatisPlusEntity> findById(final String id) {
-        return this.getMapper()
+        return this.getBaseMapper()
                 .findByPropertiesId(id);
     }
 
@@ -53,7 +53,7 @@ public class ApiPropertiesMybatisPlusRepository
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,
                                                     final String propertiesId) {
-        return this.getMapper()
+        return this.getBaseMapper()
                 .findByChannelIdAndPropertiesId(channelId, propertiesId)
                 .map(ApiPropertiesMybatisPlusEntity::getProperties);
     }

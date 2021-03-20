@@ -2,7 +2,6 @@ package cn.shishuihao.thirdparty.api.spring.boot.redis;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 
@@ -12,12 +11,21 @@ import java.util.Optional;
  * @author shishuihao
  * @version 1.0.0
  */
-@AllArgsConstructor
-public class ApiPropertiesRedisRepository implements ApiPropertiesRepository {
+public class ApiPropertiesRedisRepository
+        extends AbstractRedisRepository<
+        String,
+        ApiProperties,
+        RedisTemplate<String, ApiProperties>>
+        implements ApiPropertiesRepository {
     /**
-     * redisTemplate.
+     * new ApiPropertiesRedisRepository.
+     *
+     * @param redisTemplate redis template
      */
-    private final RedisTemplate<String, ApiProperties> redisTemplate;
+    public ApiPropertiesRedisRepository(
+            final RedisTemplate<String, ApiProperties> redisTemplate) {
+        super(redisTemplate);
+    }
 
     /**
      * add api properties.
@@ -26,22 +34,11 @@ public class ApiPropertiesRedisRepository implements ApiPropertiesRepository {
      */
     @Override
     public void add(final ApiProperties apiProperties) {
-        ValueOperations<String, ApiProperties> vo = redisTemplate.opsForValue();
+        ValueOperations<String, ApiProperties> vo = this.getRedisTemplate()
+                .opsForValue();
         String key = getKey(apiProperties.channelId(), apiProperties.id());
         vo.set(key, apiProperties);
         vo.set(apiProperties.id(), apiProperties);
-    }
-
-    /**
-     * get api properties by properties id.
-     *
-     * @param propertiesId api properties id
-     * @return optional api properties
-     */
-    @Override
-    public Optional<ApiProperties> get(final String propertiesId) {
-        return Optional.ofNullable(redisTemplate.opsForValue()
-                .get(propertiesId));
     }
 
     /**
@@ -54,7 +51,8 @@ public class ApiPropertiesRedisRepository implements ApiPropertiesRepository {
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,
                                                     final String propertiesId) {
-        return Optional.ofNullable(redisTemplate.opsForValue()
+        return Optional.ofNullable(this.getRedisTemplate()
+                .opsForValue()
                 .get(getKey(channelId, propertiesId)));
     }
 

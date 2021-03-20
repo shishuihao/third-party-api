@@ -28,7 +28,7 @@ public abstract class AbstractMongoRepository<
     /**
      * mongo repository.
      */
-    private final R repository;
+    private final R mongoRepository;
     /**
      * aggregate root converter.
      */
@@ -52,7 +52,7 @@ public abstract class AbstractMongoRepository<
         E entity = findById(aggregateRoot.id())
                 .map(it -> converter.convert(it, aggregateRoot))
                 .orElseGet(() -> converter.convert(aggregateRoot));
-        repository.save(entity);
+        mongoRepository.save(entity);
     }
 
     /**

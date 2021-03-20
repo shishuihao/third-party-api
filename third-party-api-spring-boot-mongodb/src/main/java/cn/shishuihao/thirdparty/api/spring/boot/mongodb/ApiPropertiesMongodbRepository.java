@@ -4,7 +4,6 @@ import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiPropertiesMongodbDocumentConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.document.ApiPropertiesMongodbDocument;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository.AbstractMongoRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository.ApiPropertiesDocumentMongoRepository;
 
 import java.util.Optional;
@@ -23,13 +22,13 @@ public class ApiPropertiesMongodbRepository
     /**
      * new ApiPropertiesMongodbRepository.
      *
-     * @param mongoRepository mongoRepository
-     * @param converter       converter
+     * @param repository repository
+     * @param converter  converter
      */
     public ApiPropertiesMongodbRepository(
-            final ApiPropertiesDocumentMongoRepository mongoRepository,
+            final ApiPropertiesDocumentMongoRepository repository,
             final ApiPropertiesMongodbDocumentConverter converter) {
-        super(mongoRepository, converter);
+        super(repository, converter);
     }
 
     /**
@@ -40,7 +39,7 @@ public class ApiPropertiesMongodbRepository
      */
     @Override
     public Optional<ApiPropertiesMongodbDocument> findById(final String id) {
-        return this.getMongoRepository()
+        return this.getRepository()
                 .findByPropertiesId(id);
     }
 
@@ -54,7 +53,7 @@ public class ApiPropertiesMongodbRepository
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,
                                                     final String propertiesId) {
-        return this.getMongoRepository()
+        return this.getRepository()
                 .findByChannelIdAndPropertiesId(channelId, propertiesId)
                 .map(ApiPropertiesMongodbDocument::getProperties);
     }

@@ -30,7 +30,7 @@ import java.util.Arrays;
 @AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
 public class ThirdPartyApiMongodbAutoConfiguration {
     /**
-     * ApiPropertiesMongodbDocumentConverter.
+     * apiPropertiesMongodbDocumentConverter.
      *
      * @return ApiPropertiesMongodbDocumentConverter
      */
@@ -44,16 +44,16 @@ public class ThirdPartyApiMongodbAutoConfiguration {
     /**
      * propertiesRepository.
      *
-     * @param mongoRepository mongoRepository
-     * @param converter       converter
+     * @param repository repository
+     * @param converter  converter
      * @return ApiPropertiesRepository
      */
     @Bean
     @ConditionalOnMissingBean
     protected ApiPropertiesRepository propertiesRepository(
-            final ApiPropertiesDocumentMongoRepository mongoRepository,
+            final ApiPropertiesDocumentMongoRepository repository,
             final ApiPropertiesMongodbDocumentConverter converter) {
-        return new ApiPropertiesMongodbRepository(mongoRepository, converter);
+        return new ApiPropertiesMongodbRepository(repository, converter);
     }
 
     /**

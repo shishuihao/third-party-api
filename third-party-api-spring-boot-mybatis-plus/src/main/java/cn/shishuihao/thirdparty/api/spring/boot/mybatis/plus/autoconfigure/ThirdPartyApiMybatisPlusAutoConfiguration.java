@@ -3,6 +3,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.autoconfigure;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.ThirdPartyApiAutoConfiguration;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.ApiPropertiesMybatisPlusRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.converter.ApiPropertiesMybatisPlusEntityConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper.ApiPropertiesEntityMybatisPlusMapper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -26,15 +27,29 @@ import org.springframework.context.annotation.Import;
 @AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
 public class ThirdPartyApiMybatisPlusAutoConfiguration {
     /**
+     * apiPropertiesMybatisPlusEntityConverter.
+     *
+     * @return ApiPropertiesMybatisPlusEntityConverter
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    protected ApiPropertiesMybatisPlusEntityConverter
+    apiPropertiesMybatisPlusEntityConverter() {
+        return new ApiPropertiesMybatisPlusEntityConverter();
+    }
+
+    /**
      * propertiesRepository.
      *
-     * @param mpMapper mybatisPlusMapper
+     * @param mapper    mapper
+     * @param converter converter
      * @return ApiPropertiesRepository
      */
     @Bean
     @ConditionalOnMissingBean
     protected ApiPropertiesRepository propertiesRepository(
-            final ApiPropertiesEntityMybatisPlusMapper mpMapper) {
-        return new ApiPropertiesMybatisPlusRepository(mpMapper);
+            final ApiPropertiesEntityMybatisPlusMapper mapper,
+            final ApiPropertiesMybatisPlusEntityConverter converter) {
+        return new ApiPropertiesMybatisPlusRepository(mapper, converter);
     }
 }

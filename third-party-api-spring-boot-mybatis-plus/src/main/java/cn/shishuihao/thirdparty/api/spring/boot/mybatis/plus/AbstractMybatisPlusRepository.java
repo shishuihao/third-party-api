@@ -1,11 +1,11 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository;
+package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus;
 
 import cn.shishuihao.thirdparty.api.core.repository.AggregateRoot;
 import cn.shishuihao.thirdparty.api.core.repository.AggregateRootConverter;
 import cn.shishuihao.thirdparty.api.core.repository.Repository;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
@@ -19,16 +19,16 @@ import java.util.Optional;
  */
 @AllArgsConstructor
 @Getter
-public abstract class AbstractMongoRepository<
+public abstract class AbstractMybatisPlusRepository<
         I,
         A extends AggregateRoot<I>,
         E,
-        R extends MongoRepository<E, ?>>
+        R extends BaseMapper<E>>
         implements Repository<I, A> {
     /**
      * mongo repository.
      */
-    private final R mongoRepository;
+    private final R mapper;
     /**
      * aggregate root converter.
      */
@@ -49,10 +49,15 @@ public abstract class AbstractMongoRepository<
      */
     @Override
     public void add(final A aggregateRoot) {
-        E entity = findById(aggregateRoot.id())
-                .map(it -> converter.convert(it, aggregateRoot))
-                .orElseGet(() -> converter.convert(aggregateRoot));
-        mongoRepository.save(entity);
+        Optional<E> optional = findById(aggregateRoot.id());
+        E entity;
+        if (optional.isPresent()) {
+            entity = converter.convert(optional.get(), aggregateRoot);
+            mapper.updateById(entity);
+        } else {
+            entity = converter.convert(aggregateRoot);
+            mapper.insert(entity);
+        }
     }
 
     /**

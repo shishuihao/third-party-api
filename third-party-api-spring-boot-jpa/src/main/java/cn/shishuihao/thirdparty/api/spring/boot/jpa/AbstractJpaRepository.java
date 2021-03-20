@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.spring.boot.jpa.repository;
+package cn.shishuihao.thirdparty.api.spring.boot.jpa;
 
 import cn.shishuihao.thirdparty.api.core.repository.AggregateRoot;
 import cn.shishuihao.thirdparty.api.core.repository.AggregateRootConverter;
@@ -28,7 +28,7 @@ public abstract class AbstractJpaRepository<
     /**
      * jpa repository.
      */
-    private final R jpaRepository;
+    private final R repository;
     /**
      * aggregate root converter.
      */
@@ -52,7 +52,7 @@ public abstract class AbstractJpaRepository<
         E entity = findById(aggregateRoot.id())
                 .map(it -> converter.convert(it, aggregateRoot))
                 .orElseGet(() -> converter.convert(aggregateRoot));
-        jpaRepository.save(entity);
+        repository.save(entity);
     }
 
     /**

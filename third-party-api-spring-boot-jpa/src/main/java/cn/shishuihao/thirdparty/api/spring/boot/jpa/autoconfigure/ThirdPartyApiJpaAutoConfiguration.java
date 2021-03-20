@@ -25,7 +25,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @AutoConfigureBefore(ThirdPartyApiAutoConfiguration.class)
 public class ThirdPartyApiJpaAutoConfiguration {
     /**
-     * ApiPropertiesJpaEntityConverter.
+     * apiPropertiesJpaEntityConverter.
      *
      * @return ApiPropertiesJpaEntityConverter
      */
@@ -39,15 +39,15 @@ public class ThirdPartyApiJpaAutoConfiguration {
     /**
      * ApiPropertiesRepository.
      *
-     * @param jpaRepository jpaRepository
+     * @param repository repository
      * @param converter     converter
      * @return ApiPropertiesRepository
      */
     @Bean
     @ConditionalOnMissingBean
     protected ApiPropertiesRepository propertiesRepository(
-            final ApiPropertiesEntityJpaRepository jpaRepository,
+            final ApiPropertiesEntityJpaRepository repository,
             final ApiPropertiesJpaEntityConverter converter) {
-        return new ApiPropertiesJpaRepository(jpaRepository, converter);
+        return new ApiPropertiesJpaRepository(repository, converter);
     }
 }

@@ -4,7 +4,6 @@ import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiPropertiesJpaEntityConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.entity.ApiPropertiesJpaEntity;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.AbstractJpaRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiPropertiesEntityJpaRepository;
 
 import java.util.Optional;
@@ -23,13 +22,13 @@ public class ApiPropertiesJpaRepository
     /**
      * new ApiPropertiesJpaRepository.
      *
-     * @param jpaRepository jpaRepository
-     * @param converter     converter
+     * @param repository repository
+     * @param converter  converter
      */
     public ApiPropertiesJpaRepository(
-            final ApiPropertiesEntityJpaRepository jpaRepository,
+            final ApiPropertiesEntityJpaRepository repository,
             final ApiPropertiesJpaEntityConverter converter) {
-        super(jpaRepository, converter);
+        super(repository, converter);
     }
 
     /**
@@ -40,7 +39,7 @@ public class ApiPropertiesJpaRepository
      */
     @Override
     public Optional<ApiPropertiesJpaEntity> findById(final String id) {
-        return this.getJpaRepository()
+        return this.getRepository()
                 .findByPropertiesId(id);
     }
 
@@ -54,7 +53,7 @@ public class ApiPropertiesJpaRepository
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,
                                                     final String propertiesId) {
-        return this.getJpaRepository()
+        return this.getRepository()
                 .findByChannelIdAndPropertiesId(channelId, propertiesId)
                 .map(ApiPropertiesJpaEntity::getProperties);
     }

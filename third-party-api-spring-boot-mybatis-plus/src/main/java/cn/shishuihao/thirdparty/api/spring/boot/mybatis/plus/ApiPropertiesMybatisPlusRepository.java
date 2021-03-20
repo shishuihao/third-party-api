@@ -2,57 +2,45 @@ package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.converter.ApiPropertiesMybatisPlusEntityConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiPropertiesMybatisPlusEntity;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper.ApiPropertiesEntityMybatisPlusMapper;
-import lombok.AllArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-@AllArgsConstructor
 public class ApiPropertiesMybatisPlusRepository
+        extends AbstractMybatisPlusRepository<
+        String,
+        ApiProperties,
+        ApiPropertiesMybatisPlusEntity,
+        ApiPropertiesEntityMybatisPlusMapper>
         implements ApiPropertiesRepository {
     /**
-     * mybatisPlusMapper.
-     */
-    private final ApiPropertiesEntityMybatisPlusMapper mpMapper;
-
-    /**
-     * add api properties.
+     * new ApiPropertiesMybatisPlusRepository.
      *
-     * @param apiProperties api properties
+     * @param mapper    mapper
+     * @param converter converter
      */
-    @Override
-    public void add(final ApiProperties apiProperties) {
-        Optional<ApiPropertiesMybatisPlusEntity> optional
-                = mpMapper.findByPropertiesId(apiProperties.id());
-        ApiPropertiesMybatisPlusEntity entity;
-        if (optional.isPresent()) {
-            entity = optional.get();
-            entity.setProperties(apiProperties);
-            entity.setGmtModified(LocalDateTime.now());
-            mpMapper.updateById(entity);
-        } else {
-            entity = ApiPropertiesMybatisPlusEntity.from(apiProperties);
-            mpMapper.insert(entity);
-        }
+    public ApiPropertiesMybatisPlusRepository(
+            final ApiPropertiesEntityMybatisPlusMapper mapper,
+            final ApiPropertiesMybatisPlusEntityConverter converter) {
+        super(mapper, converter);
     }
 
     /**
-     * get api properties by properties id.
+     * get entity by id.
      *
-     * @param propertiesId api properties id
-     * @return optional api properties
+     * @param id id
+     * @return option entity
      */
     @Override
-    public Optional<ApiProperties> get(final String propertiesId) {
-        return mpMapper
-                .findByPropertiesId(propertiesId)
-                .map(ApiPropertiesMybatisPlusEntity::getProperties);
+    public Optional<ApiPropertiesMybatisPlusEntity> findById(final String id) {
+        return this.getMapper()
+                .findByPropertiesId(id);
     }
 
     /**
@@ -65,7 +53,7 @@ public class ApiPropertiesMybatisPlusRepository
     @Override
     public Optional<ApiProperties> getApiProperties(final String channelId,
                                                     final String propertiesId) {
-        return mpMapper
+        return this.getMapper()
                 .findByChannelIdAndPropertiesId(channelId, propertiesId)
                 .map(ApiPropertiesMybatisPlusEntity::getProperties);
     }

@@ -25,7 +25,7 @@ public class Order implements AggregateRoot<String> {
     /**
      * order status.
      */
-    private OrderStatus orderStatus = OrderStatus.PLACED;
+    private OrderStatus status = OrderStatus.PLACED;
     // endregion
     // region pay
     /**
@@ -74,7 +74,7 @@ public class Order implements AggregateRoot<String> {
      * @param event event
      */
     public void handle(final OrderPayProcessedEvent event) {
-        this.orderStatus = OrderStatus.PAY_PROCESSED;
+        this.status = OrderStatus.PAY_PROCESSED;
         this.payTime = event.getOccurred();
         this.channelId = event.getChannelId();
         this.propertiesId = event.getPropertiesId();
@@ -89,7 +89,7 @@ public class Order implements AggregateRoot<String> {
      * @param event event
      */
     public void handle(final OrderPaySucceededEvent event) {
-        this.orderStatus = OrderStatus.PAY_SUCCEEDED;
+        this.status = OrderStatus.PAY_SUCCEEDED;
         this.payFinishTime = event.getOccurred();
     }
 
@@ -99,7 +99,7 @@ public class Order implements AggregateRoot<String> {
      * @param event event
      */
     public void handle(final OrderPayFailedEvent event) {
-        this.orderStatus = OrderStatus.PAY_FAILED;
+        this.status = OrderStatus.PAY_FAILED;
         this.payFinishTime = event.getOccurred();
     }
 

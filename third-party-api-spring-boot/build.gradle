@@ -5,12 +5,15 @@ dependencies {
     compile project(':third-party-api-core')
     compile project(':third-party-api-spring-boot-starter')
     compile project(':third-party-api-spring-boot-autoconfigure')
+    compile project(':third-party-api-spring-boot-jpa')
     compile project(':third-party-api-pay-spring-boot')
     compile project(':third-party-api-push-spring-boot')
     compile project(':third-party-api-sms-spring-boot')
 
     compile "org.springframework.boot:spring-boot-autoconfigure"
     compile 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

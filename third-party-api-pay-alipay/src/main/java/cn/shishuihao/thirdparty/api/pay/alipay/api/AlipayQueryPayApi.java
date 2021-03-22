@@ -50,7 +50,8 @@ public class AlipayQueryPayApi implements QueryPayApi {
                             .filter(it -> !Strings.isNullOrEmpty(it))
                             .orElse(response.msg))
                     .requestId(null)
-                    .status(AlipayTradeStatus.tradeStatusOf(response.tradeStatus))
+                    .status(AlipayTradeStatus
+                            .tradeStatusOf(response.tradeStatus))
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);

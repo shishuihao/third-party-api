@@ -6,6 +6,7 @@ import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -14,14 +15,18 @@ import org.junit.jupiter.api.Test;
  */
 
 class AlipayCodePayApiTest {
+    AlipayPayApiProperties properties = new AlipayPayApiProperties();
 
-    @Test
-    void execute() {
-        AlipayPayApiProperties properties = new AlipayPayApiProperties();
+    @BeforeEach
+    void beforeEach() {
         properties.setAppId("appId");
         properties.setMerchantPrivateKey("");
         properties.setAlipayPublicKey("");
         ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+    }
+
+    @Test
+    void execute() {
         CodePayApiRequest request = CodePayApiRequest.builder()
                 .channelId(AlipayPayApiChannel.CHANNEL_ID)
                 .propertiesId(properties.id())

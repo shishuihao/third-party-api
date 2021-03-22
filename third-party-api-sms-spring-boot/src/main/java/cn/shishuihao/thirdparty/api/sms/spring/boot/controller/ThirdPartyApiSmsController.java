@@ -8,6 +8,7 @@ import cn.shishuihao.thirdparty.api.sms.response.SendSmsApiResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.concurrent.CompletableFuture;
@@ -17,6 +18,7 @@ import java.util.concurrent.CompletableFuture;
  * @version 1.0.0
  */
 @RequestMapping("/api/v1/sms")
+@RestController
 public class ThirdPartyApiSmsController {
     /**
      * send sms.

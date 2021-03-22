@@ -3,9 +3,12 @@ package cn.shishuihao.thirdparty.api.pay.alipay;
 import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.pay.PayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayAppPayApi;
+import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayCancelPayApi;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayCodePayApi;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayH5PayApi;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayQueryPayApi;
+import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayRefundPayApi;
+import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayRefundQueryPayApi;
 
 /**
  * @author shishuihao
@@ -33,9 +36,12 @@ public class AlipayPayApiChannel
                                final AlipayPayClient client) {
         this.channelProperties = properties;
         this.add(new AlipayAppPayApi(client));
+        this.add(new AlipayCancelPayApi(client));
         this.add(new AlipayCodePayApi(client));
         this.add(new AlipayH5PayApi(client));
         this.add(new AlipayQueryPayApi(client));
+        this.add(new AlipayRefundPayApi(client));
+        this.add(new AlipayRefundQueryPayApi(client));
     }
 
     /**

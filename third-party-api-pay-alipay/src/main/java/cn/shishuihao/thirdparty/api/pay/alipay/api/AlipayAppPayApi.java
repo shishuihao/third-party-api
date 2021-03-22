@@ -23,10 +23,10 @@ public class AlipayAppPayApi implements AppPayApi {
     private final AlipayPayClient alipayPayClient;
 
     /**
-     * execute AppPayApiRequest by alipay.
+     * execute request by alipay.
      *
      * @param request request
-     * @return AppPayApiResponse
+     * @return response
      */
     @Override
     public AppPayApiResponse execute(final AppPayApiRequest request) {

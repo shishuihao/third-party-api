@@ -5,12 +5,11 @@ import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayClient;
 import cn.shishuihao.thirdparty.api.pay.alipay.util.AlipayResponseUtils;
-import cn.shishuihao.thirdparty.api.pay.api.CodePayApi;
-import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
-import cn.shishuihao.thirdparty.api.pay.util.AmountUtils;
+import cn.shishuihao.thirdparty.api.pay.api.CancelPayApi;
+import cn.shishuihao.thirdparty.api.pay.request.CancelApiRequest;
+import cn.shishuihao.thirdparty.api.pay.response.CancelApiResponse;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
-import com.alipay.easysdk.payment.facetoface.models.AlipayTradePayResponse;
+import com.alipay.easysdk.payment.common.models.AlipayTradeCancelResponse;
 import lombok.AllArgsConstructor;
 
 /**
@@ -18,7 +17,7 @@ import lombok.AllArgsConstructor;
  * @version 1.0.0
  */
 @AllArgsConstructor
-public class AlipayCodePayApi implements CodePayApi {
+public class AlipayCancelPayApi implements CancelPayApi {
     /**
      * alipay pay client.
      */
@@ -31,22 +30,20 @@ public class AlipayCodePayApi implements CodePayApi {
      * @return response
      */
     @Override
-    public CodePayApiResponse execute(final CodePayApiRequest request) {
+    public CancelApiResponse execute(final CancelApiRequest request) {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            com.alipay.easysdk.payment.facetoface.Client client
-                    = alipayPayClient.getFaceToFaceClient(properties);
-            AlipayTradePayResponse response = client.pay(
-                    request.getSubject(),
-                    request.getOutTradeNo(),
-                    AmountUtils.toYuanString(request.getTotalAmount()),
-                    request.getAuthCode());
-            return CodePayApiResponse.builder()
+            com.alipay.easysdk.payment.common.Client client
+                    = alipayPayClient.getCommonClient(properties);
+            AlipayTradeCancelResponse response = client.cancel(
+                    request.getOutTradeNo());
+            return CancelApiResponse.builder()
                     .success(ResponseChecker.success(response))
                     .code(AlipayResponseUtils.code(response))
                     .message(AlipayResponseUtils.message(response))
                     .requestId(null)
+                    .retry("Y".equals(response.getRetryFlag()))
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);

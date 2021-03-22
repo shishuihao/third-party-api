@@ -3,6 +3,7 @@ dependencies {
     compile project(':third-party-api-pay')
 
     compile 'com.alipay.sdk:alipay-easysdk:2.2.0'
+    compile 'org.apache.commons:commons-lang3:3.10'
 }
 
 jar {

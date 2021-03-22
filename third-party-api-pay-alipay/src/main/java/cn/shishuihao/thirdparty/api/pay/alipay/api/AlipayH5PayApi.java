@@ -23,10 +23,10 @@ public class AlipayH5PayApi implements H5PayApi {
     private final AlipayPayClient alipayPayClient;
 
     /**
-     * execute H5PayApiRequest by alipay.
+     * execute request by alipay.
      *
      * @param request request
-     * @return H5PayApiResponse
+     * @return response
      */
     @Override
     public H5PayApiResponse execute(final H5PayApiRequest request) {

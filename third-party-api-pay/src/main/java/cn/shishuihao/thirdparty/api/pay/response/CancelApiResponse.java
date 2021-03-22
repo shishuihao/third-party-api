@@ -2,7 +2,6 @@ package cn.shishuihao.thirdparty.api.pay.response;
 
 import cn.shishuihao.thirdparty.api.core.response.BaseApiResponse;
 import cn.shishuihao.thirdparty.api.pay.PayApiResponse;
-import cn.shishuihao.thirdparty.api.pay.domain.order.TradeStatus;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -12,11 +11,11 @@ import lombok.experimental.SuperBuilder;
  */
 @Getter
 @SuperBuilder
-public class QueryApiResponse
+public class CancelApiResponse
         extends BaseApiResponse
         implements PayApiResponse {
     /**
-     * trade status.
+     * retry.
      */
-    private final TradeStatus tradeStatus;
+    private boolean retry;
 }

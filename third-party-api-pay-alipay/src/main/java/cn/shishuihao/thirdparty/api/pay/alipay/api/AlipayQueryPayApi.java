@@ -5,15 +5,13 @@ import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayClient;
 import cn.shishuihao.thirdparty.api.pay.alipay.domain.AlipayTradeStatus;
+import cn.shishuihao.thirdparty.api.pay.alipay.util.AlipayResponseUtils;
 import cn.shishuihao.thirdparty.api.pay.api.QueryPayApi;
 import cn.shishuihao.thirdparty.api.pay.request.QueryApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.QueryApiResponse;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
 import com.alipay.easysdk.payment.common.models.AlipayTradeQueryResponse;
-import com.google.common.base.Strings;
 import lombok.AllArgsConstructor;
-
-import java.util.Optional;
 
 /**
  * @author shishuihao
@@ -30,7 +28,7 @@ public class AlipayQueryPayApi implements QueryPayApi {
      * execute request by alipay.
      *
      * @param request request
-     * @return QueryOrderPayApiResponse
+     * @return response
      */
     @Override
     public QueryApiResponse execute(final QueryApiRequest request) {
@@ -43,14 +41,10 @@ public class AlipayQueryPayApi implements QueryPayApi {
                     request.getOutTradeNo());
             return QueryApiResponse.builder()
                     .success(ResponseChecker.success(response))
-                    .code(Optional.ofNullable(response.subCode)
-                            .filter(it -> !Strings.isNullOrEmpty(it))
-                            .orElse(response.code))
-                    .message(Optional.ofNullable(response.subMsg)
-                            .filter(it -> !Strings.isNullOrEmpty(it))
-                            .orElse(response.msg))
+                    .code(AlipayResponseUtils.code(response))
+                    .message(AlipayResponseUtils.message(response))
                     .requestId(null)
-                    .status(AlipayTradeStatus
+                    .tradeStatus(AlipayTradeStatus
                             .tradeStatusOf(response.tradeStatus))
                     .build();
         } catch (Exception e) {

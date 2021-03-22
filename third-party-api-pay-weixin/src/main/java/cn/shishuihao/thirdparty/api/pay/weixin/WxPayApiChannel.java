@@ -3,7 +3,7 @@ package cn.shishuihao.thirdparty.api.pay.weixin;
 import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.pay.PayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.weixin.api.WxCodePayApi;
-import cn.shishuihao.thirdparty.api.pay.weixin.api.WxQueryOrderPayApi;
+import cn.shishuihao.thirdparty.api.pay.weixin.api.WxQueryPayApi;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.WxFactory;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayCodeApi;
 
@@ -35,7 +35,7 @@ public class WxPayApiChannel
             final WxPayCodeApi codeApi) {
         this.channelProperties = properties;
         this.add(new WxCodePayApi(codeApi));
-        this.add(new WxQueryOrderPayApi(codeApi));
+        this.add(new WxQueryPayApi(codeApi));
     }
 
     /**

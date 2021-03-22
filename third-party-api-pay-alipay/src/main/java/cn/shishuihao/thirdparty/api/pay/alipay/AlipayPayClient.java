@@ -6,7 +6,6 @@ import com.alipay.easysdk.kernel.Config;
 import com.alipay.easysdk.kernel.Context;
 import com.alipay.easysdk.kms.aliyun.AliyunKMSClient;
 import com.alipay.easysdk.kms.aliyun.AliyunKMSSigner;
-import com.alipay.easysdk.payment.facetoface.Client;
 import com.aliyun.tea.TeaModel;
 
 import java.util.Map;
@@ -21,35 +20,135 @@ import static com.alipay.easysdk.factory.Factory.SDK_VERSION;
 
 public class AlipayPayClient {
     /**
-     * FaceToFace Client Map.
+     * Client Map.
      */
-    private final Map<AbstractApiProperties, Client> ftfClientMap
+    private final Map<AbstractApiProperties,
+            com.alipay.easysdk.kernel.Client> clientMap
+            = new ConcurrentHashMap<>();
+    /**
+     * common Client Map.
+     */
+    private final Map<AbstractApiProperties,
+            com.alipay.easysdk.payment.common.Client> commonClientMap
+            = new ConcurrentHashMap<>();
+    /**
+     * face to face Client Map.
+     */
+    private final Map<AbstractApiProperties,
+            com.alipay.easysdk.payment.facetoface.Client> ftfClientMap
+            = new ConcurrentHashMap<>();
+    /**
+     * app Client Map.
+     */
+    private final Map<AbstractApiProperties,
+            com.alipay.easysdk.payment.app.Client> appClientMap
+            = new ConcurrentHashMap<>();
+    /**
+     * page Client Map.
+     */
+    private final Map<AbstractApiProperties,
+            com.alipay.easysdk.payment.page.Client> pageClientMap
+            = new ConcurrentHashMap<>();
+    /**
+     * wap Client Map.
+     */
+    private final Map<AbstractApiProperties,
+            com.alipay.easysdk.payment.wap.Client> wapClientMap
             = new ConcurrentHashMap<>();
 
     /**
-     * get FaceToFace Client.
+     * get common Client.
      *
      * @param properties properties
      * @return Client
      */
-    public Client getFaceToFaceClient(final AlipayPayApiProperties properties) {
-        return ftfClientMap.computeIfAbsent(properties, k -> {
-            try {
-                Config config = getConfig(properties);
-                Context context = new Context(config, SDK_VERSION);
-                if (AlipayConstants.AliyunKMS.equals(context
-                        .getConfig(AlipayConstants.SIGN_PROVIDER_CONFIG_KEY))) {
-                    context.setSigner(new AliyunKMSSigner(new AliyunKMSClient(
-                            TeaModel.buildMap(config))));
-                }
-                return new Client(
-                        new com.alipay.easysdk.kernel.Client(context));
-            } catch (RuntimeException e) {
-                throw e;
-            } catch (Exception e) {
-                throw new IllegalArgumentException(e);
+    public com.alipay.easysdk.payment.common.Client
+    getCommonClient(final AlipayPayApiProperties properties) {
+        return commonClientMap.computeIfAbsent(properties, k -> rethrow(() ->
+                new com.alipay.easysdk.payment.common.Client(
+                        this.getClient(properties))));
+    }
+
+    /**
+     * get face to face Client.
+     *
+     * @param properties properties
+     * @return Client
+     */
+    public com.alipay.easysdk.payment.facetoface.Client
+    getFaceToFaceClient(final AlipayPayApiProperties properties) {
+        return ftfClientMap.computeIfAbsent(properties, k -> rethrow(() ->
+                new com.alipay.easysdk.payment.facetoface.Client(
+                        this.getClient(properties))));
+    }
+
+    /**
+     * get app Client.
+     *
+     * @param properties properties
+     * @return Client
+     */
+    public com.alipay.easysdk.payment.app.Client
+    getAppClient(final AlipayPayApiProperties properties) {
+        return appClientMap.computeIfAbsent(properties, k -> rethrow(() ->
+                new com.alipay.easysdk.payment.app.Client(
+                        this.getClient(properties))));
+    }
+
+    /**
+     * get wap Client.
+     *
+     * @param properties properties
+     * @return Client
+     */
+    public com.alipay.easysdk.payment.wap.Client
+    getWapClient(final AlipayPayApiProperties properties) {
+        return wapClientMap.computeIfAbsent(properties, k -> rethrow(() ->
+                new com.alipay.easysdk.payment.wap.Client(
+                        this.getClient(properties))));
+    }
+
+    /**
+     * get page Client.
+     *
+     * @param properties properties
+     * @return Client
+     */
+    public com.alipay.easysdk.payment.page.Client
+    getPageClient(final AlipayPayApiProperties properties) {
+        return pageClientMap.computeIfAbsent(properties, k -> rethrow(() ->
+                new com.alipay.easysdk.payment.page.Client(
+                        this.getClient(properties))));
+    }
+
+    /**
+     * get Client.
+     *
+     * @param properties properties
+     * @return Client
+     */
+    private com.alipay.easysdk.kernel.Client
+    getClient(final AlipayPayApiProperties properties) {
+        return clientMap.computeIfAbsent(properties, k -> rethrow(() -> {
+            Config config = getConfig(properties);
+            Context context = new Context(config, SDK_VERSION);
+            if (AlipayConstants.AliyunKMS.equals(context
+                    .getConfig(AlipayConstants.SIGN_PROVIDER_CONFIG_KEY))) {
+                context.setSigner(new AliyunKMSSigner(new AliyunKMSClient(
+                        TeaModel.buildMap(config))));
             }
-        });
+            return new com.alipay.easysdk.kernel.Client(context);
+        }));
+    }
+
+    private <T, E extends Exception> T rethrow(ThrowableSupplier<T, E> supplier) {
+        try {
+            return supplier.get();
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     private Config getConfig(final AlipayPayApiProperties properties) {
@@ -68,5 +167,16 @@ public class AlipayPayClient {
         config.signProvider = properties.getSignProvider();
         config.httpProxy = properties.getHttpProxy();
         return config;
+    }
+
+    @FunctionalInterface
+    public interface ThrowableSupplier<T, E extends Exception> {
+        /**
+         * Gets a result.
+         *
+         * @return a result
+         * @throws E exception
+         */
+        T get() throws E;
     }
 }

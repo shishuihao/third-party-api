@@ -2,12 +2,13 @@ package cn.shishuihao.thirdparty.api.pay.request;
 
 import cn.shishuihao.thirdparty.api.core.request.AbstractRequest;
 import cn.shishuihao.thirdparty.api.pay.PayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.api.QueryOrderPayApi;
-import cn.shishuihao.thirdparty.api.pay.response.QueryOrderApiResponse;
+import cn.shishuihao.thirdparty.api.pay.api.AppPayApi;
+import cn.shishuihao.thirdparty.api.pay.response.AppPayApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -17,18 +18,27 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Jacksonized
 @SuperBuilder
-public class QueryOrderApiRequest extends AbstractRequest<
-        QueryOrderPayApi,
-        QueryOrderApiRequest,
-        QueryOrderApiResponse> implements PayApiRequest<
-        QueryOrderPayApi,
-        QueryOrderApiRequest,
-        QueryOrderApiResponse> {
+public class AppPayApiRequest extends AbstractRequest<
+        AppPayApi,
+        AppPayApiRequest,
+        AppPayApiResponse> implements PayApiRequest<
+        AppPayApi,
+        AppPayApiRequest,
+        AppPayApiResponse> {
     /**
      * out trade no.
      */
     @NotBlank
     private final String outTradeNo;
+    /**
+     * pay total amount.
+     */
+    @Min(1)
+    private final int totalAmount;
+    /**
+     * subject.
+     */
+    private final String subject;
 
     /**
      * get api type.
@@ -37,8 +47,8 @@ public class QueryOrderApiRequest extends AbstractRequest<
      * @return api type
      */
     @Override
-    public Class<QueryOrderPayApi> apiType() {
-        return QueryOrderPayApi.class;
+    public Class<AppPayApi> apiType() {
+        return AppPayApi.class;
     }
 
     /**
@@ -48,7 +58,7 @@ public class QueryOrderApiRequest extends AbstractRequest<
      * @return response type
      */
     @Override
-    public Class<QueryOrderApiResponse> responseType() {
-        return QueryOrderApiResponse.class;
+    public Class<AppPayApiResponse> responseType() {
+        return AppPayApiResponse.class;
     }
 }

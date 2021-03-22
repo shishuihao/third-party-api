@@ -1,4 +1,4 @@
-# 工商银行支付(icbc pay)
+# 中国工商银行支付(icbc pay)
 
 ## 官方文档(official document))
 

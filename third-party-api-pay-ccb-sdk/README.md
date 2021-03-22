@@ -1,4 +1,4 @@
-# 建设银行支付sdk(ccb pay sdk)
+# 中国建设银行支付sdk(ccb pay sdk)
 
 ## 安装
 

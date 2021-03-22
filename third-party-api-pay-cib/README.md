@@ -1,4 +1,4 @@
-# 中国建设银行支付(ccb pay)
+# 中国兴业银行支付(cib pay)
 
 ## 安装
 
@@ -8,7 +8,7 @@
 
 <dependency>
     <groupId>cn.shishuihao</groupId>
-    <artifactId>third-party-api-pay-ccb</artifactId>
+    <artifactId>third-party-api-pay-cib</artifactId>
     <version>latest</version>
 </dependency>
 ```
@@ -16,5 +16,5 @@
 ### Gradle
 
 ```groovy
-compile 'cn.shishuihao:third-party-api-pay-ccb:latest'
+compile 'cn.shishuihao:third-party-api-pay-cib:latest'
 ```

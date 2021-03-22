@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.vivo;
 
+import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.push.vivo.VivoPushApiChannel;
 import cn.shishuihao.thirdparty.api.push.vivo.VivoPushApiChannelProperties;
 import cn.shishuihao.thirdparty.api.push.vivo.VivoPushClient;
@@ -31,15 +32,18 @@ public class ThirdPartyApiPushVivoAutoConfiguration {
     /**
      * vivoPushApiChannel.
      *
-     * @param properties properties
-     * @param client     client
+     * @param propertiesRepository properties repository
+     * @param properties           properties
+     * @param client               client
      * @return VivoPushApiChannel
      */
     @Bean
     @ConditionalOnMissingBean
     public VivoPushApiChannel vivoPushApiChannel(
+            final ApiPropertiesRepository propertiesRepository,
             final VivoPushApiChannelProperties properties,
             final VivoPushClient client) {
+        properties.getPropertiesList().forEach(propertiesRepository::add);
         return new VivoPushApiChannel(properties, client);
     }
 }

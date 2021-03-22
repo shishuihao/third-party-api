@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.icbc;
 
+import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayApiChannelProperties;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayClient;
@@ -31,15 +32,18 @@ public class ThirdPartyApiPayIcbcAutoConfiguration {
     /**
      * icbcPayApiChannel.
      *
-     * @param properties properties
-     * @param client     client
+     * @param propertiesRepository properties repository
+     * @param properties           properties
+     * @param client               client
      * @return IcbcPayApiChannel
      */
     @Bean
     @ConditionalOnMissingBean
     public IcbcPayApiChannel icbcPayApiChannel(
+            final ApiPropertiesRepository propertiesRepository,
             final IcbcPayApiChannelProperties properties,
             final IcbcPayClient client) {
+        properties.getPropertiesList().forEach(propertiesRepository::add);
         return new IcbcPayApiChannel(properties, client);
     }
 }

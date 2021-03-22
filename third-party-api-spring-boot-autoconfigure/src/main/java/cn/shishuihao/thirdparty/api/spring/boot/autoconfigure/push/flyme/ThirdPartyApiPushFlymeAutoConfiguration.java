@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.flyme;
 
+import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.push.flyme.FlymePushApiChannel;
 import cn.shishuihao.thirdparty.api.push.flyme.FlymePushApiChannelProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -19,13 +20,16 @@ public class ThirdPartyApiPushFlymeAutoConfiguration {
     /**
      * flymePushApiChannel.
      *
-     * @param properties properties
+     * @param propertiesRepository properties repository
+     * @param properties           properties
      * @return FlymePushApiChannel
      */
     @Bean
     @ConditionalOnMissingBean
     public FlymePushApiChannel flymePushApiChannel(
+            final ApiPropertiesRepository propertiesRepository,
             final FlymePushApiChannelProperties properties) {
+        properties.getPropertiesList().forEach(propertiesRepository::add);
         return new FlymePushApiChannel(properties);
     }
 }

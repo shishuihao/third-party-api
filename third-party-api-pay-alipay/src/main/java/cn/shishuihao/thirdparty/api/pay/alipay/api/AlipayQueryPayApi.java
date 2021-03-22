@@ -4,7 +4,7 @@ import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayClient;
-import cn.shishuihao.thirdparty.api.pay.alipay.util.AlipayStatusChecker;
+import cn.shishuihao.thirdparty.api.pay.alipay.domain.AlipayTradeStatus;
 import cn.shishuihao.thirdparty.api.pay.api.QueryPayApi;
 import cn.shishuihao.thirdparty.api.pay.request.QueryApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.QueryApiResponse;
@@ -50,7 +50,7 @@ public class AlipayQueryPayApi implements QueryPayApi {
                             .filter(it -> !Strings.isNullOrEmpty(it))
                             .orElse(response.msg))
                     .requestId(null)
-                    .status(AlipayStatusChecker.status(response.tradeStatus))
+                    .status(AlipayTradeStatus.tradeStatusOf(response.tradeStatus))
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);

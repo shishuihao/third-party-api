@@ -9,7 +9,7 @@ package cn.shishuihao.thirdparty.api.pay.domain.order;
 
 public enum TradeStatus {
     /**
-     * NEW_ORDER.
+     * 新订单.
      */
     NEW_ORDER {
         @Override
@@ -18,7 +18,7 @@ public enum TradeStatus {
         }
     },
     /**
-     * 交易创建 => 交易创建，等待买家付款.
+     * 交易创建，等待买家付款.
      */
     WAIT_BUYER_PAY {
         @Override
@@ -37,7 +37,7 @@ public enum TradeStatus {
         }
     },
     /**
-     * TRADE_UNKNOWN.
+     * 交易未知状态.
      */
     TRADE_UNKNOWN {
         @Override
@@ -51,7 +51,7 @@ public enum TradeStatus {
         }
     },
     /**
-     * 支付成功 => 交易支付成功，可退款.
+     * 交易支付成功，可退款.
      */
     TRADE_SUCCESS {
         @Override
@@ -60,7 +60,7 @@ public enum TradeStatus {
         }
     },
     /**
-     * TRADE_FAIL.
+     * 交易支付失败.
      */
     TRADE_FAIL {
         @Override
@@ -79,13 +79,17 @@ public enum TradeStatus {
         }
     },
     /**
-     * TRADE_REFUND.
+     * 转入退款.
      */
     TRADE_REFUND,
     /**
-     * 交易关闭 => TRADE_CLOSED.
+     * 交易已关闭.
      */
-    TRADE_CLOSED;
+    TRADE_CLOSED,
+    /**
+     * 交易已完成.
+     */
+    TRADE_FINISHED;
 
     /**
      * able to pay.

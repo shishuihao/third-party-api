@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.pay.response;
 
 import cn.shishuihao.thirdparty.api.core.response.BaseApiResponse;
 import cn.shishuihao.thirdparty.api.pay.PayApiResponse;
-import cn.shishuihao.thirdparty.api.pay.domain.order.OrderStatus;
+import cn.shishuihao.thirdparty.api.pay.domain.order.TradeStatus;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -16,7 +16,7 @@ public class QueryApiResponse
         extends BaseApiResponse
         implements PayApiResponse {
     /**
-     * order status
+     * trade status.
      */
-    private final OrderStatus status;
+    private final TradeStatus status;
 }

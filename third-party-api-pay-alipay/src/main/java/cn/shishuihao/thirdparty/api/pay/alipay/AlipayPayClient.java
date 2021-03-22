@@ -141,7 +141,8 @@ public class AlipayPayClient {
         }));
     }
 
-    private <T, E extends Exception> T rethrow(ThrowableSupplier<T, E> supplier) {
+    private <T, E extends Exception> T rethrow(
+            final ThrowableSupplier<T, E> supplier) {
         try {
             return supplier.get();
         } catch (RuntimeException e) {

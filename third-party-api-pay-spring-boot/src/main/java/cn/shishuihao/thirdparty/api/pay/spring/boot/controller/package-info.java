@@ -1,5 +1,5 @@
 /**
- * pay spring boot web controller.
+ * pay spring boot controller.
  *
  * @author shishuihao
  * @version 1.0.0

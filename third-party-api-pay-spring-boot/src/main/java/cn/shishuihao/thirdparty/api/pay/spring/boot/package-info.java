@@ -1,5 +1,5 @@
 /**
- * pay spring boot web.
+ * pay spring boot.
  *
  * @author shishuihao
  * @version 1.0.0

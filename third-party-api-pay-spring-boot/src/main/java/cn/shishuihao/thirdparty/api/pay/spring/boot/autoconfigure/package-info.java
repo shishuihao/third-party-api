@@ -1,5 +1,5 @@
 /**
- * pay spring boot web autoconfigure.
+ * pay spring boot autoconfigure.
  *
  * @author shishuihao
  * @version 1.0.0

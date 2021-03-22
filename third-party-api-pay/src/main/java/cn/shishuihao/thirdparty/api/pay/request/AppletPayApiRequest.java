@@ -2,15 +2,14 @@ package cn.shishuihao.thirdparty.api.pay.request;
 
 import cn.shishuihao.thirdparty.api.core.request.AbstractRequest;
 import cn.shishuihao.thirdparty.api.pay.PayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.api.CodePayApi;
-import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
+import cn.shishuihao.thirdparty.api.pay.api.AppletPayApi;
+import cn.shishuihao.thirdparty.api.pay.response.AppletPayApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 /**
  * @author shishuihao
@@ -19,13 +18,13 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Jacksonized
 @SuperBuilder
-public class CodePayApiRequest extends AbstractRequest<
-        CodePayApi,
-        CodePayApiRequest,
-        CodePayApiResponse> implements PayApiRequest<
-        CodePayApi,
-        CodePayApiRequest,
-        CodePayApiResponse> {
+public class AppletPayApiRequest extends AbstractRequest<
+        AppletPayApi,
+        AppletPayApiRequest,
+        AppletPayApiResponse> implements PayApiRequest<
+        AppletPayApi,
+        AppletPayApiRequest,
+        AppletPayApiResponse> {
     /**
      * out trade no.
      */
@@ -37,15 +36,10 @@ public class CodePayApiRequest extends AbstractRequest<
     @Min(1)
     private final int totalAmount;
     /**
-     * subject.
+     * user id.
+     * such as openid.
      */
-    private final String subject;
-    /**
-     * auth code.
-     * such as qrcode.
-     */
-    @NotEmpty
-    private final String authCode;
+    private final String userId;
 
     /**
      * get api type.
@@ -54,8 +48,8 @@ public class CodePayApiRequest extends AbstractRequest<
      * @return api type
      */
     @Override
-    public Class<CodePayApi> apiType() {
-        return CodePayApi.class;
+    public Class<AppletPayApi> apiType() {
+        return AppletPayApi.class;
     }
 
     /**
@@ -65,7 +59,7 @@ public class CodePayApiRequest extends AbstractRequest<
      * @return response type
      */
     @Override
-    public Class<CodePayApiResponse> responseType() {
-        return CodePayApiResponse.class;
+    public Class<AppletPayApiResponse> responseType() {
+        return AppletPayApiResponse.class;
     }
 }

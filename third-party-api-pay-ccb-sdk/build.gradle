@@ -1,0 +1,9 @@
+dependencies {
+    compile project(':third-party-api-commons')
+
+    implementation 'com.netflix.feign:feign-core:8.18.0'
+}
+
+jar {
+    enabled true
+}

@@ -2,7 +2,10 @@ package cn.shishuihao.thirdparty.api.pay.alipay;
 
 import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.pay.PayApiChannel;
+import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayAppPayApi;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayCodePayApi;
+import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayH5PayApi;
+import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayQueryPayApi;
 
 /**
  * @author shishuihao
@@ -29,7 +32,10 @@ public class AlipayPayApiChannel
     public AlipayPayApiChannel(final AlipayPayApiChannelProperties properties,
                                final AlipayPayClient client) {
         this.channelProperties = properties;
+        this.add(new AlipayAppPayApi(client));
         this.add(new AlipayCodePayApi(client));
+        this.add(new AlipayH5PayApi(client));
+        this.add(new AlipayQueryPayApi(client));
     }
 
     /**

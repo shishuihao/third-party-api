@@ -3,7 +3,7 @@ package cn.shishuihao.thirdparty.api.pay.domain.order;
 /**
  * order status.
  * place.
- *                  --> |place|PLACED
+ * --> |place|PLACED
  * pay after PLACED or PAY_FAILED
  * PLACED           --> |pay|PAY_PROCESSED
  * PAY_FAILED       --> |pay|PAY_PROCESSED
@@ -26,6 +26,7 @@ package cn.shishuihao.thirdparty.api.pay.domain.order;
  * REFUND_PROCESSED --> |refund notify|REFUND_SUCCEEDED
  * REFUND_PROCESSED --> |refund query|REFUND_FAILED
  * REFUND_PROCESSED --> |refund notify|REFUND_FAILED
+ *
  * @author shishuihao
  * @version 1.0.0
  */
@@ -66,6 +67,7 @@ public enum OrderStatus {
         public boolean isPayable() {
             return true;
         }
+
         @Override
         public boolean isCancelable() {
             return true;
@@ -104,7 +106,14 @@ public enum OrderStatus {
         public boolean isRefundable() {
             return true;
         }
-    },;
+    },
+    /**
+     * finished.
+     */
+    FINISHED {
+    },
+    ;
+
     /**
      * able to pay.
      *

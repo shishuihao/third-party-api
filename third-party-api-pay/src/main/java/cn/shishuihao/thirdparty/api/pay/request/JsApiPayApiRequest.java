@@ -2,15 +2,14 @@ package cn.shishuihao.thirdparty.api.pay.request;
 
 import cn.shishuihao.thirdparty.api.core.request.AbstractRequest;
 import cn.shishuihao.thirdparty.api.pay.PayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.api.CodePayApi;
-import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
+import cn.shishuihao.thirdparty.api.pay.api.JsApiPayApi;
+import cn.shishuihao.thirdparty.api.pay.response.JsApiPayApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 /**
  * @author shishuihao
@@ -19,13 +18,13 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Jacksonized
 @SuperBuilder
-public class CodePayApiRequest extends AbstractRequest<
-        CodePayApi,
-        CodePayApiRequest,
-        CodePayApiResponse> implements PayApiRequest<
-        CodePayApi,
-        CodePayApiRequest,
-        CodePayApiResponse> {
+public class JsApiPayApiRequest extends AbstractRequest<
+        JsApiPayApi,
+        JsApiPayApiRequest,
+        JsApiPayApiResponse> implements PayApiRequest<
+        JsApiPayApi,
+        JsApiPayApiRequest,
+        JsApiPayApiResponse> {
     /**
      * out trade no.
      */
@@ -36,16 +35,6 @@ public class CodePayApiRequest extends AbstractRequest<
      */
     @Min(1)
     private final int totalAmount;
-    /**
-     * subject.
-     */
-    private final String subject;
-    /**
-     * auth code.
-     * such as qrcode.
-     */
-    @NotEmpty
-    private final String authCode;
 
     /**
      * get api type.
@@ -54,8 +43,8 @@ public class CodePayApiRequest extends AbstractRequest<
      * @return api type
      */
     @Override
-    public Class<CodePayApi> apiType() {
-        return CodePayApi.class;
+    public Class<JsApiPayApi> apiType() {
+        return JsApiPayApi.class;
     }
 
     /**
@@ -65,7 +54,7 @@ public class CodePayApiRequest extends AbstractRequest<
      * @return response type
      */
     @Override
-    public Class<CodePayApiResponse> responseType() {
-        return CodePayApiResponse.class;
+    public Class<JsApiPayApiResponse> responseType() {
+        return JsApiPayApiResponse.class;
     }
 }

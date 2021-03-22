@@ -4,12 +4,12 @@ import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayClient;
-import cn.shishuihao.thirdparty.api.pay.api.CodePayApi;
-import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
-import cn.shishuihao.thirdparty.api.pay.util.AmountUtils;
+import cn.shishuihao.thirdparty.api.pay.alipay.util.AlipayStatusChecker;
+import cn.shishuihao.thirdparty.api.pay.api.QueryPayApi;
+import cn.shishuihao.thirdparty.api.pay.request.QueryApiRequest;
+import cn.shishuihao.thirdparty.api.pay.response.QueryApiResponse;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
-import com.alipay.easysdk.payment.facetoface.models.AlipayTradePayResponse;
+import com.alipay.easysdk.payment.common.models.AlipayTradeQueryResponse;
 import com.google.common.base.Strings;
 import lombok.AllArgsConstructor;
 
@@ -20,31 +20,28 @@ import java.util.Optional;
  * @version 1.0.0
  */
 @AllArgsConstructor
-public class AlipayCodePayApi implements CodePayApi {
+public class AlipayQueryPayApi implements QueryPayApi {
     /**
      * alipay pay client.
      */
     private final AlipayPayClient alipayPayClient;
 
     /**
-     * execute CodePayApiRequest by alipay.
+     * execute request by alipay.
      *
      * @param request request
-     * @return CodePayApiResponse
+     * @return QueryOrderPayApiResponse
      */
     @Override
-    public CodePayApiResponse execute(final CodePayApiRequest request) {
+    public QueryApiResponse execute(final QueryApiRequest request) {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            com.alipay.easysdk.payment.facetoface.Client client
-                    = alipayPayClient.getFaceToFaceClient(properties);
-            AlipayTradePayResponse response = client.pay(
-                    request.getSubject(),
-                    request.getOutTradeNo(),
-                    AmountUtils.toYuanString(request.getTotalAmount()),
-                    request.getAuthCode());
-            return CodePayApiResponse.builder()
+            com.alipay.easysdk.payment.common.Client client
+                    = alipayPayClient.getCommonClient(properties);
+            AlipayTradeQueryResponse response = client.query(
+                    request.getOutTradeNo());
+            return QueryApiResponse.builder()
                     .success(ResponseChecker.success(response))
                     .code(Optional.ofNullable(response.subCode)
                             .filter(it -> !Strings.isNullOrEmpty(it))
@@ -53,6 +50,7 @@ public class AlipayCodePayApi implements CodePayApi {
                             .filter(it -> !Strings.isNullOrEmpty(it))
                             .orElse(response.msg))
                     .requestId(null)
+                    .status(AlipayStatusChecker.status(response.tradeStatus))
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);

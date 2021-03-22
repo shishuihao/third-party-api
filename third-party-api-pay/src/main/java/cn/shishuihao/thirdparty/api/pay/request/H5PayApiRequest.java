@@ -2,15 +2,14 @@ package cn.shishuihao.thirdparty.api.pay.request;
 
 import cn.shishuihao.thirdparty.api.core.request.AbstractRequest;
 import cn.shishuihao.thirdparty.api.pay.PayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.api.CodePayApi;
-import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
+import cn.shishuihao.thirdparty.api.pay.api.H5PayApi;
+import cn.shishuihao.thirdparty.api.pay.response.H5PayApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 /**
  * @author shishuihao
@@ -19,13 +18,13 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Jacksonized
 @SuperBuilder
-public class CodePayApiRequest extends AbstractRequest<
-        CodePayApi,
-        CodePayApiRequest,
-        CodePayApiResponse> implements PayApiRequest<
-        CodePayApi,
-        CodePayApiRequest,
-        CodePayApiResponse> {
+public class H5PayApiRequest extends AbstractRequest<
+        H5PayApi,
+        H5PayApiRequest,
+        H5PayApiResponse> implements PayApiRequest<
+        H5PayApi,
+        H5PayApiRequest,
+        H5PayApiResponse> {
     /**
      * out trade no.
      */
@@ -41,11 +40,13 @@ public class CodePayApiRequest extends AbstractRequest<
      */
     private final String subject;
     /**
-     * auth code.
-     * such as qrcode.
+     * quitUrl.
      */
-    @NotEmpty
-    private final String authCode;
+    private final String quitUrl;
+    /**
+     * returnUrl.
+     */
+    private final String returnUrl;
 
     /**
      * get api type.
@@ -54,8 +55,8 @@ public class CodePayApiRequest extends AbstractRequest<
      * @return api type
      */
     @Override
-    public Class<CodePayApi> apiType() {
-        return CodePayApi.class;
+    public Class<H5PayApi> apiType() {
+        return H5PayApi.class;
     }
 
     /**
@@ -65,7 +66,7 @@ public class CodePayApiRequest extends AbstractRequest<
      * @return response type
      */
     @Override
-    public Class<CodePayApiResponse> responseType() {
-        return CodePayApiResponse.class;
+    public Class<H5PayApiResponse> responseType() {
+        return H5PayApiResponse.class;
     }
 }

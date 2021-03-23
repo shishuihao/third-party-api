@@ -31,7 +31,8 @@ public class AlipayRefundQueryPayApi implements RefundQueryPayApi {
      * @return response
      */
     @Override
-    public RefundQueryPayApiResponse execute(final RefundQueryPayApiRequest request) {
+    public RefundQueryPayApiResponse execute(
+            final RefundQueryPayApiRequest request) {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {

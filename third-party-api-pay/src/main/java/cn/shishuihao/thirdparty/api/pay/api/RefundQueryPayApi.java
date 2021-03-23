@@ -1,8 +1,8 @@
 package cn.shishuihao.thirdparty.api.pay.api;
 
 import cn.shishuihao.thirdparty.api.pay.PayApi;
-import cn.shishuihao.thirdparty.api.pay.request.RefundQueryApiRequest;
-import cn.shishuihao.thirdparty.api.pay.response.RefundQueryApiResponse;
+import cn.shishuihao.thirdparty.api.pay.request.RefundQueryPayApiRequest;
+import cn.shishuihao.thirdparty.api.pay.response.RefundQueryPayApiResponse;
 
 /**
  * @author shishuihao
@@ -11,8 +11,8 @@ import cn.shishuihao.thirdparty.api.pay.response.RefundQueryApiResponse;
 
 public interface RefundQueryPayApi extends PayApi<
         RefundQueryPayApi,
-        RefundQueryApiRequest,
-        RefundQueryApiResponse> {
+        RefundQueryPayApiRequest,
+        RefundQueryPayApiResponse> {
     /**
      * get api type.
      * immutable

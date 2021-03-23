@@ -1,8 +1,8 @@
 package cn.shishuihao.thirdparty.api.pay.api;
 
 import cn.shishuihao.thirdparty.api.pay.PayApi;
-import cn.shishuihao.thirdparty.api.pay.request.CancelApiRequest;
-import cn.shishuihao.thirdparty.api.pay.response.CancelApiResponse;
+import cn.shishuihao.thirdparty.api.pay.request.CancelPayApiRequest;
+import cn.shishuihao.thirdparty.api.pay.response.CancelPayApiResponse;
 
 /**
  * @author shishuihao
@@ -11,8 +11,8 @@ import cn.shishuihao.thirdparty.api.pay.response.CancelApiResponse;
 
 public interface CancelPayApi extends PayApi<
         CancelPayApi,
-        CancelApiRequest,
-        CancelApiResponse> {
+        CancelPayApiRequest,
+        CancelPayApiResponse> {
     /**
      * get api type.
      * immutable

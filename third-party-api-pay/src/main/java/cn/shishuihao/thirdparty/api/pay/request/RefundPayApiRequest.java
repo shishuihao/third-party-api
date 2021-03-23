@@ -2,12 +2,13 @@ package cn.shishuihao.thirdparty.api.pay.request;
 
 import cn.shishuihao.thirdparty.api.core.request.AbstractRequest;
 import cn.shishuihao.thirdparty.api.pay.PayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.api.CancelPayApi;
-import cn.shishuihao.thirdparty.api.pay.response.CancelApiResponse;
+import cn.shishuihao.thirdparty.api.pay.api.RefundPayApi;
+import cn.shishuihao.thirdparty.api.pay.response.RefundPayApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -17,18 +18,23 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Jacksonized
 @SuperBuilder
-public class CancelApiRequest extends AbstractRequest<
-        CancelPayApi,
-        CancelApiRequest,
-        CancelApiResponse> implements PayApiRequest<
-        CancelPayApi,
-        CancelApiRequest,
-        CancelApiResponse> {
+public class RefundPayApiRequest extends AbstractRequest<
+        RefundPayApi,
+        RefundPayApiRequest,
+        RefundPayApiResponse> implements PayApiRequest<
+        RefundPayApi,
+        RefundPayApiRequest,
+        RefundPayApiResponse> {
     /**
      * out trade no.
      */
     @NotBlank
     private final String outTradeNo;
+    /**
+     * refund total amount.
+     */
+    @Min(1)
+    private final int refundAmount;
 
     /**
      * get api type.
@@ -37,8 +43,8 @@ public class CancelApiRequest extends AbstractRequest<
      * @return api type
      */
     @Override
-    public Class<CancelPayApi> apiType() {
-        return CancelPayApi.class;
+    public Class<RefundPayApi> apiType() {
+        return RefundPayApi.class;
     }
 
     /**
@@ -48,7 +54,7 @@ public class CancelApiRequest extends AbstractRequest<
      * @return response type
      */
     @Override
-    public Class<CancelApiResponse> responseType() {
-        return CancelApiResponse.class;
+    public Class<RefundPayApiResponse> responseType() {
+        return RefundPayApiResponse.class;
     }
 }

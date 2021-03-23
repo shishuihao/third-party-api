@@ -3,8 +3,8 @@ package cn.shishuihao.thirdparty.api.pay.weixin.api;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.api.QueryPayApi;
-import cn.shishuihao.thirdparty.api.pay.request.QueryApiRequest;
-import cn.shishuihao.thirdparty.api.pay.response.QueryApiResponse;
+import cn.shishuihao.thirdparty.api.pay.request.QueryPayApiRequest;
+import cn.shishuihao.thirdparty.api.pay.response.QueryPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.api.WxPayCodeApi;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.request.WxPayOrderQueryRequest;
@@ -31,7 +31,7 @@ public class WxQueryPayApi implements QueryPayApi {
      * @return QueryOrderApiResponse
      */
     @Override
-    public QueryApiResponse execute(final QueryApiRequest request) {
+    public QueryPayApiResponse execute(final QueryPayApiRequest request) {
         WxPayApiProperties properties = (WxPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
@@ -47,7 +47,7 @@ public class WxQueryPayApi implements QueryPayApi {
     }
 
     private WxPayOrderQueryRequest getWxRequest(
-            final QueryApiRequest request,
+            final QueryPayApiRequest request,
             final WxPayApiProperties properties) {
         return WxPayOrderQueryRequest.builder()
                 .appId(properties.getAppId())
@@ -62,9 +62,9 @@ public class WxQueryPayApi implements QueryPayApi {
                 .build();
     }
 
-    private QueryApiResponse getApiResponse(
+    private QueryPayApiResponse getApiResponse(
             final WxPayOrderQueryResponse wxPayMicropayResponse) {
-        return QueryApiResponse.builder()
+        return QueryPayApiResponse.builder()
                 .success(ResponseChecker.success(wxPayMicropayResponse))
                 .code(ResponseChecker.getCode(wxPayMicropayResponse))
                 .message(ResponseChecker.getMsg(wxPayMicropayResponse))

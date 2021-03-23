@@ -2,8 +2,8 @@ package cn.shishuihao.thirdparty.api.pay.request;
 
 import cn.shishuihao.thirdparty.api.core.request.AbstractRequest;
 import cn.shishuihao.thirdparty.api.pay.PayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.api.QueryPayApi;
-import cn.shishuihao.thirdparty.api.pay.response.QueryApiResponse;
+import cn.shishuihao.thirdparty.api.pay.api.CancelPayApi;
+import cn.shishuihao.thirdparty.api.pay.response.CancelPayApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
@@ -17,13 +17,13 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Jacksonized
 @SuperBuilder
-public class QueryApiRequest extends AbstractRequest<
-        QueryPayApi,
-        QueryApiRequest,
-        QueryApiResponse> implements PayApiRequest<
-        QueryPayApi,
-        QueryApiRequest,
-        QueryApiResponse> {
+public class CancelPayApiRequest extends AbstractRequest<
+        CancelPayApi,
+        CancelPayApiRequest,
+        CancelPayApiResponse> implements PayApiRequest<
+        CancelPayApi,
+        CancelPayApiRequest,
+        CancelPayApiResponse> {
     /**
      * out trade no.
      */
@@ -37,8 +37,8 @@ public class QueryApiRequest extends AbstractRequest<
      * @return api type
      */
     @Override
-    public Class<QueryPayApi> apiType() {
-        return QueryPayApi.class;
+    public Class<CancelPayApi> apiType() {
+        return CancelPayApi.class;
     }
 
     /**
@@ -48,7 +48,7 @@ public class QueryApiRequest extends AbstractRequest<
      * @return response type
      */
     @Override
-    public Class<QueryApiResponse> responseType() {
-        return QueryApiResponse.class;
+    public Class<CancelPayApiResponse> responseType() {
+        return CancelPayApiResponse.class;
     }
 }

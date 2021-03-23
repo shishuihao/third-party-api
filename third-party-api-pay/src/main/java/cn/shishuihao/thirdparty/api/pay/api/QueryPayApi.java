@@ -1,8 +1,8 @@
 package cn.shishuihao.thirdparty.api.pay.api;
 
 import cn.shishuihao.thirdparty.api.pay.PayApi;
-import cn.shishuihao.thirdparty.api.pay.request.QueryApiRequest;
-import cn.shishuihao.thirdparty.api.pay.response.QueryApiResponse;
+import cn.shishuihao.thirdparty.api.pay.request.QueryPayApiRequest;
+import cn.shishuihao.thirdparty.api.pay.response.QueryPayApiResponse;
 
 /**
  * @author shishuihao
@@ -11,8 +11,8 @@ import cn.shishuihao.thirdparty.api.pay.response.QueryApiResponse;
 
 public interface QueryPayApi extends PayApi<
         QueryPayApi,
-        QueryApiRequest,
-        QueryApiResponse> {
+        QueryPayApiRequest,
+        QueryPayApiResponse> {
     /**
      * get api type.
      * immutable

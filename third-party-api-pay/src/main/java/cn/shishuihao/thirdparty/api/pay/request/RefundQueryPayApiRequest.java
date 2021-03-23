@@ -3,7 +3,7 @@ package cn.shishuihao.thirdparty.api.pay.request;
 import cn.shishuihao.thirdparty.api.core.request.AbstractRequest;
 import cn.shishuihao.thirdparty.api.pay.PayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.api.RefundQueryPayApi;
-import cn.shishuihao.thirdparty.api.pay.response.RefundQueryApiResponse;
+import cn.shishuihao.thirdparty.api.pay.response.RefundQueryPayApiResponse;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
@@ -17,13 +17,13 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Jacksonized
 @SuperBuilder
-public class RefundQueryApiRequest extends AbstractRequest<
+public class RefundQueryPayApiRequest extends AbstractRequest<
         RefundQueryPayApi,
-        RefundQueryApiRequest,
-        RefundQueryApiResponse> implements PayApiRequest<
+        RefundQueryPayApiRequest,
+        RefundQueryPayApiResponse> implements PayApiRequest<
         RefundQueryPayApi,
-        RefundQueryApiRequest,
-        RefundQueryApiResponse> {
+        RefundQueryPayApiRequest,
+        RefundQueryPayApiResponse> {
     /**
      * out trade no.
      */
@@ -52,7 +52,7 @@ public class RefundQueryApiRequest extends AbstractRequest<
      * @return response type
      */
     @Override
-    public Class<RefundQueryApiResponse> responseType() {
-        return RefundQueryApiResponse.class;
+    public Class<RefundQueryPayApiResponse> responseType() {
+        return RefundQueryPayApiResponse.class;
     }
 }

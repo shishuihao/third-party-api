@@ -7,8 +7,8 @@ import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayClient;
 import cn.shishuihao.thirdparty.api.pay.alipay.domain.AlipayTradeStatus;
 import cn.shishuihao.thirdparty.api.pay.alipay.util.AlipayResponseUtils;
 import cn.shishuihao.thirdparty.api.pay.api.QueryPayApi;
-import cn.shishuihao.thirdparty.api.pay.request.QueryApiRequest;
-import cn.shishuihao.thirdparty.api.pay.response.QueryApiResponse;
+import cn.shishuihao.thirdparty.api.pay.request.QueryPayApiRequest;
+import cn.shishuihao.thirdparty.api.pay.response.QueryPayApiResponse;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
 import com.alipay.easysdk.payment.common.models.AlipayTradeQueryResponse;
 import lombok.AllArgsConstructor;
@@ -31,7 +31,7 @@ public class AlipayQueryPayApi implements QueryPayApi {
      * @return response
      */
     @Override
-    public QueryApiResponse execute(final QueryApiRequest request) {
+    public QueryPayApiResponse execute(final QueryPayApiRequest request) {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
@@ -39,7 +39,7 @@ public class AlipayQueryPayApi implements QueryPayApi {
                     = alipayPayClient.getCommonClient(properties);
             AlipayTradeQueryResponse response = client.query(
                     request.getOutTradeNo());
-            return QueryApiResponse.builder()
+            return QueryPayApiResponse.builder()
                     .success(ResponseChecker.success(response))
                     .code(AlipayResponseUtils.code(response))
                     .message(AlipayResponseUtils.message(response))

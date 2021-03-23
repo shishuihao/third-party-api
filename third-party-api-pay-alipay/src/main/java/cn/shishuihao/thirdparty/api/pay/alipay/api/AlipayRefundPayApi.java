@@ -6,8 +6,8 @@ import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayClient;
 import cn.shishuihao.thirdparty.api.pay.alipay.util.AlipayResponseUtils;
 import cn.shishuihao.thirdparty.api.pay.api.RefundPayApi;
-import cn.shishuihao.thirdparty.api.pay.request.RefundApiRequest;
-import cn.shishuihao.thirdparty.api.pay.response.RefundApiResponse;
+import cn.shishuihao.thirdparty.api.pay.request.RefundPayApiRequest;
+import cn.shishuihao.thirdparty.api.pay.response.RefundPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.util.AmountUtils;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
 import com.alipay.easysdk.payment.common.models.AlipayTradeRefundResponse;
@@ -31,7 +31,7 @@ public class AlipayRefundPayApi implements RefundPayApi {
      * @return response
      */
     @Override
-    public RefundApiResponse execute(final RefundApiRequest request) {
+    public RefundPayApiResponse execute(final RefundPayApiRequest request) {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
@@ -40,7 +40,7 @@ public class AlipayRefundPayApi implements RefundPayApi {
             AlipayTradeRefundResponse response = client.refund(
                     request.getOutTradeNo(),
                     AmountUtils.toYuanString(request.getRefundAmount()));
-            return RefundApiResponse.builder()
+            return RefundPayApiResponse.builder()
                     .success(ResponseChecker.success(response))
                     .code(AlipayResponseUtils.code(response))
                     .message(AlipayResponseUtils.message(response))

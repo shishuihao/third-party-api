@@ -3,22 +3,22 @@ package cn.shishuihao.thirdparty.api.pay.spring.boot.controller;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.pay.request.AppPayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.request.AppletPayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.request.CancelApiRequest;
+import cn.shishuihao.thirdparty.api.pay.request.CancelPayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.request.H5PayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.request.JsApiPayApiRequest;
-import cn.shishuihao.thirdparty.api.pay.request.QueryApiRequest;
-import cn.shishuihao.thirdparty.api.pay.request.RefundQueryApiRequest;
-import cn.shishuihao.thirdparty.api.pay.request.RefundApiRequest;
+import cn.shishuihao.thirdparty.api.pay.request.QueryPayApiRequest;
+import cn.shishuihao.thirdparty.api.pay.request.RefundQueryPayApiRequest;
+import cn.shishuihao.thirdparty.api.pay.request.RefundPayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.AppPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.response.AppletPayApiResponse;
-import cn.shishuihao.thirdparty.api.pay.response.CancelApiResponse;
+import cn.shishuihao.thirdparty.api.pay.response.CancelPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.response.H5PayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.response.JsApiPayApiResponse;
-import cn.shishuihao.thirdparty.api.pay.response.QueryApiResponse;
-import cn.shishuihao.thirdparty.api.pay.response.RefundQueryApiResponse;
-import cn.shishuihao.thirdparty.api.pay.response.RefundApiResponse;
+import cn.shishuihao.thirdparty.api.pay.response.QueryPayApiResponse;
+import cn.shishuihao.thirdparty.api.pay.response.RefundQueryPayApiResponse;
+import cn.shishuihao.thirdparty.api.pay.response.RefundPayApiResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -106,8 +106,8 @@ public class ThirdPartyApiPayController {
      * @return response
      */
     @PostMapping("/query")
-    public CompletableFuture<QueryApiResponse> codePay(
-            @Valid @RequestBody final QueryApiRequest request) {
+    public CompletableFuture<QueryPayApiResponse> codePay(
+            @Valid @RequestBody final QueryPayApiRequest request) {
         return CompletableFuture.supplyAsync(() ->
                 ApiRegistry.INSTANCE.execute(request));
     }
@@ -119,8 +119,8 @@ public class ThirdPartyApiPayController {
      * @return response
      */
     @PostMapping("/cancel")
-    public CompletableFuture<CancelApiResponse> cancel(
-            @Valid @RequestBody final CancelApiRequest request) {
+    public CompletableFuture<CancelPayApiResponse> cancel(
+            @Valid @RequestBody final CancelPayApiRequest request) {
         return CompletableFuture.supplyAsync(() ->
                 ApiRegistry.INSTANCE.execute(request));
     }
@@ -132,8 +132,8 @@ public class ThirdPartyApiPayController {
      * @return response
      */
     @PostMapping("/refund")
-    public CompletableFuture<RefundApiResponse> refund(
-            @Valid @RequestBody final RefundApiRequest request) {
+    public CompletableFuture<RefundPayApiResponse> refund(
+            @Valid @RequestBody final RefundPayApiRequest request) {
         return CompletableFuture.supplyAsync(() ->
                 ApiRegistry.INSTANCE.execute(request));
     }
@@ -145,8 +145,8 @@ public class ThirdPartyApiPayController {
      * @return response
      */
     @PostMapping("/refund-query")
-    public CompletableFuture<RefundQueryApiResponse> refundQuery(
-            @Valid @RequestBody final RefundQueryApiRequest request) {
+    public CompletableFuture<RefundQueryPayApiResponse> refundQuery(
+            @Valid @RequestBody final RefundQueryPayApiRequest request) {
         return CompletableFuture.supplyAsync(() ->
                 ApiRegistry.INSTANCE.execute(request));
     }

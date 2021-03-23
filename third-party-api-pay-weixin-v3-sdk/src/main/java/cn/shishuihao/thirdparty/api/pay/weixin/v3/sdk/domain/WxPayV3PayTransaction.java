@@ -11,7 +11,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class WxPayV3PayTransaction {
+public class WxPayV3PayTransaction
+        implements JsonSerializable {
     /**
      * 应用ID.
      */

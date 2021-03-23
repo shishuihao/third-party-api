@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter;
 
-import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayOrderQueryResponse;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPaySecApiPayRefundResponse;
 import com.thoughtworks.xstream.converters.reflection.ReflectionProvider;
 import com.thoughtworks.xstream.mapper.Mapper;
 
@@ -8,16 +8,16 @@ import com.thoughtworks.xstream.mapper.Mapper;
  * @author shishuihao
  * @version 1.0.0
  */
-public class WxPayOrderQueryResponseConverter extends WxPayConverter {
+public class WxPaySecApiPayRefundResponseConverter extends WxPayConverter {
     /**
-     * new WxPayOrderQueryResponseConverter.
+     * new WxPaySecApiPayRefundResponseConverter.
      *
      * @param mapper             mapper
      * @param reflectionProvider reflectionProvider
      */
-    public WxPayOrderQueryResponseConverter(
+    public WxPaySecApiPayRefundResponseConverter(
             final Mapper mapper,
             final ReflectionProvider reflectionProvider) {
-        super(mapper, reflectionProvider, WxPayOrderQueryResponse.class);
+        super(mapper, reflectionProvider, WxPaySecApiPayRefundResponse.class);
     }
 }

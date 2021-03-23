@@ -3,10 +3,12 @@ package cn.shishuihao.thirdparty.api.pay.weixin.sdk.util;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.notice.WxPayResultNoticeRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayOrderQueryResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPayRefundQueryResponse;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.response.WxPaySecApiPayRefundResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.MapEntryConverter;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.WxPayOrderQueryResponseConverter;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.WxPayRefundQueryResponseConverter;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.WxPayResultNoticeRequestConverter;
+import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.converter.WxPaySecApiPayRefundResponseConverter;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.Xpp3Driver;
@@ -93,21 +95,7 @@ public final class XmlUtils {
             if (Map.class.isAssignableFrom(cls)) {
                 xStream.registerConverter(new MapEntryConverter());
             }
-            if (WxPayOrderQueryResponse.class.isAssignableFrom(cls)) {
-                xStream.registerConverter(new WxPayOrderQueryResponseConverter(
-                        xStream.getMapper(),
-                        xStream.getReflectionProvider()));
-            }
-            if (WxPayRefundQueryResponse.class.isAssignableFrom(cls)) {
-                xStream.registerConverter(new WxPayRefundQueryResponseConverter(
-                        xStream.getMapper(),
-                        xStream.getReflectionProvider()));
-            }
-            if (WxPayResultNoticeRequest.class.isAssignableFrom(cls)) {
-                xStream.registerConverter(new WxPayResultNoticeRequestConverter(
-                        xStream.getMapper(),
-                        xStream.getReflectionProvider()));
-            }
+            registerConverter(cls, xStream);
             // 使用注解
             xStream.processAnnotations(cls);
             // 去掉 class 属性
@@ -118,6 +106,31 @@ public final class XmlUtils {
             xStream.allowTypes(new Class[]{cls});
             return xStream;
         });
+    }
+
+    private static void registerConverter(final Class<?> cls,
+                                          final XStream xStream) {
+        if (WxPayResultNoticeRequest.class.isAssignableFrom(cls)) {
+            xStream.registerConverter(new WxPayResultNoticeRequestConverter(
+                    xStream.getMapper(),
+                    xStream.getReflectionProvider()));
+        }
+        if (WxPayOrderQueryResponse.class.isAssignableFrom(cls)) {
+            xStream.registerConverter(new WxPayOrderQueryResponseConverter(
+                    xStream.getMapper(),
+                    xStream.getReflectionProvider()));
+        }
+        if (WxPaySecApiPayRefundResponse.class.isAssignableFrom(cls)) {
+            xStream.registerConverter(
+                    new WxPaySecApiPayRefundResponseConverter(
+                            xStream.getMapper(),
+                            xStream.getReflectionProvider()));
+        }
+        if (WxPayRefundQueryResponse.class.isAssignableFrom(cls)) {
+            xStream.registerConverter(new WxPayRefundQueryResponseConverter(
+                    xStream.getMapper(),
+                    xStream.getReflectionProvider()));
+        }
     }
 
     @SuppressWarnings("unchecked")

@@ -10,7 +10,7 @@ import com.thoughtworks.xstream.mapper.Mapper;
  */
 public class WxPayResultNoticeRequestConverter extends WxPayConverter {
     /**
-     * new WxPayResultNoticeConverter.
+     * new WxPayResultNoticeRequestConverter.
      *
      * @param mapper             mapper
      * @param reflectionProvider reflectionProvider

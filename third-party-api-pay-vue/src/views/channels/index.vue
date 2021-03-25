@@ -1,10 +1,10 @@
 <template>
-  <div></div>
+  <div>channels</div>
 </template>
 
 <script>
 export default {
-  name: "push-messages"
+  name: "channels"
 }
 </script>
 

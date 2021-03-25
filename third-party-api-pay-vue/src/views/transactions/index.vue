@@ -1,10 +1,10 @@
 <template>
-  <div></div>
+  <div>transactions</div>
 </template>
 
 <script>
 export default {
-  name: "sms-messages"
+  name: "transactions"
 }
 </script>
 

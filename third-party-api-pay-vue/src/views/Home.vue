@@ -17,17 +17,16 @@
                 <SubMenu :key="item.path">
                   <template #title>
                     <Icon :type="item.meta.icon"/>
-                    <span>{{item.meta.icon}}{{ t(item.meta.title) }}</span>
+                    <span>{{ t(item.meta.title) }}</span>
                   </template>
                   <a-menu-item v-for="(subItem) in item.children" :key="subItem.path">
                     <Icon :type="subItem.meta.icon"/>
-                    <span>{{subItem.meta.icon}}{{ t(subItem.meta.title) }}</span>
+                    <span>{{ t(subItem.meta.title) }}</span>
                   </a-menu-item>
                 </SubMenu>
               </template>
               <template v-else>
                 <a-menu-item :key="item.path">
-                  <a-icon type="star" theme="filled" />
                   <Icon :type="item.meta.icon"/>
                   <span>{{ t(item.meta.title) }}</span>
                 </a-menu-item>

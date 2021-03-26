@@ -2,7 +2,7 @@
 
 ## 官方文档
 
-[华为推送官方文档(huawei push official document)](https://developer.huawei.com/consumer/cn/hms/huawei-pushkit/)
+[官方文档(official document)](https://developer.huawei.com/consumer/cn/hms/huawei-pushkit/)
 
 ## 安装(Installation)
 

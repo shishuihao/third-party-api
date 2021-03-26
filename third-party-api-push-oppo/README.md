@@ -2,7 +2,7 @@
 
 ## 官方文档
 
-[OPPO推送官方文档(oppo push official document)](https://open.oppomobile.com/wiki/doc#id=10203)
+[官方文档(official document)](https://open.oppomobile.com/wiki/doc#id=10203)
 
 ## 安装(Installation)
 

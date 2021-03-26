@@ -2,7 +2,7 @@
 
 ## 官方文档(official document))
 
-[支付宝官方文档(alipay official document)](https://openhome.alipay.com/docCenter/docCenter.htm?from=openhomemenu)
+[官方文档(official document)](https://openhome.alipay.com/docCenter/docCenter.htm?from=openhomemenu)
 
 ## 安装(Installation)
 

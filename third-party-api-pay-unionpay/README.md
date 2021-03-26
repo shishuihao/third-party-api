@@ -1,4 +1,4 @@
-# 银联支付(unionpay)
+# 银联支付(unionpay pay)
 
 ## 安装
 

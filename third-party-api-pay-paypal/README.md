@@ -1,4 +1,4 @@
-# PayPal支付(paypal)
+# PayPal支付(paypal pay)
 
 ## 安装
 

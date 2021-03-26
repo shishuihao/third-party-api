@@ -1,4 +1,4 @@
-# 威富通支付(swiftpass)
+# 威富通支付(swiftpass pay)
 
 ## 安装
 

@@ -1,4 +1,4 @@
-# 易宝支付(yeepay)
+# 易宝支付(yeepay pay)
 
 ## 安装
 

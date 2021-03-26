@@ -2,7 +2,7 @@
 
 ## 官方文档
 
-[微信支付官方文档(weixin official document)](https://pay.weixin.qq.com/wiki/doc/api/index.html)
+[官方文档(official document)](https://pay.weixin.qq.com/wiki/doc/api/index.html)
 
 ## 技术特点
 

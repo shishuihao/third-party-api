@@ -2,7 +2,7 @@
 
 ## 官方文档
 
-[小米推送官方文档(xiaomi push official document)](https://dev.mi.com/console/doc/detail?pId=230)
+[官方文档(official document)](https://dev.mi.com/console/doc/detail?pId=230)
 
 ## 安装(Installation)
 

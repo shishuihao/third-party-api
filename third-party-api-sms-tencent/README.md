@@ -2,7 +2,7 @@
 
 ## 官方文档
 
-[腾讯云短信官方文档(tencent cloud sms official document)](https://cloud.tencent.com/document/product/382)
+[官方文档(sms official document)](https://cloud.tencent.com/document/product/382)
 
 ## 安装(Installation)
 

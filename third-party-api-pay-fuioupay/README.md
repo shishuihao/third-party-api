@@ -1,4 +1,4 @@
-# 富友支付(fuioupay)
+# 富友支付(fuioupay pay)
 
 ## 安装
 

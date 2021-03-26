@@ -2,7 +2,7 @@
 
 ## 官方文档(official document))
 
-[工商银行官方文档(weixin official document)](https://open.icbc.com.cn/icbc/apip/api_list.html#)
+[官方文档(official document)](https://open.icbc.com.cn/icbc/apip/api_list.html#)
 
 ## 安装(Installation)
 

@@ -1,4 +1,4 @@
-# QQ钱包支付(qpay)
+# QQ钱包支付(qpay pay)
 
 ## 安装
 

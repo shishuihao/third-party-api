@@ -2,6 +2,10 @@
 
 ## 安装
 
+## 官方文档(official document))
+
+[官方文档(official document)](https://mp.qpay.tenpay.com/buss/doc.shtml)
+
 ### Maven
 
 ```xml

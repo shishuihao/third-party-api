@@ -6,6 +6,7 @@
 
 https://github.com/lin132698745aa/ccbPay
 https://github.com/lin132698745aa/EBSClient
+https://github.com/lyymoo/ccbpaysdk
 
 ## 安装
 

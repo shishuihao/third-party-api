@@ -1,5 +1,12 @@
 # 建设银行[外联平台]支付sdk(ccb-wlpt pay sdk)
 
+## 官方文档(official document))
+
+## 参考项目
+
+https://github.com/lin132698745aa/ccbPay
+https://github.com/lin132698745aa/EBSClient
+
 ## 安装
 
 ### Maven

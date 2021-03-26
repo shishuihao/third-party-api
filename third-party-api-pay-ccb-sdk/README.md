@@ -1,5 +1,12 @@
 # 中国建设银行支付sdk(ccb pay sdk)
 
+## 官方文档(official document))
+
+## 参考项目
+
+https://github.com/lin132698745aa/ccbPay
+https://github.com/lin132698745aa/EBSClient
+
 ## 安装
 
 ### Maven

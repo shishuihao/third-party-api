@@ -1,5 +1,9 @@
 # 京东支付(jdpay pay)
 
+## 官方文档(official document))
+
+[官方文档(official document)](https://payapi.jd.com/)
+
 ## 安装
 
 ### Maven

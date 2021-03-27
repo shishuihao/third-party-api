@@ -6,4 +6,7 @@ export default {
     "report": "report",
     "transaction": "transaction",
     "user": "user",
+    "index": "index",
+    "id": "id",
+    "name": "name",
 }

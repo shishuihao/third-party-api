@@ -6,4 +6,7 @@ export default {
     "report": "报表",
     "transaction": "交易",
     "user": "用户",
+    "index": "序号",
+    "id": "标识",
+    "name": "名称",
 }

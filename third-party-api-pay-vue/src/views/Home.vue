@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <a-loyout class="ant-layout">
+    <a-layout class="ant-layout">
       <a-layout-header class="ant-layout-header">
         <img alt="标识" class="logo" src="../assets/logo.png" style="height: 100%;width: auto;float: left">
         <div style="float: right">
@@ -41,7 +41,7 @@
       <a-layout-footer class="ant-layout-footer">
         copyright &copy; 2021 shishuihao
       </a-layout-footer>
-    </a-loyout>
+    </a-layout>
   </div>
 </template>
 

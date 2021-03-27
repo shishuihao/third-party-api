@@ -4,13 +4,14 @@
       <a-layout-header class="ant-layout-header">
         <img alt="标识" class="logo" src="../assets/logo.png" style="height: 100%;width: auto;float: left">
         <div style="float: right">
+          <switch-language/>
         </div>
       </a-layout-header>
       <a-layout class="ant-layout">
         <a-layout-sider class="ant-layout-sider">
           <a-menu v-model="current"
-                mode="vertical"
-                @click="handleClickMenu"
+                  mode="vertical"
+                  @click="handleClickMenu"
           >
             <template v-for="(item) in menus">
               <template v-if="item.children && item.children.length > 0">
@@ -49,10 +50,11 @@
 
 import router from "@/router";
 import {useI18n} from "vue-i18n";
+import SwitchLanguage from "@/components/switch-language";
 
 export default {
   name: 'Home',
-  components: {},
+  components: {SwitchLanguage},
   data() {
     return {
       menus: router.options.routes.filter(item => '/' === item.path)[0].children,

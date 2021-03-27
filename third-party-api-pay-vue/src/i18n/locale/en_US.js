@@ -23,7 +23,7 @@ export default {
     "import": "Import",
     "export": "Export",
     // input
-    "please enter": "Please enter",
+    "please enter": "Please Enter ",
     // fields
     "channels": {
         "alipay": {

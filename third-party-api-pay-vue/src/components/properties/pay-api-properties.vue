@@ -10,7 +10,6 @@
 import AlipayPayApiProperties from "./alipay/alipay-pay-api-properties"
 
 export default {
-  name: "PayApiProperties",
   props: ['properties'],
   components: {
     AlipayPayApiProperties

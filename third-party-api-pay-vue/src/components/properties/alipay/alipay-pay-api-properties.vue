@@ -53,7 +53,6 @@
 import {useI18n} from "vue-i18n";
 
 export default {
-  name: "AlipayPayApiProperties",
   props: ['properties'],
   setup() {
     const {t} = useI18n();

@@ -1,20 +1,30 @@
 export default {
+    // 菜单
+    "api": "API",
     "channel": "渠道",
     "clearing": "清账",
     "configuration": "配置",
+    "pay": "支付",
     "reconciliation": "对账",
     "report": "报表",
     "transaction": "交易",
     "user": "用户",
+    // 通用字段
     "index": "序号",
     "id": "标识",
-    "api": "API",
-    "properties": "属性",
-    "pay": "支付",
+    "gmt_create": "创建时间",
+    "gmt_modified": "修改时间",
+    "type": "类型",
+    "status": "状态",
+    // 操作
     "add": "添加",
     "edit": "编辑",
     "remove": "移除",
-    "change-password": "修改密码",
+    "import": "导入",
+    "export": "导出",
+    // 输入
+    "please enter": "请输入",
+    // 字段
     "channels": {
         "alipay": {
             "name": "支付宝",
@@ -35,5 +45,13 @@ export default {
                 "ignoreSsl": "忽略证书校验（可选）",
             },
         },
-    }
+    },
+    "configurations": {
+        "properties": "属性",
+    },
+    "users": {
+        "username": "用户名",
+        "nickname": "昵称",
+        "change password": "修改密码",
+    },
 }

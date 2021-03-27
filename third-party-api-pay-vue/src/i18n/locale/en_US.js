@@ -1,21 +1,30 @@
 export default {
-    "channel": "channel",
-    "clearing": "clearing",
-    "configuration": "configuration",
-    "reconciliation": "reconciliation",
-    "report": "report",
-    "transaction": "transaction",
-    "user": "user",
-    "index": "index",
-    "id": "id",
-    "name": "name",
-    "api": "api",
-    "properties": "properties",
-    "pay": "pay",
-    "add": "add",
-    "edit": "edit",
-    "remove": "remove",
-    "change-password": "change password",
+    // 菜单
+    "api": "Api",
+    "channel": "Channel",
+    "clearing": "Clearing",
+    "configuration": "Configuration",
+    "pay": "Pay",
+    "reconciliation": "Reconciliation",
+    "report": "Report",
+    "transaction": "Transaction",
+    "user": "User",
+    // 通用字段
+    "index": "Index",
+    "id": "ID",
+    "gmt_create": "Create Time",
+    "gmt_modified": "Modified Time",
+    "type": "Type",
+    "status": "Status",
+    // action
+    "add": "Add",
+    "edit": "Edit",
+    "remove": "Remove",
+    "import": "Import",
+    "export": "Export",
+    // input
+    "please enter": "Please enter",
+    // fields
     "channels": {
         "alipay": {
             "name": "alipay",
@@ -36,5 +45,13 @@ export default {
                 "ignoreSsl": "ignore SSL(optional)",
             },
         },
-    }
+    },
+    "configurations": {
+        "properties": "properties",
+    },
+    "users": {
+        "username": "username",
+        "nickname": "nickname",
+        "change password": "change password",
+    },
 }

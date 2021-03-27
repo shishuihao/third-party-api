@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card>
-      <a-descriptions :title="t('channels.alipay.name') + t('properties')">
+      <a-descriptions :title="t('channels.alipay.name') + t('configurations.properties')">
         <a-descriptions-item :label="t('channels.alipay.properties.protocol')">
           {{ properties.protocol }}
         </a-descriptions-item>

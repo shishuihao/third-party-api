@@ -1,5 +1,15 @@
 <template>
   <div>
+    <!-- search -->
+    <div>
+      <a-input-group compact>
+        <a-input style="width: 20%" :value="query.type" :placeholder="t('please enter') + t('type')"/>
+        <a-input style="width: 20%" :value="query.id" :placeholder="t('please enter') + t('id')"/>
+        <a-input style="width: 20%" :value="query.username" :placeholder="t('please enter') + t('users.username')"/>
+        <a-input style="width: 20%" :value="query.nickname" :placeholder="t('please enter') + t('users.nickname')"/>
+        <a-input style="width: 20%" :value="query.status" :placeholder="t('please enter') + t('status')"/>
+      </a-input-group>
+    </div>
     <!-- content table -->
     <a-table
         row-key="id"
@@ -28,7 +38,7 @@
         <a-divider type="vertical"/>
         <a @click="handleRemove(record.id)">{{ t('remove') }}</a>
         <a-divider type="vertical"/>
-        <a @click="handleChangePassword(record)">{{ t('change-password') }}</a>
+        <a @click="handleChangePassword(record)">{{ t('users.change password') }}</a>
       </template>
     </a-table>
   </div>
@@ -41,6 +51,7 @@ export default {
   name: "Users",
   data() {
     return {
+      query: {},
       data: [
         {
           type: 'admin',

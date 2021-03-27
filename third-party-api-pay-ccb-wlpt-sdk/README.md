@@ -4,8 +4,8 @@
 
 ## 参考项目
 
-https://github.com/lin132698745aa/ccbPay
-https://github.com/lin132698745aa/EBSClient
+-   https://github.com/lin132698745aa/ccbPay
+-   https://github.com/lin132698745aa/EBSClient
 
 ## 安装
 

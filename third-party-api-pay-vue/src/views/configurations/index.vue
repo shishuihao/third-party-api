@@ -14,11 +14,16 @@
       <template #propertiesId="{ text }">
         <span>{{ text }}</span>
       </template>
+      <template #status="{ text }">
+        <span>{{ text }}</span>
+      </template>
       <template #properties="{ text }">
         <pay-api-properties :properties="text"/>
       </template>
       <template #action="{ record }">
-        <a>Invite 一 {{ record.name }}</a>
+        <a @click="handleEdit(record)">{{ t('edit') }}</a>
+        <a-divider type="vertical"/>
+        <a @click="handleRemove(record.id)">{{ t('remove') }}</a>
       </template>
     </a-table>
   </div>
@@ -48,17 +53,27 @@ export default {
             "alipayPublicKey": "******",
             "merchantPrivateKey": "******",
             "ignoreSsl": false
-          }
+          },
+          status: 'ENABLED',
         }
       ],
       columns: [
         {dataIndex: 'index', title: 'index', slots: {customRender: 'index'}},
         {dataIndex: 'channelId', title: 'channelId', slots: {customRender: 'channelId'}},
         {dataIndex: 'propertiesId', title: 'propertiesId', slots: {customRender: 'propertiesId'}},
+        {dataIndex: 'status', title: 'status', slots: {customRender: 'status'}},
         {dataIndex: 'properties', title: 'properties', slots: {customRender: 'properties'}},
         {dataIndex: 'action', title: 'action', slots: {customRender: 'action'},},
       ]
     };
+  },
+  methods: {
+    handleEdit(record) {
+      console.log(record)
+    },
+    handleRemove(id) {
+      console.log(id)
+    },
   },
   setup() {
     const {t} = useI18n();

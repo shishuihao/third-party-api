@@ -12,6 +12,10 @@ export default {
     "api": "api",
     "properties": "properties",
     "pay": "pay",
+    "add": "add",
+    "edit": "edit",
+    "remove": "remove",
+    "change-password": "change password",
     "channels": {
         "alipay": {
             "name": "alipay",

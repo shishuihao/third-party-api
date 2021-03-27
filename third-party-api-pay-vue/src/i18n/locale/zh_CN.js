@@ -11,6 +11,10 @@ export default {
     "api": "API",
     "properties": "属性",
     "pay": "支付",
+    "add": "添加",
+    "edit": "编辑",
+    "remove": "移除",
+    "change-password": "修改密码",
     "channels": {
         "alipay": {
             "name": "支付宝",

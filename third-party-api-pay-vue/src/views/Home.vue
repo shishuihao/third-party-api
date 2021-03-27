@@ -1,47 +1,47 @@
 <template>
   <div class="home">
-    <Layout class="ant-layout">
+    <a-loyout class="ant-layout">
       <a-layout-header class="ant-layout-header">
-        <img alt="商标" class="logo" src="../assets/logo.png" style="height: 100%;width: auto;float: left">
+        <img alt="标识" class="logo" src="../assets/logo.png" style="height: 100%;width: auto;float: left">
         <div style="float: right">
         </div>
       </a-layout-header>
-      <Layout class="ant-layout">
+      <a-layout class="ant-layout">
         <a-layout-sider class="ant-layout-sider">
-          <Menu v-model="current"
+          <a-menu v-model="current"
                 mode="vertical"
                 @click="handleClickMenu"
           >
             <template v-for="(item) in menus">
               <template v-if="item.children && item.children.length > 0">
-                <SubMenu :key="item.path">
+                <a-sub-menu :key="item.path">
                   <template #title>
-                    <Icon :type="item.meta.icon"/>
+                    <a-icon :type="item.meta.icon"/>
                     <span>{{ t(item.meta.title) }}</span>
                   </template>
                   <a-menu-item v-for="(subItem) in item.children" :key="subItem.path">
-                    <Icon :type="subItem.meta.icon"/>
+                    <a-icon :type="subItem.meta.icon"/>
                     <span>{{ t(subItem.meta.title) }}</span>
                   </a-menu-item>
-                </SubMenu>
+                </a-sub-menu>
               </template>
               <template v-else>
                 <a-menu-item :key="item.path">
-                  <Icon :type="item.meta.icon"/>
+                  <a-icon :type="item.meta.icon"/>
                   <span>{{ t(item.meta.title) }}</span>
                 </a-menu-item>
               </template>
             </template>
-          </Menu>
+          </a-menu>
         </a-layout-sider>
         <a-layout-content class="ant-layout-content">
           <router-view/>
         </a-layout-content>
-      </Layout>
+      </a-layout>
       <a-layout-footer class="ant-layout-footer">
         copyright &copy; 2021 shishuihao
       </a-layout-footer>
-    </Layout>
+    </a-loyout>
   </div>
 </template>
 
@@ -49,12 +49,10 @@
 
 import router from "@/router";
 import {useI18n} from "vue-i18n";
-import {Icon, Layout, Menu} from "ant-design-vue"
-import {SubMenu} from "ant-design-vue/lib/vc-menu"
 
 export default {
   name: 'Home',
-  components: {Layout, Menu, SubMenu, Icon},
+  components: {},
   data() {
     return {
       menus: router.options.routes.filter(item => '/' === item.path)[0].children,

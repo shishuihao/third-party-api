@@ -9,4 +9,28 @@ export default {
     "index": "index",
     "id": "id",
     "name": "name",
+    "api": "api",
+    "properties": "properties",
+    "pay": "pay",
+    "channels": {
+        "alipay": {
+            "name": "alipay",
+            "properties": {
+                "protocol": "communication protocol",
+                "gatewayHost": "gateway host",
+                "appId": "AppId",
+                "signType": "sign type",
+                "alipayPublicKey": "alipay public key",
+                "merchantPrivateKey": "merchant private key",
+                "merchantCertPath": "merchant public key cert file path",
+                "alipayCertPath": "alipay public key cert path",
+                "alipayRootCertPath": "alipay root cert path",
+                "notifyUrl": "async notify callback url(optional)",
+                "encryptKey": "AES encrypt key(optional)",
+                "signProvider": "sign provider name(optional)",
+                "httpProxy": "http proxy address(optional)",
+                "ignoreSsl": "ignore SSL(optional)",
+            },
+        },
+    }
 }

@@ -8,5 +8,28 @@ export default {
     "user": "用户",
     "index": "序号",
     "id": "标识",
-    "name": "名称",
+    "api": "API",
+    "properties": "属性",
+    "pay": "支付",
+    "channels": {
+        "alipay": {
+            "name": "支付宝",
+            "properties": {
+                "protocol": "通信协议",
+                "gatewayHost": "网关域名",
+                "appId": "AppId",
+                "signType": "签名类型",
+                "alipayPublicKey": "支付宝公钥",
+                "merchantPrivateKey": "应用私钥",
+                "merchantCertPath": "应用公钥证书文件路径",
+                "alipayCertPath": "支付宝公钥证书文件路径",
+                "alipayRootCertPath": "支付宝根证书文件路径",
+                "notifyUrl": "异步通知回调地址（可选）",
+                "encryptKey": "AES密钥（可选）",
+                "signProvider": "签名提供方的名称(可选)",
+                "httpProxy": "代理地址（可选）",
+                "ignoreSsl": "忽略证书校验（可选）",
+            },
+        },
+    }
 }

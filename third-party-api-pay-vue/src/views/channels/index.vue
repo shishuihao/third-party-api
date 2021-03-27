@@ -15,32 +15,29 @@
         <span>{{ text }}</span>
       </template>
       <template #action="{ record }">
-        <a>Invite 一 {{ record.name }}</a>
+        <a>{{ record.name }}</a>
       </template>
     </a-table>
   </div>
 </template>
 
 <script>
-
 import {useI18n} from "vue-i18n";
 
-const data = [
-  {
-    id: 'pay.alipay',
-    name: '支付宝',
-  },
-  {
-    id: 'pay.weixin',
-    name: '微信',
-  },
-];
-
 export default {
-  name: "channels",
+  name: "Channels",
   data() {
     return {
-      data,
+      data: [
+        {
+          id: 'pay.alipay',
+          name: '支付宝',
+        },
+        {
+          id: 'pay.weixin',
+          name: '微信',
+        },
+      ],
       columns: [
         {dataIndex: 'index', title: 'index', slots: {customRender: 'index'}},
         {dataIndex: 'id', title: 'id', slots: {customRender: 'id'}},

@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "clearings"
+  name: "Clearings"
 }
 </script>
 

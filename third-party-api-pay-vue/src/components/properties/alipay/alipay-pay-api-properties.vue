@@ -1,47 +1,47 @@
 <template>
   <div>
     <a-card>
-      <a-descriptions :title="t('channels.alipay.name') + t('configurations.properties')">
-        <a-descriptions-item :label="t('channels.alipay.properties.protocol')">
+      <a-descriptions :title="t('properties.alipay.name') + t('configurations.columns.properties')">
+        <a-descriptions-item :label="t('properties.alipay.protocol')">
           {{ properties.protocol }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.gatewayHost')">
+        <a-descriptions-item :label="t('properties.alipay.gatewayHost')">
           {{ properties.gatewayHost }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.appId')">
+        <a-descriptions-item :label="t('properties.alipay.appId')">
           {{ properties.appId }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.signType')">
+        <a-descriptions-item :label="t('properties.alipay.signType')">
           {{ properties.signType }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.alipayPublicKey')">
+        <a-descriptions-item :label="t('properties.alipay.alipayPublicKey')">
           {{ properties.alipayPublicKey }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.merchantPrivateKey')">
+        <a-descriptions-item :label="t('properties.alipay.merchantPrivateKey')">
           {{ properties.merchantPrivateKey }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.merchantCertPath')">
+        <a-descriptions-item :label="t('properties.alipay.merchantCertPath')">
           {{ properties.merchantCertPath }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.alipayCertPath')">
+        <a-descriptions-item :label="t('properties.alipay.alipayCertPath')">
           {{ properties.alipayCertPath }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.alipayRootCertPath')">
+        <a-descriptions-item :label="t('properties.alipay.alipayRootCertPath')">
           {{ properties.alipayRootCertPath }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.notifyUrl')">
+        <a-descriptions-item :label="t('properties.alipay.notifyUrl')">
           {{ properties.notifyUrl }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.encryptKey')">
+        <a-descriptions-item :label="t('properties.alipay.encryptKey')">
           {{ properties.encryptKey }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.signProvider')">
+        <a-descriptions-item :label="t('properties.alipay.signProvider')">
           {{ properties.signProvider }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.httpProxy')">
+        <a-descriptions-item :label="t('properties.alipay.httpProxy')">
           {{ properties.httpProxy }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('channels.alipay.properties.ignoreSsl')">
+        <a-descriptions-item :label="t('properties.alipay.ignoreSsl')">
           {{ properties.ignoreSsl }}
         </a-descriptions-item>
       </a-descriptions>

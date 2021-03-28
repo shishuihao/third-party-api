@@ -21,9 +21,9 @@
         <pay-api-properties :properties="text"/>
       </template>
       <template #action="{ record }">
-        <a @click="handleEdit(record)">{{ t('edit') }}</a>
+        <a @click="handleEdit(record)">{{ t('actions.edit') }}</a>
         <a-divider type="vertical"/>
-        <a @click="handleRemove(record.id)">{{ t('remove') }}</a>
+        <a @click="handleRemove(record.id)">{{ t('actions.remove') }}</a>
       </template>
     </a-table>
   </div>

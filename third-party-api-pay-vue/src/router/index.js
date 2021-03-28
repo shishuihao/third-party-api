@@ -6,7 +6,7 @@ const menus = [
     path: '/transactions',
     meta: {
       icon: 'transaction',
-      title: "transaction",
+      title: "transactions.title",
     },
     component: () => import(/* webpackChunkName: "transactions" */ '../views/transactions')
   },
@@ -14,7 +14,7 @@ const menus = [
     path: '/reconciliations',
     meta: {
       icon: 'reconciliation',
-      title: "reconciliation",
+      title: "reconciliations.title",
     },
     component: () => import(/* webpackChunkName: "reconciliations" */ '../views/reconciliations')
   },
@@ -22,7 +22,7 @@ const menus = [
     path: '/clearings',
     meta: {
       icon: 'account-book',
-      title: "clearing",
+      title: "clearings.title",
     },
     component: () => import(/* webpackChunkName: "clearings" */ '../views/clearings')
   },
@@ -30,7 +30,7 @@ const menus = [
     path: '/reports',
     meta: {
       icon: 'table',
-      title: "report",
+      title: "reports.title",
     },
     component: () => import(/* webpackChunkName: "reports" */ '../views/reports/index')
   },
@@ -38,7 +38,7 @@ const menus = [
     path: '/users',
     meta: {
       icon: 'user',
-      title: "user",
+      title: "users.title",
     },
     component: () => import(/* webpackChunkName: "users" */ '../views/users')
   },
@@ -46,7 +46,7 @@ const menus = [
     path: '/channels',
     meta: {
       icon: 'gateway',
-      title: "channel",
+      title: "channels.title",
     },
     component: () => import(/* webpackChunkName: "channels" */ '../views/channels/index')
   },
@@ -54,7 +54,7 @@ const menus = [
     path: '/configurations',
     meta: {
       icon: 'profile',
-      title: "configuration",
+      title: "configurations.title",
     },
     component: () => import(/* webpackChunkName: "configurations" */ '../views/configurations')
   },
@@ -65,12 +65,20 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    meta: {
+      icon: 'home',
+      title: "home.title",
+    },
     component: Home,
     children: menus
   },
   {
     path: '/about',
     name: 'About',
+    meta: {
+      icon: 'about',
+      title: "about.title",
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

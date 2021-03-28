@@ -3,11 +3,16 @@
     <!-- search -->
     <div>
       <a-input-group compact>
-        <a-input style="width: 20%" :value="query.type" :placeholder="t('please enter') + t('type')"/>
-        <a-input style="width: 20%" :value="query.id" :placeholder="t('please enter') + t('id')"/>
-        <a-input style="width: 20%" :value="query.username" :placeholder="t('please enter') + t('users.username')"/>
-        <a-input style="width: 20%" :value="query.nickname" :placeholder="t('please enter') + t('users.nickname')"/>
-        <a-input style="width: 20%" :value="query.status" :placeholder="t('please enter') + t('status')"/>
+        <a-input style="width: 20%" :value="query.type"
+                 :placeholder="t('placeholders.please-enter') + t('columns.type')"/>
+        <a-input style="width: 20%" :value="query.id"
+                 :placeholder="t('placeholders.please-enter') + t('columns.id')"/>
+        <a-input style="width: 20%" :value="query.username"
+                 :placeholder="t('placeholders.please-enter') + t('users.columns.username')"/>
+        <a-input style="width: 20%" :value="query.nickname"
+                 :placeholder="t('placeholders.please-enter') + t('users.columns.nickname')"/>
+        <a-input style="width: 20%" :value="query.status"
+                 :placeholder="t('placeholders.please-enter') + t('columns.status')"/>
       </a-input-group>
     </div>
     <!-- content table -->
@@ -34,11 +39,11 @@
         <span>{{ text }}</span>
       </template>
       <template #action="{ record }">
-        <a @click="handleEdit(record)">{{ t('edit') }}</a>
+        <a @click="handleEdit(record)">{{ t('actions.edit') }}</a>
         <a-divider type="vertical"/>
-        <a @click="handleRemove(record.id)">{{ t('remove') }}</a>
+        <a @click="handleRemove(record.id)">{{ t('actions.remove') }}</a>
         <a-divider type="vertical"/>
-        <a @click="handleChangePassword(record)">{{ t('users.change password') }}</a>
+        <a @click="handleChangePassword(record)">{{ t('users.actions.change-password') }}</a>
       </template>
     </a-table>
   </div>

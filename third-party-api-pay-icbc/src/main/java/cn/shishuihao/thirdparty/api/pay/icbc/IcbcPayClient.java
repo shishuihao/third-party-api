@@ -40,7 +40,10 @@ public class IcbcPayClient {
                                 .orElse(null),
                         properties.getEncryptKey(),
                         properties.getCa(),
-                        properties.getPassword());
+                        properties.getPassword(),
+                        properties.getEmSignIp(),
+                        properties.getEmSignPort(),
+                        properties.getEmProduct());
             } catch (RuntimeException e) {
                 throw e;
             } catch (Exception e) {

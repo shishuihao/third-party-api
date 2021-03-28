@@ -49,7 +49,7 @@
 
 <script>
 import {useI18n} from "vue-i18n";
-import PayApiProperties from "@/components/properties/pay-api-properties"
+import PayApiProperties from "@/components/properties/index"
 
 export default {
   name: "Configurations",
@@ -72,6 +72,22 @@ export default {
             "alipayPublicKey": "******",
             "merchantPrivateKey": "******",
             "ignoreSsl": false
+          },
+          status: 'ENABLED',
+        },
+        {
+          channelId: 'pay.icbc',
+          propertiesId: '10000000000000004925',
+          properties: {
+            "channelId": "pay.icbc",
+            "appId": "10000000000000004925",
+            "privateKey": "******",
+            "signType": "RSA",
+            "charset": "UTF-8",
+            "format": "json",
+            "icbcPublicKey": "******",
+            "encryptType": "AES",
+            "encryptKey": "******",
           },
           status: 'ENABLED',
         }

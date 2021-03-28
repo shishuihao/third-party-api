@@ -3,16 +3,21 @@
     <template v-if="properties.channelId === 'pay.alipay'">
       <alipay-pay-api-properties :properties="properties"/>
     </template>
+    <template v-if="properties.channelId === 'pay.icbc'">
+      <icbc-pay-api-properties :properties="properties"/>
+    </template>
   </div>
 </template>
 
 <script>
-import AlipayPayApiProperties from "./alipay/alipay-pay-api-properties"
+import AlipayPayApiProperties from "./alipay/index"
+import IcbcPayApiProperties from "./icbc/index"
 
 export default {
   props: ['properties'],
   components: {
-    AlipayPayApiProperties
+    AlipayPayApiProperties,
+    IcbcPayApiProperties
   }
 }
 </script>

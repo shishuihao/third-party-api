@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- search -->
-    <a-input-group  style="text-align: left">
+    <a-input-group style="text-align: left">
       <a-input style="width: 15%" :value="query.type"
                :placeholder="t('placeholders.please-enter') + t('columns.type')"/>
       <a-input style="width: 15%" :value="query.id"
@@ -16,7 +16,7 @@
       <a-button type="default">{{ t('actions.reset') }}</a-button>
     </a-input-group>
     <!-- action -->
-    <a-input-group  style="text-align: left">
+    <a-input-group style="text-align: left">
       <a-button type="primary">{{ t('actions.add') }}</a-button>
       <a-button type="default">{{ t('actions.edit') }}</a-button>
       <a-button type="danger">{{ t('actions.remove') }}</a-button>
@@ -28,6 +28,13 @@
         row-key="id"
         :columns="columns"
         :data-source="data">
+      <template v-slot:[`columns.index`]>{{ t('columns.index') }}</template>
+      <template v-slot:[`columns.type`]>{{ t('columns.type') }}</template>
+      <template v-slot:[`columns.id`]>{{ t('columns.id') }}</template>
+      <template v-slot:[`users.columns.username`]>{{ t('users.columns.username') }}</template>
+      <template v-slot:[`users.columns.nickname`]>{{ t('users.columns.nickname') }}</template>
+      <template v-slot:[`columns.status`]>{{ t('columns.status') }}</template>
+      <template v-slot:[`columns.action`]>{{ t('columns.action') }}</template>
       <template #index="{ index }">
         <span>{{ index + 1 }}</span>
       </template>
@@ -75,13 +82,13 @@ export default {
         }
       ],
       columns: [
-        {dataIndex: 'index', title: 'index', slots: {customRender: 'index'}},
-        {dataIndex: 'type', title: 'type', slots: {customRender: 'type'}},
-        {dataIndex: 'id', title: 'id', slots: {customRender: 'id'}},
-        {dataIndex: 'username', title: 'username', slots: {customRender: 'username'}},
-        {dataIndex: 'nickname', title: 'nickname', slots: {customRender: 'nickname'}},
-        {dataIndex: 'status', title: 'status', slots: {customRender: 'status'}},
-        {dataIndex: 'action', title: 'action', slots: {customRender: 'action'},},
+        {dataIndex: 'index', slots: {customRender: 'index', title: 'columns.index'}},
+        {dataIndex: 'type', slots: {customRender: 'columns.type'}},
+        {dataIndex: 'id', slots: {customRender: 'id', title: 'columns.id'}},
+        {dataIndex: 'username', slots: {customRender: 'username', title: 'users.columns.username'}},
+        {dataIndex: 'nickname', slots: {customRender: 'nickname', title: 'users.columns.nickname'}},
+        {dataIndex: 'status', slots: {customRender: 'status', title: 'columns.status'}},
+        {dataIndex: 'action', slots: {customRender: 'action', title: 'columns.action'}},
       ]
     };
   },

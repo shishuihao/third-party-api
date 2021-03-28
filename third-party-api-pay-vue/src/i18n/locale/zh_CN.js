@@ -17,6 +17,7 @@ export default {
         "type": "类型",
         "name": "名称",
         "status": "状态",
+        "action": "操作",
     },
     placeholders: {
         "please-enter": "请输入",

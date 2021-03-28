@@ -17,6 +17,7 @@ export default {
         "type": "Type",
         "name": "Name",
         "status": "Status",
+        "action": "Action",
     },
     placeholders: {
         "please-enter": "Please Enter ",

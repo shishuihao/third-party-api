@@ -23,6 +23,12 @@
         row-key="propertiesId"
         :columns="columns"
         :data-source="data">
+      <template v-slot:[`columns.index`]>{{ t('columns.index') }}</template>
+      <template v-slot:[`configurations.columns.channelId`]>{{ t('configurations.columns.channelId') }}</template>
+      <template v-slot:[`configurations.columns.propertiesId`]>{{ t('configurations.columns.propertiesId') }}</template>
+      <template v-slot:[`configurations.columns.properties`]>{{ t('configurations.columns.properties') }}</template>
+      <template v-slot:[`columns.status`]>{{ t('columns.status') }}</template>
+      <template v-slot:[`columns.action`]>{{ t('columns.action') }}</template>
       <template #index="{ index }">
         <span>{{ index + 1 }}</span>
       </template>
@@ -32,11 +38,11 @@
       <template #propertiesId="{ text }">
         <span>{{ text }}</span>
       </template>
-      <template #status="{ text }">
-        <span>{{ text }}</span>
-      </template>
       <template #properties="{ text }">
         <pay-api-properties :properties="text"/>
+      </template>
+      <template #status="{ text }">
+        <span>{{ text }}</span>
       </template>
       <template #action="{ record }">
         <a @click="handleEdit(record)">{{ t('actions.edit') }}</a>
@@ -93,12 +99,15 @@ export default {
         }
       ],
       columns: [
-        {dataIndex: 'index', title: 'index', slots: {customRender: 'index'}},
-        {dataIndex: 'channelId', title: 'channelId', slots: {customRender: 'channelId'}},
-        {dataIndex: 'propertiesId', title: 'propertiesId', slots: {customRender: 'propertiesId'}},
-        {dataIndex: 'status', title: 'status', slots: {customRender: 'status'}},
-        {dataIndex: 'properties', title: 'properties', slots: {customRender: 'properties'}},
-        {dataIndex: 'action', title: 'action', slots: {customRender: 'action'},},
+        {dataIndex: 'index', slots: {customRender: 'index', title: 'columns.index'}},
+        {dataIndex: 'channelId', slots: {customRender: 'channelId', title: 'configurations.columns.channelId'}},
+        {
+          dataIndex: 'propertiesId',
+          slots: {customRender: 'propertiesId', title: 'configurations.columns.propertiesId'}
+        },
+        {dataIndex: 'properties', slots: {customRender: 'properties', title: 'configurations.columns.properties'}},
+        {dataIndex: 'status', slots: {customRender: 'status', title: 'columns.status'}},
+        {dataIndex: 'action', slots: {customRender: 'action', title: 'columns.action'}},
       ]
     };
   },

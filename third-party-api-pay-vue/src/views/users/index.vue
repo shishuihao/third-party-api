@@ -35,24 +35,12 @@
       <template v-slot:[`users.columns.nickname`]>{{ t('users.columns.nickname') }}</template>
       <template v-slot:[`columns.status`]>{{ t('columns.status') }}</template>
       <template v-slot:[`columns.action`]>{{ t('columns.action') }}</template>
-      <template #index="{ index }">
-        <span>{{ index + 1 }}</span>
-      </template>
-      <template #type="{ text }">
-        <span>{{ text }}</span>
-      </template>
-      <template #id="{ text }">
-        <span>{{ text }}</span>
-      </template>
-      <template #username="{ text }">
-        <span>{{ text }}</span>
-      </template>
-      <template #nickname="{ text }">
-        <span>{{ text }}</span>
-      </template>
-      <template #status="{ text }">
-        <span>{{ text }}</span>
-      </template>
+      <template #index="{ index }">{{ index + 1 }}</template>
+      <template #type="{ text }">{{ text }}</template>
+      <template #id="{ text }">{{ text }}</template>
+      <template #username="{ text }">{{ text }}</template>
+      <template #nickname="{ text }">{{ text }}</template>
+      <template #status="{ text }">{{ t('statuses.' + text) }}</template>
       <template #action="{ record }">
         <a @click="handleEdit(record)">{{ t('actions.edit') }}</a>
         <a-divider type="vertical"/>
@@ -83,7 +71,7 @@ export default {
       ],
       columns: [
         {dataIndex: 'index', slots: {customRender: 'index', title: 'columns.index'}},
-        {dataIndex: 'type', slots: {customRender: 'columns.type'}},
+        {dataIndex: 'type', slots: {customRender: 'type', title: 'columns.type'}},
         {dataIndex: 'id', slots: {customRender: 'id', title: 'columns.id'}},
         {dataIndex: 'username', slots: {customRender: 'username', title: 'users.columns.username'}},
         {dataIndex: 'nickname', slots: {customRender: 'nickname', title: 'users.columns.nickname'}},

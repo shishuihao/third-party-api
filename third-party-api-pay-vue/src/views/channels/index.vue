@@ -28,18 +28,15 @@
       <template v-slot:[`columns.name`]>{{ t('columns.name') }}</template>
       <template v-slot:[`columns.status`]>{{ t('columns.status') }}</template>
       <template v-slot:[`columns.action`]>{{ t('columns.action') }}</template>
-      <template #index="{ index }">
-        <span>{{ index + 1 }}</span>
-      </template>
-      <template #id="{ text }">
-        <span>{{ text }}</span>
-      </template>
-      <template #name="{ text }">
-        <span>{{ text }}</span>
-      </template>
+      <template #index="{ index }">{{ index + 1 }}</template>
+      <template #id="{ text }">{{ text }}</template>
+      <template #name="{ text }">{{ text }}</template>
+      <template #status="{ text }">{{ t('statuses.' + text) }}</template>
       <template #action="{ record }">
-        <a>{{ record.name }}</a>
-      </template>
+        <a @click="handleEdit(record)">{{ t('actions.edit') }}</a>
+        <a-divider type="vertical"/>
+        <a @click="handleRemove(record.id)">{{ t('actions.remove') }}
+        </a></template>
     </a-table>
   </div>
 </template>
@@ -56,19 +53,30 @@ export default {
         {
           id: 'pay.alipay',
           name: '支付宝',
+          status: 'ENABLED',
         },
         {
           id: 'pay.weixin',
           name: '微信',
+          status: 'ENABLED',
         },
       ],
       columns: [
-        {dataIndex: 'index', slots: {customRender: 'index', title: 'columns.index'}},
+        {dataIndex: 'index', fixed: 'left', slots: {customRender: 'index', title: 'columns.index'}},
         {dataIndex: 'id', slots: {customRender: 'id', title: 'columns.id'}},
         {dataIndex: 'name', slots: {customRender: 'name', title: 'columns.name'}},
-        {dataIndex: 'action', slots: {customRender: 'action', title: 'columns.action'}},
+        {dataIndex: 'status', fixed: 'right', slots: {customRender: 'status', title: 'columns.status'}},
+        {dataIndex: 'action', fixed: 'right', slots: {customRender: 'action', title: 'columns.action'}},
       ]
     };
+  },
+  methods: {
+    handleEdit(record) {
+      console.log(record)
+    },
+    handleRemove(id) {
+      console.log(id)
+    },
   },
   setup() {
     const {t} = useI18n();

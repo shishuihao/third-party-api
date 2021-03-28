@@ -19,6 +19,10 @@ export default {
         "status": "Status",
         "action": "Action",
     },
+    statuses: {
+        "ENABLED": "Enabled",
+        "DISABLED": "Disabled",
+    },
     placeholders: {
         "please-enter": "Please Enter ",
     },

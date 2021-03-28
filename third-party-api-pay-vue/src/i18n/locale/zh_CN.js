@@ -19,6 +19,10 @@ export default {
         "status": "状态",
         "action": "操作",
     },
+    statuses: {
+        "ENABLED": "启用",
+        "DISABLED": "禁用",
+    },
     placeholders: {
         "please-enter": "请输入",
     },

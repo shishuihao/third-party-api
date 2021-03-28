@@ -36,7 +36,7 @@
       <template v-slot:[`columns.status`]>{{ t('columns.status') }}</template>
       <template v-slot:[`columns.action`]>{{ t('columns.action') }}</template>
       <template #index="{ index }">{{ index + 1 }}</template>
-      <template #type="{ text }">{{ text }}</template>
+      <template #type="{ text }">{{ t('users.types.' + text) }}</template>
       <template #id="{ text }">{{ text }}</template>
       <template #username="{ text }">{{ text }}</template>
       <template #nickname="{ text }">{{ text }}</template>
@@ -64,9 +64,16 @@ export default {
         {
           type: 'admin',
           id: '2021000117624946',
-          username: 'admin',
-          nickname: 'admin',
+          username: 'admin001',
+          nickname: 'admin001',
           status: 'ENABLED',
+        },
+        {
+          type: 'user',
+          id: '2021000117624947',
+          username: 'user001',
+          nickname: 'user001',
+          status: 'DISABLED',
         }
       ],
       columns: [

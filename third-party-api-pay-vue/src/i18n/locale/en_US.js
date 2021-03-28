@@ -93,7 +93,11 @@ export default {
         },
         actions: {
             "change-password": "Change Password",
-        }
+        },
+        types: {
+            "admin": "Admin",
+            "user": "User",
+        },
     },
     about: {
         title: "About",

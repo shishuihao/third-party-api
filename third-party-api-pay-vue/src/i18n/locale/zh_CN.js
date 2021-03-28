@@ -93,7 +93,11 @@ export default {
         },
         actions: {
             "change-password": "修改密码",
-        }
+        },
+        types: {
+            "admin": "管理员",
+            "user": "用户",
+        },
     },
     about: {
         title: "关于",

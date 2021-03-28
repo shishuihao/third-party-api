@@ -31,7 +31,7 @@
       <template v-slot:[`columns.status`]>{{ t('columns.status') }}</template>
       <template v-slot:[`columns.action`]>{{ t('columns.action') }}</template>
       <template #index="{ index }">{{ index + 1 }}</template>
-      <template #channelId="{ text }">{{ text }}</template>
+      <template #channelId="{ text }">{{ t('properties.' + text + ".name") }}</template>
       <template #propertiesId="{ text }">{{ text }}</template>
       <template #properties="{ text }">
         <pay-api-properties :properties="text"/>
@@ -94,7 +94,7 @@ export default {
       columns: [
         {dataIndex: 'index', fixed: 'left', slots: {customRender: 'index', title: 'columns.index'}},
         {
-          dataIndex: 'channelId',
+          dataIndex: 'channelId', width: 110,
           slots: {customRender: 'channelId', title: 'configurations.columns.channelId'}
         },
         {

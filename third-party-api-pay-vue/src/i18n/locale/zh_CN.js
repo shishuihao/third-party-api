@@ -27,43 +27,50 @@ export default {
         "please-enter": "请输入",
     },
     properties: {
-        alipay: {
-            "name": "支付宝",
-            "protocol": "通信协议",
-            "gatewayHost": "网关域名",
-            "appId": "应用Id",
-            "signType": "签名类型",
-            "alipayPublicKey": "支付宝公钥",
-            "merchantPrivateKey": "应用私钥",
-            "merchantCertPath": "应用公钥证书文件路径",
-            "alipayCertPath": "支付宝公钥证书文件路径",
-            "alipayRootCertPath": "支付宝根证书文件路径",
-            "notifyUrl": "异步通知回调地址（可选）",
-            "encryptKey": "AES密钥（可选）",
-            "signProvider": "签名提供方的名称(可选)",
-            "httpProxy": "代理地址（可选）",
-            "ignoreSsl": "忽略证书校验（可选）",
+        pay: {
+            alipay: {
+                "name": "支付宝",
+                "protocol": "通信协议",
+                "gatewayHost": "网关域名",
+                "appId": "应用Id",
+                "signType": "签名类型",
+                "alipayPublicKey": "支付宝公钥",
+                "merchantPrivateKey": "应用私钥",
+                "merchantCertPath": "应用公钥证书文件路径",
+                "alipayCertPath": "支付宝公钥证书文件路径",
+                "alipayRootCertPath": "支付宝根证书文件路径",
+                "notifyUrl": "异步通知回调地址（可选）",
+                "encryptKey": "AES密钥（可选）",
+                "signProvider": "签名提供方的名称(可选)",
+                "httpProxy": "代理地址（可选）",
+                "ignoreSsl": "忽略证书校验（可选）",
+            },
+            icbc: {
+                "name": "中国工商银行",
+                "appId": "应用Id",
+                "privateKey": "应用私钥",
+                "signType": "签名类型",
+                "charset": "字符集",
+                "format": "请求参数格式",
+                "icbcPublicKey": "网关公钥",
+                "encryptType": "加密类型",
+                "encryptKey": "加密密钥",
+                "ca": "[CA]证书公钥",
+                "password": "[CA]证书密码",
+                "emSignIp": "[EM]签名IP",
+                "emSignPort": "[EM]签名端口",
+                "emProduct": "[EM]产品",
+            }
         },
-        icbc: {
-            "name": "中国工商银行",
-            "appId": "应用Id",
-            "privateKey": "应用私钥",
-            "signType": "签名类型",
-            "charset": "字符集",
-            "format": "请求参数格式",
-            "icbcPublicKey": "网关公钥",
-            "encryptType": "加密类型",
-            "encryptKey": "加密密钥",
-            "ca": "[CA]证书公钥",
-            "password": "[CA]证书密码",
-            "emSignIp": "[EM]签名IP",
-            "emSignPort": "[EM]签名端口",
-            "emProduct": "[EM]产品",
-        }
     },
     channels: {
         title: "渠道",
-        columns: {},
+        columns: {
+
+        },
+        types: {
+
+        }
     },
     clearings: {
         title: "清账",

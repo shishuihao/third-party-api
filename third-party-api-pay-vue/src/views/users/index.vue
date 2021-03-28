@@ -77,13 +77,13 @@ export default {
         }
       ],
       columns: [
-        {dataIndex: 'index', slots: {customRender: 'index', title: 'columns.index'}},
+        {dataIndex: 'index', fixed: 'left', slots: {customRender: 'index', title: 'columns.index'}},
         {dataIndex: 'type', slots: {customRender: 'type', title: 'columns.type'}},
         {dataIndex: 'id', slots: {customRender: 'id', title: 'columns.id'}},
         {dataIndex: 'username', slots: {customRender: 'username', title: 'users.columns.username'}},
         {dataIndex: 'nickname', slots: {customRender: 'nickname', title: 'users.columns.nickname'}},
-        {dataIndex: 'status', slots: {customRender: 'status', title: 'columns.status'}},
-        {dataIndex: 'action', slots: {customRender: 'action', title: 'columns.action'}},
+        {dataIndex: 'status', fixed: 'right', slots: {customRender: 'status', title: 'columns.status'}},
+        {dataIndex: 'action', fixed: 'right', slots: {customRender: 'action', title: 'columns.action'}},
       ]
     };
   },

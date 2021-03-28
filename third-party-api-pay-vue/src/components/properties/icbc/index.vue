@@ -1,44 +1,44 @@
 <template>
   <div>
     <a-card>
-      <a-descriptions :title="t('properties.icbc.name') + t('configurations.columns.properties')">
-        <a-descriptions-item :label="t('properties.icbc.appId')">
+      <a-descriptions :title="t('properties.' + properties.channelId + '.name') + t('configurations.columns.properties')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.appId')">
           {{ properties.appId }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.privateKey')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.privateKey')">
           {{ properties.privateKey }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.signType')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.signType')">
           {{ properties.signType }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.charset')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.charset')">
           {{ properties.charset }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.format')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.format')">
           {{ properties.format }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.icbcPublicKey')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.icbcPublicKey')">
           {{ properties.icbcPublicKey }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.encryptKey')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.encryptKey')">
           {{ properties.encryptKey }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.encryptType')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.encryptType')">
           {{ properties.encryptType }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.ca')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.ca')">
           {{ properties.ca }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.password')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.password')">
           {{ properties.password }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.emSignIp')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.emSignIp')">
           {{ properties.emSignIp }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.emSignPort')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.emSignPort')">
           {{ properties.emSignPort }}
         </a-descriptions-item>
-        <a-descriptions-item :label="t('properties.icbc.emProduct')">
+        <a-descriptions-item :label="t('properties.' + properties.channelId + '.emProduct')">
           {{ properties.emProduct }}
         </a-descriptions-item>
       </a-descriptions>

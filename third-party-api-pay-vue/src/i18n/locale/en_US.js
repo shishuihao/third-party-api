@@ -19,7 +19,7 @@ export default {
         "status": "Status",
     },
     placeholders: {
-        "please-enter": "Please enter ",
+        "please-enter": "Please Enter ",
     },
     properties: {
         alipay: {
@@ -50,6 +50,8 @@ export default {
     configurations: {
         title: "Configuration",
         columns: {
+            "channelId": "Channel ID",
+            "propertiesId": "Properties ID",
             "properties": "Properties",
         },
     },

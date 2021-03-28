@@ -50,6 +50,8 @@ export default {
     configurations: {
         title: "配置",
         columns: {
+            "channelId": "渠道标识",
+            "propertiesId": "属性标识",
             "properties": "属性",
         },
     },

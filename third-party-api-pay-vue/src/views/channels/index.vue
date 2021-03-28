@@ -1,6 +1,24 @@
 <template>
   <div>
-    <!-- content table -->
+    <!-- search -->
+    <a-input-group  style="text-align: left">
+      <a-input style="width: 15%" :value="query.id"
+               :placeholder="t('placeholders.please-enter') + t('columns.id')"/>
+      <a-input style="width: 15%" :value="query.name"
+               :placeholder="t('placeholders.please-enter') + t('columns.name')"/>
+      <a-input style="width: 15%" :value="query.status"
+               :placeholder="t('placeholders.please-enter') + t('columns.status')"/>
+      <a-button type="primary">{{ t('actions.search') }}</a-button>
+      <a-button type="default">{{ t('actions.reset') }}</a-button>
+    </a-input-group>
+    <!-- action -->
+    <a-input-group  style="text-align: left">
+      <a-button type="primary">{{ t('actions.add') }}</a-button>
+      <a-button type="default">{{ t('actions.edit') }}</a-button>
+      <a-button type="danger">{{ t('actions.remove') }}</a-button>
+      <a-button type="dashed">{{ t('actions.export') }}</a-button>
+    </a-input-group>
+    <!-- content -->
     <a-table
         row-key="id"
         :columns="columns"
@@ -28,6 +46,7 @@ export default {
   name: "Channels",
   data() {
     return {
+      query: {},
       data: [
         {
           id: 'pay.alipay',

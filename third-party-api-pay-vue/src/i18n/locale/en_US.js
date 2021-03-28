@@ -5,6 +5,9 @@ export default {
         "remove": "Remove",
         "import": "Import",
         "export": "Export",
+        "refresh": "Refresh",
+        "reset": "Reset",
+        "search": "Search",
     },
     columns: {
         "index": "Index",

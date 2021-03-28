@@ -2,17 +2,26 @@
   <div>
     <!-- search -->
     <div>
-      <a-input-group compact>
-        <a-input style="width: 20%" :value="query.type"
+      <a-input-group>
+        <a-input style="width: 16%" :value="query.type"
                  :placeholder="t('placeholders.please-enter') + t('columns.type')"/>
-        <a-input style="width: 20%" :value="query.id"
+        <a-input style="width: 16%" :value="query.id"
                  :placeholder="t('placeholders.please-enter') + t('columns.id')"/>
-        <a-input style="width: 20%" :value="query.username"
+        <a-input style="width: 16%" :value="query.username"
                  :placeholder="t('placeholders.please-enter') + t('users.columns.username')"/>
-        <a-input style="width: 20%" :value="query.nickname"
+        <a-input style="width: 16%" :value="query.nickname"
                  :placeholder="t('placeholders.please-enter') + t('users.columns.nickname')"/>
-        <a-input style="width: 20%" :value="query.status"
+        <a-input style="width: 16%" :value="query.status"
                  :placeholder="t('placeholders.please-enter') + t('columns.status')"/>
+        <a-button type="primary">{{ t('actions.search') }}</a-button>
+        <a-button type="default">{{ t('actions.reset') }}</a-button>
+      </a-input-group>
+      <a-input-group>
+        <a-button type="primary">{{ t('actions.add') }}</a-button>
+        <a-button type="default">{{ t('actions.edit') }}</a-button>
+        <a-button type="danger">{{ t('actions.remove') }}</a-button>
+        <a-button type="default">{{ t('actions.import') }}</a-button>
+        <a-button type="dashed">{{ t('actions.export') }}</a-button>
       </a-input-group>
     </div>
     <!-- content table -->

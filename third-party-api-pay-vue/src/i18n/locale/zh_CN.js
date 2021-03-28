@@ -5,6 +5,9 @@ export default {
         "remove": "移除",
         "import": "导入",
         "export": "导出",
+        "refresh": "刷新",
+        "reset": "重置",
+        "search": "搜索",
     },
     columns: {
         "index": "序号",

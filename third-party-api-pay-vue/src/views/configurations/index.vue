@@ -48,15 +48,29 @@
 
 <script>
 import {useI18n} from "vue-i18n";
+import {defineComponent} from "vue";
 import PayApiProperties from "@/components/properties/index"
 
-export default {
+export default defineComponent({
   name: "Configurations",
   components: {
     PayApiProperties
   },
-  data() {
+  setup() {
+    const {t} = useI18n();
+
+    const handleEdit = (record) => {
+      console.log(record);
+    };
+
+    const handleRemove = (id) => {
+      console.log(id);
+    };
+
     return {
+      t,
+      handleEdit,
+      handleRemove,
       query: {},
       data: [
         {
@@ -105,24 +119,9 @@ export default {
         {dataIndex: 'status', fixed: 'right', slots: {customRender: 'status', title: 'columns.status'}},
         {dataIndex: 'action', fixed: 'right', slots: {customRender: 'action', title: 'columns.action'}},
       ]
-    };
-  },
-  methods: {
-    handleEdit(record) {
-      console.log(record)
-    },
-    handleRemove(id) {
-      console.log(id)
-    },
-  },
-  setup() {
-    const {t} = useI18n();
-
-    return {
-      t
     }
   }
-};
+});
 </script>
 
 <style scoped>

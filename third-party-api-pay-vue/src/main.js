@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 import i18n from './i18n';
 import {
-    Button,
+    Badge,
+    Button, Calendar,
     Card,
     DatePicker,
     Descriptions,
@@ -23,7 +24,9 @@ app.use(store);
 app.use(i18n)
 // ant-design-vue
 app.config.productionTip = false;
+app.use(Badge);
 app.use(Button);
+app.use(Calendar);
 app.use(Card);
 app.use(Descriptions);
 app.use(Divider);

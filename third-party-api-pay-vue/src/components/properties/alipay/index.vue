@@ -50,9 +50,10 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import {useI18n} from "vue-i18n";
 
-export default {
+export default defineComponent({
   props: ['properties'],
   setup() {
     const {t} = useI18n();
@@ -61,7 +62,7 @@ export default {
       t
     }
   }
-}
+})
 </script>
 
 <style scoped>

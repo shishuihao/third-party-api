@@ -1,8 +1,8 @@
 <template>
   <a-dropdown>
     <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-      {{languageLabels[locale]}}
-      <a-icon type="down" />
+      {{ languageLabels[locale] }}
+      <DownOutlined/>
     </a>
     <template #overlay>
       <a-menu class="menu" @click="switchLanguage" :selectedKeys="[locale]">
@@ -18,26 +18,40 @@
 </template>
 
 <script>
-import { useI18n } from "vue-i18n";
+import {defineComponent} from "vue";
+import {useI18n} from "vue-i18n";
 import {setI18nLanguage} from "@/i18n";
+import moment from 'moment'
+import 'moment/locale/zh-cn'
+import {DownOutlined} from "@ant-design/icons-vue";
 
-export default {
+moment.locale('zh_CN')
+
+export default defineComponent({
+  components: {DownOutlined},
   setup() {
-    const { locale }  = useI18n();
+    const {locale} = useI18n();
+
     const locales = [
-      'zh-CN',
-      'en-US'
+      'zh_CN',
+      'en_US'
     ];
+
     const languageLabels = {
-      'zh-CN': '简体中文',
-      'en-US': 'English',
+      'zh_CN': '简体中文',
+      'en_US': 'English',
     };
+
     const languageIcons = {
-      'zh-CN': '🇨🇳',
-      'en-US': '🇺🇸',
+      'zh_CN': '🇨🇳',
+      'en_US': '🇺🇸',
     };
+
     // 切换语言
-    const switchLanguage = ({key}) => setI18nLanguage(key);
+    const switchLanguage = ({key}) => {
+      setI18nLanguage(key);
+      moment.locale(key);
+    };
 
     return {
       locales,
@@ -47,7 +61,7 @@ export default {
       locale: locale
     }
   }
-}
+});
 </script>
 
 <style scoped>

@@ -10,16 +10,17 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import AlipayPayApiProperties from "./alipay/index"
 import IcbcPayApiProperties from "./icbc/index"
 
-export default {
+export default defineComponent({
   props: ['properties'],
   components: {
     AlipayPayApiProperties,
     IcbcPayApiProperties
   }
-}
+});
 </script>
 
 <style scoped>

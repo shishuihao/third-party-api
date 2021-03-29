@@ -6,6 +6,7 @@
         :columns="columns"
         :data-source="data"
         :scroll="{ x: 1800 }"
+        :pagination="pagination"
     >
       <template v-slot:[`columns.index`]>{{ t('columns.index') }}</template>
       <template v-slot:[`transactions.columns.userId`]>{{ t('transactions.columns.userId') }}</template>
@@ -68,6 +69,9 @@ export default defineComponent({
       t,
       handleEdit,
       handleRemove,
+      pagination:{
+        showSizeChanger: true,
+      },
       query: {},
       data: [
         {

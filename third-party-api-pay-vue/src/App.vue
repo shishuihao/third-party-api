@@ -1,26 +1,33 @@
 <template>
-  <ConfigProvider :locale="zh_CN">
+  <a-config-provider :locale="locales[locale]">
     <div id="app">
       <router-view/>
     </div>
-  </ConfigProvider>
+  </a-config-provider>
 </template>
 
 <script>
-import {ConfigProvider} from 'ant-design-vue'
-import zh_CN from 'ant-design-vue/es/locale-provider/zh_CN'
+import {defineComponent} from "vue";
+import enUS from 'ant-design-vue/es/locale/en_US';
+import zhCN from 'ant-design-vue/es/locale/zh_CN';
+import {useI18n} from "vue-i18n";
 
-export default {
+export default defineComponent({
   name: 'App',
-  components: {
-    ConfigProvider
-  },
-  data() {
+  setup() {
+    const {locale} = useI18n();
+
+    const locales = {
+      'zh_CN': zhCN,
+      'en_US': enUS,
+    };
+
     return {
-      zh_CN,
+      locale,
+      locales
     }
   }
-}
+});
 </script>
 
 <style>

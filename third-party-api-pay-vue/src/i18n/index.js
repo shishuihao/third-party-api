@@ -6,18 +6,18 @@ import en_US from "./locale/en_US";
 export const localeKey = 'locale';
 
 // 默认语言
-export const defaultLang = 'zh-CN';
+export const defaultLang = 'zh_CN';
 
 export const getLocale = () => {
     const lang = typeof window.localStorage !== 'undefined' ? window.localStorage.getItem(localeKey) : '';
     const isNavigatorLanguageValid = typeof navigator !== 'undefined' && typeof navigator.language === 'string';
-    const browserLang = isNavigatorLanguageValid ? navigator.language.split('-').join('-') : '';
+    const browserLang = isNavigatorLanguageValid ? navigator.language.split('_').join('_') : '';
     return lang || browserLang || defaultLang;
 };
 
 export const messages = {
-    'zh-CN': zh_CN,
-    'en-US': en_US
+    'zh_CN': zh_CN,
+    'en_US': en_US
 };
 
 const i18n = createI18n({
@@ -43,7 +43,7 @@ export const setHtmlLang = (lang) => {
  * @returns boolean
  */
 export const localeNameExp = (lang) => {
-    const localeExp = new RegExp(`^([a-z]{2})-?([A-Z]{2})?$`);
+    const localeExp = new RegExp(`^([a-z]{2})_?([A-Z]{2})?$`);
     return localeExp.test(lang);
 }
 

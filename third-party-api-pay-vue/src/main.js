@@ -8,6 +8,7 @@ import {
     Button,
     Calendar,
     Card,
+    ConfigProvider,
     DatePicker,
     Descriptions,
     Divider,
@@ -31,6 +32,7 @@ app.use(Badge);
 app.use(Button);
 app.use(Calendar);
 app.use(Card);
+app.use(ConfigProvider);
 app.use(Descriptions);
 app.use(Divider);
 app.use(Dropdown);
@@ -39,11 +41,11 @@ app.use(DatePicker);
 app.use(Layout);
 app.use(Menu);
 app.use(Table);
-app.config.globalProperties.$message = message
 // 注册组件
 Object.keys(antIcons).forEach(key => {
     app.component(key, antIcons[key])
 })
-// 添加到全局
+//app.config.globalProperties.$i18n = i18n
+app.config.globalProperties.$message = message
 app.config.globalProperties.$antIcons = antIcons
 app.mount('#app');

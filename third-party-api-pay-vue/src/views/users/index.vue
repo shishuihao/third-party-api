@@ -54,11 +54,30 @@
 
 <script>
 import {useI18n} from "vue-i18n";
+import {defineComponent} from "vue";
 
-export default {
+export default defineComponent({
   name: "Users",
-  data() {
+  setup() {
+    const {t} = useI18n();
+
+    const handleEdit = (record) => {
+      console.log(record);
+    };
+
+    const handleRemove = (id) => {
+      console.log(id);
+    };
+
+    const handleChangePassword = (record) => {
+      console.log(record);
+    };
+
     return {
+      t,
+      handleEdit,
+      handleRemove,
+      handleChangePassword,
       query: {},
       data: [
         {
@@ -85,27 +104,9 @@ export default {
         {dataIndex: 'status', fixed: 'right', slots: {customRender: 'status', title: 'columns.status'}},
         {dataIndex: 'action', fixed: 'right', slots: {customRender: 'action', title: 'columns.action'}},
       ]
-    };
-  },
-  methods: {
-    handleEdit(record) {
-      console.log(record)
-    },
-    handleRemove(id) {
-      console.log(id)
-    },
-    handleChangePassword(record) {
-      console.log(record)
-    }
-  },
-  setup() {
-    const {t} = useI18n();
-
-    return {
-      t
     }
   }
-}
+});
 </script>
 
 <style scoped>

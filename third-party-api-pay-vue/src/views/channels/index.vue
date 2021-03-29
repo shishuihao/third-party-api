@@ -53,6 +53,7 @@ export default defineComponent({
     const handleEdit = (record) => {
       console.log(record);
     };
+
     const handleRemove = (id) => {
       console.log(id);
     };

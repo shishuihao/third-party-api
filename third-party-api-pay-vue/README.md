@@ -22,3 +22,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+See [ant design vue 2.x](https://2x.antdv.com/components/icon-cn).

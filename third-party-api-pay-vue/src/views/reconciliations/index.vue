@@ -20,11 +20,14 @@
 </template>
 
 <script>
-import {defineComponent, ref} from 'vue';
+import {defineComponent, ref} from "vue";
+import {useI18n} from "vue-i18n";
 
 export default defineComponent({
   name: "Reconciliations",
   setup() {
+    const {t} = useI18n();
+
     const value = ref();
 
     const getDateData = (current) => {
@@ -64,6 +67,7 @@ export default defineComponent({
     };
 
     return {
+      t,
       value,
       getListData: getDateData,
       getMonthData,

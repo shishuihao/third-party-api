@@ -3,9 +3,19 @@
 </template>
 
 <script>
-export default {
-  name: "Clearings"
-}
+import {defineComponent} from "vue";
+import {useI18n} from "vue-i18n";
+
+export default defineComponent({
+  name: "Clearings",
+  setup() {
+    const {t} = useI18n();
+
+    return {
+      t
+    }
+  }
+});
 </script>
 
 <style scoped>

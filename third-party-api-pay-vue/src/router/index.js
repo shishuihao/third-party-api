@@ -5,7 +5,7 @@ const menus = [
   {
     path: '/transactions',
     meta: {
-      icon: 'transaction',
+      icon: 'TransactionOutlined',
       title: "transactions.title",
     },
     component: () => import(/* webpackChunkName: "transactions" */ '../views/transactions')
@@ -13,7 +13,7 @@ const menus = [
   {
     path: '/reconciliations',
     meta: {
-      icon: 'reconciliation',
+      icon: 'ReconciliationOutlined',
       title: "reconciliations.title",
     },
     component: () => import(/* webpackChunkName: "reconciliations" */ '../views/reconciliations')
@@ -21,7 +21,7 @@ const menus = [
   {
     path: '/clearings',
     meta: {
-      icon: 'account-book',
+      icon: 'AccountBookOutlined',
       title: "clearings.title",
     },
     component: () => import(/* webpackChunkName: "clearings" */ '../views/clearings')
@@ -29,7 +29,7 @@ const menus = [
   {
     path: '/reports',
     meta: {
-      icon: 'table',
+      icon: 'BarChartOutlined',
       title: "reports.title",
     },
     component: () => import(/* webpackChunkName: "reports" */ '../views/reports/index')
@@ -37,7 +37,7 @@ const menus = [
   {
     path: '/users',
     meta: {
-      icon: 'user',
+      icon: 'UserOutlined',
       title: "users.title",
     },
     component: () => import(/* webpackChunkName: "users" */ '../views/users')
@@ -45,7 +45,7 @@ const menus = [
   {
     path: '/channels',
     meta: {
-      icon: 'gateway',
+      icon: 'DeploymentUnitOutlined',
       title: "channels.title",
     },
     component: () => import(/* webpackChunkName: "channels" */ '../views/channels/index')
@@ -53,7 +53,7 @@ const menus = [
   {
     path: '/configurations',
     meta: {
-      icon: 'profile',
+      icon: 'ProfileOutlined',
       title: "configurations.title",
     },
     component: () => import(/* webpackChunkName: "configurations" */ '../views/configurations')

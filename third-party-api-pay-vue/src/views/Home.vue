@@ -17,18 +17,18 @@
               <template v-if="item.children && item.children.length > 0">
                 <a-sub-menu :key="item.path">
                   <template #title>
-                    <a-icon :type="item.meta.icon"/>
+                    <component :is="$antIcons[item.meta.icon]"/>
                     <span>{{ t(item.meta.title) }}</span>
                   </template>
                   <a-menu-item v-for="(subItem) in item.children" :key="subItem.path">
-                    <a-icon :type="subItem.meta.icon"/>
+                    component :is="$antIcons[item.meta.icon]" />
                     <span>{{ t(subItem.meta.title) }}</span>
                   </a-menu-item>
                 </a-sub-menu>
               </template>
               <template v-else>
                 <a-menu-item :key="item.path">
-                  <a-icon :type="item.meta.icon"/>
+                  <component :is="$antIcons[item.meta.icon]"/>
                   <span>{{ t(item.meta.title) }}</span>
                 </a-menu-item>
               </template>
@@ -47,34 +47,33 @@
 </template>
 
 <script>
-
-import router from "@/router";
+import {defineComponent} from "vue";
 import {useI18n} from "vue-i18n";
+import {useRouter} from 'vue-router'
 import SwitchLanguage from "@/components/switch-language";
 
-export default {
+export default defineComponent({
   name: 'Home',
-  components: {SwitchLanguage},
-  data() {
-    return {
-      menus: router.options.routes.filter(item => '/' === item.path)[0].children,
-      current: ['/transactions'],
-    };
-  },
-  methods: {
-    handleClickMenu(e) {
-      console.log('handleClickMenu:' + e.key)
-      this.$router.push(e.key)
-    },
+  components: {
+    SwitchLanguage
   },
   setup() {
     const {t} = useI18n();
 
+    const router = useRouter()
+
+    const handleClickMenu = (e) => {
+      router.push(e.key);
+    }
+
     return {
-      t
+      t,
+      handleClickMenu,
+      menus: router.options.routes.filter(item => '/' === item.path)[0].children,
+      current: ['/transactions']
     }
   }
-}
+});
 </script>
 
 <style scoped>

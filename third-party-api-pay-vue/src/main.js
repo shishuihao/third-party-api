@@ -5,7 +5,8 @@ import store from './store'
 import i18n from './i18n';
 import {
     Badge,
-    Button, Calendar,
+    Button,
+    Calendar,
     Card,
     DatePicker,
     Descriptions,
@@ -15,8 +16,11 @@ import {
     Input,
     Layout,
     Menu,
+    message,
     Table
 } from 'ant-design-vue';
+import * as antIcons from '@ant-design/icons-vue'
+import 'ant-design-vue/dist/antd.css'
 
 const app = createApp(App);
 app.use(router);
@@ -37,5 +41,11 @@ app.use(DatePicker);
 app.use(Layout);
 app.use(Menu);
 app.use(Table);
-//app.prototype.$message = message;
+app.config.globalProperties.$message = message
+// 注册组件
+Object.keys(antIcons).forEach(key => {
+    app.component(key, antIcons[key])
+})
+// 添加到全局
+app.config.globalProperties.$antIcons = antIcons
 app.mount('#app');

@@ -8,15 +8,33 @@
                :placeholder="t('placeholders.please-enter') + t('configurations.columns.propertiesId')"/>
       <a-input style="width: 15%" :value="query.status"
                :placeholder="t('placeholders.please-enter') + t('columns.status')"/>
-      <a-button type="primary">{{ t('actions.search') }}</a-button>
-      <a-button type="default">{{ t('actions.reset') }}</a-button>
+      <a-button type="primary">
+        <SearchOutlined/>
+        {{ t('actions.search') }}
+      </a-button>
+      <a-button type="default">
+        <ReloadOutlined/>
+        {{ t('actions.reset') }}
+      </a-button>
     </a-input-group>
     <!-- action -->
     <a-input-group style="text-align: left">
-      <a-button type="primary">{{ t('actions.add') }}</a-button>
-      <a-button type="default">{{ t('actions.edit') }}</a-button>
-      <a-button type="danger">{{ t('actions.remove') }}</a-button>
-      <a-button type="dashed">{{ t('actions.export') }}</a-button>
+      <a-button type="primary">
+        <PlusOutlined/>
+        {{ t('actions.add') }}
+      </a-button>
+      <a-button type="default">
+        <EditOutlined/>
+        {{ t('actions.edit') }}
+      </a-button>
+      <a-button type="danger">
+        <DeleteOutlined/>
+        {{ t('actions.remove') }}
+      </a-button>
+      <a-button type="dashed">
+        <ExportOutlined/>
+        {{ t('actions.export') }}
+      </a-button>
     </a-input-group>
     <!-- content -->
     <a-table
@@ -38,23 +56,41 @@
       </template>
       <template #status="{ text }">{{ t('statuses.' + text) }}</template>
       <template #action="{ record }">
-        <a @click="handleEdit(record)">{{ t('actions.edit') }}</a>
+        <a @click="handleEdit(record)">
+          <EditOutlined/>
+          {{ t('actions.edit') }}</a>
         <a-divider type="vertical"/>
-        <a @click="handleRemove(record.id)">{{ t('actions.remove') }}</a>
+        <a @click="handleRemove(record.id)">
+          <DeleteOutlined/>
+          {{ t('actions.remove') }}</a>
       </template>
     </a-table>
   </div>
 </template>
 
 <script>
-import {useI18n} from "vue-i18n";
 import {defineComponent} from "vue";
+import {useI18n} from "vue-i18n";
 import PayApiProperties from "@/components/properties/index"
+import {
+  DeleteOutlined,
+  EditOutlined,
+  ExportOutlined,
+  PlusOutlined,
+  ReloadOutlined,
+  SearchOutlined
+} from "@ant-design/icons-vue";
 
 export default defineComponent({
   name: "Configurations",
   components: {
-    PayApiProperties
+    PayApiProperties,
+    SearchOutlined,
+    ReloadOutlined,
+    PlusOutlined,
+    EditOutlined,
+    DeleteOutlined,
+    ExportOutlined
   },
   setup() {
     const {t} = useI18n();

@@ -11,6 +11,7 @@
         <a-layout-sider class="ant-layout-sider">
           <a-menu v-model="current"
                   mode="vertical"
+
                   @click="handleClickMenu"
           >
             <template v-for="(item) in menus">
@@ -97,14 +98,15 @@ export default defineComponent({
   color: #2c3e50;
   line-height: 120px;
   width: 200px;
+  text-align: center;
 }
 
 .home .ant-layout-content {
   background: #fff;
+  color: #2c3e50;
   line-height: 120px;
   width: 200px;
   text-align: center;
-  color: #2c3e50;
 }
 
 .home > .ant-layout {

@@ -86,10 +86,39 @@ export default {
     },
     transactions: {
         title: "Transaction",
+        columns: {
+            "userId": "User ID",
+            "channelId": "Channel ID",
+            "tradeType": "Trade Type",
+            "propertiesId": "Properties ID",
+            "transactionId": "Transaction ID",
+            "outTradeNo": "Out Trade No",
+            "payerId": "Payer ID",
+            "currency": "Currency",
+            "totalAmount": "Total Amount",
+            "payCurrency": "Pay Currency",
+            "payTotalAmount": "Pay Total Amount",
+            "tradeStatus": "Trade Status",
+        },
+        tradeTypes: {
+            "APP": "APP Pay",
+            "CODE": "CODE Pay",
+            "FACE": "FACE Pay",
+            "H5": "H5 Pay",
+            "JSAPI": "JSAPI Pay",
+            "NATIVE": "NATIVE Pay",
+        },
+        currencies: {
+            "CNY": "CNY",
+        },
+        tradeStatuses: {
+            "TRADE_SUCCESS": "Trade Success",
+        },
     },
     users: {
         title: "User",
         columns: {
+            "userId": "User ID",
             "username": "Username",
             "nickname": "Nickname",
         },

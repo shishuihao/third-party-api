@@ -12,7 +12,6 @@ import {
     Descriptions,
     Divider,
     Dropdown,
-    Icon,
     Input,
     Layout,
     Menu,
@@ -35,7 +34,6 @@ app.use(Card);
 app.use(Descriptions);
 app.use(Divider);
 app.use(Dropdown);
-app.use(Icon);
 app.use(Input);
 app.use(DatePicker);
 app.use(Layout);

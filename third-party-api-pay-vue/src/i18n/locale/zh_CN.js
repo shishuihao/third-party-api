@@ -65,12 +65,8 @@ export default {
     },
     channels: {
         title: "渠道",
-        columns: {
-
-        },
-        types: {
-
-        }
+        columns: {},
+        types: {}
     },
     clearings: {
         title: "清账",
@@ -91,10 +87,39 @@ export default {
     },
     transactions: {
         title: "交易",
+        columns: {
+            "userId": "用户标识",
+            "channelId": "渠道标识",
+            "tradeType": "交易类型",
+            "propertiesId": "属性标识",
+            "transactionId": "交易标识",
+            "outTradeNo": "商户订单号",
+            "payerId": "付款人标识",
+            "currency": "货币",
+            "totalAmount": "总金额",
+            "payCurrency": "支付币种",
+            "payTotalAmount": "支付总金额",
+            "tradeStatus": "交易状态",
+        },
+        tradeTypes: {
+            "APP": "APP支付",
+            "CODE": "扫码支付",
+            "FACE": "刷脸支付",
+            "H5": "H5支付",
+            "JSAPI": "JSAPI支付",
+            "NATIVE": "NATIVE支付",
+        },
+        currencies: {
+            "CNY": "人民币",
+        },
+        tradeStatuses: {
+            "TRADE_SUCCESS": "交易成功",
+        },
     },
     users: {
         title: "用户",
         columns: {
+            "userId": "用户标识",
             "username": "用户名",
             "nickname": "昵称",
         },

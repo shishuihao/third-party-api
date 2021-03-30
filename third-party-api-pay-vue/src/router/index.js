@@ -48,7 +48,7 @@ const menus = [
       icon: 'AppstoreOutlined',
       title: "applications.title",
     },
-    component: () => import(/* webpackChunkName: "channels" */ '../views/applications/index')
+    component: () => import(/* webpackChunkName: "applications" */ '../views/applications/index')
   },
   {
     path: '/channels',
@@ -57,14 +57,6 @@ const menus = [
       title: "channels.title",
     },
     component: () => import(/* webpackChunkName: "channels" */ '../views/channels/index')
-  },
-  {
-    path: '/configurations',
-    meta: {
-      icon: 'ProfileOutlined',
-      title: "configurations.title",
-    },
-    component: () => import(/* webpackChunkName: "configurations" */ '../views/configurations')
   },
 ]
 

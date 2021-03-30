@@ -71,6 +71,8 @@ export default {
             "name": "App Name",
             "icon": "App Icon",
             "description": "App Description",
+            "propertiesList": "Properties List",
+            "table": "Table",
         },
     },
     channels: {

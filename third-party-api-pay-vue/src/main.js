@@ -7,7 +7,7 @@ import {
     Badge,
     Button,
     Calendar,
-    Card,
+    Card, Col,
     ConfigProvider,
     DatePicker,
     Descriptions,
@@ -16,8 +16,8 @@ import {
     Input,
     Layout,
     Menu,
-    message,
-    Table
+    message, Row,
+    Table, Tabs
 } from 'ant-design-vue';
 import * as antIcons from '@ant-design/icons-vue'
 import 'ant-design-vue/dist/antd.css'
@@ -32,6 +32,7 @@ app.use(Badge);
 app.use(Button);
 app.use(Calendar);
 app.use(Card);
+app.use(Col);
 app.use(ConfigProvider);
 app.use(Descriptions);
 app.use(Divider);
@@ -40,7 +41,9 @@ app.use(Input);
 app.use(DatePicker);
 app.use(Layout);
 app.use(Menu);
+app.use(Row);
 app.use(Table);
+app.use(Tabs);
 // 注册组件
 Object.keys(antIcons).forEach(key => {
     app.component(key, antIcons[key])

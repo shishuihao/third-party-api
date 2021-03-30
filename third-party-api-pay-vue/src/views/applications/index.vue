@@ -39,44 +39,53 @@
       </a-button>
     </a-input-group>
     <!-- content -->
-    <a-table
-        row-key="propertiesId"
-        :columns="columns"
-        :data-source="data"
-    >
-      <template v-slot:[`columns.index`]>{{ t('columns.index') }}</template>
-      <template v-slot:[`applications.columns.mchId`]>{{ t('applications.columns.mchId') }}</template>
-      <template v-slot:[`applications.columns.appId`]>{{ t('applications.columns.appId') }}</template>
-      <template v-slot:[`applications.columns.name`]>{{ t('applications.columns.name') }}</template>
-      <template v-slot:[`applications.columns.icon`]>{{ t('applications.columns.icon') }}</template>
-      <template v-slot:[`applications.columns.description`]>{{ t('applications.columns.description') }}</template>
-      <template v-slot:[`columns.status`]>{{ t('columns.status') }}</template>
-      <template v-slot:[`columns.action`]>{{ t('columns.action') }}</template>
-      <template #index="{ index }">{{ index + 1 }}</template>
-      <template #mchId="{ text }">{{ text }}</template>
-      <template #appId="{ text }">{{ text }}</template>
-      <template #name="{ text }">{{ text }}</template>
-      <template #icon="{ text }">{{ text }}</template>
-      <template #description="{ text }">{{ text }}</template>
-      <template #status="{ text }">{{ t('statuses.' + text) }}</template>
-      <template #action="{ record }">
-        <a @click="handleEdit(record)">
-          <EditOutlined/>
-          {{ t('actions.edit') }}
-        </a>
-        <a-divider type="vertical"/>
-        <a @click="handleRemove(record.id)">
-          <DeleteOutlined/>
-          {{ t('actions.remove') }}
-        </a>
-      </template>
-    </a-table>
+    <a-tabs>
+      <a-tab-pane key="table" :tab="t('applications.columns.table')">
+        <a-table
+            row-key="propertiesId"
+            :columns="columns"
+            :data-source="data"
+            :customRow="customRow"
+        >
+          <template v-slot:[`columns.index`]>{{ t('columns.index') }}</template>
+          <template v-slot:[`applications.columns.mchId`]>{{ t('applications.columns.mchId') }}</template>
+          <template v-slot:[`applications.columns.appId`]>{{ t('applications.columns.appId') }}</template>
+          <template v-slot:[`applications.columns.name`]>{{ t('applications.columns.name') }}</template>
+          <template v-slot:[`applications.columns.icon`]>{{ t('applications.columns.icon') }}</template>
+          <template v-slot:[`applications.columns.description`]>{{ t('applications.columns.description') }}</template>
+          <template v-slot:[`columns.status`]>{{ t('columns.status') }}</template>
+          <template v-slot:[`columns.action`]>{{ t('columns.action') }}</template>
+          <template #index="{ index }">{{ index + 1 }}</template>
+          <template #mchId="{ text }">{{ text }}</template>
+          <template #appId="{ text }">{{ text }}</template>
+          <template #name="{ text }">{{ text }}</template>
+          <template #icon="{ text }">{{ text }}</template>
+          <template #description="{ text }">{{ text }}</template>
+          <template #status="{ text }">{{ t('statuses.' + text) }}</template>
+          <template #action="{ record }">
+            <a @click="handleEdit(record)">
+              <EditOutlined/>
+              {{ t('actions.edit') }}
+            </a>
+            <a-divider type="vertical"/>
+            <a @click="handleRemove(record.id)">
+              <DeleteOutlined/>
+              {{ t('actions.remove') }}
+            </a>
+          </template>
+        </a-table>
+      </a-tab-pane>
+      <a-tab-pane key="propertiesTabs" :tab=" t('applications.columns.propertiesList') + '(' + application.name  + ')'">
+        <properties-tabs :properties-list="application.propertiesList"/>
+      </a-tab-pane>
+    </a-tabs>
   </div>
 </template>
 
 <script>
-import {defineComponent} from "vue";
+import {defineComponent, ref} from "vue";
 import {useI18n} from "vue-i18n";
+import PropertiesTabs from "@/components/properties-tabs"
 import {
   DeleteOutlined,
   EditOutlined,
@@ -89,6 +98,7 @@ import {
 export default defineComponent({
   name: "Applications",
   components: {
+    PropertiesTabs,
     SearchOutlined,
     ReloadOutlined,
     PlusOutlined,
@@ -99,6 +109,8 @@ export default defineComponent({
   setup() {
     const {t} = useI18n();
 
+    const application = ref([]);
+
     const handleEdit = (record) => {
       console.log(record);
     };
@@ -107,8 +119,18 @@ export default defineComponent({
       console.log(id);
     };
 
+    const customRow = (record) => {
+      return {
+        onClick: () => {
+          application.value = record;
+        },
+      };
+    }
+
     return {
       t,
+      application,
+      customRow,
       handleEdit,
       handleRemove,
       query: {},
@@ -120,6 +142,29 @@ export default defineComponent({
           icon: '/icons/d678efh567hg6787.png',
           description: '用来测试',
           status: 'ENABLED',
+          propertiesList: [
+            {
+              "channelId": "pay.alipay",
+              "protocol": "https",
+              "gatewayHost": "openapi.alipaydev.com",
+              "appId": "2021000117624946",
+              "signType": "RSA2",
+              "alipayPublicKey": "******",
+              "merchantPrivateKey": "******",
+              "ignoreSsl": false
+            },
+            {
+              "channelId": "pay.icbc",
+              "appId": "10000000000000004925",
+              "privateKey": "******",
+              "signType": "RSA",
+              "charset": "UTF-8",
+              "format": "json",
+              "icbcPublicKey": "******",
+              "encryptType": "AES",
+              "encryptKey": "******",
+            }
+          ]
         }
       ],
       columns: [

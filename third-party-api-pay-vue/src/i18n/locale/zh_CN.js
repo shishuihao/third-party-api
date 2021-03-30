@@ -71,6 +71,8 @@ export default {
             "name": "应用名称",
             "icon": "应用图标",
             "description": "应用简介",
+            "propertiesList": "属性列表",
+            "table": "表格",
         },
     },
     channels: {

@@ -58,11 +58,13 @@
       <template #action="{ record }">
         <a @click="handleEdit(record)">
           <EditOutlined/>
-          {{ t('actions.edit') }}</a>
+          {{ t('actions.edit') }}
+        </a>
         <a-divider type="vertical"/>
         <a @click="handleRemove(record.id)">
           <DeleteOutlined/>
-          {{ t('actions.remove') }}</a>
+          {{ t('actions.remove') }}
+        </a>
       </template>
     </a-table>
   </div>

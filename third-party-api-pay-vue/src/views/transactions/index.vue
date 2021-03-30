@@ -36,13 +36,17 @@
       <template #payTotalAmount="{ text }">{{ text }}</template>
       <template #tradeStatus="{ text }">{{ t('transactions.tradeStatuses.' + text) }}</template>
       <template #action="{ record }">
-        <a @click="handleEdit(record)">
-          <EditOutlined/>
-          {{ t('actions.edit') }}</a>
+        <a @click="handleQuery(record.id)">
+          {{ t('transactions.actions.query') }}
+        </a>
         <a-divider type="vertical"/>
-        <a @click="handleRemove(record.id)">
-          <DeleteOutlined/>
-          {{ t('actions.remove') }}</a>
+        <a @click="handleCancel(record.id)">
+          {{ t('transactions.actions.cancel') }}
+        </a>
+        <a-divider type="vertical"/>
+        <a @click="handleRefund(record.id)">
+          {{ t('transactions.actions.refund') }}
+        </a>
       </template>
     </a-table>
   </div>
@@ -54,22 +58,34 @@ import {useI18n} from "vue-i18n";
 
 export default defineComponent({
   name: "Transactions",
+  components: {
+  },
   setup() {
     const {t} = useI18n();
 
-    const handleEdit = (record) => {
-      console.log(record);
+    const handleQuery = (id) => {
+      console.log(id);
     };
 
-    const handleRemove = (id) => {
+    const handleCancel = (id) => {
+      console.log(id);
+    };
+
+    const handleRefund = (id) => {
+      console.log(id);
+    };
+
+    const handleRefundQuery = (id) => {
       console.log(id);
     };
 
     return {
       t,
-      handleEdit,
-      handleRemove,
-      pagination:{
+      handleQuery,
+      handleCancel,
+      handleRefund,
+      handleRefundQuery,
+      pagination: {
         showSizeChanger: true,
       },
       query: {},

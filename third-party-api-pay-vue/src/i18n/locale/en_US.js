@@ -114,6 +114,12 @@ export default {
         tradeStatuses: {
             "TRADE_SUCCESS": "Trade Success",
         },
+        actions: {
+            "query": "Query",
+            "cancel": "Cancel",
+            "refund": "Refund",
+            "refundQuery": "Refund Query",
+        },
     },
     users: {
         title: "User",

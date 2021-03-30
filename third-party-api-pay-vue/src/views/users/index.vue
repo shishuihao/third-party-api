@@ -65,15 +65,18 @@
       <template #action="{ record }">
         <a @click="handleEdit(record)">
           <EditOutlined/>
-          {{ t('actions.edit') }}</a>
+          {{ t('actions.edit') }}
+        </a>
         <a-divider type="vertical"/>
         <a @click="handleRemove(record.id)">
           <DeleteOutlined/>
-          {{ t('actions.remove') }}</a>
+          {{ t('actions.remove') }}
+        </a>
         <a-divider type="vertical"/>
         <a @click="handleChangePassword(record)">
           <KeyOutlined/>
-          {{ t('users.actions.change-password') }}</a>
+          {{ t('users.actions.change-password') }}
+        </a>
       </template>
     </a-table>
   </div>

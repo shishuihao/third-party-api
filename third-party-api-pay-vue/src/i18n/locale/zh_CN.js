@@ -115,6 +115,12 @@ export default {
         tradeStatuses: {
             "TRADE_SUCCESS": "交易成功",
         },
+        actions: {
+            "query": "查询",
+            "cancel": "撤销",
+            "refund": "退款",
+            "refundQuery": "退款查询",
+        },
     },
     users: {
         title: "用户",

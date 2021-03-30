@@ -49,7 +49,8 @@
       <template #action="{ record }">
         <a @click="handleEdit(record)">
           <EditOutlined/>
-          {{ t('actions.edit') }}</a>
+          {{ t('actions.edit') }}
+        </a>
       </template>
     </a-table>
   </div>

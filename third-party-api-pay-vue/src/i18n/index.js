@@ -39,7 +39,7 @@ export const setHtmlLang = (lang) => {
 }
 
 /**
- * 验证语言命名规则 zh-CN
+ * 验证语言命名规则 zh_CN
  * @returns boolean
  */
 export const localeNameExp = (lang) => {

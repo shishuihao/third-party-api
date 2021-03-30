@@ -63,6 +63,16 @@ export default {
             }
         },
     },
+    applications: {
+        title: "应用",
+        columns: {
+            "appId": "应用标识",
+            "mchId": "商户标识",
+            "name": "应用名称",
+            "icon": "应用图标",
+            "description": "应用简介",
+        },
+    },
     channels: {
         title: "渠道",
         columns: {},

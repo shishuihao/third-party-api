@@ -43,6 +43,14 @@ const menus = [
     component: () => import(/* webpackChunkName: "users" */ '../views/users')
   },
   {
+    path: '/applications',
+    meta: {
+      icon: 'AppstoreOutlined',
+      title: "applications.title",
+    },
+    component: () => import(/* webpackChunkName: "channels" */ '../views/applications/index')
+  },
+  {
     path: '/channels',
     meta: {
       icon: 'DeploymentUnitOutlined',

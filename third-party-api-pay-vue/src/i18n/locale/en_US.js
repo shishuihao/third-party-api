@@ -63,6 +63,16 @@ export default {
             }
         }
     },
+    applications: {
+        title: "Application",
+        columns: {
+            "appId": "App ID",
+            "mchId": "Merchant ID",
+            "name": "App Name",
+            "icon": "App Icon",
+            "description": "App Description",
+        },
+    },
     channels: {
         title: "Channel",
         columns: {},

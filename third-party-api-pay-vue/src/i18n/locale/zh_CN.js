@@ -88,13 +88,14 @@ export default {
     transactions: {
         title: "交易",
         columns: {
-            "userId": "用户标识",
+            "appId": "应用标识",
+            "mchId": "商户标识",
             "channelId": "渠道标识",
             "tradeType": "交易类型",
-            "propertiesId": "属性标识",
             "transactionId": "交易标识",
             "outTradeNo": "商户订单号",
             "payerId": "付款人标识",
+            "authCode": "支付授权码",
             "currency": "货币",
             "totalAmount": "总金额",
             "payCurrency": "支付币种",

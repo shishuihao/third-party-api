@@ -87,13 +87,15 @@ export default {
     transactions: {
         title: "Transaction",
         columns: {
-            "userId": "User ID",
+            "appId": "App ID",
+            "mchId": "Merchant ID",
             "channelId": "Channel ID",
             "tradeType": "Trade Type",
             "propertiesId": "Properties ID",
             "transactionId": "Transaction ID",
             "outTradeNo": "Out Trade No",
             "payerId": "Payer ID",
+            "authCode": "Auth Code",
             "currency": "Currency",
             "totalAmount": "Total Amount",
             "payCurrency": "Pay Currency",

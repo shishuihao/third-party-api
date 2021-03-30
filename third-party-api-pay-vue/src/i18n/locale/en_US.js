@@ -73,7 +73,7 @@ export default {
             "description": "App Description",
             "signType": "Sign Type",
             "publicKey": "Public Key",
-            "propertiesList": "Properties List",
+            "configurations": "Configurations",
             "table": "Table",
         },
     },

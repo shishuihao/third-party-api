@@ -79,8 +79,8 @@
           </template>
         </a-table>
       </a-tab-pane>
-      <a-tab-pane key="propertiesTabs" :tab=" t('applications.columns.propertiesList') + '(' + application.name  + ')'">
-        <properties-tabs :properties-list="application.propertiesList"/>
+      <a-tab-pane key="configurations" :tab=" t('applications.columns.configurations') + '(' + application.name  + ')'">
+        <configurations :configurations="application.configurations"/>
       </a-tab-pane>
     </a-tabs>
   </div>
@@ -89,7 +89,7 @@
 <script>
 import {defineComponent, ref} from "vue";
 import {useI18n} from "vue-i18n";
-import PropertiesTabs from "@/components/properties-tabs"
+import Configurations from "@/components/configurations"
 import {
   DeleteOutlined,
   EditOutlined,
@@ -102,7 +102,7 @@ import {
 export default defineComponent({
   name: "Applications",
   components: {
-    PropertiesTabs,
+    Configurations,
     SearchOutlined,
     ReloadOutlined,
     PlusOutlined,
@@ -148,27 +148,37 @@ export default defineComponent({
           status: 'ENABLED',
           signType: "RSA2",
           publicKey: "******",
-          propertiesList: [
+          configurations: [
             {
-              "channelId": "pay.alipay",
-              "protocol": "https",
-              "gatewayHost": "openapi.alipaydev.com",
-              "appId": "2021000117624946",
-              "signType": "RSA2",
-              "alipayPublicKey": "******",
-              "merchantPrivateKey": "******",
-              "ignoreSsl": false
+              channelId: 'pay.alipay',
+              propertiesId: '2021000117624946',
+              properties: {
+                "channelId": "pay.alipay",
+                "protocol": "https",
+                "gatewayHost": "openapi.alipaydev.com",
+                "appId": "2021000117624946",
+                "signType": "RSA2",
+                "alipayPublicKey": "******",
+                "merchantPrivateKey": "******",
+                "ignoreSsl": false
+              },
+              status: 'ENABLED',
             },
             {
-              "channelId": "pay.icbc",
-              "appId": "10000000000000004925",
-              "privateKey": "******",
-              "signType": "RSA",
-              "charset": "UTF-8",
-              "format": "json",
-              "icbcPublicKey": "******",
-              "encryptType": "AES",
-              "encryptKey": "******",
+              channelId: 'pay.icbc',
+              propertiesId: '10000000000000004925',
+              properties: {
+                "channelId": "pay.icbc",
+                "appId": "10000000000000004925",
+                "privateKey": "******",
+                "signType": "RSA",
+                "charset": "UTF-8",
+                "format": "json",
+                "icbcPublicKey": "******",
+                "encryptType": "AES",
+                "encryptKey": "******",
+              },
+              status: 'ENABLED',
             }
           ]
         }

@@ -73,7 +73,7 @@ export default {
             "description": "应用简介",
             "signType": "签名类型",
             "publicKey": "应用公钥",
-            "propertiesList": "属性列表",
+            "configurations": "配置",
             "table": "表格",
         },
     },

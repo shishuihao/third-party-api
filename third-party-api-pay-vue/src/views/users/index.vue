@@ -3,15 +3,15 @@
     <!-- search -->
     <a-input-group style="text-align: left">
       <a-input style="width: 15%" :value="query.type"
-               :placeholder="t('placeholders.please-enter') + t('columns.type')"/>
+               :placeholder="t('columns.type')"/>
       <a-input style="width: 15%" :value="query.id"
-               :placeholder="t('placeholders.please-enter') + t('columns.id')"/>
+               :placeholder="t('columns.id')"/>
       <a-input style="width: 15%" :value="query.username"
-               :placeholder="t('placeholders.please-enter') + t('users.columns.username')"/>
+               :placeholder="t('users.columns.username')"/>
       <a-input style="width: 15%" :value="query.nickname"
-               :placeholder="t('placeholders.please-enter') + t('users.columns.nickname')"/>
+               :placeholder="t('users.columns.nickname')"/>
       <a-input style="width: 15%" :value="query.status"
-               :placeholder="t('placeholders.please-enter') + t('columns.status')"/>
+               :placeholder="t('columns.status')"/>
       <a-button type="primary">
         <SearchOutlined/>
         {{ t('actions.search') }}

@@ -3,11 +3,11 @@
     <!-- search -->
     <a-input-group style="text-align: left">
       <a-input style="width: 15%" :value="query.id"
-               :placeholder="t('placeholders.please-enter') + t('columns.id')"/>
+               :placeholder="t('columns.id')"/>
       <a-input style="width: 15%" :value="query.name"
-               :placeholder="t('placeholders.please-enter') + t('columns.name')"/>
+               :placeholder="t('columns.name')"/>
       <a-input style="width: 15%" :value="query.status"
-               :placeholder="t('placeholders.please-enter') + t('columns.status')"/>
+               :placeholder="t('columns.status')"/>
       <a-button type="primary">
         <SearchOutlined/>
         {{ t('actions.search') }}

@@ -53,14 +53,18 @@
           <template v-slot:[`applications.columns.name`]>{{ t('applications.columns.name') }}</template>
           <template v-slot:[`applications.columns.icon`]>{{ t('applications.columns.icon') }}</template>
           <template v-slot:[`applications.columns.description`]>{{ t('applications.columns.description') }}</template>
+          <template v-slot:[`applications.columns.signType`]>{{ t('applications.columns.signType') }}</template>
+          <template v-slot:[`applications.columns.publicKey`]>{{ t('applications.columns.publicKey') }}</template>
           <template v-slot:[`columns.status`]>{{ t('columns.status') }}</template>
           <template v-slot:[`columns.action`]>{{ t('columns.action') }}</template>
           <template #index="{ index }">{{ index + 1 }}</template>
           <template #mchId="{ text }">{{ text }}</template>
           <template #appId="{ text }">{{ text }}</template>
           <template #name="{ text }">{{ text }}</template>
-          <template #icon="{ text }">{{ text }}</template>
+          <template #icon="{ text }"><img :src="text" :alt="text"></template>
           <template #description="{ text }">{{ text }}</template>
+          <template #signType="{ text }">{{ text }}</template>
+          <template #publicKey="{ text }">{{ text }}</template>
           <template #status="{ text }">{{ t('statuses.' + text) }}</template>
           <template #action="{ record }">
             <a @click="handleEdit(record)">
@@ -142,6 +146,8 @@ export default defineComponent({
           icon: '/icons/d678efh567hg6787.png',
           description: '用来测试',
           status: 'ENABLED',
+          signType: "RSA2",
+          publicKey: "******",
           propertiesList: [
             {
               "channelId": "pay.alipay",
@@ -174,6 +180,8 @@ export default defineComponent({
         {dataIndex: 'name', slots: {customRender: 'name', title: 'applications.columns.name'}},
         {dataIndex: 'icon', slots: {customRender: 'icon', title: 'applications.columns.icon'}},
         {dataIndex: 'description', slots: {customRender: 'description', title: 'applications.columns.description'}},
+        {dataIndex: 'signType', slots: {customRender: 'signType', title: 'applications.columns.signType'}},
+        {dataIndex: 'publicKey', slots: {customRender: 'publicKey', title: 'applications.columns.publicKey'}},
         {dataIndex: 'status', fixed: 'right', slots: {customRender: 'status', title: 'columns.status'}},
         {dataIndex: 'action', fixed: 'right', slots: {customRender: 'action', title: 'columns.action'}},
       ]

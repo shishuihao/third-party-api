@@ -71,6 +71,8 @@ export default {
             "name": "应用名称",
             "icon": "应用图标",
             "description": "应用简介",
+            "signType": "签名类型",
+            "publicKey": "应用公钥",
             "propertiesList": "属性列表",
             "table": "表格",
         },

@@ -71,6 +71,8 @@ export default {
             "name": "App Name",
             "icon": "App Icon",
             "description": "App Description",
+            "signType": "Sign Type",
+            "publicKey": "Public Key",
             "propertiesList": "Properties List",
             "table": "Table",
         },

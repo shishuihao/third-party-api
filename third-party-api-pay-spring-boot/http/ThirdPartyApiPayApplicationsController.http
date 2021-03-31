@@ -1,0 +1,38 @@
+### query one
+GET http://localhost:8080/api/v1/pay/applications/d678efh567hg6787
+
+### query many
+GET http://localhost:8080/api/v1/pay/applications?status=ENABLED
+
+### export
+GET http://localhost:8080/api/v1/pay/applications/export?status=ENABLED
+
+### add
+POST http://localhost:8080/api/v1/pay/applications
+Content-Type: application/json
+
+{
+  "mchId": "1230000109",
+  "name": "测试应用",
+  "icon": "/icons/d678efh567hg6787.png",
+  "description": "用来测试",
+  "status": "ENABLED"
+}
+
+### edit
+PATCH http://localhost:8080/api/v1/pay/applications/d678efh567hg6787
+Content-Type: application/json
+
+{
+  "name": "测试应用",
+  "icon": "/icons/d678efh567hg6787.png",
+  "description": "用来测试",
+  "signType": "RSA",
+  "publicKey": "******",
+  "status": "ENABLED"
+}
+
+### remove
+DELETE http://localhost:8080/api/v1/pay/applications/d678efh567hg6787
+
+

@@ -1,0 +1,36 @@
+### query one
+GET http://localhost:8080/api/v1/pay/merchants/2021000117624947
+
+### query many
+GET http://localhost:8080/api/v1/pay/merchants?type=ADMIN
+
+### export
+GET http://localhost:8080/api/v1/pay/users/export?type=ADMIN
+
+### import
+POST http://localhost:8080/api/v1/pay/users/import
+
+### add
+POST http://localhost:8080/api/v1/pay/users
+Content-Type: application/json
+
+{
+  "type": "admin",
+  "username": "admin001",
+  "nickname": "admin001",
+  "status": "ENABLED"
+}
+
+### edit
+PATCH http://localhost:8080/api/v1/pay/users/2021000117624947
+Content-Type: application/json
+
+{
+  "type": "admin",
+  "username": "admin001",
+  "nickname": "admin001",
+  "status": "ENABLED"
+}
+
+### remove
+DELETE http://localhost:8080/api/v1/pay/users/2021000117624947

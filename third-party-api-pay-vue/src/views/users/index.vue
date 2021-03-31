@@ -1,49 +1,7 @@
 <template>
   <div>
-    <!-- search -->
-    <a-input-group style="text-align: left">
-      <a-input style="width: 15%" :value="query.type"
-               :placeholder="t('columns.type')"/>
-      <a-input style="width: 15%" :value="query.id"
-               :placeholder="t('columns.id')"/>
-      <a-input style="width: 15%" :value="query.username"
-               :placeholder="t('users.columns.username')"/>
-      <a-input style="width: 15%" :value="query.nickname"
-               :placeholder="t('users.columns.nickname')"/>
-      <a-input style="width: 15%" :value="query.status"
-               :placeholder="t('columns.status')"/>
-      <a-button type="primary">
-        <SearchOutlined/>
-        {{ t('actions.search') }}
-      </a-button>
-      <a-button type="default">
-        <ReloadOutlined/>
-        {{ t('actions.reset') }}
-      </a-button>
-    </a-input-group>
-    <!-- action -->
-    <a-input-group style="text-align: left">
-      <a-button type="primary">
-        <PlusOutlined/>
-        {{ t('actions.add') }}
-      </a-button>
-      <a-button type="default">
-        <EditOutlined/>
-        {{ t('actions.edit') }}
-      </a-button>
-      <a-button type="danger">
-        <DeleteOutlined/>
-        {{ t('actions.remove') }}
-      </a-button>
-      <a-button type="default">
-        <ImportOutlined/>
-        {{ t('actions.import') }}
-      </a-button>
-      <a-button type="dashed">
-        <ExportOutlined/>
-        {{ t('actions.export') }}
-      </a-button>
-    </a-input-group>
+    <search :columns="columns" :data="query"/>
+    <actions :data="actions"/>
     <!-- content -->
     <a-table
         row-key="id"
@@ -85,27 +43,17 @@
 <script>
 import {defineComponent} from "vue";
 import {useI18n} from "vue-i18n";
-import {
-  DeleteOutlined,
-  EditOutlined,
-  ExportOutlined,
-  ImportOutlined,
-  KeyOutlined,
-  PlusOutlined,
-  ReloadOutlined,
-  SearchOutlined
-} from "@ant-design/icons-vue";
+import Search from "@/components/search"
+import Actions from "@/components/actions"
+import {DeleteOutlined, EditOutlined, KeyOutlined,} from "@ant-design/icons-vue";
 
 export default defineComponent({
   name: "Users",
   components: {
-    SearchOutlined,
-    ReloadOutlined,
-    PlusOutlined,
+    Search,
+    Actions,
     EditOutlined,
     DeleteOutlined,
-    ImportOutlined,
-    ExportOutlined,
     KeyOutlined
   },
   setup() {
@@ -128,7 +76,20 @@ export default defineComponent({
       handleEdit,
       handleRemove,
       handleChangePassword,
-      query: {},
+      query: {
+        type: '',
+        id: '',
+        username: '',
+        nickname: '',
+        status: '',
+      },
+      actions: {
+        'actions.add': () => console.log('actions.add'),
+        'actions.edit': () => console.log('actions.edit'),
+        'actions.remove': () => console.log('actions.remove'),
+        'actions.import': () => console.log('actions.import'),
+        'actions.export': () => console.log('actions.export')
+      },
       data: [
         {
           type: 'admin',

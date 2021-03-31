@@ -1,43 +1,7 @@
 <template>
   <div>
-    <!-- search -->
-    <a-input-group style="text-align: left">
-      <a-input style="width: 15%" :value="query.mchId"
-               :placeholder="t('applications.columns.mchId')"/>
-      <a-input style="width: 15%" :value="query.appId"
-               :placeholder="t('applications.columns.appId')"/>
-      <a-input style="width: 15%" :value="query.name"
-               :placeholder="t('applications.columns.name')"/>
-      <a-input style="width: 15%" :value="query.status"
-               :placeholder="t('columns.status')"/>
-      <a-button type="primary">
-        <SearchOutlined/>
-        {{ t('actions.search') }}
-      </a-button>
-      <a-button type="default">
-        <ReloadOutlined/>
-        {{ t('actions.reset') }}
-      </a-button>
-    </a-input-group>
-    <!-- action -->
-    <a-input-group style="text-align: left">
-      <a-button type="primary">
-        <PlusOutlined/>
-        {{ t('actions.add') }}
-      </a-button>
-      <a-button type="default">
-        <EditOutlined/>
-        {{ t('actions.edit') }}
-      </a-button>
-      <a-button type="danger">
-        <DeleteOutlined/>
-        {{ t('actions.remove') }}
-      </a-button>
-      <a-button type="dashed">
-        <ExportOutlined/>
-        {{ t('actions.export') }}
-      </a-button>
-    </a-input-group>
+    <search :columns="columns" :data="query"/>
+    <actions :data="actions"/>
     <!-- content -->
     <a-tabs>
       <a-tab-pane key="table" :tab="t('applications.columns.table')">
@@ -89,26 +53,19 @@
 <script>
 import {defineComponent, ref} from "vue";
 import {useI18n} from "vue-i18n";
+import Search from "@/components/search"
+import Actions from "@/components/actions"
 import Configurations from "@/components/configurations"
-import {
-  DeleteOutlined,
-  EditOutlined,
-  ExportOutlined,
-  PlusOutlined,
-  ReloadOutlined,
-  SearchOutlined
-} from "@ant-design/icons-vue";
+import {DeleteOutlined, EditOutlined} from "@ant-design/icons-vue";
 
 export default defineComponent({
   name: "Applications",
   components: {
+    Search,
+    Actions,
     Configurations,
-    SearchOutlined,
-    ReloadOutlined,
-    PlusOutlined,
     EditOutlined,
     DeleteOutlined,
-    ExportOutlined
   },
   setup() {
     const {t} = useI18n();
@@ -137,7 +94,18 @@ export default defineComponent({
       customRow,
       handleEdit,
       handleRemove,
-      query: {},
+      query: {
+        mchId: '',
+        appId: '',
+        name: '',
+        status: ''
+      },
+      actions: {
+        'actions.add': () => console.log('actions.add'),
+        'actions.edit': () => console.log('actions.edit'),
+        'actions.remove': () => console.log('actions.remove'),
+        'actions.export': () => console.log('actions.export')
+      },
       data: [
         {
           mchId: '1230000109',

@@ -1,38 +1,6 @@
 <template>
   <div>
-    <!-- search -->
-    <a-input-group style="text-align: left">
-      <a-input style="width: 15%" :value="query.userId"
-               :placeholder="t('transactions.columns.appId')"/>
-      <a-input style="width: 15%" :value="query.userId"
-               :placeholder="t('transactions.columns.mchId')"/>
-      <a-input style="width: 15%" :value="query.tradeType"
-               :placeholder="t('transactions.columns.tradeType')"/>
-      <a-input style="width: 15%" :value="query.channelId"
-               :placeholder="t('transactions.columns.channelId')"/>
-      <a-input style="width: 15%" :value="query.transactionId"
-               :placeholder="t('transactions.columns.transactionId')"/>
-      <a-input style="width: 15%" :value="query.outTradeNo"
-               :placeholder="t('transactions.columns.outTradeNo')"/>
-      <a-input style="width: 15%" :value="query.payerId"
-               :placeholder="t('transactions.columns.payerId')"/>
-      <a-input style="width: 15%" :value="query.authCode"
-               :placeholder="t('transactions.columns.authCode')"/>
-      <a-input style="width: 15%" :value="query.currency"
-               :placeholder="t('transactions.columns.currency')"/>
-      <a-input style="width: 15%" :value="query.totalAmount"
-               :placeholder="t('transactions.columns.totalAmount')"/>
-      <a-input style="width: 15%" :value="query.tradeStatus"
-               :placeholder="t('transactions.columns.tradeStatus')"/>
-      <a-button type="primary">
-        <SearchOutlined/>
-        {{ t('actions.search') }}
-      </a-button>
-      <a-button type="default">
-        <ReloadOutlined/>
-        {{ t('actions.reset') }}
-      </a-button>
-    </a-input-group>
+    <search :columns="columns" :data="query"/>
     <!-- content -->
     <a-table
         row-key="transactionId"
@@ -91,10 +59,12 @@
 <script>
 import {defineComponent} from "vue";
 import {useI18n} from "vue-i18n";
+import Search from "@/components/search"
 
 export default defineComponent({
   name: "Transactions",
   components: {
+    Search
   },
   setup() {
     const {t} = useI18n();
@@ -124,7 +94,21 @@ export default defineComponent({
       pagination: {
         showSizeChanger: true,
       },
-      query: {},
+      query: {
+        appId: '',
+        mchId: '',
+        channelId: '',
+        tradeType: '',
+        transactionId: '',
+        outTradeNo: '',
+        payerId: '',
+        authCode: '',
+        currency: '',
+        totalAmount: '',
+        payCurrency: '',
+        payTotalAmount: "",
+        tradeStatus: '',
+      },
       data: [
         {
           appId: 'd678efh567hg6787',

@@ -35,4 +35,44 @@ Content-Type: application/json
 ### remove
 DELETE http://localhost:8080/api/v1/pay/applications/d678efh567hg6787
 
+### add
+POST http://localhost:8080/api/v1/pay/applications/d678efh567hg6787/configuration
+Content-Type: application/json
+
+{
+  "channelId": "pay.alipay",
+  "properties": {
+    "channelId": "pay.alipay",
+    "protocol": "https",
+    "gatewayHost": "openapi.alipaydev.com",
+    "appId": "2021000117624946",
+    "signType": "RSA2",
+    "alipayPublicKey": "******",
+    "merchantPrivateKey": "******",
+    "ignoreSsl": false
+  },
+  "status": "ENABLED"
+}
+
+### edit
+PATCH http://localhost:8080/api/v1/pay/applications/d678efh567hg6787/configurations/pay.alipay
+Content-Type: application/json
+
+{
+  "properties": {
+    "channelId": "pay.alipay",
+    "protocol": "https",
+    "gatewayHost": "openapi.alipaydev.com",
+    "appId": "2021000117624946",
+    "signType": "RSA2",
+    "alipayPublicKey": "******",
+    "merchantPrivateKey": "******",
+    "ignoreSsl": false
+  },
+  "status": "ENABLED"
+}
+
+### remove
+DELETE http://localhost:8080/api/v1/pay/applications/d678efh567hg6787/configurations/pay.alipay
+
 

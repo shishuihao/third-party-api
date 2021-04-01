@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.alipay.domain;
 
-import cn.shishuihao.thirdparty.api.pay.domain.order.RefundStatus;
+import cn.shishuihao.thirdparty.api.pay.domain.transaction.RefundStatus;
 
 import java.util.Arrays;
 import java.util.Map;

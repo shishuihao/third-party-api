@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.pay.domain.order;
+package cn.shishuihao.thirdparty.api.pay.domain.transaction;
 
 /**
  * trade status.

@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.pay.response;
 
 import cn.shishuihao.thirdparty.api.core.response.BaseApiResponse;
 import cn.shishuihao.thirdparty.api.pay.PayApiResponse;
-import cn.shishuihao.thirdparty.api.pay.domain.order.RefundStatus;
+import cn.shishuihao.thirdparty.api.pay.domain.transaction.RefundStatus;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 

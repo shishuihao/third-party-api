@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.alipay.domain;
 
-import cn.shishuihao.thirdparty.api.pay.domain.order.TradeStatus;
+import cn.shishuihao.thirdparty.api.pay.domain.transaction.TradeStatus;
 
 import java.util.Arrays;
 import java.util.Map;

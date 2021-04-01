@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.push.vivo.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
 import cn.shishuihao.thirdparty.api.push.vivo.VivoPushApiChannel;
@@ -20,10 +21,15 @@ class VivoPushMessageApiTest {
         VivoPushApiProperties properties = new VivoPushApiProperties();
         properties.setAppKey("appKey");
         properties.setSecret("secret");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+        ApiConfiguration configuration = ApiConfiguration.builder()
+                .appId("appId")
+                .channelId(properties.channelId())
+                .properties(properties)
+                .build();
+        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
         PushMessageApiRequest request = PushMessageApiRequest.builder()
                 .channelId(VivoPushApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
+                .appId(configuration.getAppId())
                 .title("title")
                 .description("description")
                 .payload("payload")

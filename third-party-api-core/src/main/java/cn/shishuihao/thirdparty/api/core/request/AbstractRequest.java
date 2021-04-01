@@ -24,15 +24,24 @@ public abstract class AbstractRequest<
         T extends ApiRequest<A, T, R>,
         R extends ApiResponse> {
     /**
+     * app id.
+     */
+    @NotBlank
+    private final String appId;
+    /**
      * channel id.
      */
     @NotBlank
     private final String channelId;
+
     /**
-     * properties id.
+     * get app id.
+     *
+     * @return String
      */
-    @NotBlank
-    private final String propertiesId;
+    public String appId() {
+        return appId;
+    }
 
     /**
      * get channel id.
@@ -41,14 +50,5 @@ public abstract class AbstractRequest<
      */
     public String channelId() {
         return channelId;
-    }
-
-    /**
-     * get properties id.
-     *
-     * @return String
-     */
-    public String propertiesId() {
-        return propertiesId;
     }
 }

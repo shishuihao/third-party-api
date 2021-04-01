@@ -29,6 +29,13 @@ public interface Container extends AggregateRoot<String> {
     void awareOrHook(Consumer<Container> hook);
 
     /**
+     * get application id.
+     *
+     * @return String
+     */
+    String getApplicationId();
+
+    /**
      * Return the bean instance that uniquely matches the given object type,
      * if any.
      *

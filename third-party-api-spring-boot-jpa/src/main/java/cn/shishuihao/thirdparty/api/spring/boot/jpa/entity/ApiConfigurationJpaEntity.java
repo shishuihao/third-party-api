@@ -18,28 +18,31 @@ import javax.persistence.UniqueConstraint;
 @Getter
 @Setter
 @Table(
-        name = ApiPropertiesJpaEntity.TABLE_NAME,
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        columnNames = {
-                                ApiPropertiesJpaEntity.COLUMN_CHANNEL_ID,
-                                ApiPropertiesJpaEntity.COLUMN_PROPERTIES_ID
-                        })
+        name = ApiConfigurationJpaEntity.TABLE_NAME,
+        uniqueConstraints = {@UniqueConstraint(
+                columnNames = {
+                        ApiConfigurationJpaEntity.COLUMN_CHANNEL_ID,
+                        ApiConfigurationJpaEntity.COLUMN_CONFIGURATION_ID
+                })
         })
 @Entity
-public class ApiPropertiesJpaEntity extends BaseJpaEntity {
+public class ApiConfigurationJpaEntity extends BaseJpaEntity {
     /**
-     * table name api_properties.
+     * table name api_configuration.
      */
-    public static final String TABLE_NAME = "`api_properties`";
+    public static final String TABLE_NAME = "`api_configuration`";
+    /**
+     * column name configuration_id.
+     */
+    public static final String COLUMN_CONFIGURATION_ID = "`configuration_id`";
+    /**
+     * column name app_id.
+     */
+    public static final String COLUMN_APP_ID = "`app_id`";
     /**
      * column name channel_id.
      */
     public static final String COLUMN_CHANNEL_ID = "`channel_id`";
-    /**
-     * column name properties_id.
-     */
-    public static final String COLUMN_PROPERTIES_ID = "`properties_id`";
     /**
      * column name properties.
      */
@@ -49,15 +52,20 @@ public class ApiPropertiesJpaEntity extends BaseJpaEntity {
      */
     public static final int COLUMN_PROPERTIES_LENGTH = 10240;
     /**
+     * configuration id.
+     */
+    @Column(name = COLUMN_CONFIGURATION_ID, nullable = false)
+    private String configurationId;
+    /**
+     * app id.
+     */
+    @Column(name = COLUMN_APP_ID, nullable = false)
+    private String appId;
+    /**
      * channel id.
      */
     @Column(name = COLUMN_CHANNEL_ID, nullable = false)
     private String channelId;
-    /**
-     * properties id.
-     */
-    @Column(name = COLUMN_PROPERTIES_ID, nullable = false)
-    private String propertiesId;
     /**
      * properties.
      */

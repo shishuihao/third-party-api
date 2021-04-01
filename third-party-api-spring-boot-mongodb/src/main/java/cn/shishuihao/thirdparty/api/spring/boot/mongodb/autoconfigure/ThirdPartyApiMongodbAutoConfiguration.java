@@ -1,12 +1,12 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mongodb.autoconfigure;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.ApiPropertiesMongodbRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiPropertiesMongodbDocumentConverter;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.ApiConfigurationMongodbRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiConfigurationMongodbDocumentConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiPropertiesToJacksonConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.JacksonToApiPropertiesConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository.ApiPropertiesDocumentMongoRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -30,30 +30,30 @@ import java.util.Arrays;
 @AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiMongodbAutoConfiguration {
     /**
-     * apiPropertiesMongodbDocumentConverter.
+     * apiConfigurationMongodbDocumentConverter.
      *
-     * @return ApiPropertiesMongodbDocumentConverter
+     * @return ApiConfigurationMongodbDocumentConverter
      */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiPropertiesMongodbDocumentConverter
-    apiPropertiesMongodbDocumentConverter() {
-        return new ApiPropertiesMongodbDocumentConverter();
+    protected ApiConfigurationMongodbDocumentConverter
+    apiConfigurationMongodbDocumentConverter() {
+        return new ApiConfigurationMongodbDocumentConverter();
     }
 
     /**
-     * propertiesRepository.
+     * apiConfigurationRepository.
      *
      * @param repository repository
      * @param converter  converter
-     * @return ApiPropertiesRepository
+     * @return ApiConfigurationRepository
      */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiPropertiesRepository propertiesRepository(
+    protected ApiConfigurationRepository apiConfigurationRepository(
             final ApiPropertiesDocumentMongoRepository repository,
-            final ApiPropertiesMongodbDocumentConverter converter) {
-        return new ApiPropertiesMongodbRepository(repository, converter);
+            final ApiConfigurationMongodbDocumentConverter converter) {
+        return new ApiConfigurationMongodbRepository(repository, converter);
     }
 
     /**

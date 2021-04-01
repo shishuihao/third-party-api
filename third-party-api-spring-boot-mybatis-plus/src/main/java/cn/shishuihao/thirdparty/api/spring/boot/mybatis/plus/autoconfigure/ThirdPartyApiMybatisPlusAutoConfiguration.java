@@ -1,10 +1,10 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.autoconfigure;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.ApiPropertiesMybatisPlusRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.converter.ApiPropertiesMybatisPlusEntityConverter;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.ApiConfigurationMybatisPlusRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.converter.ApiConfigurationMybatisPlusEntityConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper.ApiPropertiesEntityMybatisPlusMapper;
+import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -27,29 +27,29 @@ import org.springframework.context.annotation.Import;
 @AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiMybatisPlusAutoConfiguration {
     /**
-     * apiPropertiesMybatisPlusEntityConverter.
+     * apiConfigurationMybatisPlusEntityConverter.
      *
-     * @return ApiPropertiesMybatisPlusEntityConverter
+     * @return ApiConfigurationMybatisPlusEntityConverter
      */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiPropertiesMybatisPlusEntityConverter
-    apiPropertiesMybatisPlusEntityConverter() {
-        return new ApiPropertiesMybatisPlusEntityConverter();
+    protected ApiConfigurationMybatisPlusEntityConverter
+    apiConfigurationMybatisPlusEntityConverter() {
+        return new ApiConfigurationMybatisPlusEntityConverter();
     }
 
     /**
-     * propertiesRepository.
+     * apiConfigurationRepository.
      *
      * @param mapper    mapper
      * @param converter converter
-     * @return ApiPropertiesRepository
+     * @return ApiConfigurationRepository
      */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiPropertiesRepository propertiesRepository(
+    protected ApiConfigurationRepository apiConfigurationRepository(
             final ApiPropertiesEntityMybatisPlusMapper mapper,
-            final ApiPropertiesMybatisPlusEntityConverter converter) {
-        return new ApiPropertiesMybatisPlusRepository(mapper, converter);
+            final ApiConfigurationMybatisPlusEntityConverter converter) {
+        return new ApiConfigurationMybatisPlusRepository(mapper, converter);
     }
 }

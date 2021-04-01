@@ -12,3 +12,6 @@ POST http://localhost:8080/api/v1/pay/transactions/1217752501201407033233368018/
 
 ### refund
 POST http://localhost:8080/api/v1/pay/transactions/1217752501201407033233368018/refund
+
+### refund-query
+POST http://localhost:8080/api/v1/pay/transactions/1217752501201407033233368018/refund-query

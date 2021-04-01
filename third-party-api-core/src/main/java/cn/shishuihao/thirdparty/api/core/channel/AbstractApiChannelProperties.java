@@ -4,8 +4,9 @@ import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @param <P> api properties
@@ -17,15 +18,14 @@ import java.util.List;
 public abstract class AbstractApiChannelProperties<
         P extends ApiProperties>
         implements ApiChannelProperties<P> {
-
     /**
      * channel id.
      */
     private String channelId;
     /**
-     * properties list.
+     * configurations.
      */
-    private List<P> propertiesList = new ArrayList<>();
+    private Map<String, List<P>> configurations = new HashMap<>();
 
     /**
      * get channel id.

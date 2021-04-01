@@ -2,48 +2,51 @@ third-party-api:
   pay:
     alipay:
       channel-id: pay.alipay
-      properties-list:
-        - app-id: pay.alipay.appId
-          protocol: https
-          gateway-host: openapi.alipay.com
-          sign-type: RSA2
-          alipay-public-key: alipayPublicKey
-          merchant-private-key: merchantPrivateKey
-          merchant-cert-path: merchantCertPath
-          alipay-cert-path: alipayCertPath
-          alipay-root-cert-path: alipayRootCertPath
-          notify-url:
-          encrypt-key:
-          sign-provider: AliyunKMS
-          http-proxy: http://127.0.0.1:8080
-          ignore-ssl: false
+      configurations:
+        appId:
+          - app-id: pay.alipay.appId
+              protocol: https
+              gateway-host: openapi.alipay.com
+              sign-type: RSA2
+              alipay-public-key: alipayPublicKey
+              merchant-private-key: merchantPrivateKey
+              merchant-cert-path: merchantCertPath
+              alipay-cert-path: alipayCertPath
+              alipay-root-cert-path: alipayRootCertPath
+              notify-url:
+              encrypt-key:
+              sign-provider: AliyunKMS
+              http-proxy: http://127.0.0.1:8080
+              ignore-ssl: false
     icbc:
       channel-id: pay.icbc
-      properties-list:
-        - app-id: pay.icbc.appId
-          mer-id: merId
-          private-key: privateKey
-          sign-type: RSA2
-          charset: UTF-8
-          format: json
-          icbc-public-key: icbcPublicKey
-          encrypt-key:
-          encrypt-type:
-          ca:
-          password:
-          em-sign-ip:
-          em-sign-port:
-          em-product:
+      configurations:
+        appId:
+          - app-id: pay.icbc.appId
+            mer-id: merId
+            private-key: privateKey
+            sign-type: RSA2
+            charset: UTF-8
+            format: json
+            icbc-public-key: icbcPublicKey
+            encrypt-key:
+            encrypt-type:
+            ca:
+            password:
+            em-sign-ip:
+            em-sign-port:
+            em-product:
     weixin:
       channel-id: pay.weixin
-      properties-list:
-        - app-id: pay.weixin.appId
-          mch-id: mchId
-          sub-app-id: subAppId
-          sub-mch-id: subMchId
-          device-info:
-          sign-type: MD5
-          key: key
+      configurations:
+        appId:
+          - app-id: pay.weixin.appId
+            mch-id: mchId
+            sub-app-id: subAppId
+            sub-mch-id: subMchId
+            device-info:
+            sign-type: MD5
+            key: key
   push:
     flyme:
       channel-id: push.flyme

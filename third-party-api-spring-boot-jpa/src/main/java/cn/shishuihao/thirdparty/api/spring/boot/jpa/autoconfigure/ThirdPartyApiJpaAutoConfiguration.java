@@ -1,9 +1,9 @@
 package cn.shishuihao.thirdparty.api.spring.boot.jpa.autoconfigure;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.ApiPropertiesJpaRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiPropertiesJpaEntityConverter;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiPropertiesEntityJpaRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.ApiConfigurationJpaRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiConfigurationJpaEntityConverter;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiConfigurationEntityJpaRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -28,29 +28,29 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiJpaAutoConfiguration {
     /**
-     * apiPropertiesJpaEntityConverter.
+     * apiConfigurationJpaEntityConverter.
      *
-     * @return ApiPropertiesJpaEntityConverter
+     * @return ApiConfigurationJpaEntityConverter
      */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiPropertiesJpaEntityConverter
-    apiPropertiesJpaEntityConverter() {
-        return new ApiPropertiesJpaEntityConverter();
+    protected ApiConfigurationJpaEntityConverter
+    apiConfigurationJpaEntityConverter() {
+        return new ApiConfigurationJpaEntityConverter();
     }
 
     /**
-     * ApiPropertiesRepository.
+     * apiConfigurationRepository.
      *
      * @param repository repository
-     * @param converter     converter
-     * @return ApiPropertiesRepository
+     * @param converter  converter
+     * @return ApiConfigurationRepository
      */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiPropertiesRepository propertiesRepository(
-            final ApiPropertiesEntityJpaRepository repository,
-            final ApiPropertiesJpaEntityConverter converter) {
-        return new ApiPropertiesJpaRepository(repository, converter);
+    protected ApiConfigurationRepository apiConfigurationRepository(
+            final ApiConfigurationEntityJpaRepository repository,
+            final ApiConfigurationJpaEntityConverter converter) {
+        return new ApiConfigurationJpaRepository(repository, converter);
     }
 }

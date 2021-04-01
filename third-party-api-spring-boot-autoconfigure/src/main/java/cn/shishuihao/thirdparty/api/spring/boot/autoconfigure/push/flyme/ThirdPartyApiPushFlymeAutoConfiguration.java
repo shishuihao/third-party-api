@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.flyme;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
 import cn.shishuihao.thirdparty.api.push.flyme.FlymePushApiChannel;
 import cn.shishuihao.thirdparty.api.push.flyme.FlymePushApiChannelProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -27,9 +28,15 @@ public class ThirdPartyApiPushFlymeAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public FlymePushApiChannel flymePushApiChannel(
-            final ApiPropertiesRepository propertiesRepository,
+            final ApiConfigurationRepository propertiesRepository,
             final FlymePushApiChannelProperties properties) {
-        properties.getPropertiesList().forEach(propertiesRepository::add);
+        properties.getConfigurations()
+                .forEach((key, list) -> list.forEach(value ->
+                        propertiesRepository.add(ApiConfiguration.builder()
+                                .appId(key)
+                                .channelId(properties.channelId())
+                                .properties(value)
+                                .build())));
         return new FlymePushApiChannel(properties);
     }
 }

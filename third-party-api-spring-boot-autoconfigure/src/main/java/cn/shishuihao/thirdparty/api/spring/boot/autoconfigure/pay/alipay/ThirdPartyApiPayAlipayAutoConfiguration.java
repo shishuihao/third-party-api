@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.alipay;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiChannelProperties;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayClient;
@@ -42,10 +43,16 @@ public class ThirdPartyApiPayAlipayAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public AlipayPayApiChannel alipayPayApiChannel(
-            final ApiPropertiesRepository propertiesRepository,
+            final ApiConfigurationRepository propertiesRepository,
             final AlipayPayApiChannelProperties properties,
             final AlipayPayClient client) {
-        properties.getPropertiesList().forEach(propertiesRepository::add);
+        properties.getConfigurations()
+                .forEach((key, list) -> list.forEach(value ->
+                        propertiesRepository.add(ApiConfiguration.builder()
+                                .appId(key)
+                                .channelId(properties.channelId())
+                                .properties(value)
+                                .build())));
         return new AlipayPayApiChannel(properties, client);
     }
 }

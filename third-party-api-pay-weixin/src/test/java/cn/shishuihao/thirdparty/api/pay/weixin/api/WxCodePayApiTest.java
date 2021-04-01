@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiProperties;
@@ -19,10 +20,15 @@ class WxCodePayApiTest {
         WxPayApiProperties properties = new WxPayApiProperties();
         properties.setAppId("appId");
         properties.setKey("key");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+        ApiConfiguration configuration = ApiConfiguration.builder()
+                .appId("appId")
+                .channelId(properties.channelId())
+                .properties(properties)
+                .build();
+        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
         CodePayApiRequest request = CodePayApiRequest.builder()
                 .channelId(WxPayApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
+                .appId(configuration.getAppId())
                 .subject("Apple iPhone11 128G")
                 .outTradeNo("2234567890")
                 .totalAmount(1)

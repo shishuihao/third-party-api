@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.push.flyme.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.push.flyme.FlymePushApiChannel;
 import cn.shishuihao.thirdparty.api.push.flyme.FlymePushApiProperties;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
@@ -20,10 +21,15 @@ class FlymePushMessageApiTest {
         FlymePushApiProperties properties = new FlymePushApiProperties();
         properties.setAppId(0L);
         properties.setAppSecret("appSecret");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+        ApiConfiguration configuration = ApiConfiguration.builder()
+                .appId("appId")
+                .channelId(properties.channelId())
+                .properties(properties)
+                .build();
+        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
         PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.builder()
                 .channelId(FlymePushApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
+                .appId(configuration.getAppId())
                 .title("title")
                 .description("description")
                 .payload("payload")

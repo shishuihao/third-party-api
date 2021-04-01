@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.weixin;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiChannelProperties;
 import cn.shishuihao.thirdparty.api.pay.weixin.sdk.WxFactory;
@@ -41,10 +42,16 @@ public class ThirdPartyApiPayWxAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public WxPayApiChannel wxPayApiChannel(
-            final ApiPropertiesRepository propertiesRepository,
+            final ApiConfigurationRepository propertiesRepository,
             final WxPayApiChannelProperties properties,
             final WxPayCodeApi codeApi) {
-        properties.getPropertiesList().forEach(propertiesRepository::add);
+        properties.getConfigurations()
+                .forEach((key, list) -> list.forEach(value ->
+                        propertiesRepository.add(ApiConfiguration.builder()
+                                .appId(key)
+                                .channelId(properties.channelId())
+                                .properties(value)
+                                .build())));
         return new WxPayApiChannel(properties, codeApi);
     }
 }

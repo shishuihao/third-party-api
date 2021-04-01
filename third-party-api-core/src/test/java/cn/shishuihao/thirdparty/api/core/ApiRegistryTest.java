@@ -81,13 +81,13 @@ class ApiRegistryTest {
         }
 
         @Override
-        public String channelId() {
-            return TestPayChannel.class.getSimpleName();
+        public String appId() {
+            return null;
         }
 
         @Override
-        public String propertiesId() {
-            return TestProperties.class.getSimpleName();
+        public String channelId() {
+            return TestPayChannel.class.getSimpleName();
         }
     }
 

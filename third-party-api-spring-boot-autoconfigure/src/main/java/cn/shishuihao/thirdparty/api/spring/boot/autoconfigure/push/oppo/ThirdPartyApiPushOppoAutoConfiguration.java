@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.oppo;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
 import cn.shishuihao.thirdparty.api.push.oppo.OppoPushApiChannel;
 import cn.shishuihao.thirdparty.api.push.oppo.OppoPushApiChannelProperties;
 import cn.shishuihao.thirdparty.api.push.oppo.OppoPushClient;
@@ -40,10 +41,16 @@ public class ThirdPartyApiPushOppoAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public OppoPushApiChannel oppoPushApiChannel(
-            final ApiPropertiesRepository propertiesRepository,
+            final ApiConfigurationRepository propertiesRepository,
             final OppoPushApiChannelProperties properties,
             final OppoPushClient client) {
-        properties.getPropertiesList().forEach(propertiesRepository::add);
+        properties.getConfigurations()
+                .forEach((key, list) -> list.forEach(value ->
+                        propertiesRepository.add(ApiConfiguration.builder()
+                                .appId(key)
+                                .channelId(properties.channelId())
+                                .properties(value)
+                                .build())));
         return new OppoPushApiChannel(properties, client);
     }
 }

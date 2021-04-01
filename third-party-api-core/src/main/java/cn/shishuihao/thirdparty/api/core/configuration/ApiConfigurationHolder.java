@@ -1,8 +1,9 @@
-package cn.shishuihao.thirdparty.api.core.properties;
+package cn.shishuihao.thirdparty.api.core.configuration;
 
 import cn.shishuihao.thirdparty.api.core.api.Api;
 import cn.shishuihao.thirdparty.api.core.container.ContainerHolder;
 import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
+import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
 import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
@@ -12,25 +13,26 @@ import java.util.Optional;
  * @author shishuihao
  * @version 1.0.0
  */
-public final class ApiPropertiesHolder {
+public final class ApiConfigurationHolder {
     /**
-     * api properties repository.
+     * api configuration repository.
      */
-    public static final ApiPropertiesRepository PROPERTIES_REPOSITORY;
+    public static final ApiConfigurationRepository CONFIGURATION_REPOSITORY;
     /**
-     * properties not found message.
+     * configuration not found message.
      */
-    private static final String PROPERTIES_NOT_FOUND_MESSAGE
-            = "properties not found by propertiesId:";
+    public static final String CONFIGURATION_NOT_FOUND_MESSAGE
+            = "configuration not found by appId:%s channelId:%s";
 
     static {
-        PROPERTIES_REPOSITORY = Optional.ofNullable(ContainerHolder.CONTAINER)
-                .map(container -> (ApiPropertiesRepository)
-                        new ApiPropertiesContainerRepository(container, true))
-                .orElseGet(() -> new ApiPropertiesMemoryRepository(true));
+        CONFIGURATION_REPOSITORY = Optional
+                .ofNullable(ContainerHolder.CONTAINER)
+                .map(container -> (ApiConfigurationRepository)
+                        new ApiConfigurationContainerRepository(container, true))
+                .orElseGet(() -> new ApiConfigurationMemoryRepository(true));
     }
 
-    private ApiPropertiesHolder() {
+    private ApiConfigurationHolder() {
     }
 
     /**
@@ -46,9 +48,9 @@ public final class ApiPropertiesHolder {
             T extends ApiRequest<A, T, R>,
             R extends ApiResponse>
     Optional<ApiProperties> getApiProperties(final T request) {
-        return PROPERTIES_REPOSITORY.getApiProperties(
-                request.channelId(),
-                request.propertiesId());
+        return CONFIGURATION_REPOSITORY
+                .getApiConfiguration(request.appId(), request.channelId())
+                .map(ApiConfiguration::getProperties);
     }
 
     /**
@@ -66,6 +68,8 @@ public final class ApiPropertiesHolder {
     ApiProperties getApiPropertiesOrThrow(final T request) {
         return this.getApiProperties(request)
                 .orElseThrow(() -> new PropertiesNotFoundException(
-                        PROPERTIES_NOT_FOUND_MESSAGE + request.propertiesId()));
+                        String.format(CONFIGURATION_NOT_FOUND_MESSAGE,
+                                request.appId(),
+                                request.channelId())));
     }
 }

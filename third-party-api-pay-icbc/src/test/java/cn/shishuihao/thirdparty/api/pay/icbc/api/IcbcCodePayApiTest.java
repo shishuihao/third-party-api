@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.icbc.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayApiProperties;
@@ -21,10 +22,15 @@ class IcbcCodePayApiTest {
         properties.setAppId("appId");
         properties.setPrivateKey("privateKey");
         properties.setIcbcPublicKey("icbcPublicKey");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+        ApiConfiguration configuration = ApiConfiguration.builder()
+                .appId("appId")
+                .channelId(properties.channelId())
+                .properties(properties)
+                .build();
+        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
         CodePayApiRequest request = CodePayApiRequest.builder()
                 .channelId(IcbcPayApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
+                .appId(configuration.getAppId())
                 .subject("Apple iPhone11 128G")
                 .outTradeNo("2234567890")
                 .totalAmount(1)

@@ -4,17 +4,20 @@ import cn.shishuihao.thirdparty.api.core.api.Api;
 import cn.shishuihao.thirdparty.api.core.channel.ApiChannel;
 import cn.shishuihao.thirdparty.api.core.channel.ApiChannelHolder;
 import cn.shishuihao.thirdparty.api.core.channel.ApiChannelRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationHolder;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
 import cn.shishuihao.thirdparty.api.core.event.EventPublisherHolder;
 import cn.shishuihao.thirdparty.api.core.exception.ApiNotFoundException;
 import cn.shishuihao.thirdparty.api.core.exception.ChannelNotFoundException;
 import cn.shishuihao.thirdparty.api.core.exception.PropertiesNotFoundException;
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesHolder;
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
 import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
 import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 
 import java.util.Optional;
+
+import static cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationHolder.CONFIGURATION_NOT_FOUND_MESSAGE;
 
 /**
  * @author shishuihao
@@ -23,11 +26,11 @@ import java.util.Optional;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ApiRegistry {
     /**
-     * api properties repository.
+     * api configuration repository.
      */
-    public static final ApiPropertiesRepository PROPERTIES_REPOSITORY;
+    public static final ApiConfigurationRepository CONFIGURATION_REPOSITORY;
     /**
-     * channel_repository.
+     * channel repository.
      */
     public static final ApiChannelRepository CHANNEL_REPOSITORY;
     /**
@@ -41,8 +44,10 @@ public class ApiRegistry {
             = "api not found by apiType:";
 
     static {
-        PROPERTIES_REPOSITORY = ApiPropertiesHolder.PROPERTIES_REPOSITORY;
-        CHANNEL_REPOSITORY = ApiChannelHolder.CHANNEL_REPOSITORY;
+        CONFIGURATION_REPOSITORY = ApiConfigurationHolder
+                .CONFIGURATION_REPOSITORY;
+        CHANNEL_REPOSITORY = ApiChannelHolder
+                .CHANNEL_REPOSITORY;
         INSTANCE = new ApiRegistry(CHANNEL_REPOSITORY);
     }
 
@@ -175,9 +180,9 @@ public class ApiRegistry {
             T extends ApiRequest<A, T, R>,
             R extends ApiResponse>
     Optional<ApiProperties> getApiProperties(final T request) {
-        return PROPERTIES_REPOSITORY.getApiProperties(
-                request.channelId(),
-                request.propertiesId());
+        return CONFIGURATION_REPOSITORY
+                .getApiConfiguration(request.appId(), request.channelId())
+                .map(ApiConfiguration::getProperties);
     }
 
     /**
@@ -199,8 +204,9 @@ public class ApiRegistry {
     ApiProperties getApiPropertiesOrThrow(final T request) {
         return this.getApiProperties(request)
                 .orElseThrow(() -> new PropertiesNotFoundException(
-                        ApiPropertiesHolder.PROPERTIES_REPOSITORY
-                                + request.propertiesId()));
+                        String.format(CONFIGURATION_NOT_FOUND_MESSAGE,
+                                request.appId(),
+                                request.channelId())));
     }
 
     // execute

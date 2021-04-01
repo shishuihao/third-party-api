@@ -4,6 +4,7 @@ import cn.shishuihao.thirdparty.api.core.container.Container;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.core.env.Environment;
 import org.springframework.lang.NonNull;
 
 import java.util.ArrayList;
@@ -58,6 +59,17 @@ public class ThirdPartyApiSpringContainer
         } else {
             this.hooks.add(hook);
         }
+    }
+
+    /**
+     * get application id.
+     *
+     * @return String
+     */
+    @Override
+    public String getApplicationId() {
+        return applicationContext.getBean(Environment.class)
+                .getProperty("application.id");
     }
 
     /**

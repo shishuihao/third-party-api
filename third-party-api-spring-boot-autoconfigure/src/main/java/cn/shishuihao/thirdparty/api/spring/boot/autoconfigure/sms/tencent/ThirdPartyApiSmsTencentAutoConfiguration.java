@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.sms.tencent;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
 import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiChannel;
 import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsApiChannelProperties;
 import cn.shishuihao.thirdparty.api.sms.tencent.TencentSmsClient;
@@ -42,10 +43,16 @@ public class ThirdPartyApiSmsTencentAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public TencentSmsApiChannel tencentSmsApiChannel(
-            final ApiPropertiesRepository propertiesRepository,
+            final ApiConfigurationRepository propertiesRepository,
             final TencentSmsApiChannelProperties properties,
             final TencentSmsClient client) {
-        properties.getPropertiesList().forEach(propertiesRepository::add);
+        properties.getConfigurations()
+                .forEach((key, list) -> list.forEach(value ->
+                        propertiesRepository.add(ApiConfiguration.builder()
+                                .appId(key)
+                                .channelId(properties.channelId())
+                                .properties(value)
+                                .build())));
         return new TencentSmsApiChannel(properties, client);
     }
 }

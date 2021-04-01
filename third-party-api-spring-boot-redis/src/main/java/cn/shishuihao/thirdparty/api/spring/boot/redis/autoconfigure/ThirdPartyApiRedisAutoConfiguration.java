@@ -1,10 +1,10 @@
 package cn.shishuihao.thirdparty.api.spring.boot.redis.autoconfigure;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
-import cn.shishuihao.thirdparty.api.spring.boot.redis.ApiPropertiesRedisRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.redis.ApiConfigurationRedisRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.redis.util.RedisTemplateUtils;
+import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -27,29 +27,29 @@ import org.springframework.data.redis.core.RedisTemplate;
 @AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiRedisAutoConfiguration {
     /**
-     * apiPropertiesRedisTemplate.
+     * apiConfigurationRedisTemplate.
      *
      * @param redisConnectionFactory redisConnectionFactory
-     * @return RedisTemplate<String, ApiProperties>
+     * @return RedisTemplate<String, ApiConfiguration>
      */
     @Bean
     @ConditionalOnMissingBean
-    protected RedisTemplate<String, ApiProperties> apiPropertiesRedisTemplate(
+    protected RedisTemplate<String, ApiConfiguration> apiConfigurationRedisTemplate(
             final RedisConnectionFactory redisConnectionFactory) {
         return RedisTemplateUtils.newRedisTemplate(redisConnectionFactory,
-                ApiProperties.class);
+                ApiConfiguration.class);
     }
 
     /**
-     * propertiesRepository.
+     * apiConfigurationRepository.
      *
      * @param redisTemplate redis template
-     * @return ApiPropertiesRepository.
+     * @return ApiConfigurationRepository.
      */
     @Bean
     @ConditionalOnMissingBean
-    protected ApiPropertiesRepository propertiesRepository(
-            final RedisTemplate<String, ApiProperties> redisTemplate) {
-        return new ApiPropertiesRedisRepository(redisTemplate);
+    protected ApiConfigurationRepository apiConfigurationRepository(
+            final RedisTemplate<String, ApiConfiguration> redisTemplate) {
+        return new ApiConfigurationRedisRepository(redisTemplate);
     }
 }

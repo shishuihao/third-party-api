@@ -3,11 +3,14 @@ package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.api.Api;
 import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationMemoryRepository;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesMemoryRepository;
 import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
 import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
+import lombok.Getter;
+import lombok.Setter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +29,13 @@ class ThirdPartyApiMybatisPlusTest {
 
     @Test
     void execute() {
-        ApiRegistry.PROPERTIES_REPOSITORY.add(new TestProperties());
+        TestProperties properties = new TestProperties();
+        ApiConfiguration configuration = ApiConfiguration.builder()
+                .appId(ApiConfiguration.class.getSimpleName())
+                .channelId(properties.channelId())
+                .properties(properties)
+                .build();
+        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
         Assertions.assertNotNull(ApiRegistry.INSTANCE.getApiChannelOrThrow(new CodePayRequest()));
         Assertions.assertNotNull(ApiRegistry.INSTANCE.getApiOrThrow(new CodePayRequest()));
         Assertions.assertNotNull(ApiRegistry.INSTANCE.getApiPropertiesOrThrow(new CodePayRequest()));
@@ -50,9 +59,10 @@ class ThirdPartyApiMybatisPlusTest {
         }
     }
 
+    @Getter
+    @Setter
     public static class TestProperties implements ApiProperties {
         private String channelId;
-        private String propertiesId;
         private String key = "key";
         private String value = "value";
 
@@ -65,41 +75,9 @@ class ThirdPartyApiMybatisPlusTest {
         public String id() {
             return TestProperties.class.getSimpleName();
         }
-
-        public String getChannelId() {
-            return channelId;
-        }
-
-        public void setChannelId(String channelId) {
-            this.channelId = channelId;
-        }
-
-        public String getPropertiesId() {
-            return propertiesId;
-        }
-
-        public void setPropertiesId(String propertiesId) {
-            this.propertiesId = propertiesId;
-        }
-
-        public String getKey() {
-            return key;
-        }
-
-        public void setKey(String key) {
-            this.key = key;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
     }
 
-    static class TestApiPropertiesRepository extends ApiPropertiesMemoryRepository {
+    static class TestApiConfigurationRepository extends ApiConfigurationMemoryRepository {
     }
 
     static class CodePayApi implements Api<CodePayApi, CodePayRequest, CodePayResponse> {
@@ -135,8 +113,8 @@ class ThirdPartyApiMybatisPlusTest {
         }
 
         @Override
-        public String propertiesId() {
-            return TestProperties.class.getSimpleName();
+        public String appId() {
+            return ApiConfiguration.class.getSimpleName();
         }
     }
 

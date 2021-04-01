@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.alipay.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
@@ -16,20 +17,26 @@ import org.junit.jupiter.api.Test;
 
 class AlipayCodePayApiTest {
     AlipayPayApiProperties properties = new AlipayPayApiProperties();
+    ApiConfiguration configuration;
 
     @BeforeEach
     void beforeEach() {
         properties.setAppId("appId");
         properties.setMerchantPrivateKey("");
         properties.setAlipayPublicKey("");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+        configuration = ApiConfiguration.builder()
+                .appId("appId")
+                .channelId(properties.channelId())
+                .properties(properties)
+                .build();
+        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
     }
 
     @Test
     void execute() {
         CodePayApiRequest request = CodePayApiRequest.builder()
                 .channelId(AlipayPayApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
+                .appId(configuration.getAppId())
                 .subject("Apple iPhone11 128G")
                 .outTradeNo("2234567890")
                 .totalAmount(1)

@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.huawei;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
 import cn.shishuihao.thirdparty.api.push.huawei.HuaweiPushApiChannel;
 import cn.shishuihao.thirdparty.api.push.huawei.HuaweiPushApiChannelProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -27,9 +28,15 @@ public class ThirdPartyApiPushHuaweiAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public HuaweiPushApiChannel huaweiPushApiChannel(
-            final ApiPropertiesRepository propertiesRepository,
+            final ApiConfigurationRepository propertiesRepository,
             final HuaweiPushApiChannelProperties properties) {
-        properties.getPropertiesList().forEach(propertiesRepository::add);
+        properties.getConfigurations()
+                .forEach((key, list) -> list.forEach(value ->
+                        propertiesRepository.add(ApiConfiguration.builder()
+                                .appId(key)
+                                .channelId(properties.channelId())
+                                .properties(value)
+                                .build())));
         return new HuaweiPushApiChannel(properties);
     }
 }

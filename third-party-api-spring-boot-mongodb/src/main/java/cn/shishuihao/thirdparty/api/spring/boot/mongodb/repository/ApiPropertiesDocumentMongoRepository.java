@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository;
 
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.document.ApiPropertiesMongodbDocument;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.document.ApiConfigurationMongodbDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,23 +12,23 @@ import java.util.Optional;
  */
 @Repository
 public interface ApiPropertiesDocumentMongoRepository
-        extends MongoRepository<ApiPropertiesMongodbDocument, Long> {
+        extends MongoRepository<ApiConfigurationMongodbDocument, Long> {
     /**
-     * get by properties id.
+     * get api configuration.
      *
-     * @param id properties id
-     * @return properties
+     * @param id configuration id
+     * @return Optional<ApiConfigurationMongodbDocument>
      */
-    Optional<ApiPropertiesMongodbDocument>
-    findByPropertiesId(String id);
+    Optional<ApiConfigurationMongodbDocument>
+    findByConfigurationId(String id);
 
     /**
-     * get by channel id and properties id.
+     * get api configuration.
      *
+     * @param appId     app id
      * @param channelId channel id
-     * @param id        properties id
-     * @return properties
+     * @return Optional<ApiConfigurationMongodbDocument>
      */
-    Optional<ApiPropertiesMongodbDocument>
-    findByChannelIdAndPropertiesId(String channelId, String id);
+    Optional<ApiConfigurationMongodbDocument>
+    findByAppIdAndChannelId(String appId, String channelId);
 }

@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.sms.aliyun;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
 import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiChannel;
 import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiChannelProperties;
 import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsClient;
@@ -40,10 +41,16 @@ public class ThirdPartyApiSmsAliyunAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public AliYunSmsApiChannel aliYunSmsApiChannel(
-            final ApiPropertiesRepository propertiesRepository,
+            final ApiConfigurationRepository propertiesRepository,
             final AliYunSmsApiChannelProperties properties,
             final AliYunSmsClient client) {
-        properties.getPropertiesList().forEach(propertiesRepository::add);
+        properties.getConfigurations()
+                .forEach((key, list) -> list.forEach(value ->
+                        propertiesRepository.add(ApiConfiguration.builder()
+                                .appId(key)
+                                .channelId(properties.channelId())
+                                .properties(value)
+                                .build())));;
         return new AliYunSmsApiChannel(properties, client);
     }
 }

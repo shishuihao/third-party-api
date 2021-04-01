@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.push.huawei.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.push.huawei.HuaweiPushApiChannel;
 import cn.shishuihao.thirdparty.api.push.huawei.HuaweiPushApiProperties;
@@ -19,10 +20,15 @@ class HuaweiPushMessageApiTest {
     void execute() {
         HuaweiPushApiProperties properties = new HuaweiPushApiProperties();
         properties.setAppId("appId");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+        ApiConfiguration configuration = ApiConfiguration.builder()
+                .appId("appId")
+                .channelId(properties.channelId())
+                .properties(properties)
+                .build();
+        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
         PushMessageApiRequest request = PushMessageApiRequest.builder()
                 .channelId(HuaweiPushApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
+                .appId(configuration.getAppId())
                 .title("title")
                 .description("description")
                 .payload("payload")

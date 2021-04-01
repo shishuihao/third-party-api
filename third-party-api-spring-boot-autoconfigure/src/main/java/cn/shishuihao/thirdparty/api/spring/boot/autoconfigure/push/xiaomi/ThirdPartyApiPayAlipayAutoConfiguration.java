@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.push.xiaomi;
 
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
 import cn.shishuihao.thirdparty.api.push.xiaomi.XiaomiPushApiChannel;
 import cn.shishuihao.thirdparty.api.push.xiaomi.XiaomiPushApiChannelProperties;
 import cn.shishuihao.thirdparty.api.push.xiaomi.XiaomiPushClient;
@@ -40,10 +41,16 @@ public class ThirdPartyApiPayAlipayAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public XiaomiPushApiChannel xiaomiPushApiChannel(
-            final ApiPropertiesRepository propertiesRepository,
+            final ApiConfigurationRepository propertiesRepository,
             final XiaomiPushApiChannelProperties properties,
             final XiaomiPushClient client) {
-        properties.getPropertiesList().forEach(propertiesRepository::add);
+        properties.getConfigurations()
+                .forEach((key, list) -> list.forEach(value ->
+                        propertiesRepository.add(ApiConfiguration.builder()
+                                .appId(key)
+                                .channelId(properties.channelId())
+                                .properties(value)
+                                .build())));
         return new XiaomiPushApiChannel(properties, client);
     }
 }

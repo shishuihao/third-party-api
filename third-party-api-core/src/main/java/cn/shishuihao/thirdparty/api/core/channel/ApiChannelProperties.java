@@ -4,6 +4,7 @@ import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
 import cn.shishuihao.thirdparty.api.core.repository.AggregateRoot;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @param <P> api properties
@@ -22,11 +23,11 @@ public interface ApiChannelProperties<
     String channelId();
 
     /**
-     * get properties list.
+     * get configurations.
      *
-     * @return properties list
+     * @return configurations
      */
-    List<P> getPropertiesList();
+    Map<String, List<P>> getConfigurations();
 
     /**
      * get id.

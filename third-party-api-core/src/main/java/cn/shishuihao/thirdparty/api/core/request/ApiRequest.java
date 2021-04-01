@@ -31,18 +31,18 @@ public interface ApiRequest<
     Class<R> responseType();
 
     /**
+     * get app id.
+     * immutable
+     *
+     * @return app id
+     */
+    String appId();
+
+    /**
      * get channel id.
      * immutable
      *
      * @return channel id
      */
     String channelId();
-
-    /**
-     * get properties id.
-     * immutable
-     *
-     * @return properties id
-     */
-    String propertiesId();
 }

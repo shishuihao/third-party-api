@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.sms.tencent.api;
 
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.sms.domain.SmsMessage;
 import cn.shishuihao.thirdparty.api.sms.request.SendBatchSmsApiRequest;
@@ -29,12 +30,17 @@ class TencentSendBatchSmsApiTest {
         properties.setSign("sign");
         properties.setSenderId(null);
         properties.setExtendCode(null);
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
+        ApiConfiguration configuration = ApiConfiguration.builder()
+                .appId("appId")
+                .channelId(properties.channelId())
+                .properties(properties)
+                .build();
+        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
         SendBatchSmsApiRequest request = SendBatchSmsApiRequest.builder()
                 .channelId(TencentSmsApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
+                .appId(configuration.getAppId())
                 .templateId("1234")
                 .messages(Arrays.asList(SmsMessage.builder()
                         .phoneNumber("+8613711112222")

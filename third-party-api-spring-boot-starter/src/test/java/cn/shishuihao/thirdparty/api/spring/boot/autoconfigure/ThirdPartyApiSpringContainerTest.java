@@ -5,7 +5,7 @@ import cn.shishuihao.thirdparty.api.core.api.Api;
 import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
-import cn.shishuihao.thirdparty.api.core.properties.ApiPropertiesMemoryRepository;
+import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationMemoryRepository;
 import cn.shishuihao.thirdparty.api.core.request.ApiRequest;
 import cn.shishuihao.thirdparty.api.core.response.ApiResponse;
 import org.junit.jupiter.api.Assertions;
@@ -61,7 +61,7 @@ class ThirdPartyApiSpringContainerTest {
         }
     }
 
-    static class TestApiPropertiesRepository extends ApiPropertiesMemoryRepository {
+    static class TestApiConfigurationRepository extends ApiConfigurationMemoryRepository {
     }
 
     static class CodePayApi implements Api<CodePayApi, CodePayRequest, CodePayResponse> {
@@ -98,7 +98,7 @@ class ThirdPartyApiSpringContainerTest {
         }
 
         @Override
-        public String propertiesId() {
+        public String appId() {
             return TestProperties.class.getSimpleName();
         }
     }

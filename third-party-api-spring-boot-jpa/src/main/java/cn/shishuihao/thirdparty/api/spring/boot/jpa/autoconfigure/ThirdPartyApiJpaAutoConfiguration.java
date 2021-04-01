@@ -1,9 +1,9 @@
 package cn.shishuihao.thirdparty.api.spring.boot.jpa.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.ApiConfigurationJpaRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.converter.ApiConfigurationJpaEntityConverter;
-import cn.shishuihao.thirdparty.api.spring.boot.jpa.repository.ApiConfigurationEntityJpaRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.domain.ApiConfigurationEntityJpaRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.domain.ApiConfigurationJpaEntityConverter;
+import cn.shishuihao.thirdparty.api.spring.boot.jpa.domain.ApiConfigurationJpaRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -22,9 +22,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         name = "third-party-api.jpa.enabled",
         matchIfMissing = true)
 @EntityScan(basePackages =
-        "cn.shishuihao.thirdparty.api.spring.boot.jpa.entity")
+        "cn.shishuihao.thirdparty.api.spring.boot.jpa.domain")
 @EnableJpaRepositories(basePackages =
-        "cn.shishuihao.thirdparty.api.spring.boot.jpa.repository")
+        "cn.shishuihao.thirdparty.api.spring.boot.jpa.domain")
 @AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiJpaAutoConfiguration {
     /**

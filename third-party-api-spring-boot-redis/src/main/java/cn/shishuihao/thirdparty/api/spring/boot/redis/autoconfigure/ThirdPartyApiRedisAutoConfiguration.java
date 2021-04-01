@@ -2,7 +2,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.redis.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.redis.ApiConfigurationRedisRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.redis.domain.ApiConfigurationRedisRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.redis.util.RedisTemplateUtils;
 import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;

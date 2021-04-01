@@ -1,9 +1,9 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.ApiConfigurationMybatisPlusRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.converter.ApiConfigurationMybatisPlusEntityConverter;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper.ApiPropertiesEntityMybatisPlusMapper;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.domain.ApiConfigurationEntityMybatisPlusMapper;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.domain.ApiConfigurationMybatisPlusEntityConverter;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.domain.ApiConfigurationMybatisPlusRepository;
 import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Import;
         name = "third-party-api.mybatis-plus.enabled",
         matchIfMissing = true)
 @MapperScan(basePackages =
-        "cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper")
+        "cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.domain")
 @AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiMybatisPlusAutoConfiguration {
     /**
@@ -48,7 +48,7 @@ public class ThirdPartyApiMybatisPlusAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     protected ApiConfigurationRepository apiConfigurationRepository(
-            final ApiPropertiesEntityMybatisPlusMapper mapper,
+            final ApiConfigurationEntityMybatisPlusMapper mapper,
             final ApiConfigurationMybatisPlusEntityConverter converter) {
         return new ApiConfigurationMybatisPlusRepository(mapper, converter);
     }

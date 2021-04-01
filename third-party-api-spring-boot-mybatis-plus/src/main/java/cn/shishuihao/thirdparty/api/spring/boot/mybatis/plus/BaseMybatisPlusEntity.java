@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity;
+package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;

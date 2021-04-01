@@ -1,6 +1,5 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper;
+package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.domain;
 
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiConfigurationMybatisPlusEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,7 +12,7 @@ import java.util.Optional;
  * @version 1.0.0
  */
 @Mapper
-public interface ApiPropertiesEntityMybatisPlusMapper
+public interface ApiConfigurationEntityMybatisPlusMapper
         extends BaseMapper<ApiConfigurationMybatisPlusEntity> {
     /**
      * get api configuration.

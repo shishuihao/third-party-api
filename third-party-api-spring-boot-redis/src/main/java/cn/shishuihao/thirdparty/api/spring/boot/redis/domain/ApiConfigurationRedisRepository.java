@@ -1,7 +1,8 @@
-package cn.shishuihao.thirdparty.api.spring.boot.redis;
+package cn.shishuihao.thirdparty.api.spring.boot.redis.domain;
 
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.redis.AbstractRedisRepository;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 

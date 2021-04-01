@@ -1,8 +1,7 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter;
+package cn.shishuihao.thirdparty.api.spring.boot.mongodb.domain;
 
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.repository.AggregateRootConverter;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.document.ApiConfigurationMongodbDocument;
 
 import java.time.LocalDateTime;
 

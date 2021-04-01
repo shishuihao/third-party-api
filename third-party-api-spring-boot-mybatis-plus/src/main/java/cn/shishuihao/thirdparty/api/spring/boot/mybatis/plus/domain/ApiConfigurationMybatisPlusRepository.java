@@ -1,10 +1,8 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus;
+package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.domain;
 
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.converter.ApiConfigurationMybatisPlusEntityConverter;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiConfigurationMybatisPlusEntity;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.mapper.ApiPropertiesEntityMybatisPlusMapper;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.AbstractMybatisPlusRepository;
 
 import java.util.Optional;
 
@@ -17,7 +15,7 @@ public class ApiConfigurationMybatisPlusRepository
         String,
         ApiConfiguration,
         ApiConfigurationMybatisPlusEntity,
-        ApiPropertiesEntityMybatisPlusMapper>
+        ApiConfigurationEntityMybatisPlusMapper>
         implements ApiConfigurationRepository {
     /**
      * new ApiConfigurationMybatisPlusRepository.
@@ -26,7 +24,7 @@ public class ApiConfigurationMybatisPlusRepository
      * @param converter converter
      */
     public ApiConfigurationMybatisPlusRepository(
-            final ApiPropertiesEntityMybatisPlusMapper mapper,
+            final ApiConfigurationEntityMybatisPlusMapper mapper,
             final ApiConfigurationMybatisPlusEntityConverter converter) {
         super(mapper, converter);
     }

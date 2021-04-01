@@ -1,7 +1,8 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity;
+package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.domain;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.handler.ApiPropertiesJacksonTypeHandler;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.ApiPropertiesJacksonTypeHandler;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.BaseMybatisPlusEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;

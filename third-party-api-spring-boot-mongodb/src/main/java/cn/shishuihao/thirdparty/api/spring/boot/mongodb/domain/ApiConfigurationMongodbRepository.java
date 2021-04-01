@@ -1,10 +1,8 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mongodb;
+package cn.shishuihao.thirdparty.api.spring.boot.mongodb.domain;
 
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiConfigurationMongodbDocumentConverter;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.document.ApiConfigurationMongodbDocument;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository.ApiPropertiesDocumentMongoRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.AbstractMongoRepository;
 
 import java.util.Optional;
 

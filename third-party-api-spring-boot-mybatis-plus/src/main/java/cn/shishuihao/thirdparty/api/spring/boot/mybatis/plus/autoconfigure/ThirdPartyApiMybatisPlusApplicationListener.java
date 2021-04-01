@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.autoconfigure;
 
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.handler.ApiPropertiesJacksonTypeHandler;
+import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.ApiPropertiesJacksonTypeHandler;
 import lombok.AllArgsConstructor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

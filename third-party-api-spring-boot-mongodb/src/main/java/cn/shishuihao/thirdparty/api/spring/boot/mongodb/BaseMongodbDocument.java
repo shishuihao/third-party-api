@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mongodb.document;
+package cn.shishuihao.thirdparty.api.spring.boot.mongodb;
 
 import lombok.Getter;
 import lombok.Setter;

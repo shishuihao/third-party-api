@@ -1,8 +1,7 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.converter;
+package cn.shishuihao.thirdparty.api.spring.boot.jpa.domain;
 
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.repository.AggregateRootConverter;
-import cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.entity.ApiConfigurationMybatisPlusEntity;
 
 import java.time.LocalDateTime;
 
@@ -10,11 +9,11 @@ import java.time.LocalDateTime;
  * @author shishuihao
  * @version 1.0.0
  */
-public class ApiConfigurationMybatisPlusEntityConverter
+public class ApiConfigurationJpaEntityConverter
         implements AggregateRootConverter<
         String,
         ApiConfiguration,
-        ApiConfigurationMybatisPlusEntity> {
+        ApiConfigurationJpaEntity> {
     /**
      * aggregate root to entity.
      *
@@ -22,10 +21,9 @@ public class ApiConfigurationMybatisPlusEntityConverter
      * @return entity
      */
     @Override
-    public ApiConfigurationMybatisPlusEntity convert(
+    public ApiConfigurationJpaEntity convert(
             final ApiConfiguration aggregateRoot) {
-        ApiConfigurationMybatisPlusEntity entity
-                = new ApiConfigurationMybatisPlusEntity();
+        ApiConfigurationJpaEntity entity = new ApiConfigurationJpaEntity();
         entity.setAppId(aggregateRoot.getAppId());
         entity.setChannelId(aggregateRoot.getChannelId());
         entity.setConfigurationId(aggregateRoot.id());
@@ -42,8 +40,8 @@ public class ApiConfigurationMybatisPlusEntityConverter
      * @return entity
      */
     @Override
-    public ApiConfigurationMybatisPlusEntity convert(
-            final ApiConfigurationMybatisPlusEntity entity,
+    public ApiConfigurationJpaEntity convert(
+            final ApiConfigurationJpaEntity entity,
             final ApiConfiguration aggregateRoot) {
         entity.setProperties(aggregateRoot.getProperties());
         entity.setGmtModified(LocalDateTime.now());
@@ -58,7 +56,7 @@ public class ApiConfigurationMybatisPlusEntityConverter
      */
     @Override
     public ApiConfiguration convert(
-            final ApiConfigurationMybatisPlusEntity entity) {
+            final ApiConfigurationJpaEntity entity) {
         return ApiConfiguration.builder()
                 .appId(entity.getAppId())
                 .channelId(entity.getChannelId())

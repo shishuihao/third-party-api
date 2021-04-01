@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.spring.boot.jpa.entity;
+package cn.shishuihao.thirdparty.api.spring.boot.jpa;
 
 import lombok.Getter;
 import lombok.Setter;

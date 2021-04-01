@@ -1,11 +1,11 @@
 package cn.shishuihao.thirdparty.api.spring.boot.mongodb.autoconfigure;
 
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.ApiConfigurationMongodbRepository;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiConfigurationMongodbDocumentConverter;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.ApiPropertiesToJacksonConverter;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter.JacksonToApiPropertiesConverter;
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository.ApiPropertiesDocumentMongoRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.JacksonToApiPropertiesConverter;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.domain.ApiConfigurationMongodbDocumentConverter;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.domain.ApiConfigurationMongodbRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.domain.ApiPropertiesDocumentMongoRepository;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.domain.ApiPropertiesToJacksonConverter;
 import cn.shishuihao.thirdparty.api.spring.boot.starter.autoconfigure.ThirdPartyApiStarterAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -26,7 +26,7 @@ import java.util.Arrays;
         name = "third-party-api.mongodb.enabled",
         matchIfMissing = true)
 @EnableMongoRepositories(basePackages =
-        "cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository")
+        "cn.shishuihao.thirdparty.api.spring.boot.mongodb.domain")
 @AutoConfigureBefore(ThirdPartyApiStarterAutoConfiguration.class)
 public class ThirdPartyApiMongodbAutoConfiguration {
     /**

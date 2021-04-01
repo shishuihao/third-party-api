@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mongodb.converter;
+package cn.shishuihao.thirdparty.api.spring.boot.mongodb.domain;
 
 import cn.shishuihao.thirdparty.api.commons.json.JacksonTypingUtils;
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;

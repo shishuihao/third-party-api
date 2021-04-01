@@ -1,6 +1,5 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mongodb.repository;
+package cn.shishuihao.thirdparty.api.spring.boot.mongodb.domain;
 
-import cn.shishuihao.thirdparty.api.spring.boot.mongodb.document.ApiConfigurationMongodbDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus.handler;
+package cn.shishuihao.thirdparty.api.spring.boot.mybatis.plus;
 
 import cn.shishuihao.thirdparty.api.commons.json.JacksonTypingUtils;
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;

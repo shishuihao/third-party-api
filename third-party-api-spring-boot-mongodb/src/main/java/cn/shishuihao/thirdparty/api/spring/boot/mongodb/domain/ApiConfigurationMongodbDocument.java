@@ -1,6 +1,7 @@
-package cn.shishuihao.thirdparty.api.spring.boot.mongodb.document;
+package cn.shishuihao.thirdparty.api.spring.boot.mongodb.domain;
 
 import cn.shishuihao.thirdparty.api.core.properties.ApiProperties;
+import cn.shishuihao.thirdparty.api.spring.boot.mongodb.BaseMongodbDocument;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.index.CompoundIndex;

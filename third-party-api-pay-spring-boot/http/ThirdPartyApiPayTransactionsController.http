@@ -1,3 +1,30 @@
+### app pay
+POST http://localhost:8080/api/v1/pay/transactions/app-pay
+Content-Type: application/json
+
+{
+  "appId": "d678efh567hg6787",
+  "channelId": "pay.alipay",
+  "subject": "app-pay",
+  "outTradeNo": "283676497934367951",
+  "currency": "CNY",
+  "totalAmount": 1
+}
+
+### applet pay
+POST http://localhost:8080/api/v1/pay/transactions/applet-pay
+Content-Type: application/json
+
+{
+  "appId": "d678efh567hg6787",
+  "channelId": "pay.alipay",
+  "subject": "applet-pay",
+  "outTradeNo": "283676497934367952",
+  "currency": "CNY",
+  "totalAmount": 2,
+  "payerId": "283676497934367952"
+}
+
 ### code pay
 POST http://localhost:8080/api/v1/pay/transactions/code-pay
 Content-Type: application/json
@@ -5,26 +32,64 @@ Content-Type: application/json
 {
   "appId": "d678efh567hg6787",
   "channelId": "pay.alipay",
-  "subject": "test",
+  "subject": "code-pay",
   "outTradeNo": "283676497934367954",
   "currency": "CNY",
   "totalAmount": 1,
   "authCode": "283676497934367954"
 }
 
+### h5 pay
+POST http://localhost:8080/api/v1/pay/transactions/h5-pay
+Content-Type: application/json
+
+{
+  "appId": "d678efh567hg6787",
+  "channelId": "pay.alipay",
+  "subject": "h5-pay",
+  "outTradeNo": "283676497934367955",
+  "currency": "CNY",
+  "totalAmount": 1
+}
+
+### jsapi pay
+POST http://localhost:8080/api/v1/pay/transactions/jsapi-pay
+Content-Type: application/json
+
+{
+  "appId": "d678efh567hg6787",
+  "channelId": "pay.alipay",
+  "subject": "jsapi-pay",
+  "outTradeNo": "283676497934367956",
+  "currency": "CNY",
+  "totalAmount": 1,
+  "payerId": "283676497934367956"
+}
+
+### native pay
+POST http://localhost:8080/api/v1/pay/transactions/native-pay
+Content-Type: application/json
+
+{
+  "appId": "d678efh567hg6787",
+  "channelId": "pay.alipay",
+  "subject": "native-pay",
+  "outTradeNo": "283676497934367957",
+  "currency": "CNY",
+  "totalAmount": 1
+}
+
 ### query one
-GET http://localhost:8080/api/v1/pay/transactions/695360924463382528
+GET http://localhost:8080/api/v1/pay/transactions/695369264551636992
 
 ### query many
 GET http://localhost:8080/api/v1/pay/transactions?tradeType=CODE&totalAmount=1
 
 ### query
-# 695360924463382528
-# 695369264551636992
 POST http://localhost:8080/api/v1/pay/transactions/695369264551636992/query
 
 ### cancel
-POST http://localhost:8080/api/v1/pay/transactions/695360924463382528/cancel
+POST http://localhost:8080/api/v1/pay/transactions/695369264551636992/cancel
 
 ### refund
 POST http://localhost:8080/api/v1/pay/transactions/695369264551636992/refund

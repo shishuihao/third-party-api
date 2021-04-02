@@ -25,7 +25,7 @@ public class ThirdPartyApiMybatisPlusApplicationListener
      * SQL.
      */
     private static final String SQL
-            = "CREATE TABLE IF NOT EXISTS api_configuration\n"
+            = "CREATE TABLE IF NOT EXISTS api_pay_configuration\n"
             + "(\n"
             + "    id               bigint(0)      NOT NULL AUTO_INCREMENT,\n"
             + "    gmt_create       datetime(0)    NOT NULL,\n"
@@ -35,7 +35,7 @@ public class ThirdPartyApiMybatisPlusApplicationListener
             + "    channel_id       varchar(255)   NOT NULL,\n"
             + "    properties       varchar(10240) NULL DEFAULT NULL,\n"
             + "    PRIMARY KEY (id),\n"
-            + "    UNIQUE INDEX `UK2g89p4h9vr0x67lf7ckvedtty`("
+            + "    UNIQUE INDEX `UK2g89p4h9vr0x67lf7ckvedttz`("
             + "app_id, channel_id)"
             + " USING BTREE\n" + ");";
     /**

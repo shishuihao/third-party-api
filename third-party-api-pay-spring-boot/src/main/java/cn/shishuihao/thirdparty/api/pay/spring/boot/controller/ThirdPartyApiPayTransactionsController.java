@@ -95,12 +95,12 @@ public class ThirdPartyApiPayTransactionsController {
     }
 
     /**
-     * js api pay.
+     * jsapi pay.
      *
      * @param request request
      * @return response
      */
-    @PostMapping("/js-api-pay")
+    @PostMapping("/jsapi-pay")
     public CompletableFuture<JsApiPayApiResponse> jsApiPay(
             @Valid @RequestBody final JsApiPayApiRequest request) {
         return CompletableFuture.supplyAsync(() ->
@@ -114,7 +114,7 @@ public class ThirdPartyApiPayTransactionsController {
      * @return response
      */
     @PostMapping("/native-pay")
-    public CompletableFuture<NativePayApiResponse> jsApiPay(
+    public CompletableFuture<NativePayApiResponse> nativePay(
             @Valid @RequestBody final NativePayApiRequest request) {
         return CompletableFuture.supplyAsync(() ->
                 transactionService.nativePay(request));

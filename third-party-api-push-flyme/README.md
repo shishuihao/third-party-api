@@ -27,18 +27,4 @@ compile 'cn.shishuihao:third-party-api-push-flyme:latest'
 
 ### 推送消息(push message)
 
-```java
-        FlymePushApiProperties properties = new FlymePushApiProperties();
-        properties.setAppId(0L);
-        properties.setAppSecret("appSecret");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.builder()
-                .channelId(FlymePushApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
-                .title("title")
-                .description("description")
-                .payload("payload")
-                .restrictedPackageName("restrictedPackageName")
-                .registrationIds(new String[]{"registrationId"})
-                .build());
-```
+-   [x] [FlymePushMessageApiTest](/third-party-api-push-flyme/src/test/java/cn/shishuihao/thirdparty/api/push/flyme/api/FlymePushMessageApiTest.java)

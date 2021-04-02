@@ -26,18 +26,4 @@ compile 'cn.shishuihao:third-party-api-pay-alipay:latest'
 
 ### 扫码支付(code pay)
 
-```java
-        AlipayPayApiProperties properties = new AlipayPayApiProperties();
-        properties.setAppId("appId");
-        properties.setMerchantPrivateKey("");
-        properties.setAlipayPublicKey("");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        CodePayApiRequest request = CodePayApiRequest.builder()
-                .channelId(AlipayPayApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
-                .subject("Apple iPhone11 128G")
-                .outTradeNo("2234567890")
-                .totalAmount(1)
-                .authCode("")
-                .build();
-```
+-   [x] [AlipayCodePayApiTest](/third-party-api-pay-alipay/src/test/java/cn/shishuihao/thirdparty/api/pay/alipay/api/AlipayCodePayApiTest.java)

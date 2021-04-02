@@ -27,18 +27,4 @@ compile 'cn.shishuihao:third-party-api-push-vivo:latest'
 
 ### 推送消息(push message)
 
-```java
-        VivoPushApiProperties properties = new VivoPushApiProperties();
-        properties.setAppKey("appKey");
-        properties.setSecret("secret");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiRequest request = PushMessageApiRequest.builder()
-                .channelId(VivoPushApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
-                .title("title")
-                .description("description")
-                .payload("payload")
-                .restrictedPackageName("restrictedPackageName")
-                .registrationIds(new String[]{"registrationId"})
-                .build();
-```
+-   [x] [VivoPushMessageApiTest](/third-party-api-push-vivo/src/test/java/cn/shishuihao/thirdparty/api/push/vivo/api/VivoPushMessageApiTest.java)

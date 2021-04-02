@@ -26,54 +26,8 @@ compile 'cn.shishuihao:third-party-api-sms-tencent:latest'
 
 ### 发送短信(send sms)
 
-```java
-        TencentSmsApiProperties properties = new TencentSmsApiProperties();
-        properties.setAppId("appId");
-        properties.setSecretId("secretId");
-        properties.setSecretKey("secretKey");
-        properties.setSign("sign");
-        properties.setSenderId(null);
-        properties.setExtendCode(null);
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        Map<String, String> params = new TreeMap<>();
-        params.put("code", "12345");
-        SendSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendSmsApiRequest.builder()
-                .channelId(TencentSmsApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
-                .templateId("1234")
-                .message(SmsMessage.builder()
-                        .phoneNumber("8613711112222")
-                        .signName("test")
-                        .templateParams(params)
-                        .build())
-                .build());
-```
+-   [x] [TencentSendSmsApiTest](/third-party-api-sms-tencent/src/test/java/cn/shishuihao/thirdparty/api/sms/tencent/api/TencentSendSmsApiTest.java)
 
 ### 批量发送短信(batch send sms)
 
-```java
-        TencentSmsApiProperties properties = new TencentSmsApiProperties();
-        properties.setAppId("appId");
-        properties.setSecretId("secretId");
-        properties.setSecretKey("secretKey");
-        properties.setSign("sign");
-        properties.setSenderId(null);
-        properties.setExtendCode(null);
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        Map<String, String> params = new TreeMap<>();
-        params.put("code", "12345");
-        SendBatchSmsApiResponse response = ApiRegistry.INSTANCE.execute(SendBatchSmsApiRequest.builder()
-                .channelId(TencentSmsApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
-                .templateId("1234")
-                .messages(Arrays.asList(SmsMessage.builder()
-                        .phoneNumber("+8613711112222")
-                        .signName("test")
-                        .templateParams(params)
-                        .build(), SmsMessage.builder()
-                        .phoneNumber("+8618511122266")
-                        .signName("test")
-                        .templateParams(params)
-                        .build()))
-                .build());
-```
+-   [x] [TencentSendBatchSmsApiTest](/third-party-api-sms-tencent/src/test/java/cn/shishuihao/thirdparty/api/sms/tencent/api/TencentSendBatchSmsApiTest.java)

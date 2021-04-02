@@ -39,7 +39,7 @@ compile 'cn.shishuihao:third-party-api-spring-boot-starter:latest'
 
     -   [x] 数据库配置方式
         -   [x] [spring-boot-jpa](/third-party-api-spring-boot-jpa)
-
+        
         ```java
         @Bean
         @ConditionalOnMissingBean

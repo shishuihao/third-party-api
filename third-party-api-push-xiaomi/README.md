@@ -27,18 +27,4 @@ compile 'cn.shishuihao:third-party-api-push-xiaomi:latest'
 
 ### 推送消息(push message)
 
-```java
-        XiaomiPushApiProperties properties = new XiaomiPushApiProperties();
-        properties.setAppId("appId");
-        properties.setAppSecretKey("appSecretKey");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.builder()
-                .channelId(XiaomiPushApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
-                .title("title")
-                .description("description")
-                .payload("payload")
-                .restrictedPackageName("restrictedPackageName")
-                .registrationIds(new String[]{"registrationId"})
-                .build());
-```
+-   [x] [XiaomiPushMessageApiTest](/third-party-api-push-xiaomi/src/test/java/cn/shishuihao/thirdparty/api/push/xiaomi/api/XiaomiPushMessageApiTest.java)

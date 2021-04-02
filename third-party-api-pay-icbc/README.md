@@ -27,18 +27,4 @@ compile 'cn.shishuihao:third-party-api-pay-icbc:latest'
 
 ### 扫码支付(code pay)
 
-```java
-        IcbcPayApiProperties properties = new IcbcPayApiProperties();
-        properties.setAppId("appId");
-        properties.setPrivateKey("");
-        properties.setIcbcPublicKey("");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        CodePayApiRequest request = CodePayApiRequest.builder()
-                .channelId(IcbcPayApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
-                .subject("Apple iPhone11 128G")
-                .outTradeNo("2234567890")
-                .totalAmount(1)
-                .authCode("")
-                .build();
-```
+-   [x] [IcbcCodePayApiTest](/third-party-api-pay-icbc/src/test/java/cn/shishuihao/thirdparty/api/pay/icbc/api/IcbcCodePayApiTest.java)

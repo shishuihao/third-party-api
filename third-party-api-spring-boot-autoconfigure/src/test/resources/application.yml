@@ -5,19 +5,19 @@ third-party-api:
       configurations:
         appId:
           - app-id: pay.alipay.appId
-              protocol: https
-              gateway-host: openapi.alipay.com
-              sign-type: RSA2
-              alipay-public-key: alipayPublicKey
-              merchant-private-key: merchantPrivateKey
-              merchant-cert-path: merchantCertPath
-              alipay-cert-path: alipayCertPath
-              alipay-root-cert-path: alipayRootCertPath
-              notify-url:
-              encrypt-key:
-              sign-provider: AliyunKMS
-              http-proxy: http://127.0.0.1:8080
-              ignore-ssl: false
+            protocol: https
+            gateway-host: openapi.alipay.com
+            sign-type: RSA2
+            alipay-public-key: alipayPublicKey
+            merchant-private-key: merchantPrivateKey
+            merchant-cert-path: merchantCertPath
+            alipay-cert-path: alipayCertPath
+            alipay-root-cert-path: alipayRootCertPath
+            notify-url:
+            encrypt-key:
+            sign-provider: AliyunKMS
+            http-proxy: http://127.0.0.1:8080
+            ignore-ssl: false
     icbc:
       channel-id: pay.icbc
       configurations:

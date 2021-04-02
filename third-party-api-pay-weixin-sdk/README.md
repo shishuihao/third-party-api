@@ -42,13 +42,13 @@ compile 'cn.shishuihao:third-party-api-pay-weixin-sdk:latest'
 
 在Alipay Easy SDK中，API的引用路径与能力地图的组织层次一致，遵循如下规范
 
-```java
+```txt
 WxFactory.能力类别.场景类别.接口方法名称( ... )
 ```
 
 比如，如果您想要使用能力地图中支付能力下的付款码支付场景中的付款码支付，只需按如下形式编写调用代码即可。
 
-```java
+```txt
 WxFactory.Payment.codeApi().microPay( ... )
 ```
 

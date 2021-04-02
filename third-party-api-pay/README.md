@@ -1,6 +1,7 @@
 # 支付集成(pay integration)
 
--   [x] [集成到springboot](/third-party-api-pay-spring-boot-web)
+-   [x] [支付后端(springboot)](/third-party-api-pay-spring-boot)
+-   [x] [支付前端(vue)](/third-party-api-pay-vue)
 -   [ ] [中国农业银行](/third-party-api-pay-abc)
 -   [x] [支付宝](/third-party-api-pay-alipay)
 -   [ ] [中国银行](/third-party-api-pay-boc)

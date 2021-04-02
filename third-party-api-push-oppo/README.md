@@ -27,18 +27,4 @@ compile 'cn.shishuihao:third-party-api-push-oppo:latest'
 
 ### 推送消息(push message)
 
-```java
-        OppoPushApiProperties properties = new OppoPushApiProperties();
-        properties.setAppKey("appKey");
-        properties.setMasterSecret("masterSecret");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.builder()
-                .channelId(OppoPushApiChannel.CHANNEL_ID)
-                .propertiesId(properties.id())
-                .title("title")
-                .description("description")
-                .payload("payload")
-                .restrictedPackageName("restrictedPackageName")
-                .registrationIds(new String[]{"registrationId"})
-                .build());
-```
+-   [x] [OppoPushMessageApiTest](/third-party-api-push-oppo/src/test/java/cn/shishuihao/thirdparty/api/push/oppo/api/OppoPushMessageApiTest.java)

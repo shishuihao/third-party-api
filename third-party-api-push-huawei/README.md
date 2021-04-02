@@ -27,17 +27,4 @@ compile 'cn.shishuihao:third-party-api-push-huawei:latest'
 
 ### 推送消息(push message)
 
-```java
-        HuaweiPushApiProperties properties = new HuaweiPushApiProperties();
-        properties.setAppId("appId");
-        ApiRegistry.PROPERTIES_REPOSITORY.add(properties);
-        PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.builder()
-        .channelId(XiaomiPushApiChannel.CHANNEL_ID)
-        .propertiesId(properties.id())
-        .title("title")
-        .description("description")
-        .payload("payload")
-        .restrictedPackageName("restrictedPackageName")
-        .registrationIds(new String[]{"registrationId"})
-        .build());
-```
+-   [x] [HuaweiPushMessageApiTest](/third-party-api-push-huawei/src/test/java/cn/shishuihao/thirdparty/api/push/huawei/api/HuaweiPushMessageApiTest.java)

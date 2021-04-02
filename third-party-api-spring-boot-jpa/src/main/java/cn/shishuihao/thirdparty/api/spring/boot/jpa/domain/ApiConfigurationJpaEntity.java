@@ -30,7 +30,7 @@ public class ApiConfigurationJpaEntity extends BaseJpaEntity {
     /**
      * table name api_configuration.
      */
-    public static final String TABLE_NAME = "`api_configuration`";
+    public static final String TABLE_NAME = "`api_pay_configuration`";
     /**
      * column name configuration_id.
      */

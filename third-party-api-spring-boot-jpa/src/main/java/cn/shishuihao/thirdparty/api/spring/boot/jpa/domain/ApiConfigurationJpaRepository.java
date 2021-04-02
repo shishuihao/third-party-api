@@ -36,7 +36,7 @@ public class ApiConfigurationJpaRepository
      * @return Optional<ApiConfigurationJpaEntity>
      */
     @Override
-    public Optional<ApiConfigurationJpaEntity> findById(final String id) {
+    public Optional<ApiConfigurationJpaEntity> getById(final String id) {
         return this.getJpaRepository()
                 .findByConfigurationId(id);
     }

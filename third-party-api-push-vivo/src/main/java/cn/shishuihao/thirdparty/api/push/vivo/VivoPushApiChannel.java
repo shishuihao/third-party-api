@@ -30,7 +30,7 @@ public class VivoPushApiChannel
     public VivoPushApiChannel(final VivoPushApiChannelProperties properties,
                               final VivoPushClient client) {
         this.channelProperties = properties;
-        this.add(new VivoPushMessageApi(client));
+        this.save(new VivoPushMessageApi(client));
     }
 
     /**

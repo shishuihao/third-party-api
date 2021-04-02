@@ -14,4 +14,8 @@ import lombok.experimental.SuperBuilder;
 public class RefundPayApiResponse
         extends BaseApiResponse
         implements PayApiResponse {
+    /**
+     * 支付渠道生成的订单号.
+     */
+    private final String channelTransactionId;
 }

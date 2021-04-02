@@ -32,8 +32,8 @@ public class TencentSmsApiChannel
                                 final TencentSmsClient client) {
         this.channelProperties = properties;
         TencentSendBatchSmsApi batchSmsApi = new TencentSendBatchSmsApi(client);
-        this.add(batchSmsApi);
-        this.add(new TencentSendSmsApi(batchSmsApi));
+        this.save(batchSmsApi);
+        this.save(new TencentSendSmsApi(batchSmsApi));
     }
 
     /**

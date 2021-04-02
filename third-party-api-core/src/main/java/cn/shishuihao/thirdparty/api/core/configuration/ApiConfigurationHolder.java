@@ -28,7 +28,8 @@ public final class ApiConfigurationHolder {
         CONFIGURATION_REPOSITORY = Optional
                 .ofNullable(ContainerHolder.CONTAINER)
                 .map(container -> (ApiConfigurationRepository)
-                        new ApiConfigurationContainerRepository(container, true))
+                        new ApiConfigurationContainerRepository(
+                                container, true))
                 .orElseGet(() -> new ApiConfigurationMemoryRepository(true));
     }
 

@@ -26,10 +26,10 @@ public class ApiChannelContainerRepository extends AbstractContainerRepository<
             container.awareOrHook(it -> {
                 // spi => container bean
                 ServiceLoader.load(ApiChannel.class)
-                        .forEach(this.getRepository()::add);
+                        .forEach(this.getRepository()::save);
                 // container bean => container bean
                 it.getBeansOfType(ApiChannel.class).values()
-                        .forEach(this.getRepository()::add);
+                        .forEach(this.getRepository()::save);
             });
         }
     }

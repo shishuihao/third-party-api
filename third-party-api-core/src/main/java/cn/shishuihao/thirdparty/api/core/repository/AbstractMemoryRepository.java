@@ -23,7 +23,7 @@ public abstract class AbstractMemoryRepository<I, T extends AggregateRoot<I>>
      * @param aggregateRoot aggregate root
      */
     @Override
-    public void add(final T aggregateRoot) {
+    public void save(final T aggregateRoot) {
         map.put(aggregateRoot.id(), aggregateRoot);
     }
 

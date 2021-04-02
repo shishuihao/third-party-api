@@ -35,7 +35,7 @@ class TencentSendBatchSmsApiTest {
                 .channelId(properties.channelId())
                 .properties(properties)
                 .build();
-        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
+        ApiRegistry.CONFIGURATION_REPOSITORY.save(configuration);
         Map<String, String> params = new TreeMap<>();
         params.put("code", "12345");
         SendBatchSmsApiRequest request = SendBatchSmsApiRequest.builder()

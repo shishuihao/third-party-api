@@ -31,14 +31,20 @@ public class AppPayApiRequest extends AbstractRequest<
     @NotBlank
     private final String outTradeNo;
     /**
+     * subject.
+     */
+    @NotBlank
+    private final String subject;
+    /**
+     * currency.
+     */
+    @NotBlank
+    private final String currency;
+    /**
      * pay total amount.
      */
     @Min(1)
     private final int totalAmount;
-    /**
-     * subject.
-     */
-    private final String subject;
 
     /**
      * get api type.

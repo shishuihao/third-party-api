@@ -13,6 +13,8 @@ import com.alipay.easysdk.kernel.util.ResponseChecker;
 import com.alipay.easysdk.payment.facetoface.models.AlipayTradePayResponse;
 import lombok.AllArgsConstructor;
 
+import java.util.Optional;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -47,6 +49,17 @@ public class AlipayCodePayApi implements CodePayApi {
                     .code(AlipayResponseUtils.code(response))
                     .message(AlipayResponseUtils.message(response))
                     .requestId(null)
+                    .channelTransactionId(response.tradeNo)
+                    .payCurrency(response.payCurrency)
+                    .payTotalAmount(Optional
+                            .ofNullable(response.payAmount)
+                            .map(AmountUtils::toCent)
+                            .orElse(null))
+                    .settleCurrency(response.settleCurrency)
+                    .settleTotalAmount(Optional
+                            .ofNullable(response.settleAmount)
+                            .map(AmountUtils::toCent)
+                            .orElse(null))
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);

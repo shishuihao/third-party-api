@@ -46,7 +46,7 @@ public class ThirdPartyApiPushOppoAutoConfiguration {
             final OppoPushClient client) {
         properties.getConfigurations()
                 .forEach((key, list) -> list.forEach(value ->
-                        propertiesRepository.add(ApiConfiguration.builder()
+                        propertiesRepository.save(ApiConfiguration.builder()
                                 .appId(key)
                                 .channelId(properties.channelId())
                                 .properties(value)

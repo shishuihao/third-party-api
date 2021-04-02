@@ -30,7 +30,7 @@ public class XiaomiPushApiChannel
     public XiaomiPushApiChannel(final XiaomiPushApiChannelProperties properties,
                                 final XiaomiPushClient client) {
         this.channelProperties = properties;
-        this.add(new XiaomiPushMessageApi(client));
+        this.save(new XiaomiPushMessageApi(client));
     }
 
     /**

@@ -48,7 +48,7 @@ public abstract class AbstractMongoRepository<
      * @param aggregateRoot aggregate root
      */
     @Override
-    public void add(final A aggregateRoot) {
+    public void save(final A aggregateRoot) {
         E entity = findById(aggregateRoot.id())
                 .map(it -> converter.convert(it, aggregateRoot))
                 .orElseGet(() -> converter.convert(aggregateRoot));

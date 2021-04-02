@@ -39,7 +39,13 @@ public class CodePayApiRequest extends AbstractRequest<
     /**
      * subject.
      */
+    @NotBlank
     private final String subject;
+    /**
+     * currency.
+     */
+    @NotBlank
+    private final String currency;
     /**
      * auth code.
      * such as qrcode.

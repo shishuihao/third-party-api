@@ -24,7 +24,7 @@ public class ApiConfigurationMemoryRepository
             // spi => memory
             ServiceLoader.load(ApiProperties.class)
                     .forEach(properties -> this
-                            .add(ApiConfiguration.builder()
+                            .save(ApiConfiguration.builder()
                                     .appId(null)
                                     .channelId(properties.channelId())
                                     .properties(properties)
@@ -45,7 +45,7 @@ public class ApiConfigurationMemoryRepository
      * @param apiConfiguration api configuration
      */
     @Override
-    public void add(final ApiConfiguration apiConfiguration) {
+    public void save(final ApiConfiguration apiConfiguration) {
         String key = getKey(
                 apiConfiguration.getAppId(),
                 apiConfiguration.getChannelId());

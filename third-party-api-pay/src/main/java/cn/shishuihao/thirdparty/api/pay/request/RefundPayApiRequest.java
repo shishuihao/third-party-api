@@ -9,7 +9,6 @@ import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 
 /**
  * @author shishuihao
@@ -26,9 +25,12 @@ public class RefundPayApiRequest extends AbstractRequest<
         RefundPayApiRequest,
         RefundPayApiResponse> {
     /**
+     * channel transaction id.
+     */
+    private final String channelTransactionId;
+    /**
      * out trade no.
      */
-    @NotBlank
     private final String outTradeNo;
     /**
      * refund total amount.

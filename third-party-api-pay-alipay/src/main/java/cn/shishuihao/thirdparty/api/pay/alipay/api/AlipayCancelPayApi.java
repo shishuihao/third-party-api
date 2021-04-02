@@ -43,7 +43,8 @@ public class AlipayCancelPayApi implements CancelPayApi {
                     .code(AlipayResponseUtils.code(response))
                     .message(AlipayResponseUtils.message(response))
                     .requestId(null)
-                    .retry("Y".equals(response.getRetryFlag()))
+                    .channelTransactionId(response.tradeNo)
+                    .retry("Y".equals(response.retryFlag))
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);

@@ -31,10 +31,25 @@ public class JsApiPayApiRequest extends AbstractRequest<
     @NotBlank
     private final String outTradeNo;
     /**
+     * subject.
+     */
+    @NotBlank
+    private final String subject;
+    /**
+     * currency.
+     */
+    @NotBlank
+    private final String currency;
+    /**
      * pay total amount.
      */
     @Min(1)
     private final int totalAmount;
+    /**
+     * payer id.
+     * such as openid.
+     */
+    private final String payerId;
 
     /**
      * get api type.

@@ -34,7 +34,8 @@ public class ThirdPartyApiRedisAutoConfiguration {
      */
     @Bean
     @ConditionalOnMissingBean
-    protected RedisTemplate<String, ApiConfiguration> apiConfigurationRedisTemplate(
+    protected RedisTemplate<String, ApiConfiguration>
+    apiConfigurationRedisTemplate(
             final RedisConnectionFactory redisConnectionFactory) {
         return RedisTemplateUtils.newRedisTemplate(redisConnectionFactory,
                 ApiConfiguration.class);

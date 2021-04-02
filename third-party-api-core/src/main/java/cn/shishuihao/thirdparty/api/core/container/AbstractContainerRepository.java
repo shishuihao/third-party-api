@@ -32,8 +32,8 @@ public abstract class AbstractContainerRepository<
      * @param aggregateRoot aggregate root
      */
     @Override
-    public void add(final T aggregateRoot) {
-        repository.add(aggregateRoot);
+    public void save(final T aggregateRoot) {
+        repository.save(aggregateRoot);
     }
 
     /**

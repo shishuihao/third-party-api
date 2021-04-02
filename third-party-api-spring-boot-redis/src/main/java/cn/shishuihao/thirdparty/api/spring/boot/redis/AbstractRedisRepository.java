@@ -34,7 +34,7 @@ public abstract class AbstractRedisRepository<
      * @param aggregateRoot aggregate root
      */
     @Override
-    public void add(final A aggregateRoot) {
+    public void save(final A aggregateRoot) {
         ValueOperations<I, A> vo = redisTemplate.opsForValue();
         vo.set(aggregateRoot.id(), aggregateRoot);
     }

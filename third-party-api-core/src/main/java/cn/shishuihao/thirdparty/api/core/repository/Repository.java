@@ -14,7 +14,7 @@ public interface Repository<I, A extends AggregateRoot<I>> {
      *
      * @param aggregateRoot aggregate root
      */
-    void add(A aggregateRoot);
+    void save(A aggregateRoot);
 
     /**
      * get aggregate root by id.

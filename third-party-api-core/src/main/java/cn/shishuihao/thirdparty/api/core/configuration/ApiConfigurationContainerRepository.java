@@ -32,7 +32,7 @@ public class ApiConfigurationContainerRepository
                 // spi => container bean
                 ServiceLoader.load(ApiProperties.class)
                         .forEach(properties -> this.getRepository()
-                                .add(ApiConfiguration.builder()
+                                .save(ApiConfiguration.builder()
                                         .appId(container.getApplicationId())
                                         .channelId(properties.channelId())
                                         .properties(properties)
@@ -40,7 +40,7 @@ public class ApiConfigurationContainerRepository
                 // container bean => container bean
                 it.getBeansOfType(ApiProperties.class).values()
                         .forEach(properties -> this.getRepository()
-                                .add(ApiConfiguration.builder()
+                                .save(ApiConfiguration.builder()
                                         .appId(container.getApplicationId())
                                         .channelId(properties.channelId())
                                         .properties(properties)

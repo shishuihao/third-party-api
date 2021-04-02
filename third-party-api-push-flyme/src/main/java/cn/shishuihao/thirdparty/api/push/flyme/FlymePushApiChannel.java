@@ -30,7 +30,7 @@ public class FlymePushApiChannel
     public FlymePushApiChannel(final FlymePushApiChannelProperties properties,
                                final FlymePushClient client) {
         this.channelProperties = properties;
-        this.add(new FlymePushMessageApi(client));
+        this.save(new FlymePushMessageApi(client));
     }
 
     /**

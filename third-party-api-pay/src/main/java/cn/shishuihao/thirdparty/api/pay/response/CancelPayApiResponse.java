@@ -15,7 +15,11 @@ public class CancelPayApiResponse
         extends BaseApiResponse
         implements PayApiResponse {
     /**
+     * 支付渠道生成的订单号.
+     */
+    private final String channelTransactionId;
+    /**
      * retry.
      */
-    private boolean retry;
+    private final boolean retry;
 }

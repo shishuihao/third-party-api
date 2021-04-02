@@ -35,8 +35,8 @@ public class AliYunSmsApiChannel
     public AliYunSmsApiChannel(final AliYunSmsApiChannelProperties properties,
                                final AliYunSmsClient client) {
         this.channelProperties = properties;
-        this.add(new AliYunSendBatchSmsApi(client));
-        this.add(new AliYunSendSmsApi(client));
+        this.save(new AliYunSendBatchSmsApi(client));
+        this.save(new AliYunSendSmsApi(client));
     }
 
     /**

@@ -1,17 +1,30 @@
+### code pay
+POST http://localhost:8080/api/v1/pay/transactions/code-pay
+Content-Type: application/json
+
+{
+  "appId": "d678efh567hg6787",
+  "channelId": "pay.alipay",
+  "subject": "test",
+  "outTradeNo": "283676497934367954",
+  "currency": "CNY",
+  "totalAmount": 1,
+  "authCode": "283676497934367954"
+}
+
 ### query one
-GET http://localhost:8080/api/v1/pay/transactions/1217752501201407033233368018
+GET http://localhost:8080/api/v1/pay/transactions/695360924463382528
 
 ### query many
 GET http://localhost:8080/api/v1/pay/transactions?tradeType=CODE&totalAmount=1
 
 ### query
-POST http://localhost:8080/api/v1/pay/transactions/1217752501201407033233368018/query
+# 695360924463382528
+# 695369264551636992
+POST http://localhost:8080/api/v1/pay/transactions/695369264551636992/query
 
 ### cancel
-POST http://localhost:8080/api/v1/pay/transactions/1217752501201407033233368018/cancel
+POST http://localhost:8080/api/v1/pay/transactions/695360924463382528/cancel
 
 ### refund
-POST http://localhost:8080/api/v1/pay/transactions/1217752501201407033233368018/refund
-
-### refund-query
-POST http://localhost:8080/api/v1/pay/transactions/1217752501201407033233368018/refund-query
+POST http://localhost:8080/api/v1/pay/transactions/695369264551636992/refund

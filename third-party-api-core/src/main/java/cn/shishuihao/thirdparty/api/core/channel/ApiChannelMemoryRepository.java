@@ -20,7 +20,7 @@ public class ApiChannelMemoryRepository extends AbstractMemoryRepository<
     public ApiChannelMemoryRepository(final boolean load) {
         if (load) {
             // spi => memory
-            ServiceLoader.load(ApiChannel.class).forEach(this::add);
+            ServiceLoader.load(ApiChannel.class).forEach(this::save);
         }
     }
 

@@ -9,9 +9,9 @@ package cn.shishuihao.thirdparty.api.pay.domain.transaction;
 
 public enum TradeStatus {
     /**
-     * 新订单.
+     * 新交易.
      */
-    NEW_ORDER {
+    NEW {
         @Override
         public boolean isPayable() {
             return true;

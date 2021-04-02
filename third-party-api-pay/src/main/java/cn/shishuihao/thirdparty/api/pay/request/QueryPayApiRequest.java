@@ -8,8 +8,6 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
-import javax.validation.constraints.NotBlank;
-
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -25,9 +23,12 @@ public class QueryPayApiRequest extends AbstractRequest<
         QueryPayApiRequest,
         QueryPayApiResponse> {
     /**
+     * channel transaction id.
+     */
+    private final String channelTransactionId;
+    /**
      * out trade no.
      */
-    @NotBlank
     private final String outTradeNo;
 
     /**

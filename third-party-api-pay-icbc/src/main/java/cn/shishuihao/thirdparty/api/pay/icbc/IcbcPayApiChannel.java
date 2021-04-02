@@ -34,7 +34,7 @@ public class IcbcPayApiChannel
     public IcbcPayApiChannel(final IcbcPayApiChannelProperties properties,
                              final IcbcPayClient client) {
         this.channelProperties = properties;
-        this.add(new IcbcCodePayApi(client));
+        this.save(new IcbcCodePayApi(client));
     }
 
     /**

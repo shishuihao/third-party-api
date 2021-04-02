@@ -34,7 +34,7 @@ public class ApiConfigurationRedisRepository
      * @param apiConfiguration api configuration
      */
     @Override
-    public void add(final ApiConfiguration apiConfiguration) {
+    public void save(final ApiConfiguration apiConfiguration) {
         ValueOperations<String, ApiConfiguration> vo = this.getRedisTemplate()
                 .opsForValue();
         String key = getKey(

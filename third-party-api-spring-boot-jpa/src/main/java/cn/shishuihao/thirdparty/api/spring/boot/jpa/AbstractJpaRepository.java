@@ -40,7 +40,7 @@ public abstract class AbstractJpaRepository<
      * @param id id
      * @return option entity
      */
-    public abstract Optional<E> findById(I id);
+    public abstract Optional<E> getById(I id);
 
     /**
      * add aggregate root.
@@ -48,8 +48,8 @@ public abstract class AbstractJpaRepository<
      * @param aggregateRoot aggregate root
      */
     @Override
-    public void add(final A aggregateRoot) {
-        E entity = findById(aggregateRoot.id())
+    public void save(final A aggregateRoot) {
+        E entity = getById(aggregateRoot.id())
                 .map(it -> converter.convert(it, aggregateRoot))
                 .orElseGet(() -> converter.convert(aggregateRoot));
         jpaRepository.save(entity);
@@ -63,7 +63,7 @@ public abstract class AbstractJpaRepository<
      */
     @Override
     public Optional<A> get(final I id) {
-        return findById(id)
+        return getById(id)
                 .map(converter::convert);
     }
 }

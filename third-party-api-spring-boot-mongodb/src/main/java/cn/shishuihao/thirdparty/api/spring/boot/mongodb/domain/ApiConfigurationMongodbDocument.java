@@ -27,7 +27,7 @@ public class ApiConfigurationMongodbDocument extends BaseMongodbDocument {
     /**
      * document name api_configuration.
      */
-    public static final String TABLE_NAME = "api_configuration";
+    public static final String TABLE_NAME = "api_pay_configuration";
     /**
      * field name configuration_id.
      */

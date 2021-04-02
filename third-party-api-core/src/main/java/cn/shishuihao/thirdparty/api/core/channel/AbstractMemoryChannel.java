@@ -28,7 +28,7 @@ public abstract class AbstractMemoryChannel<
      * @param aggregateRoot aggregate root
      */
     @Override
-    public void add(final Api<?, ?, ?> aggregateRoot) {
+    public void save(final Api<?, ?, ?> aggregateRoot) {
         map.put(aggregateRoot.id(), aggregateRoot);
         map.put(aggregateRoot.apiType(), aggregateRoot);
     }

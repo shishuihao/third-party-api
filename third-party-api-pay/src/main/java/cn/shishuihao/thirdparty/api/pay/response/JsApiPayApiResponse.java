@@ -14,6 +14,7 @@ public class JsApiPayApiResponse
         implements PayApiResponse {
     /**
      * body.
+     * weixin: prepay_id
      */
     private final String body;
 }

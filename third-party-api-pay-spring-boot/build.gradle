@@ -16,6 +16,8 @@ dependencies {
     compile project(':third-party-api-pay-icbc')
     compile project(':third-party-api-pay-weixin')
 
+    compile project(':third-party-api-pay-spring-boot-jpa')
+
     compile 'org.springframework.boot:spring-boot-starter-web'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

@@ -34,8 +34,8 @@ public class WxPayApiChannel
             final WxPayApiChannelProperties properties,
             final WxPayCodeApi codeApi) {
         this.channelProperties = properties;
-        this.add(new WxCodePayApi(codeApi));
-        this.add(new WxQueryPayApi(codeApi));
+        this.save(new WxCodePayApi(codeApi));
+        this.save(new WxQueryPayApi(codeApi));
     }
 
     /**

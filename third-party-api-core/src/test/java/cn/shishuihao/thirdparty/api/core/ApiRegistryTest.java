@@ -27,7 +27,7 @@ class ApiRegistryTest {
 
     public static class TestPayChannel extends AbstractMemoryChannel<TestProperties> {
         public TestPayChannel() {
-            this.add(new CodePayApi());
+            this.save(new CodePayApi());
         }
 
         @Override

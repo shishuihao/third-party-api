@@ -29,7 +29,7 @@ public class HuaweiPushApiChannel
     public HuaweiPushApiChannel(
             final HuaweiPushApiChannelProperties properties) {
         this.channelProperties = properties;
-        this.add(new HuaweiPushMessageApi());
+        this.save(new HuaweiPushMessageApi());
     }
 
     /**

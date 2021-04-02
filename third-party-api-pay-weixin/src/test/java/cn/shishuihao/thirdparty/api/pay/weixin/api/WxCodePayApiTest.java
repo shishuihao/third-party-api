@@ -25,7 +25,7 @@ class WxCodePayApiTest {
                 .channelId(properties.channelId())
                 .properties(properties)
                 .build();
-        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
+        ApiRegistry.CONFIGURATION_REPOSITORY.save(configuration);
         CodePayApiRequest request = CodePayApiRequest.builder()
                 .channelId(WxPayApiChannel.CHANNEL_ID)
                 .appId(configuration.getAppId())

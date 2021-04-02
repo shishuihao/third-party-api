@@ -30,7 +30,7 @@ public class OppoPushApiChannel
     public OppoPushApiChannel(final OppoPushApiChannelProperties properties,
                               final OppoPushClient client) {
         this.channelProperties = properties;
-        this.add(new OppoPushMessageApi(client));
+        this.save(new OppoPushMessageApi(client));
     }
 
     /**

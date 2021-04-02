@@ -35,13 +35,13 @@ public class AlipayPayApiChannel
     public AlipayPayApiChannel(final AlipayPayApiChannelProperties properties,
                                final AlipayPayClient client) {
         this.channelProperties = properties;
-        this.add(new AlipayAppPayApi(client));
-        this.add(new AlipayCancelPayApi(client));
-        this.add(new AlipayCodePayApi(client));
-        this.add(new AlipayH5PayApi(client));
-        this.add(new AlipayQueryPayApi(client));
-        this.add(new AlipayRefundPayApi(client));
-        this.add(new AlipayRefundQueryPayApi(client));
+        this.save(new AlipayAppPayApi(client));
+        this.save(new AlipayCancelPayApi(client));
+        this.save(new AlipayCodePayApi(client));
+        this.save(new AlipayH5PayApi(client));
+        this.save(new AlipayQueryPayApi(client));
+        this.save(new AlipayRefundPayApi(client));
+        this.save(new AlipayRefundQueryPayApi(client));
     }
 
     /**

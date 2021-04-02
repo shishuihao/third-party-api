@@ -26,7 +26,7 @@ class XiaomiPushMessageApiTest {
                 .channelId(properties.channelId())
                 .properties(properties)
                 .build();
-        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
+        ApiRegistry.CONFIGURATION_REPOSITORY.save(configuration);
         PushMessageApiResponse response = ApiRegistry.INSTANCE.execute(PushMessageApiRequest.builder()
                 .channelId(XiaomiPushApiChannel.CHANNEL_ID)
                 .appId(configuration.getAppId())

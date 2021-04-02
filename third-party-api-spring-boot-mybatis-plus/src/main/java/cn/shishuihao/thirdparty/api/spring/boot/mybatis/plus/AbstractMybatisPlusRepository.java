@@ -48,7 +48,7 @@ public abstract class AbstractMybatisPlusRepository<
      * @param aggregateRoot aggregate root
      */
     @Override
-    public void add(final A aggregateRoot) {
+    public void save(final A aggregateRoot) {
         Optional<E> optional = findById(aggregateRoot.id());
         E entity;
         if (optional.isPresent()) {

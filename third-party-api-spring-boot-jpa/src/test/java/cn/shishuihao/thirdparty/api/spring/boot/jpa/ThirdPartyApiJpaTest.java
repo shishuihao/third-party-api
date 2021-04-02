@@ -35,7 +35,7 @@ class ThirdPartyApiJpaTest {
                 .channelId(properties.channelId())
                 .properties(properties)
                 .build();
-        ApiRegistry.CONFIGURATION_REPOSITORY.add(configuration);
+        ApiRegistry.CONFIGURATION_REPOSITORY.save(configuration);
         Assertions.assertNotNull(ApiRegistry.INSTANCE.getApiChannelOrThrow(new CodePayRequest()));
         Assertions.assertNotNull(ApiRegistry.INSTANCE.getApiOrThrow(new CodePayRequest()));
         Assertions.assertNotNull(ApiRegistry.INSTANCE.getApiPropertiesOrThrow(new CodePayRequest()));
@@ -45,7 +45,7 @@ class ThirdPartyApiJpaTest {
 
     public static class TestPayChannel extends AbstractMemoryChannel<TestProperties> {
         public TestPayChannel() {
-            this.add(new CodePayApi());
+            this.save(new CodePayApi());
         }
 
         @Override

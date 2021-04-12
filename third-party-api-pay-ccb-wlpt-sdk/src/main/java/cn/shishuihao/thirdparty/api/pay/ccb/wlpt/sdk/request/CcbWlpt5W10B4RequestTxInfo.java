@@ -7,11 +7,10 @@ import lombok.Builder;
 import lombok.Getter;
 
 /**
- * NO.1 （5W10C4）线下集团商户单笔退款.
- * <p>
- * 交易名称 线下集团商户单笔退款 请求交易码 5W10C4 内部交易码 5W10C4
+ * NO.1 （5W10B4）线下商户单笔退款.
+ * 交易名称 线下商户单笔退款 请求交易码 5W10B4 内部交易码 5W10B4
  * 后端系统 IBS 交易类型 查询类 XML示例 Sample
- * 交易说明 B2C线下集团商户单笔退款
+ * 交易说明 B2C线下商户单笔退款
  *
  * @author shishuihao
  * @version 1.0.0
@@ -19,7 +18,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @JacksonXmlRootElement(localName = "TX_INFO")
-public class CcbWlpt5W10C4RequestTxInfo implements TransactionInfo {
+public class CcbWlpt5W10B4RequestTxInfo implements TransactionInfo {
     /**
      * 退款金额 varChar(100) F.
      */
@@ -40,11 +39,6 @@ public class CcbWlpt5W10C4RequestTxInfo implements TransactionInfo {
      */
     @JacksonXmlProperty(localName = "Rtrvl_Ref_No")
     private final String refundRefNo;
-    /**
-     * 退款子商户号 varChar(15) F 退款商户号（实际退款商户）.
-     */
-    @JacksonXmlProperty(localName = "Mrch_No")
-    private final String merchantNo;
     /**
      * 支付返回的全局事件跟踪号  varChar(25) T.
      */

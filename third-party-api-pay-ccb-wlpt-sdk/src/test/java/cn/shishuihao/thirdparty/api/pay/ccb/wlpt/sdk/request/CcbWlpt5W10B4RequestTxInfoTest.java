@@ -11,7 +11,7 @@ import java.util.HashMap;
  * @version 1.0.0
  */
 
-class CcbWlpt5W10C4RequestTxInfoTest {
+class CcbWlpt5W10B4RequestTxInfoTest {
 
     @Test
     void toXml() {
@@ -21,14 +21,13 @@ class CcbWlpt5W10C4RequestTxInfoTest {
                 "  <CUST_ID>商户号</CUST_ID> \n" +
                 "  <USER_ID>操作员号</USER_ID> \n" +
                 "  <PASSWORD>密码</PASSWORD> \n" +
-                "  <TX_CODE>5W10C4</TX_CODE> \n" +
+                "  <TX_CODE>5W10B4</TX_CODE> \n" +
                 "  <LANGUAGE>CN</LANGUAGE> \n" +
                 "  <TX_INFO> \n" +
                 "    <MONEY>退款金额</MONEY> \n" +
                 "    <Ordr_ID>订单号码</Ordr_ID> \n" +
                 "    <REFUND_CODE>退款流水号</REFUND_CODE> \n" +
                 "    <Rtrvl_Ref_No>退款系统参考号</Rtrvl_Ref_No> \n" +
-                "    <Mrch_No>子商户号</Mrch_No> \n" +
                 "    <OriOvrlsttnEV_Trck_No>跟踪号</OriOvrlsttnEV_Trck_No> \n" +
                 "    <Clrg_Txn_CD>清算交易码</Clrg_Txn_CD> \n" +
                 "    <rXtNo>系统参考号</rXtNo> \n" +
@@ -36,14 +35,14 @@ class CcbWlpt5W10C4RequestTxInfoTest {
                 "  <SIGN_INFO>签名信息</SIGN_INFO> \n" +
                 "  <SIGNCERT>签名CA信息</SIGNCERT> \n" +
                 "</TX> \n";
-        final CcbWlptRequest<CcbWlpt5W10C4RequestTxInfo> request = CcbWlptRequest.<CcbWlpt5W10C4RequestTxInfo>builder()
+        final CcbWlptRequest<CcbWlpt5W10B4RequestTxInfo> request = CcbWlptRequest.<CcbWlpt5W10B4RequestTxInfo>builder()
                 .requestSn("请求序列码")
                 .customerId("商户号")
                 .userId("操作员号")
                 .password("密码")
-                .txCode("5W10C4")
+                .txCode("5W10B4")
                 .language("CN")
-                .txInfo(CcbWlpt5W10C4RequestTxInfo.builder()
+                .txInfo(CcbWlpt5W10B4RequestTxInfo.builder()
                         .money("退款金额")
                         .orderId("订单号码")
                         .refundCode("退款流水号")
@@ -51,7 +50,6 @@ class CcbWlpt5W10C4RequestTxInfoTest {
                         .trackNo("跟踪号")
                         .clearingTransactionCode("清算交易码")
                         .rxtNo("系统参考号")
-                        .merchantNo("子商户号")
                         .build())
                 .signInfo("签名信息")
                 .signCert("签名CA信息")

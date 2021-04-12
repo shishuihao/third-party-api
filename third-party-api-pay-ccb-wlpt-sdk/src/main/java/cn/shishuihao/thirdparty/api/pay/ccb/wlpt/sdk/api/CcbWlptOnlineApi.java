@@ -1,10 +1,12 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.api;
 
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1001RequestTxInfo;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1004RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W10B4RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt6W0111RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlptRequest;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1001Response;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1004Response;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W10B4Response;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt6W0111Response;
 
@@ -31,8 +33,8 @@ public interface CcbWlptOnlineApi {
      * @param request 请求
      * @return 响应
      */
-    CcbWlpt5W10B4Response merchantRefund(
-            CcbWlptRequest<CcbWlpt5W10B4RequestTxInfo> request);
+    CcbWlpt5W1004Response merchantRefund(
+            CcbWlptRequest<CcbWlpt5W1004RequestTxInfo> request);
 
     /**
      * 5W1005 商户流水文件下载.

@@ -15,7 +15,7 @@ import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt6W0111Respo
 
 public interface CcbWlptFileApi {
     /**
-     * 大文件下载交易.
+     * 6W0111 大文件下载交易.
      *
      * @param request 请求
      * @return 响应
@@ -24,7 +24,7 @@ public interface CcbWlptFileApi {
             CcbWlptRequest<CcbWlpt6W0111RequestTxInfo> request);
 
     /**
-     * 文件上传.
+     * 5W3000 文件上传.
      *
      * @param request 请求
      * @return 响应

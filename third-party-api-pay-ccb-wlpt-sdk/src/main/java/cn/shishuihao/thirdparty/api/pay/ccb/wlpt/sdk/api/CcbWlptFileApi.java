@@ -20,8 +20,8 @@ public interface CcbWlptFileApi {
      * @param request 请求
      * @return 响应
      */
-    CcbWlpt6W0111Response
-    download(CcbWlptRequest<CcbWlpt6W0111RequestTxInfo> request);
+    CcbWlpt6W0111Response download(
+            CcbWlptRequest<CcbWlpt6W0111RequestTxInfo> request);
 
     /**
      * 文件上传.
@@ -29,6 +29,6 @@ public interface CcbWlptFileApi {
      * @param request 请求
      * @return 响应
      */
-    CcbWlpt5W3000Response
-    upload(CcbWlptRequest<CcbWlpt5W3000RequestTxInfo> request);
+    CcbWlpt5W3000Response upload(
+            CcbWlptRequest<CcbWlpt5W3000RequestTxInfo> request);
 }

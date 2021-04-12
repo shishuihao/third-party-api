@@ -2,6 +2,11 @@ dependencies {
     compile project(':third-party-api-commons')
 
     implementation 'com.netflix.feign:feign-core:8.18.0'
+
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.11.3'
+
+    compile 'org.apache.commons:commons-lang3:3.10'
+    compile 'commons-codec:commons-codec:1.15'
 }
 
 jar {

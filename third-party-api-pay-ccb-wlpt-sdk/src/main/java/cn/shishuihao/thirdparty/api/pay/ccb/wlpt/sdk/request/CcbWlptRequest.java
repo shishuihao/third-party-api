@@ -50,4 +50,14 @@ public class CcbWlptRequest<T extends TransactionInfo> {
      */
     @JacksonXmlProperty(localName = "TX_INFO")
     private final T txInfo;
+    /**
+     * 签名信息 varChar(254) T .
+     */
+    @JacksonXmlProperty(localName = "SIGN_INFO")
+    private final String signInfo;
+    /**
+     * 签名CA信息 varChar(254) T 客户采用socket连接时，建行客户端自动添加 .
+     */
+    @JacksonXmlProperty(localName = "SIGNCERT")
+    private final String signCert;
 }

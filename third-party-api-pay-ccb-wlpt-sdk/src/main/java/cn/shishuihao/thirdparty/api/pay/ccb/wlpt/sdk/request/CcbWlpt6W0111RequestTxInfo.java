@@ -7,6 +7,11 @@ import lombok.Builder;
 import lombok.Getter;
 
 /**
+ * NO.4 大文件下载.
+ * 交易名称 大文件下载 请求交易码 6W0111 内部交易码 6W0111
+ * 后端系统 IBS 交易类型 连接类 XML示例 Sample 请看示例报文
+ * 交易说明 外联平台返回文件下载,注意这里下载后的文件保存在外联平台目录wlpt_app\download下
+ *
  * @author shishuihao
  * @version 1.0.0
  */
@@ -20,7 +25,7 @@ public class CcbWlpt6W0111RequestTxInfo implements TransactionInfo {
     @JacksonXmlProperty(localName = "SOURCE")
     private final String source;
     /**
-     * FILEPATH 文件路径 varChar(30) F 要下载文件的路径:merchant/shls,必须填该值 .
+     * FILEPATH 文件路径 varChar(30) F 要下载文件的路径:merchant/shls,必须填该值.
      */
     @JacksonXmlProperty(localName = "FILEPATH")
     private final String filePath;

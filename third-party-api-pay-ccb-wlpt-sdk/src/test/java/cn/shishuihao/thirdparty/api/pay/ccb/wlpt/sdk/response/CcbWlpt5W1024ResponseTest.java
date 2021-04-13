@@ -17,7 +17,7 @@ class CcbWlpt5W1024ResponseTest {
     void fromXml() {
         final String xml = "<?xml version=\"1.0\" encoding=\"GB2312\" standalone=\"yes\" ?> \n" +
                 "<TX> \n" +
-                "  <REQUEST_SN>请求序列码</REQUEST_SN> \n" +
+                "  <REQUEST_SN>请求序列号</REQUEST_SN> \n" +
                 "  <CUST_ID>商户号</CUST_ID> \n" +
                 "  <TX_CODE>5W1024</TX_CODE> \n" +
                 "  <RETURN_CODE>返回码</RETURN_CODE> \n" +

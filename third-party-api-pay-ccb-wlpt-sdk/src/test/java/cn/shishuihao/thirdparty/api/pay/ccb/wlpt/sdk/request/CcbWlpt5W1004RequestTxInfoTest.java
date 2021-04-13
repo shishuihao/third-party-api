@@ -17,7 +17,7 @@ class CcbWlpt5W1004RequestTxInfoTest {
     void toXml() {
         final String xml = "<?xml version=\"1.0\" encoding=\"GB2312\" standalone=\"yes\" ?> \n" +
                 "<TX> \n" +
-                "  <REQUEST_SN>请求序列码</REQUEST_SN> \n" +
+                "  <REQUEST_SN>请求序列号</REQUEST_SN> \n" +
                 "  <CUST_ID>商户号</CUST_ID> \n" +
                 "  <USER_ID>操作员号</USER_ID> \n" +
                 "  <PASSWORD>密码</PASSWORD> \n" +
@@ -33,7 +33,7 @@ class CcbWlpt5W1004RequestTxInfoTest {
                 "</TX> \n\n" +
                 "</TX> \n";
         final CcbWlptRequest<CcbWlpt5W1004RequestTxInfo> request = CcbWlptRequest.<CcbWlpt5W1004RequestTxInfo>builder()
-                .requestSn("请求序列码")
+                .requestSn("请求序列号")
                 .customerId("商户号")
                 .userId("操作员号")
                 .password("密码")

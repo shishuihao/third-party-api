@@ -4,6 +4,7 @@ import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1001Reques
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1002RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1003RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1004RequestTxInfo;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1006RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1024RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt6W0111RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlptRequest;
@@ -11,6 +12,7 @@ import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1001Respo
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1002Response;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1003Response;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1004Response;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1006Response;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1024Response;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt6W0111Response;
 
@@ -66,6 +68,15 @@ public interface CcbWlptOnlineMerchantApi {
      */
     CcbWlpt6W0111Response downloadFlow(
             CcbWlptRequest<CcbWlpt6W0111RequestTxInfo> request);
+
+    /**
+     * 5W1006 E付通授权信息查询.
+     *
+     * @param request 请求
+     * @return 响应
+     */
+    CcbWlpt5W1006Response grantInfoQuery(
+            CcbWlptRequest<CcbWlpt5W1006RequestTxInfo> request);
 
     /**
      * 5W1024 线上集团商户单笔退款.

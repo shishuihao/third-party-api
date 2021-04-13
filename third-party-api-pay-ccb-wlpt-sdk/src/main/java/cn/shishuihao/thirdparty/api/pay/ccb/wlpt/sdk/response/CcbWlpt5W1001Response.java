@@ -21,11 +21,11 @@ public class CcbWlpt5W1001Response
          * 备注1 varChar(32) T.
          */
         @JacksonXmlProperty(localName = "REM1")
-        private String rem1;
+        private String remark1;
         /**
          * 备注2 varChar(32) T.
          */
         @JacksonXmlProperty(localName = "REM2")
-        private String rem2;
+        private String remark2;
     }
 }

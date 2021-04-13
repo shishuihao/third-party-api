@@ -23,10 +23,10 @@ public class CcbWlpt5W1001RequestTxInfo implements TransactionInfo {
      * 备注1 varChar(32) T.
      */
     @JacksonXmlProperty(localName = "REM1")
-    private final String rem1;
+    private final String remark1;
     /**
      * 备注2 varChar(32) T.
      */
     @JacksonXmlProperty(localName = "REM2")
-    private final String rem2;
+    private final String remark2;
 }

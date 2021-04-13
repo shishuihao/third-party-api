@@ -25,12 +25,13 @@ public class CcbWlpt5W1004RequestTxInfo implements TransactionInfo {
     @JacksonXmlProperty(localName = "MONEY")
     private final String money;
     /**
-     * 订单号 varChar(30) F
+     * 订单号 varChar(30) F.
      */
     @JacksonXmlProperty(localName = "ORDER")
     private final String orderId;
     /**
-     * 退款流水号 varChar(15) T 可不填，商户可根据需要填写，退款流水号由商户的系统生成.
+     * 退款流水号 varChar(15) T.
+     * 可不填，商户可根据需要填写，退款流水号由商户的系统生成.
      */
     @JacksonXmlProperty(localName = "REFUND_CODE")
     private final String refundCode;

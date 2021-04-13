@@ -36,8 +36,8 @@ class CcbWlpt5W1001RequestTxInfoTest {
                 .txCode("5W1001")
                 .language("CN")
                 .txInfo(CcbWlpt5W1001RequestTxInfo.builder()
-                        .rem1("备注1")
-                        .rem2("备注2")
+                        .remark1("备注1")
+                        .remark2("备注2")
                         .build())
                 .build();
         Assertions.assertEquals(

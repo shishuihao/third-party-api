@@ -15,14 +15,14 @@ import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W10C4Respo
  * @version 1.0.0
  */
 
-public interface CcbWlptOfflineApi {
+public interface CcbWlptOfflineMerchantApi {
     /**
      * 5W1005 商户流水文件下载.
      *
      * @param request 请求
      * @return 响应
      */
-    CcbWlpt5W1005Response downloadMerchantFlowFile(
+    CcbWlpt5W1005Response downloadFlow(
             CcbWlptRequest<CcbWlpt5W1005RequestTxInfo> request);
 
     /**
@@ -31,7 +31,7 @@ public interface CcbWlptOfflineApi {
      * @param request 请求
      * @return 响应
      */
-    CcbWlpt5W10B4Response merchantRefund(
+    CcbWlpt5W10B4Response refund(
             CcbWlptRequest<CcbWlpt5W10B4RequestTxInfo> request);
 
     /**
@@ -40,6 +40,6 @@ public interface CcbWlptOfflineApi {
      * @param request 请求
      * @return 响应
      */
-    CcbWlpt5W10C4Response groupMerchantRefund(
+    CcbWlpt5W10C4Response groupRefund(
             CcbWlptRequest<CcbWlpt5W10C4RequestTxInfo> request);
 }

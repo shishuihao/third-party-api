@@ -26,7 +26,7 @@ public interface CcbWlptOfflineMerchantApi {
             CcbWlptRequest<CcbWlpt5W1005RequestTxInfo> request);
 
     /**
-     * 5W1005 线下商户单笔退款.
+     * 5W10B4 线下商户单笔退款.
      *
      * @param request 请求
      * @return 响应

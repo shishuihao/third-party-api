@@ -58,7 +58,7 @@ public class CcbWlpt5W1003Response
          * 订单号 varChar(30) T.
          */
         @JacksonXmlProperty(localName = "ORDER_NUMBER")
-        private String order;
+        private String orderId;
         /**
          * 退款账号 varChar(30) T.
          */
@@ -68,12 +68,12 @@ public class CcbWlpt5W1003Response
          * 支付金额 Decimal(16,2) T.
          */
         @JacksonXmlProperty(localName = "PAY_AMOUNT")
-        private String paymentMoney;
+        private String paymentAmount;
         /**
          * 退款金额 Decimal(16,2) T.
          */
         @JacksonXmlProperty(localName = "REFUNDEMENT_AMOUNT")
-        private String refundMoney;
+        private String refundAmount;
         /**
          * 柜台号 varChar(9) T.
          */

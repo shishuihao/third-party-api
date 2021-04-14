@@ -56,7 +56,7 @@ class CcbWlpt5W1003RequestTxInfoTest {
                         .endHour("结束小时")
                         .endMinute("结束分钟")
                         .kind(1)
-                        .order("订单号")
+                        .orderId("订单号")
                         .account("结算账户号")
                         .money("金额")
                         .orderBy(1)

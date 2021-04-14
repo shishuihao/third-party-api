@@ -65,7 +65,7 @@ class CcbWlpt5W1007RequestTxInfoTest {
                         .tradeTime("交易时间")
                         .terminalId("终端号")
                         .secureLevel("安全级别")
-                        .orderNo("订单号")
+                        .orderId("订单号")
                         .cavv("持卡人认证信息")
                         .ext1("附加域")
                         .ecsli("ECSLI值")

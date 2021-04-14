@@ -50,7 +50,8 @@ public class CcbWlpt5W10B4RequestTxInfo implements TransactionInfo {
     @JacksonXmlProperty(localName = "Clrg_Txn_CD")
     private final String clearingTransactionCode;
     /**
-     * 系统参考号 varChar(15) F 订单号和系统参考号必须选一.
+     * 系统参考号 varChar(15) F.
+     * 订单号和系统参考号必须选一.
      */
     @JacksonXmlProperty(localName = "rXtNo")
     private final String rxtNo;

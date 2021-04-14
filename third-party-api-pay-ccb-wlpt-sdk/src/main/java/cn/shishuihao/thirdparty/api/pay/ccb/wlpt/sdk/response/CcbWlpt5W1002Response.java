@@ -58,7 +58,7 @@ public class CcbWlpt5W1002Response
          * 订单号 varChar(30) T.
          */
         @JacksonXmlProperty(localName = "ORDER")
-        private String order;
+        private String orderId;
         /**
          * 付款方账号 varChar(30) T.
          */

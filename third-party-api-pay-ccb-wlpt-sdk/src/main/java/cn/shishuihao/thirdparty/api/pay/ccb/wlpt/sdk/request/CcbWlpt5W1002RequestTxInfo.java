@@ -60,7 +60,7 @@ public class CcbWlpt5W1002RequestTxInfo implements TransactionInfo {
      * 订单号   varChar(30) F 按订单号查询时，时间段不起作用.
      */
     @JacksonXmlProperty(localName = "ORDER")
-    private final String order;
+    private final String orderId;
     /**
      * 结算账户号 varChar(30) T 暂不用.
      */

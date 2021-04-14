@@ -88,7 +88,7 @@ public class CcbWlpt5W1007RequestTxInfo implements TransactionInfo {
      * 订单号 varChar(30) F.
      */
     @JacksonXmlProperty(localName = "ORDER_NO")
-    private final String orderNo;
+    private final String orderId;
     /**
      * 持卡人认证信息 varChar(40) F.
      */

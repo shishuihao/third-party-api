@@ -51,7 +51,7 @@ class CcbWlpt5W1005RequestTxInfoTest {
                         .type(1)
                         .orderBy(1)
                         .posCode("柜台号")
-                        .order("订单号")
+                        .orderId("订单号")
                         .status(1)
                         .billFlag(0)
                         .merchantNo("子商户号")

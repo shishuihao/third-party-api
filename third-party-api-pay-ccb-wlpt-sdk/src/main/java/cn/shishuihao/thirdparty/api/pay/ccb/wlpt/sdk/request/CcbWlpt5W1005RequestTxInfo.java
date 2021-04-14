@@ -64,7 +64,7 @@ public class CcbWlpt5W1005RequestTxInfo implements TransactionInfo {
      * 订单号 varChar(30) T （KIND为0时有效）.
      */
     @JacksonXmlProperty(localName = "ORDER")
-    private final String order;
+    private final String orderId;
     /**
      * 订单状态 Char(1) T.
      * 0：交易失败,

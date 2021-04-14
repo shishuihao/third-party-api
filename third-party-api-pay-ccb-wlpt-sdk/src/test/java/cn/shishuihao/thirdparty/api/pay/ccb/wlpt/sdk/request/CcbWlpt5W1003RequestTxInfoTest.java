@@ -12,35 +12,35 @@ import java.util.HashMap;
  */
 
 class CcbWlpt5W1003RequestTxInfoTest {
+    final String xml = "<?xml version=\"1.0\" encoding=\"GB2312\" standalone=\"yes\" ?> \n" +
+            "<TX> \n" +
+            "  <REQUEST_SN>请求序列号</REQUEST_SN> \n" +
+            "  <CUST_ID>商户号</CUST_ID> \n" +
+            "  <USER_ID>操作员号</USER_ID> \n" +
+            "  <PASSWORD>操作员号密码</PASSWORD> \n" +
+            "  <TX_CODE>5W1003</TX_CODE> \n" +
+            "  <LANGUAGE>CN</LANGUAGE> \n" +
+            "  <TX_INFO> \n" +
+            "    <START>起始日期</START> \n" +
+            "    <STARTHOUR>开始小时</STARTHOUR> \n" +
+            "    <STARTMIN>开始分钟</STARTMIN> \n" +
+            "    <END>截止日期</END> \n" +
+            "    <ENDHOUR>结束小时</ENDHOUR> \n" +
+            "    <ENDMIN>结束分钟</ENDMIN> \n" +
+            "    <KIND>1</KIND> \n" +
+            "    <ORDER>订单号</ORDER> \n" +
+            "    <ACCOUNT>结算账户号</ACCOUNT> \n" +
+            "    <MONEY>金额</MONEY> \n" +
+            "    <NORDERBY>1</NORDERBY> \n" +
+            "    <PAGE>1</PAGE> \n" +
+            "    <POS_CODE>柜台号</POS_CODE> \n" +
+            "    <STATUS>1</STATUS> \n" +
+            "    <Mrch_No>子商户号</Mrch_No>  \n" +
+            "  </TX_INFO> \n" +
+            "</TX> \n";
 
     @Test
     void toXml() {
-        final String xml = "<?xml version=\"1.0\" encoding=\"GB2312\" standalone=\"yes\" ?> \n" +
-                "<TX> \n" +
-                "  <REQUEST_SN>请求序列号</REQUEST_SN> \n" +
-                "  <CUST_ID>商户号</CUST_ID> \n" +
-                "  <USER_ID>操作员号</USER_ID> \n" +
-                "  <PASSWORD>操作员号密码</PASSWORD> \n" +
-                "  <TX_CODE>5W1003</TX_CODE> \n" +
-                "  <LANGUAGE>CN</LANGUAGE> \n" +
-                "  <TX_INFO> \n" +
-                "    <START>起始日期</START> \n" +
-                "    <STARTHOUR>开始小时</STARTHOUR> \n" +
-                "    <STARTMIN>开始分钟</STARTMIN> \n" +
-                "    <END>截止日期</END> \n" +
-                "    <ENDHOUR>结束小时</ENDHOUR> \n" +
-                "    <ENDMIN>结束分钟</ENDMIN> \n" +
-                "    <KIND>1</KIND> \n" +
-                "    <ORDER>订单号</ORDER> \n" +
-                "    <ACCOUNT>结算账户号</ACCOUNT> \n" +
-                "    <MONEY>金额</MONEY> \n" +
-                "    <NORDERBY>1</NORDERBY> \n" +
-                "    <PAGE>1</PAGE> \n" +
-                "    <POS_CODE>柜台号</POS_CODE> \n" +
-                "    <STATUS>1</STATUS> \n" +
-                "    <Mrch_No>子商户号</Mrch_No>  \n" +
-                "  </TX_INFO> \n" +
-                "</TX> \n";
         final CcbWlptRequest<CcbWlpt5W1003RequestTxInfo> request = CcbWlptRequest.<CcbWlpt5W1003RequestTxInfo>builder()
                 .requestSn("请求序列号")
                 .customerId("商户号")

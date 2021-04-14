@@ -12,25 +12,25 @@ import java.util.HashMap;
  */
 
 class CcbWlpt5W1004ResponseTest {
+    final String xml = "<?xml version=\"1.0\" encoding=\"GB2312\" standalone=\"yes\" ?> \n" +
+            "<TX> \n" +
+            "  <REQUEST_SN>请求序列号</REQUEST_SN> \n" +
+            "  <CUST_ID>商户号</CUST_ID> \n" +
+            "  <TX_CODE>5W1004</TX_CODE> \n" +
+            "  <RETURN_CODE>返回码</RETURN_CODE> \n" +
+            "  <RETURN_MSG>返回码说明</RETURN_MSG> \n" +
+            "  <LANGUAGE>CN</LANGUAGE> \n" +
+            "  <TX_INFO> \n" +
+            "    <ORDER_NUM>订单号</ORDER_NUM> \n" +
+            "    <PAY_AMOUNT>支付金额</PAY_AMOUNT> \n" +
+            "    <AMOUNT>退款金额</AMOUNT> \n" +
+            "    <REM1>备注1</REM1> \n" +
+            "    <REM2>备注2</REM2> \n" +
+            "  </TX_INFO>   \n" +
+            "</TX> \n";
 
     @Test
     void fromXml() {
-        final String xml = "<?xml version=\"1.0\" encoding=\"GB2312\" standalone=\"yes\" ?> \n" +
-                "<TX> \n" +
-                "  <REQUEST_SN>请求序列号</REQUEST_SN> \n" +
-                "  <CUST_ID>商户号</CUST_ID> \n" +
-                "  <TX_CODE>5W1004</TX_CODE> \n" +
-                "  <RETURN_CODE>返回码</RETURN_CODE> \n" +
-                "  <RETURN_MSG>返回码说明</RETURN_MSG> \n" +
-                "  <LANGUAGE>CN</LANGUAGE> \n" +
-                "  <TX_INFO> \n" +
-                "    <ORDER_NUM>订单号</ORDER_NUM> \n" +
-                "    <PAY_AMOUNT>支付金额</PAY_AMOUNT> \n" +
-                "    <AMOUNT>退款金额</AMOUNT> \n" +
-                "    <REM1>备注1</REM1> \n" +
-                "    <REM2>备注2</REM2> \n" +
-                "  </TX_INFO>   \n" +
-                "</TX> \n";
         final CcbWlpt5W1004Response response = JacksonXmlUtils
                 .fromXml(xml, CcbWlpt5W1004Response.class);
         Assertions.assertEquals(

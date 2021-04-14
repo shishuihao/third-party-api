@@ -12,24 +12,24 @@ import java.util.HashMap;
  */
 
 class CcbWlpt5W3000RequestTxInfoTest {
+    final String xml = "<?xml version=\"1.0\" encoding=\"GB2312\" standalone=\"yes\" ?> \n" +
+            "<TX> \n" +
+            "  <REQUEST_SN>2007626104818</REQUEST_SN> \n" +
+            "  <CUST_ID>P000607305898</CUST_ID> \n" +
+            "  <USER_ID>WLPT02</USER_ID> \n" +
+            "  <PASSWORD>111111</PASSWORD> \n" +
+            "  <TX_CODE>5W3000</TX_CODE> \n" +
+            "  <LANGUAGE>CN</LANGUAGE> \n" +
+            "  <TX_INFO> \n" +
+            "    <SEND_FILE>D:/TEST/UPLOAD.TXT</SEND_FILE>  \n" +
+            "    <UPFILEPATH>circle</UPFILEPATH>  \n" +
+            "    <LOCAL_REMOTE>1</LOCAL_REMOTE>  \n" +
+            "    <KEEP_FILENAME>1</KEEP_FILENAME>  \n" +
+            "  </TX_INFO> \n" +
+            "</TX> \n";
 
     @Test
     void toXml() {
-        final String xml = "<?xml version=\"1.0\" encoding=\"GB2312\" standalone=\"yes\" ?> \n" +
-                "<TX> \n" +
-                "  <REQUEST_SN>2007626104818</REQUEST_SN> \n" +
-                "  <CUST_ID>P000607305898</CUST_ID> \n" +
-                "  <USER_ID>WLPT02</USER_ID> \n" +
-                "  <PASSWORD>111111</PASSWORD> \n" +
-                "  <TX_CODE>5W3000</TX_CODE> \n" +
-                "  <LANGUAGE>CN</LANGUAGE> \n" +
-                "  <TX_INFO> \n" +
-                "    <SEND_FILE>D:/TEST/UPLOAD.TXT</SEND_FILE>  \n" +
-                "    <UPFILEPATH>circle</UPFILEPATH>  \n" +
-                "    <LOCAL_REMOTE>1</LOCAL_REMOTE>  \n" +
-                "    <KEEP_FILENAME>1</KEEP_FILENAME>  \n" +
-                "  </TX_INFO> \n" +
-                "</TX> \n";
         final CcbWlptRequest<CcbWlpt5W3000RequestTxInfo> request = CcbWlptRequest.<CcbWlpt5W3000RequestTxInfo>builder()
                 .requestSn("2007626104818")
                 .customerId("P000607305898")

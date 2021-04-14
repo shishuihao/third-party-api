@@ -92,7 +92,7 @@ public class CcbWlpt5W1003Response
          * 5:待银行确认
          */
         @JacksonXmlProperty(localName = "STATUS")
-        private String orderStatus;
+        private Integer orderStatus;
         /**
          * 退款流水号 varChar(15) T.
          * 商户退款时上送的退款流水号，无上送则不展示 .

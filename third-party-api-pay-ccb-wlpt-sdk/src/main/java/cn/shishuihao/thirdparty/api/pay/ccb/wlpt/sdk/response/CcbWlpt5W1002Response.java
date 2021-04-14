@@ -99,7 +99,7 @@ public class CcbWlpt5W1002Response
          * 5:待银行确认
          */
         @JacksonXmlProperty(localName = "ORDER_STATUS")
-        private String orderStatus;
+        private Integer orderStatus;
         /**
          * 支付方式 Char(3) T.
          * BHK:建行

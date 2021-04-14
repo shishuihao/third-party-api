@@ -32,7 +32,7 @@ class CcbWlpt5W1003ResponseTest {
             "     <REFUNDEMENT_AMOUNT>退款金额</REFUNDEMENT_AMOUNT>  \n" +
             "     <POS_CODE>柜台号</POS_CODE>  \n" +
             "     <USERID>操作员</USERID>  \n" +
-            "     <STATUS>订单状态</STATUS>  \n" +
+            "     <STATUS>1</STATUS>  \n" +
             "     <REFUND_CODE>退款流水号</REFUND_CODE>  \n" +
             "     <REM1>备注1</REM1>  \n" +
             "     <REM2>备注2</REM2>  \n" +

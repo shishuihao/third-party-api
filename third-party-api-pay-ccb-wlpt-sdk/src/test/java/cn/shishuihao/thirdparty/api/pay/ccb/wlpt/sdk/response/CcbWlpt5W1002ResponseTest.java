@@ -33,7 +33,7 @@ class CcbWlpt5W1002ResponseTest {
             "    <POS_ID>柜台号</POS_ID>   \n" +
             "    <REM1>备注1</REM1>>   \n" +
             "    <REM2>备注2</REM2>   \n" +
-            "    <ORDER_STATUS>订单状态</ORDER_STATUS>   \n" +
+            "    <ORDER_STATUS>1</ORDER_STATUS>   \n" +
             "    <PAY_MODE>支付方式</PAY_MODE>   \n" +
             "    <Orig_Amt>订单金额</Orig_Amt>   \n" +
             "    <Txn_ClrgAmt>结算金额</Txn_ClrgAmt>   \n" +

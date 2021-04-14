@@ -21,6 +21,11 @@ public class CcbWlptRequest<T extends TransactionInfo> {
     @JacksonXmlProperty(localName = "REQUEST_SN")
     private final String requestSn;
     /**
+     * 商户代码 varChar(15) .
+     */
+    @JacksonXmlProperty(localName = "MERCHANTID")
+    private final String merchantId;
+    /**
      * 客户号 varChar(21) F 字符型char，网银客户号.
      */
     @JacksonXmlProperty(localName = "CUST_ID")

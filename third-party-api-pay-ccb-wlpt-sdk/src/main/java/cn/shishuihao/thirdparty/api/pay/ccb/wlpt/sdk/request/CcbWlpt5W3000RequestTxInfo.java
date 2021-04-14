@@ -34,7 +34,7 @@ public class CcbWlpt5W3000RequestTxInfo implements TransactionInfo {
      * 下载路径标志 varChar(1) F 固定填写1.
      */
     @JacksonXmlProperty(localName = "LOCAL_REMOTE")
-    private final Integer localRemote;
+    private final int localRemote;
     /**
      * 是否保持原文件名 varChar(1) T 暂定填1 .
      */

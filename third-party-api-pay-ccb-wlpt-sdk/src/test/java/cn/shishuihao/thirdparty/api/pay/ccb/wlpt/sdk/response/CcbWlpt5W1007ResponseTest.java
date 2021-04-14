@@ -21,7 +21,7 @@ class CcbWlpt5W1007ResponseTest {
             "  <LANGUAGE>CN</LANGUAGE>  \n" +
             "  <TX_INFO> \n" +
             "    <AUTH_ID>授权码</AUTH_ID> \n" +
-            "    <REASONCODE>附加响应码</REASONCODE > \n" +
+            "    <REASONCODE>0</REASONCODE > \n" +
             "  </TX_INFO>   \n" +
             "</TX> \n";
 

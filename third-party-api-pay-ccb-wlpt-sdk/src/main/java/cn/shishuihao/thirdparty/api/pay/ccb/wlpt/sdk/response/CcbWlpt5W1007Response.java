@@ -29,6 +29,6 @@ public class CcbWlpt5W1007Response
          * 2系统内部拒绝
          */
         @JacksonXmlProperty(localName = "REASONCODE")
-        private String reasonCode;
+        private Integer reasonCode;
     }
 }

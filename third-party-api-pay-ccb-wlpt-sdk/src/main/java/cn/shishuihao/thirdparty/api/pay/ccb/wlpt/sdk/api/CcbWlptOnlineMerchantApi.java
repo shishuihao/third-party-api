@@ -7,6 +7,7 @@ import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1004Reques
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1005RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1006RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1007RequestTxInfo;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1015RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1024RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlptRequest;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1001Response;
@@ -88,6 +89,15 @@ public interface CcbWlptOnlineMerchantApi {
      */
     CcbWlpt5W1007Response verify(
             CcbWlptRequest<CcbWlpt5W1007RequestTxInfo> request);
+
+    /**
+     * 5W1015 历史订单退款交易.
+     *
+     * @param request 请求
+     * @return 响应
+     */
+    CcbWlpt5W1007Response historyRefund(
+            CcbWlptRequest<CcbWlpt5W1015RequestTxInfo> request);
 
     /**
      * 5W1024 线上集团商户单笔退款.

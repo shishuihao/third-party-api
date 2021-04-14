@@ -99,7 +99,7 @@ class ThirdPartyApiSpringContainerTest {
 
         @Override
         public String appId() {
-            return TestProperties.class.getSimpleName();
+            return null;
         }
     }
 

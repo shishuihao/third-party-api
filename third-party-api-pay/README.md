@@ -6,7 +6,7 @@
 -   [x] [支付宝](/third-party-api-pay-alipay)
 -   [ ] [中国银行](/third-party-api-pay-boc)
 -   [ ] [中国建设银行](/third-party-api-pay-ccb) [sdk](/third-party-api-pay-ccb-sdk)
--   [ ] [中国建设银行-外联平台](/third-party-api-pay-ccb-wlpt) [sdk](/third-party-api-pay-ccb-wlpt-sdk)
+-   [x] [中国建设银行-外联平台](/third-party-api-pay-ccb-wlpt) [sdk](/third-party-api-pay-ccb-wlpt-sdk)
 -   [ ] [中国光大银行](/third-party-api-pay-ceb)
 -   [ ] [银联商务](/third-party-api-pay-chinaums) [sdk](/third-party-api-pay-chinaums-sdk)
 -   [ ] [中国兴业银行](/third-party-api-pay-cib)

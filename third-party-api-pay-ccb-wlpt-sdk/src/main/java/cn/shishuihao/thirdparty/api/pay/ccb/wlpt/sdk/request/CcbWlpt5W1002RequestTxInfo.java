@@ -110,4 +110,74 @@ public class CcbWlpt5W1002RequestTxInfo implements TransactionInfo {
      */
     @JacksonXmlProperty(localName = "Mrch_No")
     private final String merchantNo;
+
+    /**
+     * 流水状态.
+     */
+    public enum FlowStatus {
+        /**
+         * * 0:未结流水.
+         */
+        UNSETTLED,
+        /**
+         * 1:已结流水.
+         */
+        SETTLED
+    }
+
+    /**
+     * 订单状态.
+     */
+    public enum OrderStatus {
+        /**
+         * 0:交易失败.
+         */
+        TRADE_FAIL,
+        /**
+         * 1:交易成功.
+         */
+        TRADE_SUCCESS,
+        /**
+         * 2:待银行确认.
+         */
+        TRADE_UNKNOWN,
+        /**
+         * 3:全部.
+         */
+        ALL
+    }
+
+    /**
+     * 文件类型.
+     */
+    public static final class FileType {
+        /**
+         * 1：不压缩.
+         */
+        public static final int NONE = 1;
+        /**
+         * 2:压缩成zip文件.
+         */
+        public static final int ZIP = 2;
+
+        private FileType() {
+        }
+    }
+
+    /**
+     * 排序.
+     */
+    public static final class OrderBy {
+        /**
+         * 1：交易日期.
+         */
+        public static final int TRAN_DATE = 1;
+        /**
+         * 2:订单号.
+         */
+        public static final int ORDER = 2;
+
+        private OrderBy() {
+        }
+    }
 }

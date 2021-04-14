@@ -13,6 +13,7 @@ dependencies {
 
     compile project(':third-party-api-pay')
     compile project(':third-party-api-pay-alipay')
+    compile project(':third-party-api-pay-ccb-wlpt')
     compile project(':third-party-api-pay-icbc')
     compile project(':third-party-api-pay-weixin')
 

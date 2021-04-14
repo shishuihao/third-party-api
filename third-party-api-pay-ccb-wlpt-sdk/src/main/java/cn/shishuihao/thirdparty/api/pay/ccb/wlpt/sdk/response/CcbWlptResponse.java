@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response;
 
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.TransactionInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.Getter;
@@ -50,4 +51,14 @@ public class CcbWlptResponse<T extends TransactionInfo> {
      */
     @JacksonXmlProperty(localName = "TX_INFO")
     private T txInfo;
+
+    /**
+     * 是否响应成功.
+     *
+     * @return boolean
+     */
+    @JsonIgnore
+    public boolean isReturnSuccess() {
+        return "000000".equals(this.returnCode);
+    }
 }

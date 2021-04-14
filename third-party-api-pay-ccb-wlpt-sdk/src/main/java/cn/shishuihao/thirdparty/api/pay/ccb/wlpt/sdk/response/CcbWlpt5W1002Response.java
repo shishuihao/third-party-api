@@ -68,12 +68,12 @@ public class CcbWlpt5W1002Response
          * 支付金额 Decimal(16,2) T.
          */
         @JacksonXmlProperty(localName = "PAYMENT_MONEY")
-        private String paymentMoney;
+        private String paymentAmount;
         /**
          * 退款金额 Decimal(16,2) T.
          */
         @JacksonXmlProperty(localName = "REFUND_MONEY")
-        private String refundMoney;
+        private String refundAmount;
         /**
          * 柜台号 varChar(9) T.
          */

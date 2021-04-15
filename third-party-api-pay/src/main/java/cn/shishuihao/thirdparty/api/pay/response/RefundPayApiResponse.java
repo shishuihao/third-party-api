@@ -18,4 +18,8 @@ public class RefundPayApiResponse
      * 支付渠道生成的订单号.
      */
     private final String channelTransactionId;
+    /**
+     * 支付渠道生成的退款号.
+     */
+    private final String channelRefundId;
 }

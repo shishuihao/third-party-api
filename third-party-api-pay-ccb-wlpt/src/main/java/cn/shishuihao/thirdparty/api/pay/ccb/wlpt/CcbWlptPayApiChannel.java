@@ -3,6 +3,8 @@ package cn.shishuihao.thirdparty.api.pay.ccb.wlpt;
 import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.pay.PayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.api.CcbWlptQueryPayApi;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.api.CcbWlptRefundPayApi;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.api.CcbWlptRefundQueryPayApi;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.CcbWlptPayClient;
 
 /**
@@ -33,6 +35,8 @@ public class CcbWlptPayApiChannel
             final CcbWlptPayClient client) {
         this.channelProperties = properties;
         this.save(new CcbWlptQueryPayApi(client));
+        this.save(new CcbWlptRefundPayApi(client));
+        this.save(new CcbWlptRefundQueryPayApi(client));
     }
 
     /**

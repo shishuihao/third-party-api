@@ -17,15 +17,19 @@ public enum RefundStatus {
      */
     REFUND_UNKNOWN,
     /**
-     * 支付成功 => 交易支付成功，可退款.
+     * REFUND_SUCCESS.
      */
     REFUND_SUCCESS,
+    /**
+     * REFUND_PARTIAL.
+     */
+    REFUND_PARTIAL,
     /**
      * TRADE_FAIL.
      */
     REFUND_FAIL,
     /**
-     * 交易关闭 => TRADE_CLOSED.
+     * TRADE_CLOSED.
      */
     REFUND_CLOSED;
 

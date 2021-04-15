@@ -46,6 +46,7 @@ public class AlipayRefundPayApi implements RefundPayApi {
                     .message(AlipayResponseUtils.message(response))
                     .requestId(null)
                     .channelTransactionId(response.tradeNo)
+                    .channelRefundId(null)
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);

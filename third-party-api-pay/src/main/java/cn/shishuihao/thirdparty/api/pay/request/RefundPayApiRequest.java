@@ -33,6 +33,10 @@ public class RefundPayApiRequest extends AbstractRequest<
      */
     private final String outTradeNo;
     /**
+     * out refund no.
+     */
+    private final String outRefundNo;
+    /**
      * refund total amount.
      */
     @Min(1)

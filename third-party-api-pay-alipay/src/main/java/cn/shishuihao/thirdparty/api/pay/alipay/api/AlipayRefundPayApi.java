@@ -35,21 +35,25 @@ public class AlipayRefundPayApi implements RefundPayApi {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            com.alipay.easysdk.payment.common.Client client
-                    = alipayPayClient.getCommonClient(properties);
-            AlipayTradeRefundResponse response = client.refund(
-                    request.getOutTradeNo(),
-                    AmountUtils.toYuanString(request.getRefundAmount()));
-            return RefundPayApiResponse.builder()
-                    .success(ResponseChecker.success(response))
-                    .code(AlipayResponseUtils.code(response))
-                    .message(AlipayResponseUtils.message(response))
-                    .requestId(null)
-                    .channelTransactionId(response.tradeNo)
-                    .channelRefundId(null)
-                    .build();
+            AlipayTradeRefundResponse response = alipayPayClient
+                    .getCommonClient(properties)
+                    .refund(request.getOutTradeNo(), AmountUtils
+                            .toYuanString(request.getRefundAmount()));
+            return buildResponse(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private RefundPayApiResponse buildResponse(
+            final AlipayTradeRefundResponse response) {
+        return RefundPayApiResponse.builder()
+                .success(ResponseChecker.success(response))
+                .code(AlipayResponseUtils.code(response))
+                .message(AlipayResponseUtils.message(response))
+                .requestId(null)
+                .channelTransactionId(response.tradeNo)
+                .channelRefundId(null)
+                .build();
     }
 }

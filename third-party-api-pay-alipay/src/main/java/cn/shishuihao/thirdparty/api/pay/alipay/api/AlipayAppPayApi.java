@@ -33,12 +33,10 @@ public class AlipayAppPayApi implements AppPayApi {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            com.alipay.easysdk.payment.app.Client client
-                    = alipayPayClient.getAppClient(properties);
-            AlipayTradeAppPayResponse response = client.pay(
-                    request.getSubject(),
-                    request.getOutTradeNo(),
-                    AmountUtils.toYuanString(request.getTotalAmount()));
+            AlipayTradeAppPayResponse response = alipayPayClient
+                    .getAppClient(properties)
+                    .pay(request.getSubject(), request.getOutTradeNo(),
+                            AmountUtils.toYuanString(request.getTotalAmount()));
             return AppPayApiResponse.builder()
                     .body(response.body)
                     .build();

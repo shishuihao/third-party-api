@@ -48,14 +48,14 @@ public class CcbWlptQueryPayApi implements QueryPayApi {
                     .getChannelName();
             CcbWlpt5W1002Response response = client
                     .getOnlineMerchantApi(properties)
-                    .query(channelName, getRequest(request, properties));
-            return getResponse(response);
+                    .query(channelName, buildRequest(request, properties));
+            return buildResponse(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
     }
 
-    private CcbWlptRequest<CcbWlpt5W1002RequestTxInfo> getRequest(
+    private CcbWlptRequest<CcbWlpt5W1002RequestTxInfo> buildRequest(
             final QueryPayApiRequest request,
             final CcbWlptPayApiProperties properties) {
         return CcbWlptRequest.<CcbWlpt5W1002RequestTxInfo>builder()
@@ -81,7 +81,7 @@ public class CcbWlptQueryPayApi implements QueryPayApi {
                 .build();
     }
 
-    private QueryPayApiResponse getResponse(
+    private QueryPayApiResponse buildResponse(
             final CcbWlpt5W1002Response response) {
         CcbWlpt5W1002Response.Transaction transaction
                 = Optional.ofNullable(response)

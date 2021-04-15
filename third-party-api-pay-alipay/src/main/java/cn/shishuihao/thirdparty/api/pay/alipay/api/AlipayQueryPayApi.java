@@ -38,32 +38,36 @@ public class AlipayQueryPayApi implements QueryPayApi {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            com.alipay.easysdk.payment.common.Client client
-                    = alipayPayClient.getCommonClient(properties);
-            AlipayTradeQueryResponse response = client.query(
-                    request.getOutTradeNo());
-            return QueryPayApiResponse.builder()
-                    .success(ResponseChecker.success(response))
-                    .code(AlipayResponseUtils.code(response))
-                    .message(AlipayResponseUtils.message(response))
-                    .requestId(null)
-                    .channelTransactionId(response.tradeNo)
-                    .bankType(null)
-                    .payCurrency(response.payCurrency)
-                    .payTotalAmount(Optional
-                            .ofNullable(response.payAmount)
-                            .map(AmountUtils::toCent)
-                            .orElse(null))
-                    .settleCurrency(response.settleCurrency)
-                    .settleTotalAmount(Optional
-                            .ofNullable(response.settleAmount)
-                            .map(AmountUtils::toCent)
-                            .orElse(null))
-                    .tradeStatus(AlipayTradeStatus
-                            .tradeStatusOf(response.tradeStatus))
-                    .build();
+            AlipayTradeQueryResponse response = alipayPayClient
+                    .getCommonClient(properties)
+                    .query(request.getOutTradeNo());
+            return buildResponse(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private QueryPayApiResponse buildResponse(
+            final AlipayTradeQueryResponse response) {
+        return QueryPayApiResponse.builder()
+                .success(ResponseChecker.success(response))
+                .code(AlipayResponseUtils.code(response))
+                .message(AlipayResponseUtils.message(response))
+                .requestId(null)
+                .channelTransactionId(response.tradeNo)
+                .bankType(null)
+                .payCurrency(response.payCurrency)
+                .payTotalAmount(Optional
+                        .ofNullable(response.payAmount)
+                        .map(AmountUtils::toCent)
+                        .orElse(null))
+                .settleCurrency(response.settleCurrency)
+                .settleTotalAmount(Optional
+                        .ofNullable(response.settleAmount)
+                        .map(AmountUtils::toCent)
+                        .orElse(null))
+                .tradeStatus(AlipayTradeStatus
+                        .tradeStatusOf(response.tradeStatus))
+                .build();
     }
 }

@@ -13,6 +13,8 @@ import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.ResponseChecker;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.io.UnsupportedEncodingException;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -35,19 +37,19 @@ public class WxCodePayApi implements CodePayApi {
         WxPayApiProperties properties = (WxPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            WxPayMicroPayRequest wxRequest = getWxRequest(request, properties);
-            wxRequest.sign(properties.getKey());
-            WxPayMicroPayResponse wxResponse = wxPayCodeApi.microPay(wxRequest);
-            return getApiResponse(wxResponse);
+            WxPayMicroPayResponse response = wxPayCodeApi
+                    .microPay(buildRequest(request, properties));
+            return buildResponse(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
     }
 
-    private WxPayMicroPayRequest getWxRequest(
+    private WxPayMicroPayRequest buildRequest(
             final CodePayApiRequest request,
-            final WxPayApiProperties properties) {
-        return WxPayMicroPayRequest.builder()
+            final WxPayApiProperties properties)
+            throws UnsupportedEncodingException {
+        WxPayMicroPayRequest wxRequest = WxPayMicroPayRequest.builder()
                 .appId(properties.getAppId())
                 .mchId(properties.getMchId())
                 .subAppId(properties.getSubAppId())
@@ -61,14 +63,16 @@ public class WxCodePayApi implements CodePayApi {
                 .totalFee(request.getTotalAmount())
                 .authCode(request.getAuthCode())
                 .build();
+        wxRequest.sign(properties.getKey());
+        return wxRequest;
     }
 
-    private CodePayApiResponse getApiResponse(
-            final WxPayMicroPayResponse wxPayMicropayResponse) {
+    private CodePayApiResponse buildResponse(
+            final WxPayMicroPayResponse response) {
         return CodePayApiResponse.builder()
-                .success(ResponseChecker.success(wxPayMicropayResponse))
-                .code(ResponseChecker.getCode(wxPayMicropayResponse))
-                .message(ResponseChecker.getMsg(wxPayMicropayResponse))
+                .success(ResponseChecker.success(response))
+                .code(ResponseChecker.getCode(response))
+                .message(ResponseChecker.getMsg(response))
                 .requestId(null)
                 .build();
     }

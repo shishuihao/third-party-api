@@ -36,21 +36,25 @@ public class AlipayRefundQueryPayApi implements RefundQueryPayApi {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            com.alipay.easysdk.payment.common.Client client
-                    = alipayPayClient.getCommonClient(properties);
-            AlipayTradeFastpayRefundQueryResponse response = client.queryRefund(
-                    request.getOutTradeNo(),
-                    request.getOutRefundNo());
-            return RefundQueryPayApiResponse.builder()
-                    .success(ResponseChecker.success(response))
-                    .code(AlipayResponseUtils.code(response))
-                    .message(AlipayResponseUtils.message(response))
-                    .requestId(null)
-                    .refundStatus(AlipayRefundStatus
-                            .refundStatusOf(response.refundStatus))
-                    .build();
+            AlipayTradeFastpayRefundQueryResponse response = alipayPayClient
+                    .getCommonClient(properties)
+                    .queryRefund(request.getOutTradeNo(),
+                            request.getOutRefundNo());
+            return buildResponse(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private RefundQueryPayApiResponse buildResponse(
+            final AlipayTradeFastpayRefundQueryResponse response) {
+        return RefundQueryPayApiResponse.builder()
+                .success(ResponseChecker.success(response))
+                .code(AlipayResponseUtils.code(response))
+                .message(AlipayResponseUtils.message(response))
+                .requestId(null)
+                .refundStatus(AlipayRefundStatus
+                        .refundStatusOf(response.refundStatus))
+                .build();
     }
 }

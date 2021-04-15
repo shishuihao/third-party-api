@@ -13,6 +13,8 @@ import cn.shishuihao.thirdparty.api.pay.weixin.sdk.util.ResponseChecker;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.io.UnsupportedEncodingException;
+
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -35,21 +37,19 @@ public class WxQueryPayApi implements QueryPayApi {
         WxPayApiProperties properties = (WxPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            WxPayOrderQueryRequest wxRequest = this
-                    .getWxRequest(request, properties);
-            wxRequest.sign(properties.getKey());
-            WxPayOrderQueryResponse wxResponse = wxPayCodeApi
-                    .orderQuery(wxRequest);
-            return getApiResponse(wxResponse);
+            WxPayOrderQueryResponse response = wxPayCodeApi
+                    .orderQuery(buildRequest(request, properties));
+            return buildResponse(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
     }
 
-    private WxPayOrderQueryRequest getWxRequest(
+    private WxPayOrderQueryRequest buildRequest(
             final QueryPayApiRequest request,
-            final WxPayApiProperties properties) {
-        return WxPayOrderQueryRequest.builder()
+            final WxPayApiProperties properties)
+            throws UnsupportedEncodingException {
+        WxPayOrderQueryRequest wxRequest = WxPayOrderQueryRequest.builder()
                 .appId(properties.getAppId())
                 .mchId(properties.getMchId())
                 .subAppId(properties.getSubAppId())
@@ -60,14 +60,16 @@ public class WxQueryPayApi implements QueryPayApi {
                 .signType(properties.getSignType())
                 .outTradeNo(request.getOutTradeNo())
                 .build();
+        wxRequest.sign(properties.getKey());
+        return wxRequest;
     }
 
-    private QueryPayApiResponse getApiResponse(
-            final WxPayOrderQueryResponse wxPayMicropayResponse) {
+    private QueryPayApiResponse buildResponse(
+            final WxPayOrderQueryResponse response) {
         return QueryPayApiResponse.builder()
-                .success(ResponseChecker.success(wxPayMicropayResponse))
-                .code(ResponseChecker.getCode(wxPayMicropayResponse))
-                .message(ResponseChecker.getMsg(wxPayMicropayResponse))
+                .success(ResponseChecker.success(response))
+                .code(ResponseChecker.getCode(response))
+                .message(ResponseChecker.getMsg(response))
                 .requestId(null)
                 .build();
     }

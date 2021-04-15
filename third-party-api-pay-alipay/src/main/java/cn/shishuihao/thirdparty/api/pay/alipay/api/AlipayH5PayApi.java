@@ -34,14 +34,12 @@ public class AlipayH5PayApi implements H5PayApi {
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             // h5 = wap
-            com.alipay.easysdk.payment.wap.Client client
-                    = alipayPayClient.getWapClient(properties);
-            AlipayTradeWapPayResponse response = client.pay(
-                    request.getSubject(),
-                    request.getOutTradeNo(),
-                    AmountUtils.toYuanString(request.getTotalAmount()),
-                    request.getQuitUrl(),
-                    request.getReturnUrl());
+            AlipayTradeWapPayResponse response = alipayPayClient
+                    .getWapClient(properties)
+                    .pay(request.getSubject(), request.getOutTradeNo(),
+                            AmountUtils.toYuanString(request.getTotalAmount()),
+                            request.getQuitUrl(),
+                            request.getReturnUrl());
             return H5PayApiResponse.builder()
                     .body(response.body)
                     .build();

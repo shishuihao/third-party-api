@@ -37,32 +37,35 @@ public class AlipayCodePayApi implements CodePayApi {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            com.alipay.easysdk.payment.facetoface.Client client
-                    = alipayPayClient.getFaceToFaceClient(properties);
-            AlipayTradePayResponse response = client.pay(
-                    request.getSubject(),
-                    request.getOutTradeNo(),
-                    AmountUtils.toYuanString(request.getTotalAmount()),
-                    request.getAuthCode());
-            return CodePayApiResponse.builder()
-                    .success(ResponseChecker.success(response))
-                    .code(AlipayResponseUtils.code(response))
-                    .message(AlipayResponseUtils.message(response))
-                    .requestId(null)
-                    .channelTransactionId(response.tradeNo)
-                    .payCurrency(response.payCurrency)
-                    .payTotalAmount(Optional
-                            .ofNullable(response.payAmount)
-                            .map(AmountUtils::toCent)
-                            .orElse(null))
-                    .settleCurrency(response.settleCurrency)
-                    .settleTotalAmount(Optional
-                            .ofNullable(response.settleAmount)
-                            .map(AmountUtils::toCent)
-                            .orElse(null))
-                    .build();
+            AlipayTradePayResponse response = alipayPayClient
+                    .getFaceToFaceClient(properties)
+                    .pay(request.getSubject(), request.getOutTradeNo(),
+                            AmountUtils.toYuanString(request.getTotalAmount()),
+                            request.getAuthCode());
+            return buildResponse(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    private CodePayApiResponse buildResponse(
+            final AlipayTradePayResponse response) {
+        return CodePayApiResponse.builder()
+                .success(ResponseChecker.success(response))
+                .code(AlipayResponseUtils.code(response))
+                .message(AlipayResponseUtils.message(response))
+                .requestId(null)
+                .channelTransactionId(response.tradeNo)
+                .payCurrency(response.payCurrency)
+                .payTotalAmount(Optional
+                        .ofNullable(response.payAmount)
+                        .map(AmountUtils::toCent)
+                        .orElse(null))
+                .settleCurrency(response.settleCurrency)
+                .settleTotalAmount(Optional
+                        .ofNullable(response.settleAmount)
+                        .map(AmountUtils::toCent)
+                        .orElse(null))
+                .build();
     }
 }

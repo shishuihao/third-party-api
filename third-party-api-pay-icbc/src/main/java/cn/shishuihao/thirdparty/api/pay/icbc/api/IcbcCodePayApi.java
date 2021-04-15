@@ -8,7 +8,6 @@ import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayClient;
 import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
-import com.icbc.api.IcbcClient;
 import com.icbc.api.request.QrcodePayRequestV2;
 import com.icbc.api.response.QrcodePayResponseV2;
 import lombok.AllArgsConstructor;
@@ -49,16 +48,16 @@ public class IcbcCodePayApi implements CodePayApi {
         IcbcPayApiProperties properties = (IcbcPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            IcbcClient client = icbcPayClient.getClient(properties);
-            QrcodePayRequestV2 requestV2 = getRequestV2(request, properties);
-            QrcodePayResponseV2 responseV2 = client.execute(requestV2);
-            return getApiResponse(responseV2);
+            QrcodePayResponseV2 response = icbcPayClient
+                    .getClient(properties)
+                    .execute(buildRequest(request, properties));
+            return buildResponse(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
     }
 
-    private QrcodePayRequestV2 getRequestV2(
+    private QrcodePayRequestV2 buildRequest(
             final CodePayApiRequest request,
             final IcbcPayApiProperties properties) {
         QrcodePayRequestV2 qrcodePayRequestV2 = new QrcodePayRequestV2();
@@ -76,13 +75,13 @@ public class IcbcCodePayApi implements CodePayApi {
         return qrcodePayRequestV2;
     }
 
-    private CodePayApiResponse getApiResponse(
-            final QrcodePayResponseV2 responseV2) {
+    private CodePayApiResponse buildResponse(
+            final QrcodePayResponseV2 response) {
         return CodePayApiResponse.builder()
-                .success(responseV2.isSuccess())
-                .code(String.valueOf(responseV2.getReturnCode()))
-                .message(responseV2.getReturnMsg())
-                .requestId(responseV2.getMsgId())
+                .success(response.isSuccess())
+                .code(String.valueOf(response.getReturnCode()))
+                .message(response.getReturnMsg())
+                .requestId(response.getMsgId())
                 .build();
     }
 }

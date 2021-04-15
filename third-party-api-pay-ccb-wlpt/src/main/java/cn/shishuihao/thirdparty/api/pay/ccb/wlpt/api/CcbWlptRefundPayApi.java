@@ -42,14 +42,14 @@ public class CcbWlptRefundPayApi implements RefundPayApi {
                     .getChannelName();
             CcbWlpt5W1004Response response = client
                     .getOnlineMerchantApi(properties)
-                    .refund(channelName, getRequest(request, properties));
-            return getResponse(response);
+                    .refund(channelName, buildRequest(request, properties));
+            return buildResponse(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
     }
 
-    private CcbWlptRequest<CcbWlpt5W1004RequestTxInfo> getRequest(
+    private CcbWlptRequest<CcbWlpt5W1004RequestTxInfo> buildRequest(
             final RefundPayApiRequest request,
             final CcbWlptPayApiProperties properties) {
         return CcbWlptRequest.<CcbWlpt5W1004RequestTxInfo>builder()
@@ -71,7 +71,7 @@ public class CcbWlptRefundPayApi implements RefundPayApi {
                 .build();
     }
 
-    private RefundPayApiResponse getResponse(
+    private RefundPayApiResponse buildResponse(
             final CcbWlpt5W1004Response response) {
         return RefundPayApiResponse.builder()
                 .success(response.isReturnSuccess())

@@ -50,14 +50,15 @@ public class CcbWlptRefundQueryPayApi implements RefundQueryPayApi {
                     .getChannelName();
             CcbWlpt5W1003Response response = client
                     .getOnlineMerchantApi(properties)
-                    .refundQuery(channelName, getRequest(request, properties));
-            return getResponse(response);
+                    .refundQuery(channelName,
+                            buildRequest(request, properties));
+            return buildResponse(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
     }
 
-    private CcbWlptRequest<CcbWlpt5W1003RequestTxInfo> getRequest(
+    private CcbWlptRequest<CcbWlpt5W1003RequestTxInfo> buildRequest(
             final RefundQueryPayApiRequest request,
             final CcbWlptPayApiProperties properties) {
         return CcbWlptRequest.<CcbWlpt5W1003RequestTxInfo>builder()
@@ -82,7 +83,7 @@ public class CcbWlptRefundQueryPayApi implements RefundQueryPayApi {
                 .build();
     }
 
-    private RefundQueryPayApiResponse getResponse(
+    private RefundQueryPayApiResponse buildResponse(
             final CcbWlpt5W1003Response response) {
         CcbWlpt5W1003Response.Refund refund
                 = Optional.ofNullable(response)

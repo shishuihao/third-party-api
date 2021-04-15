@@ -5,7 +5,7 @@ import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
+import cn.shishuihao.thirdparty.api.pay.request.QueryPayApiRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * @version 1.0.0
  */
 
-class AlipayCodePayApiTest {
+class AlipayQueryPayApiTest {
     AlipayPayApiProperties properties = new AlipayPayApiProperties();
     ApiConfiguration configuration;
 
@@ -34,15 +34,12 @@ class AlipayCodePayApiTest {
 
     @Test
     void execute() {
-        CodePayApiRequest request = CodePayApiRequest.builder()
+        QueryPayApiRequest request = QueryPayApiRequest.builder()
                 .channelId(AlipayPayApiChannel.CHANNEL_ID)
                 .appId(configuration.getAppId())
-                .subject("Apple iPhone11 128G")
                 .outTradeNo("2234567890")
-                .totalAmount(1)
-                .authCode("")
                 .build();
         ApiException apiException = Assertions.assertThrows(ApiException.class, () -> ApiRegistry.INSTANCE.execute(request));
-        Assertions.assertTrue(apiException.getMessage().contains("java.lang.RuntimeException: java.lang.RuntimeException: 签名遭遇异常"));
+        Assertions.assertTrue(apiException.getMessage().startsWith("java.lang.RuntimeException: java.lang.RuntimeException: 签名遭遇异常"));
     }
 }

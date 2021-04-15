@@ -34,10 +34,9 @@ public class AlipayCancelPayApi implements CancelPayApi {
         AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            com.alipay.easysdk.payment.common.Client client
-                    = alipayPayClient.getCommonClient(properties);
-            AlipayTradeCancelResponse response = client.cancel(
-                    request.getOutTradeNo());
+            AlipayTradeCancelResponse response = alipayPayClient
+                    .getCommonClient(properties)
+                    .cancel(request.getOutTradeNo());
             return CancelPayApiResponse.builder()
                     .success(ResponseChecker.success(response))
                     .code(AlipayResponseUtils.code(response))

@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.api;
 
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.CcbWlptFactory;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.CcbWlptPayClient;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W1005RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W101BRequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W10B4RequestTxInfo;
@@ -20,7 +20,7 @@ import feign.RequestLine;
  * @version 1.0.0
  */
 @Headers({
-        "User-Agent: " + CcbWlptFactory.USER_AGENT,
+        "User-Agent: " + CcbWlptPayClient.USER_AGENT,
         "Content-Type: application/x-www-form-urlencoded;charset=UTF-8"
 })
 public interface CcbWlptOfflineMerchantApi {

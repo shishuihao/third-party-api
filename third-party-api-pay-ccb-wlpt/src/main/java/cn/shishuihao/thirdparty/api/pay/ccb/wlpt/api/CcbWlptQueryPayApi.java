@@ -44,10 +44,10 @@ public class CcbWlptQueryPayApi implements QueryPayApi {
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             String channelName = client
-                    .getUrlInfo(properties)
+                    .urlInfo(properties)
                     .getChannelName();
             CcbWlpt5W1002Response response = client
-                    .getOnlineMerchantApi(properties)
+                    .onlineMerchantApi(properties)
                     .query(channelName, buildRequest(request, properties));
             return buildResponse(response);
         } catch (Exception e) {

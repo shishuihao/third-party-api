@@ -38,10 +38,10 @@ public class CcbWlptRefundPayApi implements RefundPayApi {
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             String channelName = client
-                    .getUrlInfo(properties)
+                    .urlInfo(properties)
                     .getChannelName();
             CcbWlpt5W1004Response response = client
-                    .getOnlineMerchantApi(properties)
+                    .onlineMerchantApi(properties)
                     .refund(channelName, buildRequest(request, properties));
             return buildResponse(response);
         } catch (Exception e) {

@@ -19,6 +19,16 @@ import java.time.Duration;
 
 public class CcbWlptPayClient extends HttpClient {
     /**
+     * USER_AGENT.
+     */
+    public static final String USER_AGENT
+            = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)";
+    /**
+     * ENDPOINT.
+     */
+    public static final String ENDPOINT = "https://merchant.ccb.com";
+
+    /**
      * UrlInfo Cache.
      */
     private final Cache<CcbWlptProperties, MerchantUrlInfo> urlInfoCache
@@ -30,7 +40,7 @@ public class CcbWlptPayClient extends HttpClient {
      * new CcbWlptPayClient.
      */
     public CcbWlptPayClient() {
-        super(CcbWlptFactory.ENDPOINT);
+        super(ENDPOINT);
         this.setXmlEncoder(CcbWlptXmlEncoder.INSTANCE);
         this.setXmlDecoder(CcbWlptXmlDecoder.INSTANCE);
     }
@@ -42,23 +52,8 @@ public class CcbWlptPayClient extends HttpClient {
      * @return CcbWlptOnlineMerchantApi
      */
     public CcbWlptOnlineMerchantApi
-    getOnlineMerchantApi(final CcbWlptProperties properties) {
+    onlineMerchantApi(final CcbWlptProperties properties) {
         return this.xmlApi(properties, CcbWlptOnlineMerchantApi.class);
-    }
-
-    /**
-     * getUrlInfo.
-     *
-     * @param properties properties
-     * @return MerchantUrlInfo
-     */
-    public MerchantUrlInfo
-    getUrlInfo(final CcbWlptProperties properties) {
-        return urlInfoCache.get(properties, k -> {
-            String response = getUrlApi(properties)
-                    .getUrl(properties.getCustomerId());
-            return UrlInfoInterfaceUtils.getUrlInfo(response);
-        });
     }
 
     /**
@@ -68,7 +63,22 @@ public class CcbWlptPayClient extends HttpClient {
      * @return CcbWlptUrlApi
      */
     private CcbWlptUrlApi
-    getUrlApi(final CcbWlptProperties properties) {
+    urlApi(final CcbWlptProperties properties) {
         return this.xmlApi(properties, CcbWlptUrlApi.class);
+    }
+
+    /**
+     * getUrlInfo.
+     *
+     * @param properties properties
+     * @return MerchantUrlInfo
+     */
+    public MerchantUrlInfo
+    urlInfo(final CcbWlptProperties properties) {
+        return urlInfoCache.get(properties, k -> {
+            final String response = urlApi(properties)
+                    .getUrl(properties.getCustomerId());
+            return UrlInfoInterfaceUtils.getUrlInfo(response);
+        });
     }
 }

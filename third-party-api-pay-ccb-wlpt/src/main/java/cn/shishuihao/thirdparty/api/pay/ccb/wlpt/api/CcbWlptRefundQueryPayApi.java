@@ -46,10 +46,10 @@ public class CcbWlptRefundQueryPayApi implements RefundQueryPayApi {
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             String channelName = client
-                    .getUrlInfo(properties)
+                    .urlInfo(properties)
                     .getChannelName();
             CcbWlpt5W1003Response response = client
-                    .getOnlineMerchantApi(properties)
+                    .onlineMerchantApi(properties)
                     .refundQuery(channelName,
                             buildRequest(request, properties));
             return buildResponse(response);

@@ -35,10 +35,6 @@ public class HttpClient {
      */
     private final SslContexts sslContexts = new SslContexts();
     /**
-     * url.
-     */
-    private final String url;
-    /**
      * Cache.
      */
     private final Cache<KeyStoreProperties, Object> cache;
@@ -66,6 +62,11 @@ public class HttpClient {
         this(pUrl, Duration.ofHours(1));
     }
 
+    /**
+     * url.
+     */
+    @Setter
+    private String url;
     /**
      * xmlEncoder.
      */

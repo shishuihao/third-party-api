@@ -5,9 +5,13 @@ dependencies {
     // xml
     compileOnly 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.11.3'
     compileOnly 'com.thoughtworks.xstream:xstream:1.4.11.1'
+    // http
+    compileOnly 'com.netflix.feign:feign-core:8.18.0'
     // ssl
     compile group: 'io.github.hakky54', name: 'sslcontext-kickstart', version: '5.0.0'
     compile group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '2.8.4'
+    // utils
+    compile 'org.apache.commons:commons-lang3:3.10'
 }
 
 jar {

@@ -1,5 +1,5 @@
 /**
- * pay util ssl.
+ * ssl.
  *
  * @author shishuihao
  * @version 1.0.0

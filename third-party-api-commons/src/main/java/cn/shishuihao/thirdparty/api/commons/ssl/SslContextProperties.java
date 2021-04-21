@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.commons.ssl;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 
 /**
@@ -14,4 +15,11 @@ public interface SslContextProperties {
      * @return SSLContext
      */
     SSLContext sslContext();
+
+    /**
+     * 获取hostnameVerifier.
+     *
+     * @return HostnameVerifier
+     */
+    HostnameVerifier hostnameVerifier();
 }

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import nl.altindag.sslcontext.SSLFactory;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 
 /**
@@ -40,5 +41,17 @@ public class KeyStoreProperties implements SslContextProperties {
                         keyStoreType)
                 .build()
                 .getSslContext();
+    }
+
+    /**
+     * 获取hostnameVerifier.
+     *
+     * @return HostnameVerifier
+     */
+    @Override
+    public HostnameVerifier hostnameVerifier() {
+        return SSLFactory.builder()
+                .build()
+                .getHostnameVerifier();
     }
 }

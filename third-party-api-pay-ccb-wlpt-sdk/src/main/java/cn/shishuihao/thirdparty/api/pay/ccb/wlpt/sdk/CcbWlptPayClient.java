@@ -1,13 +1,15 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk;
 
+import cn.shishuihao.thirdparty.api.commons.http.HttpClient;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.api.CcbWlptOnlineMerchantApi;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.api.CcbWlptUrlApi;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.codec.CcbWlptXmlDecoder;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.codec.CcbWlptXmlEncoder;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.util.UrlInfoInterfaceUtils;
 import com.ccb.wlpt.url.MerchantUrlInfo;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 
-import javax.net.ssl.SSLContext;
 import java.time.Duration;
 
 /**
@@ -15,28 +17,7 @@ import java.time.Duration;
  * @version 1.0.0
  */
 
-public class CcbWlptPayClient {
-    /**
-     * SSLContext Cache.
-     */
-    private final Cache<CcbWlptProperties, SSLContext>
-            sslContextCache = Caffeine.newBuilder()
-            .expireAfterWrite(Duration.ofHours(1))
-            .build();
-    /**
-     * CcbWlptUrlApi Cache.
-     */
-    private final Cache<CcbWlptProperties, CcbWlptUrlApi>
-            urlApiCache = Caffeine.newBuilder()
-            .expireAfterWrite(Duration.ofHours(1))
-            .build();
-    /**
-     * CcbWlptOnlineMerchantApi Cache.
-     */
-    private final Cache<CcbWlptProperties, CcbWlptOnlineMerchantApi>
-            onlineMerchantApiCache = Caffeine.newBuilder()
-            .expireAfterWrite(Duration.ofHours(1))
-            .build();
+public class CcbWlptPayClient extends HttpClient {
     /**
      * UrlInfo Cache.
      */
@@ -45,6 +26,14 @@ public class CcbWlptPayClient {
             .expireAfterWrite(Duration.ofDays(1))
             .build();
 
+    /**
+     * new CcbWlptPayClient.
+     */
+    public CcbWlptPayClient() {
+        super(CcbWlptFactory.ENDPOINT);
+        this.setXmlEncoder(CcbWlptXmlEncoder.INSTANCE);
+        this.setXmlDecoder(CcbWlptXmlDecoder.INSTANCE);
+    }
 
     /**
      * getOnlineMerchantApi.
@@ -54,9 +43,7 @@ public class CcbWlptPayClient {
      */
     public CcbWlptOnlineMerchantApi
     getOnlineMerchantApi(final CcbWlptProperties properties) {
-        return onlineMerchantApiCache.get(properties, k ->
-                CcbWlptFactory.Payment
-                        .onlineMerchantApi(getSslContext(properties)));
+        return this.xmlApi(properties, CcbWlptOnlineMerchantApi.class);
     }
 
     /**
@@ -82,13 +69,6 @@ public class CcbWlptPayClient {
      */
     private CcbWlptUrlApi
     getUrlApi(final CcbWlptProperties properties) {
-        return urlApiCache.get(properties, k ->
-                CcbWlptFactory.Payment.urlApi(getSslContext(properties)));
-    }
-
-
-    private SSLContext getSslContext(final CcbWlptProperties properties) {
-        return sslContextCache.get(properties, k ->
-                properties.sslContext());
+        return this.xmlApi(properties, CcbWlptUrlApi.class);
     }
 }

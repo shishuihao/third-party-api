@@ -31,9 +31,14 @@ import java.util.Optional;
 @Getter
 public class HttpClient {
     /**
+     * USER_AGENT.
+     */
+    public static final String USER_AGENT
+            = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)";
+    /**
      * SslContexts.
      */
-    private final SslContexts sslContexts = new SslContexts();
+    private final SslContexts sslContexts;
     /**
      * Cache.
      */
@@ -48,6 +53,7 @@ public class HttpClient {
     public HttpClient(final String pUrl,
                       final Duration cacheDuration) {
         this.url = pUrl;
+        this.sslContexts = new SslContexts(cacheDuration);
         this.cache = Caffeine.newBuilder()
                 .expireAfterWrite(cacheDuration)
                 .build();
@@ -144,10 +150,10 @@ public class HttpClient {
     private Feign.Builder builder(final KeyStoreProperties properties) {
         return builder(
                 Optional.ofNullable(properties)
-                        .map(sslContexts::getSslContext)
+                        .map(sslContexts::sslContext)
                         .orElse(null),
                 Optional.ofNullable(properties)
-                        .map(sslContexts::getHostnameVerifier)
+                        .map(sslContexts::hostnameVerifier)
                         .orElse(null)
         );
     }

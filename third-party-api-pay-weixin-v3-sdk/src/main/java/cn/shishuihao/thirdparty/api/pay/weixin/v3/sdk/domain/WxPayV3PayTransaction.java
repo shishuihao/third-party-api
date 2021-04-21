@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.weixin.v3.sdk.domain;
 
+import cn.shishuihao.thirdparty.api.commons.http.response.HttpResponse;
 import cn.shishuihao.thirdparty.api.pay.weixin.v3.sdk.annotation.WxParameter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WxPayV3PayTransaction
-        implements JsonSerializable {
+        implements HttpResponse {
     /**
      * 应用ID.
      */

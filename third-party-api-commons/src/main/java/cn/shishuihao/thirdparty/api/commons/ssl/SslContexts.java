@@ -2,10 +2,12 @@ package cn.shishuihao.thirdparty.api.commons.ssl;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import nl.altindag.sslcontext.SSLFactory;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import java.time.Duration;
+import java.util.Optional;
 
 /**
  * @author shishuihao
@@ -14,41 +16,57 @@ import java.time.Duration;
 
 public class SslContexts {
     /**
-     * SSLContext Cache.
+     * SSLFactory Cache.
      */
-    private final Cache<KeyStoreProperties, SSLContext>
-            sslContextCache = Caffeine.newBuilder()
-            .expireAfterWrite(Duration.ofHours(1))
-            .build();
+    private final Cache<KeyStoreProperties, SSLFactory>
+            sslFactoryCache;
+
     /**
-     * HostnameVerifier Cache.
+     * SslContexts.
+     *
+     * @param cacheDuration expireAfterWrite
      */
-    private final Cache<KeyStoreProperties, HostnameVerifier>
-            hostnameVerifierCache = Caffeine.newBuilder()
-            .expireAfterWrite(Duration.ofHours(1))
-            .build();
+    public SslContexts(final Duration cacheDuration) {
+        this.sslFactoryCache = Caffeine.newBuilder()
+                .expireAfterWrite(cacheDuration)
+                .build();
+    }
 
     /**
      * 获取SSLContext.
      *
      * @param properties 属性
-     * @return SSLContext
+     * @return maybe {@code null}
      */
-    public SSLContext getSslContext(
+    public SSLFactory sslFactory(
             final KeyStoreProperties properties) {
-        return sslContextCache.get(properties, k ->
-                properties.sslContext());
+        return sslFactoryCache.get(properties, k ->
+                properties.sslFactory());
+    }
+
+    /**
+     * 获取SSLContext.
+     *
+     * @param properties 属性
+     * @return maybe {@code null}
+     */
+    public SSLContext sslContext(
+            final KeyStoreProperties properties) {
+        return Optional.ofNullable(sslFactory(properties))
+                .map(SSLFactory::getSslContext)
+                .orElse(null);
     }
 
     /**
      * 获取hostnameVerifier.
      *
      * @param properties 属性
-     * @return HostnameVerifier
+     * @return maybe {@code null}
      */
-    public HostnameVerifier getHostnameVerifier(
+    public HostnameVerifier hostnameVerifier(
             final KeyStoreProperties properties) {
-        return hostnameVerifierCache.get(properties, k ->
-                properties.hostnameVerifier());
+        return Optional.ofNullable(sslFactory(properties))
+                .map(SSLFactory::getHostnameVerifier)
+                .orElse(null);
     }
 }

@@ -4,9 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import nl.altindag.sslcontext.SSLFactory;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-
 /**
  * @author shishuihao
  * @version 1.0.0
@@ -28,30 +25,26 @@ public class KeyStoreProperties implements SslContextProperties {
     private String keyStorePassword;
 
     /**
-     * 获取sslContext.
+     * 获取SSLFactory.
      *
-     * @return SSLContext
+     * @return maybe {@code null}
      */
     @Override
-    public SSLContext sslContext() {
+    public SSLFactory sslFactory() {
+        if (keyStorePath == null) {
+            return null;
+        }
+        if (keyStoreType == null) {
+            throw new IllegalArgumentException("keyStoreType is null");
+        }
+        if (keyStorePassword == null) {
+            throw new IllegalArgumentException("keyStorePassword is null");
+        }
         return SSLFactory.builder()
                 .withIdentityMaterial(
                         keyStorePath,
                         keyStorePassword.toCharArray(),
                         keyStoreType)
-                .build()
-                .getSslContext();
-    }
-
-    /**
-     * 获取hostnameVerifier.
-     *
-     * @return HostnameVerifier
-     */
-    @Override
-    public HostnameVerifier hostnameVerifier() {
-        return SSLFactory.builder()
-                .build()
-                .getHostnameVerifier();
+                .build();
     }
 }

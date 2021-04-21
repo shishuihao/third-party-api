@@ -3,7 +3,6 @@ package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk;
 import cn.shishuihao.thirdparty.api.commons.http.HttpClient;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.api.CcbWlptOnlineMerchantApi;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.api.CcbWlptUrlApi;
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.codec.CcbWlptXmlDecoder;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.codec.CcbWlptXmlEncoder;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.util.UrlInfoInterfaceUtils;
 import com.ccb.wlpt.url.MerchantUrlInfo;
@@ -18,11 +17,6 @@ import java.time.Duration;
  */
 
 public class CcbWlptPayClient extends HttpClient {
-    /**
-     * USER_AGENT.
-     */
-    public static final String USER_AGENT
-            = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)";
     /**
      * ENDPOINT.
      */
@@ -42,11 +36,10 @@ public class CcbWlptPayClient extends HttpClient {
     public CcbWlptPayClient() {
         super(ENDPOINT);
         this.setXmlEncoder(CcbWlptXmlEncoder.INSTANCE);
-        this.setXmlDecoder(CcbWlptXmlDecoder.INSTANCE);
     }
 
     /**
-     * getOnlineMerchantApi.
+     * onlineMerchantApi.
      *
      * @param properties properties
      * @return CcbWlptOnlineMerchantApi
@@ -57,7 +50,7 @@ public class CcbWlptPayClient extends HttpClient {
     }
 
     /**
-     * getUrlApi.
+     * urlApi.
      *
      * @param properties properties
      * @return CcbWlptUrlApi
@@ -68,7 +61,7 @@ public class CcbWlptPayClient extends HttpClient {
     }
 
     /**
-     * getUrlInfo.
+     * urlInfo.
      *
      * @param properties properties
      * @return MerchantUrlInfo

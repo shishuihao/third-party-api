@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response;
 
+import cn.shishuihao.thirdparty.api.commons.http.response.HttpResponse;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.TransactionInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
@@ -15,7 +16,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @JacksonXmlRootElement(localName = "TX")
-public class CcbWlptResponse<T extends TransactionInfo> {
+public class CcbWlptResponse<T extends TransactionInfo>
+        implements HttpResponse {
     /**
      * 请求序列号 varChar(16) F 只可以使用数字.
      */

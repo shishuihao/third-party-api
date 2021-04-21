@@ -1,7 +1,6 @@
 package cn.shishuihao.thirdparty.api.commons.ssl;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
+import nl.altindag.sslcontext.SSLFactory;
 
 /**
  * @author shishuihao
@@ -10,16 +9,9 @@ import javax.net.ssl.SSLContext;
 
 public interface SslContextProperties {
     /**
-     * 获取sslContext.
+     * 获取SSLFactory.
      *
-     * @return SSLContext
+     * @return maybe {@code null}
      */
-    SSLContext sslContext();
-
-    /**
-     * 获取hostnameVerifier.
-     *
-     * @return HostnameVerifier
-     */
-    HostnameVerifier hostnameVerifier();
+    SSLFactory sslFactory();
 }

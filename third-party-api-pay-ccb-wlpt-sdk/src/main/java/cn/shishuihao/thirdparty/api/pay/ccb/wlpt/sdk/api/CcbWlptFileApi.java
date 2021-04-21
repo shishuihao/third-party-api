@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.api;
 
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.CcbWlptPayClient;
+import cn.shishuihao.thirdparty.api.commons.http.HttpClient;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt5W3000RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlpt6W0111RequestTxInfo;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request.CcbWlptRequest;
@@ -16,7 +16,7 @@ import feign.RequestLine;
  * @version 1.0.0
  */
 @Headers({
-        "User-Agent: " + CcbWlptPayClient.USER_AGENT,
+        "User-Agent: " + HttpClient.USER_AGENT,
         "Content-Type: application/x-www-form-urlencoded;charset=UTF-8"
 })
 public interface CcbWlptFileApi {

@@ -46,6 +46,18 @@ public final class JacksonUtils {
     }
 
     /**
+     * object convert to other.
+     *
+     * @param fromValue   object
+     * @param toValueType toValueType
+     * @param <T>         T
+     * @return T
+     */
+    public static <T> T convert(final Object fromValue, final Class<T> toValueType) {
+        return OBJECT_MAPPER.convertValue(fromValue, toValueType);
+    }
+
+    /**
      * json to object.
      *
      * @param content   json

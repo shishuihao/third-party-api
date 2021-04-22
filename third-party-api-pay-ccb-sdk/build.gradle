@@ -1,7 +1,12 @@
 dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+
     compile project(':third-party-api-commons')
+    compile project(':third-party-api-pay-ccb-wlpt-sdk')
 
     implementation 'com.netflix.feign:feign-core:8.18.0'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
 }
 
 jar {

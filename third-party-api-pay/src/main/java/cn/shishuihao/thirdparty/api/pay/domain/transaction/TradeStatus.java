@@ -79,6 +79,10 @@ public enum TradeStatus {
         }
     },
     /**
+     * 交易已撤销.
+     */
+    TRADE_REVOKED,
+    /**
      * 转入退款.
      */
     TRADE_REFUND,

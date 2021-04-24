@@ -1,11 +1,15 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response;
 
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.TransactionInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * @author shishuihao
@@ -39,6 +43,34 @@ public class CcbWlpt5W1003Response
         @JacksonXmlElementWrapper(useWrapping = false)
         @JacksonXmlProperty(localName = "LIST")
         private Refund[] list;
+
+        /**
+         * refundCodes.
+         *
+         * @return String[]
+         */
+        @JsonIgnore
+        public String[] refundCodes() {
+            return Optional.ofNullable(list)
+                    .map(it -> Arrays.stream(it)
+                            .map(Refund::getRefundCode)
+                            .toArray(String[]::new))
+                    .orElse(null);
+        }
+
+        /**
+         * orderStatuses.
+         *
+         * @return Integer[]
+         */
+        @JsonIgnore
+        public Integer[] orderStatuses() {
+            return Optional.ofNullable(list)
+                    .map(it -> Arrays.stream(it)
+                            .map(Refund::getOrderStatus)
+                            .toArray(Integer[]::new))
+                    .orElse(null);
+        }
     }
 
     @Getter

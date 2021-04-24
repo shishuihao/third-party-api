@@ -2,8 +2,11 @@ package cn.shishuihao.thirdparty.api.pay.wechat;
 
 import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.pay.PayApiChannel;
+import cn.shishuihao.thirdparty.api.pay.wechat.api.WechatCancelPayApi;
 import cn.shishuihao.thirdparty.api.pay.wechat.api.WechatCodePayApi;
 import cn.shishuihao.thirdparty.api.pay.wechat.api.WechatQueryPayApi;
+import cn.shishuihao.thirdparty.api.pay.wechat.api.WechatRefundPayApi;
+import cn.shishuihao.thirdparty.api.pay.wechat.api.WechatRefundQueryPayApi;
 import cn.shishuihao.thirdparty.api.pay.wechat.sdk.WechatPayClient;
 
 /**
@@ -33,8 +36,11 @@ public class WechatPayApiChannel
             final WechatPayApiChannelProperties properties,
             final WechatPayClient client) {
         this.channelProperties = properties;
+        this.save(new WechatCancelPayApi(client));
         this.save(new WechatCodePayApi(client));
         this.save(new WechatQueryPayApi(client));
+        this.save(new WechatRefundPayApi(client));
+        this.save(new WechatRefundQueryPayApi(client));
     }
 
     /**

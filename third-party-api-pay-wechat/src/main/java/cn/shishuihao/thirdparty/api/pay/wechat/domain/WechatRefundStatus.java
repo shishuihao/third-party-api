@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.pay.icbc.domain;
+package cn.shishuihao.thirdparty.api.pay.wechat.domain;
 
 import cn.shishuihao.thirdparty.api.pay.domain.transaction.RefundStatus;
 
@@ -12,34 +12,38 @@ import java.util.stream.Collectors;
  * @version 1.0.0
  */
 
-public enum IcbcRefundStatus {
+public enum WechatRefundStatus {
     /**
-     * 0：退款可疑.
+     * 退款成功.
      */
-    REFUND_UNKNOWN,
+    SUCCESS,
     /**
-     * 1：退款成功.
+     * 退款关闭.
      */
-    REFUND_SUCCESS,
+    REFUNDCLOSE,
     /**
-     * 2：退款失败.
+     * 退款处理中.
      */
-    REFUND_FAIL;
+    PROCESSING,
+    /**
+     * 退款异常.
+     */
+    CHANGE;
     /**
      * lookup.
      */
-    private static final Map<Integer, IcbcRefundStatus> LOOKUP
+    private static final Map<String, WechatRefundStatus> LOOKUP
             = Arrays.stream(values())
-            .collect(Collectors.toMap(Enum::ordinal, it -> it));
+            .collect(Collectors.toMap(Enum::name, it -> it));
 
     /**
      * value of.
      *
      * @param value value
-     * @return IcbcRefundStatus
+     * @return WechatRefundStatus
      */
-    public static IcbcRefundStatus of(final String value) {
-        return LOOKUP.get(Integer.valueOf(value));
+    public static WechatRefundStatus of(final String value) {
+        return LOOKUP.get(value);
     }
 
     /**
@@ -58,17 +62,19 @@ public enum IcbcRefundStatus {
      * @param status status
      * @return RefundStatus
      */
-    public static RefundStatus refundStatusOf(final IcbcRefundStatus status) {
+    public static RefundStatus refundStatusOf(final WechatRefundStatus status) {
         if (status == null) {
             return null;
         }
         switch (status) {
-            case REFUND_UNKNOWN:
-                return RefundStatus.REFUND_UNKNOWN;
-            case REFUND_SUCCESS:
+            case PROCESSING:
+                return RefundStatus.REFUND_PROCESSING;
+            case SUCCESS:
                 return RefundStatus.REFUND_SUCCESS;
-            case REFUND_FAIL:
+            case CHANGE:
                 return RefundStatus.REFUND_FAIL;
+            case REFUNDCLOSE:
+                return RefundStatus.REFUND_CLOSED;
             default:
                 return null;
         }
@@ -77,16 +83,16 @@ public enum IcbcRefundStatus {
     /**
      * refund statuses of.
      *
-     * @param refundList refundList
+     * @param refundStatuses refundStatuses
      * @return RefundStatus[]
      */
     public static RefundStatus[] refundStatusesOf(
-            final List<IcbcRefund> refundList) {
-        if (refundList == null) {
+            final List<String> refundStatuses) {
+        if (refundStatuses == null) {
             return new RefundStatus[0];
         }
-        return refundList.stream()
-                .map(it -> refundStatusOf(it.getRejectStatus()))
+        return refundStatuses.stream()
+                .map(WechatRefundStatus::refundStatusOf)
                 .toArray(RefundStatus[]::new);
     }
 }

@@ -17,19 +17,23 @@ public class RefundQueryPayApiResponse
         extends BaseApiResponse
         implements PayApiResponse {
     /**
-     * 交易状态.
-     */
-    private final TradeStatus tradeStatus;
-    /**
-     * 退款状态.
-     */
-    private final RefundStatus refundStatus;
-    /**
      * 支付渠道生成的订单号.
      */
     private final String channelTransactionId;
     /**
+     * 交易状态.
+     */
+    private final TradeStatus tradeStatus;
+    /**
+     * out trade no.
+     */
+    private final String[] outRefundNos;
+    /**
      * 支付渠道生成的退款号.
      */
-    private final String channelRefundId;
+    private final String[] channelRefundIds;
+    /**
+     * 退款状态.
+     */
+    private final RefundStatus[] refundStatuses;
 }

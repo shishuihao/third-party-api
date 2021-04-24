@@ -37,11 +37,18 @@ public class RefundPayApiRequest extends AbstractRequest<
      */
     private final String outRefundNo;
     /**
+     * pay total amount.
+     */
+    private final Integer totalAmount;
+    /**
      * refund total amount.
      */
     @Min(1)
     private final int refundAmount;
-
+    /**
+     * refund reason.
+     */
+    private final String refundReason;
     /**
      * get api type.
      * immutable

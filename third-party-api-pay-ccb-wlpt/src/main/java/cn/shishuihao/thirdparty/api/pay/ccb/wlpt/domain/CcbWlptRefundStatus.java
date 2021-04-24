@@ -1,7 +1,11 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.domain;
 
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.domain.CcbWlptOrderStatus;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1003Response;
 import cn.shishuihao.thirdparty.api.pay.domain.transaction.RefundStatus;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author admin
@@ -42,5 +46,37 @@ public final class CcbWlptRefundStatus {
             default:
                 return null;
         }
+    }
+
+    /**
+     * refund statuses of.
+     *
+     * @param refundStatuses refundStatuses
+     * @return RefundStatus[]
+     */
+    public static RefundStatus[] refundStatusesOf(
+            final Integer[] refundStatuses) {
+        if (refundStatuses == null) {
+            return new RefundStatus[0];
+        }
+        return Arrays.stream(refundStatuses)
+                .map(CcbWlptRefundStatus::refundStatusOf)
+                .toArray(RefundStatus[]::new);
+    }
+
+    /**
+     * refund statuses of.
+     *
+     * @param refundStatuses refundStatuses
+     * @return RefundStatus[]
+     */
+    public static RefundStatus[] refundStatusesOf(
+            final List<Integer> refundStatuses) {
+        if (refundStatuses == null) {
+            return new RefundStatus[0];
+        }
+        return refundStatuses.stream()
+                .map(CcbWlptRefundStatus::refundStatusOf)
+                .toArray(RefundStatus[]::new);
     }
 }

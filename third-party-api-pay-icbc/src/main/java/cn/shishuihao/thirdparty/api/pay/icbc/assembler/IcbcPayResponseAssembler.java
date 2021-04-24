@@ -126,9 +126,9 @@ public class IcbcPayResponseAssembler {
                 .message(response.getReturnMsg())
                 .requestId(response.getMsgId())
                 .tradeStatus(null)
-                .refundStatus(IcbcRefundStatus.refundStatusOf(refundList))
+                .refundStatuses(IcbcRefundStatus.refundStatusesOf(refundList))
                 .channelTransactionId(response.getOrderId())
-                .channelRefundId(null)
+                .channelRefundIds(null)
                 .build();
     }
 }

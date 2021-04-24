@@ -3,6 +3,7 @@ package cn.shishuihao.thirdparty.api.pay.alipay.assembler;
 import cn.shishuihao.thirdparty.api.pay.alipay.domain.AlipayRefundStatus;
 import cn.shishuihao.thirdparty.api.pay.alipay.domain.AlipayTradeStatus;
 import cn.shishuihao.thirdparty.api.pay.alipay.util.AlipayResponseUtils;
+import cn.shishuihao.thirdparty.api.pay.domain.transaction.RefundStatus;
 import cn.shishuihao.thirdparty.api.pay.response.CancelPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.response.QueryPayApiResponse;
@@ -144,8 +145,8 @@ public class AlipayPayResponseAssembler {
                 .code(AlipayResponseUtils.code(response))
                 .message(AlipayResponseUtils.message(response))
                 .requestId(null)
-                .refundStatus(AlipayRefundStatus
-                        .refundStatusOf(response.refundStatus))
+                .refundStatuses(new RefundStatus[]{AlipayRefundStatus
+                        .refundStatusOf(response.refundStatus)})
                 .build();
     }
 }

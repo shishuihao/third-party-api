@@ -1,5 +1,5 @@
 /**
- * wechat api.
+ * wechat assembler.
  *
  * @author shishuihao
  * @version 1.0.0

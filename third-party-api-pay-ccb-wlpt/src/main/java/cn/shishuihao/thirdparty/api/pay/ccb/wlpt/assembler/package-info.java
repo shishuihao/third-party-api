@@ -1,5 +1,5 @@
 /**
- * ccb wlpt api.
+ * ccb wlpt assembler.
  *
  * @author shishuihao
  * @version 1.0.0

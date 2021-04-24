@@ -1,5 +1,5 @@
 /**
- * icbc api.
+ * icbc assembler.
  *
  * @author shishuihao
  * @version 1.0.0

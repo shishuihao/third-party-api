@@ -2,7 +2,7 @@
 
 ## 官方文档(official document))
 
-[官方文档(official document)](https://open.icbc.com.cn/icbc/apip/api_list.html#)
+[官方文档(official document)](https://open.icbc.com.cn/icbc/apip/service_detail.html?service_id=P0039)
 
 ## 安装(Installation)
 

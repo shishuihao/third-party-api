@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
  * @version 1.0.0
  */
 
-class CcbPay102RequestTest {
+class CcbPay103RequestTest {
     final String host = "https://ibsbjstar.ccb.com.cn/CCBIS/B2CMainPlat_00_BEPAY";
     final String url = host +
             "?MERCHANTID=105421097080009" +
             "&POSID=902807340" +
             "&BRANCHID=360000000" +
-            "&ccbParam=269dE0huScAzmN8oe9dIAaB2El1h1JpjPQ69oH6QPQnQBf%2FM%2CSFeJ5OK0h8ZAl1c0uguePLVn30c%0D%0AnPsPJg18SjTwBf71A2mG4YNeuyhIuwVV3Bd2ZkvHo8SmLHyng9UpwVVPyu0kWurf19P3ntAVLAkx%0D%0AXh74tqOM4tdcsEUl1sZ1mfWZt%2Cp6nOB0rU7rKHiDJdUo8tLrhSAMVfEHZTuhFAkxXh74tqOMCTFe%0D%0AHvi2o4wJMV4e%2CLajjCWE9uiApnxX%2Ceb1QztAAluENmjo6LRR4QkxXh74tqOMwek2m6Y6pm1BxI8b%0D%0ABuNp2Bt04il3fUxqkKW%2CnmhklEr2jZ%2CcRr1Q2NCRzGlMxgqtzN%2FDn1iOUe43s6TCZh9XnfeRUaNu%0D%0AoeYQsPxgTGppeKYqTG%2CP06UaUL64E%2F8RlUu4%2CCqDU2bhryFmKkCnjXIqBTezpMJmH1edQX5hyzZv%0D%0A5Ocql1NhkXu0wkLg4KTcB%2CX4SKv7f9b3%2FQt7bRhSJeGKSxqBxM8mZQw%2CM5sKBMK%2CPCYIvLdYWhNu%0D%0AX8WrsG5eqWNI%2Cl3jwmpJ7zoTJj%2CTywm7fH0JYRENMLuS";
+            "&ccbParam=269dE0huScAzmN8oe9dIAaB2El1h1JpjPQ69oH6QPQnQBf%2FM%2CSFeJ5OK0h8ZAl1c0uguePLVn30c%0D%0AnPsPJg18SjTwBf71A2mG4YNeuyhIuwVV3Bd2ZkvHo8SmLHyng9UpwVVPyu0kWurf19P3ntAVLAkx%0D%0AXh74tqOM4tdcsEUl1sZ1mfWZt%2Cp6nOB0rU7rKHiDJdUo8tLrhSAMVfEHZTuhFAkxXh74tqOMCTFe%0D%0AHvi2o4wJMV4e%2CLajjCWE9uiApnxX%2Ceb1QztAAluENmjo6LRR4QkxXh74tqOMwek2m6Y6pm1BxI8b%0D%0ABuNp2Bt04il3fUxqsoo5iD4WUzX2jZ%2CcRr1Q2NCRzGlMxgqtzN%2FDn1iOUe43s6TCZh9XnfeRUaNu%0D%0AoeYQsPxgTGppeKYqTG%2CP06UaUL64E%2F8RlUu4%2CCqDU2bhryFmKkCnjXIqBTezpMJmH1edQX5hyzZv%0D%0A5Ocql1NhkXu0wkLg4KTcB%2CX4SKv7f9b3%2FQt7bRhSJeGKSxqBxM8mZQw%2CM5sKBMK%2CPCYIvLdYWhNu%0D%0AX8WrsG5eqWNI%2Cl3jwmpJ7zoTJj%2CTywm7fH0JYRENMLuS";
     /**
      * demo 完整公钥
      */
@@ -23,12 +23,12 @@ class CcbPay102RequestTest {
 
     @Test
     void url() {
-        final CcbPay102Request request = CcbPay102Request.builder()
+        final CcbPay103Request request = CcbPay103Request.builder()
                 .merchantId("105421097080009")
                 .posId("902807340")
                 .branchId("360000000")
                 .groupMch("JTSH:105000000000000123456789441000000")
-                .txCode("PAY102")
+                .txCode("PAY103")
                 .merchantFlag(1)
                 .termNo1("1054210970800090001")
                 .termNo2("12345678")

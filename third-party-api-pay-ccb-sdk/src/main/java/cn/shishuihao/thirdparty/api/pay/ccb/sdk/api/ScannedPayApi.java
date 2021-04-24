@@ -3,9 +3,11 @@ package cn.shishuihao.thirdparty.api.pay.ccb.sdk.api;
 import cn.shishuihao.thirdparty.api.pay.ccb.sdk.request.CcbPay100Request;
 import cn.shishuihao.thirdparty.api.pay.ccb.sdk.request.CcbPay101Request;
 import cn.shishuihao.thirdparty.api.pay.ccb.sdk.request.CcbPay102Request;
+import cn.shishuihao.thirdparty.api.pay.ccb.sdk.request.CcbPay103Request;
 import cn.shishuihao.thirdparty.api.pay.ccb.sdk.response.CcbPay100Response;
 import cn.shishuihao.thirdparty.api.pay.ccb.sdk.response.CcbPay101Response;
 import cn.shishuihao.thirdparty.api.pay.ccb.sdk.response.CcbPay102Response;
+import cn.shishuihao.thirdparty.api.pay.ccb.sdk.response.CcbPay103Response;
 import feign.Param;
 import feign.RequestLine;
 
@@ -49,4 +51,15 @@ public interface ScannedPayApi {
     @RequestLine("POST /NCCB/{channelName}B2BMainPlat")
     CcbPay102Response query(@Param("channelName") String channelName,
                             CcbPay102Request request);
+
+    /**
+     * 支付宝/微信订单关闭-PAY103.
+     *
+     * @param channelName channel name
+     * @param request     请求
+     * @return 响应
+     */
+    @RequestLine("POST /NCCB/{channelName}B2BMainPlat")
+    CcbPay103Response cancel(@Param("channelName") String channelName,
+                             CcbPay103Request request);
 }

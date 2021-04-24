@@ -53,7 +53,8 @@ public final class JacksonUtils {
      * @param <T>         T
      * @return T
      */
-    public static <T> T convert(final Object fromValue, final Class<T> toValueType) {
+    public static <T> T convert(final Object fromValue,
+                                final Class<T> toValueType) {
         return OBJECT_MAPPER.convertValue(fromValue, toValueType);
     }
 

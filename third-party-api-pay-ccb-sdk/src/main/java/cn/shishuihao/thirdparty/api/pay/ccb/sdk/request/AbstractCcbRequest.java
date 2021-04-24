@@ -15,7 +15,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * @param <T> 请求
  * @author shishuihao
  * @version 1.0.0
  */

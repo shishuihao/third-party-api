@@ -12,6 +12,13 @@ import java.util.HashMap;
  */
 
 class CcbPay100ResponseTest {
+    /**
+     * 签名源文格式如下：.
+     */
+    final String signSrc = "RESULT=Y&ORDERID=20180906101102&AMOUNT=0.01&WAITTIME=&TRACEID=1010113861527649530264100";
+    /**
+     * 返回报文示例：.
+     */
     final String json1 = "{\n" +
             "\"RESULT\":\"Y\",\n" +
             "\"ORDERID\":\"20180906101102\",\n" +
@@ -28,6 +35,9 @@ class CcbPay100ResponseTest {
             "\"ERRMSG\":\"\",\n" +
             "\"SIGN\":\"20924b4c8018c591c62d05fffaa32c0009613050c2b739002b0228e74\"\n" +
             "}";
+    /**
+     * 报错时返回报文示例：.
+     */
     final String json2 = "{\n" +
             "\"RESULT\":\"\",\n" +
             "\"ORDERID\":\"20180906101102\",\n" +

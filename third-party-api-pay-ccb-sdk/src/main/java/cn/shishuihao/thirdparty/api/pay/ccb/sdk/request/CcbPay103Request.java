@@ -16,7 +16,8 @@ import lombok.experimental.SuperBuilder;
  * 请求样例：（注意用 post 方式提交参数）
  * https://ibsbjstar.ccb.com.cn/CCBIS/B2CMainPlat_00_BEPAY
  * ?MERCHANTID=105421097080009
- * &POSID=902807340&BRANCHID=360000000
+ * &POSID=902807340
+ * &BRANCHID=360000000
  * &ccbParam=ylQZnF9G57gKymsjC99NTUyqUwynqgeCywvYhT
  * %2FhW1%2CFRewTw4t0nEk8Jz%2FKYI%0AY6Pa7rQPRMJ6nmkqO7B
  * 备注说明：

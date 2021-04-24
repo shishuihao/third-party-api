@@ -15,7 +15,7 @@ dependencies {
     compile project(':third-party-api-pay-alipay')
     compile project(':third-party-api-pay-ccb-wlpt')
     compile project(':third-party-api-pay-icbc')
-    compile project(':third-party-api-pay-weixin')
+    compile project(':third-party-api-pay-wechat')
 
     compile project(':third-party-api-pay-spring-boot-jpa')
 

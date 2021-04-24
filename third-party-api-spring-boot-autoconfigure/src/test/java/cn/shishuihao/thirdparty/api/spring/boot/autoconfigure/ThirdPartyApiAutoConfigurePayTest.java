@@ -3,7 +3,7 @@ package cn.shishuihao.thirdparty.api.spring.boot.autoconfigure;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayApiChannel;
-import cn.shishuihao.thirdparty.api.pay.weixin.WxPayApiChannel;
+import cn.shishuihao.thirdparty.api.pay.wechat.WechatPayApiChannel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +25,7 @@ class ThirdPartyApiAutoConfigurePayTest {
     @Autowired
     IcbcPayApiChannel icbcPayApiChannel;
     @Autowired
-    WxPayApiChannel wxPayApiChannel;
+    WechatPayApiChannel wechatPayApiChannel;
 
     @Test
     void test() {
@@ -33,7 +33,7 @@ class ThirdPartyApiAutoConfigurePayTest {
                 .getApiChannelOrThrow(AlipayPayApiChannel.CHANNEL_ID));
         Assertions.assertEquals(icbcPayApiChannel, ApiRegistry.INSTANCE
                 .getApiChannelOrThrow(IcbcPayApiChannel.CHANNEL_ID));
-        Assertions.assertEquals(wxPayApiChannel, ApiRegistry.INSTANCE
-                .getApiChannelOrThrow(WxPayApiChannel.CHANNEL_ID));
+        Assertions.assertEquals(wechatPayApiChannel, ApiRegistry.INSTANCE
+                .getApiChannelOrThrow(WechatPayApiChannel.CHANNEL_ID));
     }
 }

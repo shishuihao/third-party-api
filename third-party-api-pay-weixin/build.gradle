@@ -1,9 +1,0 @@
-dependencies {
-    compile  project(':third-party-api-core')
-    compile project(':third-party-api-pay')
-    compile project(':third-party-api-pay-weixin-sdk')
-}
-
-jar {
-    enabled true
-}

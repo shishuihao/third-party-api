@@ -14,7 +14,7 @@ public class NativePayApiResponse
         implements PayApiResponse {
     /**
      * body.
-     * weixin: code_url.
+     * wechat: code_url.
      */
     private final String body;
 }

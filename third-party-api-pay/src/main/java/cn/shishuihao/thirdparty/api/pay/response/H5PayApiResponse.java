@@ -14,7 +14,7 @@ public class H5PayApiResponse
         implements PayApiResponse {
     /**
      * body.
-     * weixin: h5_url
+     * wechat: h5_url
      */
     private final String body;
 }

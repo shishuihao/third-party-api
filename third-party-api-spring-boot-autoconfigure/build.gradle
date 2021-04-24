@@ -14,7 +14,7 @@ dependencies {
     compileOnly project(':third-party-api-pay-alipay')
     compileOnly project(':third-party-api-pay-ccb-wlpt')
     compileOnly project(':third-party-api-pay-icbc')
-    compileOnly project(':third-party-api-pay-weixin')
+    compileOnly project(':third-party-api-pay-wechat')
 
     compileOnly project(':third-party-api-push-flyme')
     compileOnly project(':third-party-api-push-huawei')
@@ -29,7 +29,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation project(':third-party-api-pay-alipay')
     testImplementation project(':third-party-api-pay-icbc')
-    testImplementation project(':third-party-api-pay-weixin')
+    testImplementation project(':third-party-api-pay-wechat')
     testImplementation project(':third-party-api-push-flyme')
     testImplementation project(':third-party-api-push-huawei')
     testImplementation project(':third-party-api-push-oppo')

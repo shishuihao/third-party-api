@@ -14,7 +14,7 @@ public class AppPayApiResponse
         implements PayApiResponse {
     /**
      * body.
-     * weixin: prepay_id
+     * wechat: prepay_id
      */
     private final String body;
 }

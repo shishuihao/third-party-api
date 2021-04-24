@@ -23,8 +23,8 @@
 -   [ ] [威富通](/third-party-api-pay-swiftpass)
 -   [ ] [财付通](/third-party-api-pay-tenpay)
 -   [ ] [银联](/third-party-api-pay-unionpay)
--   [x] [微信](/third-party-api-pay-weixin) [sdk](/third-party-api-pay-weixin-sdk)
--   [ ] 微信v3 [v3 sdk](/third-party-api-pay-weixin-v3-sdk)
+-   [x] [微信](/third-party-api-pay-wechat) [sdk](/third-party-api-pay-wechat-sdk)
+-   [ ] 微信v3 [v3 sdk](/third-party-api-pay-wechat-v3-sdk)
 -   [ ] [易宝](/third-party-api-pay-yeepay)
 
 # [订单状态](ORDER_STATUS.md)

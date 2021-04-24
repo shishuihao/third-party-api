@@ -36,11 +36,11 @@ third-party-api:
             em-sign-ip:
             em-sign-port:
             em-product:
-    weixin:
-      channel-id: pay.weixin
+    wechat:
+      channel-id: pay.wechat
       configurations:
         appId:
-          - app-id: pay.weixin.appId
+          - app-id: pay.wechat.appId
             mch-id: mchId
             sub-app-id: subAppId
             sub-mch-id: subMchId

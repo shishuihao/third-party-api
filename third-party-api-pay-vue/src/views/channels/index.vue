@@ -73,7 +73,7 @@ export default defineComponent({
           status: 'ENABLED',
         },
         {
-          id: 'pay.weixin',
+          id: 'pay.wechat',
           name: '微信',
           status: 'ENABLED',
         },

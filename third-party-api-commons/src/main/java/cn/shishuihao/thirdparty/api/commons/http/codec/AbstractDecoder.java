@@ -46,6 +46,8 @@ public abstract class AbstractDecoder extends Decoder.Default {
                         .asInputStream()), charset);
                 log.info("response body:{}", body);
                 return fromBody(body, (Class<?>) type);
+            } catch (DecodeException e) {
+                throw e;
             } catch (Exception e) {
                 throw new DecodeException(format(FORMAT, type), e);
             }
@@ -70,6 +72,8 @@ public abstract class AbstractDecoder extends Decoder.Default {
      * @param type response type
      * @param <T>  response
      * @return response
+     * @throws DecodeException DecodeException
      */
-    public abstract <T> T fromBody(String body, Class<T> type);
+    public abstract <T> T fromBody(String body, Class<T> type)
+            throws DecodeException;
 }

@@ -4,8 +4,7 @@ import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.configuration.ApiConfigurationRepository;
 import cn.shishuihao.thirdparty.api.pay.wechat.WechatPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.wechat.WechatPayApiChannelProperties;
-import cn.shishuihao.thirdparty.api.pay.wechat.sdk.WechatFactory;
-import cn.shishuihao.thirdparty.api.pay.wechat.sdk.api.WechatPayCodeApi;
+import cn.shishuihao.thirdparty.api.pay.wechat.sdk.WechatPayClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -21,14 +20,14 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(ThirdPartyApiPayWechatProperties.class)
 public class ThirdPartyApiPayWechatAutoConfiguration {
     /**
-     * wechatPayCodeApi.
+     * wechatPayClient.
      *
-     * @return WechatPayCodeApi
+     * @return WechatPayClient
      */
     @Bean
     @ConditionalOnMissingBean
-    public WechatPayCodeApi wechatPayCodeApi() {
-        return WechatFactory.Payment.codeApi();
+    public WechatPayClient wechatPayClient() {
+        return new WechatPayClient();
     }
 
     /**
@@ -36,7 +35,7 @@ public class ThirdPartyApiPayWechatAutoConfiguration {
      *
      * @param propertiesRepository properties repository
      * @param properties           properties
-     * @param codeApi              codeApi
+     * @param client               client
      * @return WechatPayApiChannel
      */
     @Bean
@@ -44,7 +43,7 @@ public class ThirdPartyApiPayWechatAutoConfiguration {
     public WechatPayApiChannel wechatPayApiChannel(
             final ApiConfigurationRepository propertiesRepository,
             final WechatPayApiChannelProperties properties,
-            final WechatPayCodeApi codeApi) {
+            final WechatPayClient client) {
         properties.getConfigurations()
                 .forEach((key, list) -> list.forEach(value ->
                         propertiesRepository.save(ApiConfiguration.builder()
@@ -52,6 +51,6 @@ public class ThirdPartyApiPayWechatAutoConfiguration {
                                 .channelId(properties.channelId())
                                 .properties(value)
                                 .build())));
-        return new WechatPayApiChannel(properties, codeApi);
+        return new WechatPayApiChannel(properties, client);
     }
 }

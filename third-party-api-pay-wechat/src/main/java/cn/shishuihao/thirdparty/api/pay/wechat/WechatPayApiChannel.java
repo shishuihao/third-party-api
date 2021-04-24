@@ -4,8 +4,7 @@ import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.pay.PayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.wechat.api.WechatCodePayApi;
 import cn.shishuihao.thirdparty.api.pay.wechat.api.WechatQueryPayApi;
-import cn.shishuihao.thirdparty.api.pay.wechat.sdk.WechatFactory;
-import cn.shishuihao.thirdparty.api.pay.wechat.sdk.api.WechatPayCodeApi;
+import cn.shishuihao.thirdparty.api.pay.wechat.sdk.WechatPayClient;
 
 /**
  * @author shishuihao
@@ -28,14 +27,14 @@ public class WechatPayApiChannel
      * new WechatPayApiChannel.
      *
      * @param properties channel properties
-     * @param codeApi    codeApi
+     * @param client     client
      */
     public WechatPayApiChannel(
             final WechatPayApiChannelProperties properties,
-            final WechatPayCodeApi codeApi) {
+            final WechatPayClient client) {
         this.channelProperties = properties;
-        this.save(new WechatCodePayApi(codeApi));
-        this.save(new WechatQueryPayApi(codeApi));
+        this.save(new WechatCodePayApi(client));
+        this.save(new WechatQueryPayApi(client));
     }
 
     /**
@@ -44,7 +43,7 @@ public class WechatPayApiChannel
      * @param properties channel properties
      */
     public WechatPayApiChannel(final WechatPayApiChannelProperties properties) {
-        this(properties, WechatFactory.Payment.codeApi());
+        this(properties, new WechatPayClient());
     }
 
     /**

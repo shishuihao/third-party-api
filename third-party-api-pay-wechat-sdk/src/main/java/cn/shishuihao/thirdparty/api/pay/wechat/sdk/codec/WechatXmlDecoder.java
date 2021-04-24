@@ -1,17 +1,11 @@
 package cn.shishuihao.thirdparty.api.pay.wechat.sdk.codec;
 
-import cn.shishuihao.thirdparty.api.pay.wechat.sdk.response.AbstractWechatPayXmlResponse;
+import cn.shishuihao.thirdparty.api.commons.http.codec.AbstractDecoder;
 import cn.shishuihao.thirdparty.api.pay.wechat.sdk.util.XmlUtils;
-import feign.FeignException;
-import feign.Response;
-import feign.Util;
 import feign.codec.DecodeException;
-import feign.codec.Decoder;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type;
 
 import static java.lang.String.format;
 
@@ -20,45 +14,28 @@ import static java.lang.String.format;
  * @version 1.0.0
  */
 @Slf4j
-public class WechatXmlDecoder extends Decoder.Default {
+public class WechatXmlDecoder extends AbstractDecoder {
     /**
      * INSTANCE.
      */
     public static final WechatXmlDecoder INSTANCE = new WechatXmlDecoder();
-    /**
-     * FORMAT.
-     */
-    public static final String FORMAT
-            = "%s is not a type supported by this decoder.";
 
     /**
-     * decode response.
+     * to response from http response body.
      *
-     * @param response response
-     * @param type     response type
+     * @param body http response body
+     * @param type response type
+     * @param <T>  response
      * @return response
-     * @throws IOException    IOException
-     * @throws FeignException FeignException
+     * @throws DecodeException DecodeException
      */
     @Override
-    public Object decode(final Response response,
-                         final Type type) throws IOException, FeignException {
-        if (type instanceof Class<?> && isAssignableFrom((Class<?>) type)) {
-            try {
-                final String xml = Util.toString(response.body().asReader());
-                log.info("response body:{}", xml);
-                return XmlUtils.fromXml(xml, (Class<?>) type);
-            } catch (InstantiationException
-                    | IllegalAccessException
-                    | InvocationTargetException
-                    | NoSuchMethodException e) {
-                throw new DecodeException(format(FORMAT, type), e);
-            }
+    public <T> T fromBody(final String body, final Class<T> type)
+            throws DecodeException {
+        try {
+            return XmlUtils.fromXml(body, type);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+            throw new DecodeException(format(FORMAT, type), e);
         }
-        return super.decode(response, type);
-    }
-
-    private boolean isAssignableFrom(final Class<?> type) {
-        return AbstractWechatPayXmlResponse.class.isAssignableFrom(type);
     }
 }

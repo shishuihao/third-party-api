@@ -8,7 +8,7 @@ import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.wechat.WechatPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.wechat.assembler.WechatPayRequestAssembler;
 import cn.shishuihao.thirdparty.api.pay.wechat.assembler.WechatPayResponseAssembler;
-import cn.shishuihao.thirdparty.api.pay.wechat.sdk.api.WechatPayCodeApi;
+import cn.shishuihao.thirdparty.api.pay.wechat.sdk.WechatPayClient;
 import lombok.AllArgsConstructor;
 
 /**
@@ -18,9 +18,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class WechatCodePayApi implements CodePayApi {
     /**
-     * WechatPayCodeApi.
+     * WechatPayClient.
      */
-    private final WechatPayCodeApi wechatPayCodeApi;
+    private final WechatPayClient client;
 
     /**
      * execute request.
@@ -34,7 +34,8 @@ public class WechatCodePayApi implements CodePayApi {
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             return WechatPayResponseAssembler.INSTANCE
-                    .assemble(wechatPayCodeApi
+                    .assemble(client
+                            .codeApi(properties)
                             .microPay(WechatPayRequestAssembler.INSTANCE
                                     .assemble(request, properties)));
         } catch (Exception e) {

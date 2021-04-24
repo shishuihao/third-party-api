@@ -1,8 +1,8 @@
 package cn.shishuihao.thirdparty.api.push.huawei.sdk;
 
+import cn.shishuihao.thirdparty.api.commons.http.codec.JacksonDecoder;
+import cn.shishuihao.thirdparty.api.commons.http.codec.JacksonEncoder;
 import cn.shishuihao.thirdparty.api.push.huawei.sdk.api.HuaweiPushApi;
-import cn.shishuihao.thirdparty.api.push.huawei.sdk.codec.HuaweiJsonDecoder;
-import cn.shishuihao.thirdparty.api.push.huawei.sdk.codec.HuaweiJsonEncoder;
 import feign.Feign;
 
 /**
@@ -26,8 +26,8 @@ public final class HuaweiFactory {
 
         private static Feign.Builder builder() {
             return Feign.builder()
-                    .encoder(HuaweiJsonEncoder.INSTANCE)
-                    .decoder(HuaweiJsonDecoder.INSTANCE);
+                    .encoder(JacksonEncoder.INSTANCE)
+                    .decoder(JacksonDecoder.INSTANCE);
         }
 
         /**

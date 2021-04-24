@@ -43,13 +43,13 @@ compile 'cn.shishuihao:third-party-api-pay-wechat-sdk:latest'
 在Alipay Easy SDK中，API的引用路径与能力地图的组织层次一致，遵循如下规范
 
 ```txt
-WechatFactory.能力类别.场景类别.接口方法名称( ... )
+new WechatPayClient().能力类别(配置属性).场景类别.接口方法名称( ... )
 ```
 
 比如，如果您想要使用能力地图中支付能力下的付款码支付场景中的付款码支付，只需按如下形式编写调用代码即可。
 
 ```txt
-WechatFactory.Payment.codeApi().microPay( ... )
+new WechatPayClient().codeApi(properties).microPay( ... )
 ```
 
 其中，接口方法名称通常是对其依赖的功能的一个最简概况，接口方法的出入参与官方中同名参数含义一致，可参照相关参数的使用说明。

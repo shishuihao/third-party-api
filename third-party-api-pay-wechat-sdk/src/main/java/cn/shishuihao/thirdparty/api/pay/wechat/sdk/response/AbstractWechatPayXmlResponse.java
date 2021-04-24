@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.wechat.sdk.response;
 
+import cn.shishuihao.thirdparty.api.commons.http.response.HttpResponse;
 import cn.shishuihao.thirdparty.api.pay.wechat.sdk.annotation.WechatParameter;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Getter;
@@ -11,7 +12,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public abstract class AbstractWechatPayXmlResponse {
+public abstract class AbstractWechatPayXmlResponse
+        implements HttpResponse {
     // region 返回信息.
     /**
      * 返回状态码.

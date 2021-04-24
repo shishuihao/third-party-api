@@ -48,7 +48,7 @@ public class CcbRequestAssembler {
                 .fzInfo1(properties.getFzInfo1())
                 .fzInfo2(properties.getFzInfo2())
                 .returnField(properties.getReturnField())
-                .queryString((r) -> r.queryString(properties.getPublicKey()))
+                .queryString(r -> r.queryString(properties.getPublicKey()))
                 .build();
     }
 
@@ -75,7 +75,7 @@ public class CcbRequestAssembler {
                 .qrCodeType(String.valueOf(QrCodeType
                         .codeType(request.getAuthCode())
                         .ordinal()))
-                .queryString((r) -> r.queryString(properties.getPublicKey()))
+                .queryString(r -> r.queryString(properties.getPublicKey()))
                 .build();
     }
 }

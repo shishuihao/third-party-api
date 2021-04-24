@@ -4,10 +4,9 @@ import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.api.RefundPayApi;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.CcbWlptPayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.assembler.CcbWlptRequestAssembler;
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.assembler.CcbWlptResponseAssembler;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.assembler.CcbWlptPayRequestAssembler;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.assembler.CcbWlptPayResponseAssembler;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.CcbWlptPayClient;
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1004Response;
 import cn.shishuihao.thirdparty.api.pay.request.RefundPayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.RefundPayApiResponse;
 import lombok.AllArgsConstructor;
@@ -31,18 +30,16 @@ public class CcbWlptRefundPayApi implements RefundPayApi {
      */
     @Override
     public RefundPayApiResponse execute(final RefundPayApiRequest request) {
-        CcbWlptPayApiProperties properties = (CcbWlptPayApiProperties)
+        final CcbWlptPayApiProperties properties = (CcbWlptPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            String channelName = client
-                    .urlInfo(properties)
-                    .getChannelName();
-            CcbWlpt5W1004Response response = client
-                    .onlineMerchantApi(properties)
-                    .refund(channelName, CcbWlptRequestAssembler.INSTANCE
-                            .assemble(request, properties));
-            return CcbWlptResponseAssembler.INSTANCE
-                    .assemble(response);
+            return CcbWlptPayResponseAssembler.INSTANCE
+                    .assemble(client
+                            .onlineMerchantApi(properties)
+                            .refund(client.urlInfo(properties)
+                                            .getChannelName(),
+                                    CcbWlptPayRequestAssembler.INSTANCE
+                                            .assemble(request, properties)));
         } catch (Exception e) {
             throw new ApiException(e);
         }

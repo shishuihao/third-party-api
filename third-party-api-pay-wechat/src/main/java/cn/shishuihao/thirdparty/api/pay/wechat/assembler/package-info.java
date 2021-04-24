@@ -1,5 +1,5 @@
 /**
- * wechat assembler.
+ * wechat pay assembler.
  *
  * @author shishuihao
  * @version 1.0.0

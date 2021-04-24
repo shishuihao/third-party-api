@@ -1,5 +1,5 @@
 /**
- * ccb wlpt assembler.
+ * ccb wlpt pay assembler.
  *
  * @author shishuihao
  * @version 1.0.0

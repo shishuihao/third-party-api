@@ -10,12 +10,12 @@ import com.icbc.api.response.QrcodePayResponseV2;
  * @version 1.0.0
  */
 
-public class IcbcResponseAssembler {
+public class IcbcPayResponseAssembler {
     /**
      * 实例.
      */
-    public static final IcbcResponseAssembler INSTANCE
-            = new IcbcResponseAssembler();
+    public static final IcbcPayResponseAssembler INSTANCE
+            = new IcbcPayResponseAssembler();
 
     /**
      * 装配.

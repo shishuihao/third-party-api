@@ -15,12 +15,12 @@ import cn.shishuihao.thirdparty.api.pay.util.AmountUtils;
  * @version 1.0.0
  */
 
-public class CcbRequestAssembler {
+public class CcbPayRequestAssembler {
     /**
      * 实例.
      */
-    public static final CcbRequestAssembler INSTANCE
-            = new CcbRequestAssembler();
+    public static final CcbPayRequestAssembler INSTANCE
+            = new CcbPayRequestAssembler();
 
     /**
      * 装配 客户被扫支付-PAY100请求.

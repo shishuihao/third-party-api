@@ -130,8 +130,8 @@ public class AlipayPayClient {
     private com.alipay.easysdk.kernel.Client
     getClient(final AlipayPayApiProperties properties) {
         return clientMap.computeIfAbsent(properties, k -> rethrow(() -> {
-            Config config = getConfig(properties);
-            Context context = new Context(config, SDK_VERSION);
+            final Config config = getConfig(properties);
+            final Context context = new Context(config, SDK_VERSION);
             if (AlipayConstants.AliyunKMS.equals(context
                     .getConfig(AlipayConstants.SIGN_PROVIDER_CONFIG_KEY))) {
                 context.setSigner(new AliyunKMSSigner(new AliyunKMSClient(
@@ -153,7 +153,7 @@ public class AlipayPayClient {
     }
 
     private Config getConfig(final AlipayPayApiProperties properties) {
-        Config config = new Config();
+        final Config config = new Config();
         config.protocol = properties.getProtocol();
         config.gatewayHost = properties.getGatewayHost();
         config.appId = properties.getAppId();

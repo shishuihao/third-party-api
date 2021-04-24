@@ -12,12 +12,12 @@ import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
  * @version 1.0.0
  */
 
-public class CcbResponseAssembler {
+public class CcbPayResponseAssembler {
     /**
      * 实例.
      */
-    public static final CcbResponseAssembler INSTANCE
-            = new CcbResponseAssembler();
+    public static final CcbPayResponseAssembler INSTANCE
+            = new CcbPayResponseAssembler();
 
     /**
      * 装配.

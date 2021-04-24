@@ -13,12 +13,12 @@ import cn.shishuihao.thirdparty.api.pay.wechat.sdk.util.ResponseChecker;
  * @version 1.0.0
  */
 
-public class WechatResponseAssembler {
+public class WechatPayResponseAssembler {
     /**
      * 实例.
      */
-    public static final WechatResponseAssembler INSTANCE
-            = new WechatResponseAssembler();
+    public static final WechatPayResponseAssembler INSTANCE
+            = new WechatPayResponseAssembler();
 
     /**
      * 装配.

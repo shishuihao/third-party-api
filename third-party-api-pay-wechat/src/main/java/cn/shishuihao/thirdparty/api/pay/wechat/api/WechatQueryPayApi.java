@@ -6,10 +6,9 @@ import cn.shishuihao.thirdparty.api.pay.api.QueryPayApi;
 import cn.shishuihao.thirdparty.api.pay.request.QueryPayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.QueryPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.wechat.WechatPayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.wechat.assembler.WechatRequestAssembler;
-import cn.shishuihao.thirdparty.api.pay.wechat.assembler.WechatResponseAssembler;
+import cn.shishuihao.thirdparty.api.pay.wechat.assembler.WechatPayRequestAssembler;
+import cn.shishuihao.thirdparty.api.pay.wechat.assembler.WechatPayResponseAssembler;
 import cn.shishuihao.thirdparty.api.pay.wechat.sdk.api.WechatPayCodeApi;
-import cn.shishuihao.thirdparty.api.pay.wechat.sdk.response.WechatPayOrderQueryResponse;
 import lombok.AllArgsConstructor;
 
 /**
@@ -34,11 +33,10 @@ public class WechatQueryPayApi implements QueryPayApi {
         final WechatPayApiProperties properties = (WechatPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            final WechatPayOrderQueryResponse response = wechatPayCodeApi
-                    .orderQuery(WechatRequestAssembler.INSTANCE
-                            .assemble(request, properties));
-            return WechatResponseAssembler.INSTANCE
-                    .assemble(response);
+            return WechatPayResponseAssembler.INSTANCE
+                    .assemble(wechatPayCodeApi
+                            .orderQuery(WechatPayRequestAssembler.INSTANCE
+                                    .assemble(request, properties)));
         } catch (Exception e) {
             throw new ApiException(e);
         }

@@ -7,17 +7,14 @@ import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
 import cn.shishuihao.thirdparty.api.push.xiaomi.XiaomiPushApiProperties;
 import cn.shishuihao.thirdparty.api.push.xiaomi.XiaomiPushClient;
-import com.xiaomi.push.sdk.ErrorCode;
+import cn.shishuihao.thirdparty.api.push.xiaomi.assembler.XiaomiPushRequestAssembler;
+import cn.shishuihao.thirdparty.api.push.xiaomi.assembler.XiaomiPushResponseAssembler;
 import com.xiaomi.xmpush.server.Constants;
-import com.xiaomi.xmpush.server.Message;
-import com.xiaomi.xmpush.server.Result;
-import com.xiaomi.xmpush.server.Sender;
 import lombok.AllArgsConstructor;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * push message.
@@ -33,49 +30,26 @@ public class XiaomiPushMessageApi implements PushMessageApi {
     private final XiaomiPushClient xiaomiPushClient;
 
     /**
-     * execute PushMessageApiRequest by xiaomi.
+     * execute request.
      *
      * @param request request
-     * @return PushMessageApiResponse
+     * @return response
      */
     @Override
     public PushMessageApiResponse execute(final PushMessageApiRequest request) {
-        XiaomiPushApiProperties properties = (XiaomiPushApiProperties)
+        final XiaomiPushApiProperties properties = (XiaomiPushApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
             Constants.useOfficial();
-            Sender sender = xiaomiPushClient.getSender(properties);
-            Message message = getMessage(request);
-            Result result = sender.send(message,
-                    Arrays.asList(request.getRegistrationIds()),
-                    Math.max(1, properties.getRetries()));
-            return getApiResponse(result);
+            return XiaomiPushResponseAssembler.INSTANCE
+                    .assemble(xiaomiPushClient
+                            .getSender(properties)
+                            .send(XiaomiPushRequestAssembler.INSTANCE
+                                            .assemble(request, properties),
+                                    Arrays.asList(request.getRegistrationIds()),
+                                    Math.max(1, properties.getRetries())));
         } catch (IOException | ParseException e) {
             throw new ApiException(e);
         }
-    }
-
-    private Message getMessage(final PushMessageApiRequest request) {
-        return new Message.Builder()
-                .title(request.getTitle())
-                .description(request.getDescription())
-                .payload(request.getPayload())
-                .restrictedPackageName(request.getRestrictedPackageName())
-                // 使用默认提示音提示
-                .notifyType(1)
-                .build();
-    }
-
-    private PushMessageApiResponse getApiResponse(final Result result) {
-        return PushMessageApiResponse.builder()
-                .success(ErrorCode.Success == result.getErrorCode())
-                .code(Optional.ofNullable(result.getErrorCode())
-                        .map(it -> it.getValue()
-                                + ","
-                                + it.getDescription())
-                        .orElse(null))
-                .message(result.getReason())
-                .requestId(result.getMessageId())
-                .build();
     }
 }

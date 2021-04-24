@@ -5,6 +5,8 @@ import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.push.api.PushMessageApi;
 import cn.shishuihao.thirdparty.api.push.oppo.OppoPushApiProperties;
 import cn.shishuihao.thirdparty.api.push.oppo.OppoPushClient;
+import cn.shishuihao.thirdparty.api.push.oppo.assembler.OppoPushRequestAssembler;
+import cn.shishuihao.thirdparty.api.push.oppo.assembler.OppoPushResponseAssembler;
 import cn.shishuihao.thirdparty.api.push.oppo.util.ResultChecker;
 import cn.shishuihao.thirdparty.api.push.request.PushMessageApiRequest;
 import cn.shishuihao.thirdparty.api.push.response.PushMessageApiResponse;
@@ -17,7 +19,6 @@ import lombok.AllArgsConstructor;
 
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -35,39 +36,35 @@ public class OppoPushMessageApi implements PushMessageApi {
     private final OppoPushClient oppoPushClient;
 
     /**
-     * execute PushMessageApiRequest by oppo.
+     * execute request.
      *
      * @param request request
-     * @return PushMessageApiResponse
+     * @return response
      */
     @Override
     public PushMessageApiResponse execute(final PushMessageApiRequest request) {
-        OppoPushApiProperties properties = (OppoPushApiProperties)
+        final OppoPushApiProperties properties = (OppoPushApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            Sender sender = oppoPushClient.getSender(properties);
-            Notification notification = getNotification(request);
-            Result result = ArrayUtils.isNotEmpty(request.getRegistrationIds())
+            final Sender sender = oppoPushClient.getSender(properties);
+            final Notification notification = OppoPushRequestAssembler.INSTANCE
+                    .assemble(request, properties);
+            final Result result = ArrayUtils
+                    .isNotEmpty(request.getRegistrationIds())
                     ? batchPush(request, sender, notification)
                     : broadcastPush(sender, notification);
-            return getApiResponse(result);
+            return OppoPushResponseAssembler.INSTANCE
+                    .assemble(result);
         } catch (Exception e) {
             throw new ApiException(e);
         }
-    }
-
-    private Notification getNotification(final PushMessageApiRequest request) {
-        Notification notification = new Notification();
-        notification.setTitle(request.getTitle());
-        notification.setContent(request.getPayload());
-        return notification;
     }
 
     private Result batchPush(final PushMessageApiRequest request,
                              final Sender sender,
                              final Notification notification)
             throws Exception {
-        Map<Target, Notification> notificationMessages = Arrays
+        final Map<Target, Notification> notificationMessages = Arrays
                 .stream(request.getRegistrationIds())
                 .collect(Collectors.toMap(Target::build, it -> notification));
         return sender.unicastBatchNotification(notificationMessages);
@@ -76,22 +73,12 @@ public class OppoPushMessageApi implements PushMessageApi {
     private Result broadcastPush(final Sender sender,
                                  final Notification notification)
             throws Exception {
-        Result result = sender.saveNotification(notification);
+        final Result result = sender.saveNotification(notification);
         if (ResultChecker.success(result)) {
-            result = sender.broadcastNotification(
+            return sender.broadcastNotification(
                     result.getMessageId(),
                     Target.build(""));
         }
         return result;
-    }
-
-    private PushMessageApiResponse getApiResponse(final Result result) {
-        return PushMessageApiResponse.builder()
-                .success(ResultChecker.success(result))
-                .code(Optional.ofNullable(result.getReturnCode())
-                        .map(it -> it.getCode() + "," + it.getMessage())
-                        .orElse(null))
-                .message(result.getReason())
-                .build();
     }
 }

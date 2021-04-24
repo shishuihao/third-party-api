@@ -90,7 +90,7 @@ public final class XmlUtils {
 
     private static XStream getXmlStream(final Class<?> cls) {
         return X_STREAM_MAP.computeIfAbsent(cls, k -> {
-            XStream xStream = new CustomizedStream();
+            final XStream xStream = new CustomizedStream();
             xStream.alias("xml", cls);
             if (Map.class.isAssignableFrom(cls)) {
                 xStream.registerConverter(new MapEntryConverter());
@@ -138,7 +138,8 @@ public final class XmlUtils {
         if (!type.isInterface()) {
             return type;
         }
-        Class<T> elementType = (Class<T>) INTERFACE_INSTANCE_MAP.get(type);
+        final Class<T> elementType = (Class<T>) INTERFACE_INSTANCE_MAP
+                .get(type);
         if (null != elementType) {
             return elementType;
         }

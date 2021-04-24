@@ -20,12 +20,12 @@ import java.util.Optional;
  * @version 1.0.0
  */
 
-public class CcbWlptResponseAssembler {
+public class CcbWlptPayResponseAssembler {
     /**
      * 实例.
      */
-    public static final CcbWlptResponseAssembler INSTANCE
-            = new CcbWlptResponseAssembler();
+    public static final CcbWlptPayResponseAssembler INSTANCE
+            = new CcbWlptPayResponseAssembler();
 
     /**
      * 装配.
@@ -35,12 +35,12 @@ public class CcbWlptResponseAssembler {
      */
     public QueryPayApiResponse assemble(
             final CcbWlpt5W1002Response response) {
-        CcbWlpt5W1002Response.Transaction transaction
+        final CcbWlpt5W1002Response.Transaction transaction
                 = Optional.of(response.getTxInfo())
                 .map(CcbWlpt5W1002Response.TxInfo::getList)
                 .map(it -> it[0])
                 .orElse(null);
-        TradeStatus tradeStatus = Optional.ofNullable(transaction)
+        final TradeStatus tradeStatus = Optional.ofNullable(transaction)
                 .map(it -> CcbWlptTradeStatus
                         .tradeStatusOf(it.getOrderStatus()))
                 .orElse(null);
@@ -63,16 +63,16 @@ public class CcbWlptResponseAssembler {
      */
     public RefundQueryPayApiResponse assemble(
             final CcbWlpt5W1003Response response) {
-        CcbWlpt5W1003Response.Refund refund
+        final CcbWlpt5W1003Response.Refund refund
                 = Optional.of(response.getTxInfo())
                 .map(CcbWlpt5W1003Response.TxInfo::getList)
                 .map(it -> it[0])
                 .orElse(null);
-        TradeStatus tradeStatus = Optional.ofNullable(refund)
+        final TradeStatus tradeStatus = Optional.ofNullable(refund)
                 .map(it -> CcbWlptTradeStatus
                         .tradeStatusOf(it.getOrderStatus()))
                 .orElse(null);
-        RefundStatus refundStatus = Optional.ofNullable(refund)
+        final RefundStatus refundStatus = Optional.ofNullable(refund)
                 .map(it -> CcbWlptRefundStatus
                         .refundStatusOf(it.getOrderStatus()))
                 .orElse(null);

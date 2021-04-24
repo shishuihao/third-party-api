@@ -1,19 +1,15 @@
 package cn.shishuihao.thirdparty.api.sms.aliyun.api;
 
-import cn.shishuihao.thirdparty.api.commons.json.GsonUtils;
 import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsApiProperties;
 import cn.shishuihao.thirdparty.api.sms.aliyun.AliYunSmsClient;
+import cn.shishuihao.thirdparty.api.sms.aliyun.assembler.AliYunSmsRequestAssembler;
+import cn.shishuihao.thirdparty.api.sms.aliyun.assembler.AliYunSmsResponseAssembler;
 import cn.shishuihao.thirdparty.api.sms.api.SendSmsApi;
 import cn.shishuihao.thirdparty.api.sms.request.SendSmsApiRequest;
 import cn.shishuihao.thirdparty.api.sms.response.SendSmsApiResponse;
-import com.aliyun.dysmsapi20170525.Client;
-import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
-import com.aliyun.dysmsapi20170525.models.SendSmsResponseBody;
 import lombok.AllArgsConstructor;
-
-import java.util.Optional;
 
 /**
  * send message.
@@ -31,62 +27,24 @@ public class AliYunSendSmsApi implements SendSmsApi {
     private final AliYunSmsClient smsClient;
 
     /**
-     * execute SendSmsApiRequest by aliyun.
+     * execute request.
      *
      * @param request request
-     * @return SendSmsApiResponse
+     * @return response
      */
     @Override
     public SendSmsApiResponse execute(final SendSmsApiRequest request) {
-        AliYunSmsApiProperties properties = (AliYunSmsApiProperties)
+        final AliYunSmsApiProperties properties = (AliYunSmsApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            Client client = smsClient.getAliYunClient(properties);
-            SendSmsRequest smsRequest = getSmsRequest(request, properties);
-            SendSmsResponseBody smsResponseBody = client
-                    .sendSms(smsRequest)
-                    .getBody();
-            return getApiResponse(smsResponseBody);
+            return AliYunSmsResponseAssembler.INSTANCE
+                    .assemble(smsClient
+                            .getAliYunClient(properties)
+                            .sendSms(AliYunSmsRequestAssembler.INSTANCE
+                                    .assemble(request, properties))
+                            .getBody());
         } catch (Exception e) {
             throw new ApiException(e);
         }
-    }
-
-    private SendSmsRequest getSmsRequest(
-            final SendSmsApiRequest request,
-            final AliYunSmsApiProperties properties) {
-        SendSmsRequest alyRequest = new SendSmsRequest();
-        alyRequest.setPhoneNumbers(request.getMessage().getPhoneNumber());
-        alyRequest.setSignName(getSignName(request, properties));
-        alyRequest.setTemplateCode(request.getTemplateId());
-        alyRequest.setTemplateParam(getTemplateParam(request));
-        alyRequest.setSmsUpExtendCode(getExtendCode(request, properties));
-        return alyRequest;
-    }
-
-    private SendSmsApiResponse getApiResponse(
-            final SendSmsResponseBody smsResponseBody) {
-        return SendSmsApiResponse.builder()
-                .requestId(smsResponseBody.getRequestId())
-                .success("OK".equals(smsResponseBody.getCode()))
-                .code(smsResponseBody.getCode())
-                .message(smsResponseBody.getMessage())
-                .build();
-    }
-
-    private String getSignName(final SendSmsApiRequest request,
-                               final AliYunSmsApiProperties properties) {
-        return Optional.ofNullable(request.getMessage().getSignName())
-                .orElseGet(properties::getSignName);
-    }
-
-    private String getExtendCode(final SendSmsApiRequest request,
-                                 final AliYunSmsApiProperties properties) {
-        return Optional.ofNullable(request.getMessage().getExtendCode())
-                .orElseGet(properties::getSmsUpExtendCode);
-    }
-
-    private String getTemplateParam(final SendSmsApiRequest request) {
-        return GsonUtils.toJson(request.getMessage().getTemplateParams());
     }
 }

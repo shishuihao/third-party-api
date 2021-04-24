@@ -8,7 +8,6 @@ import cn.shishuihao.thirdparty.api.pay.api.AppPayApi;
 import cn.shishuihao.thirdparty.api.pay.request.AppPayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.AppPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.util.AmountUtils;
-import com.alipay.easysdk.payment.app.models.AlipayTradeAppPayResponse;
 import lombok.AllArgsConstructor;
 
 /**
@@ -20,25 +19,26 @@ public class AlipayAppPayApi implements AppPayApi {
     /**
      * alipay pay client.
      */
-    private final AlipayPayClient alipayPayClient;
+    private final AlipayPayClient client;
 
     /**
-     * execute request by alipay.
+     * execute request.
      *
      * @param request request
      * @return response
      */
     @Override
     public AppPayApiResponse execute(final AppPayApiRequest request) {
-        AlipayPayApiProperties properties = (AlipayPayApiProperties)
+        final AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            AlipayTradeAppPayResponse response = alipayPayClient
-                    .getAppClient(properties)
-                    .pay(request.getSubject(), request.getOutTradeNo(),
-                            AmountUtils.toYuanString(request.getTotalAmount()));
             return AppPayApiResponse.builder()
-                    .body(response.body)
+                    .body(client
+                            .getAppClient(properties)
+                            .pay(request.getSubject(), request.getOutTradeNo(),
+                                    AmountUtils.toYuanString(
+                                            request.getTotalAmount()))
+                            .body)
                     .build();
         } catch (Exception e) {
             throw new ApiException(e);

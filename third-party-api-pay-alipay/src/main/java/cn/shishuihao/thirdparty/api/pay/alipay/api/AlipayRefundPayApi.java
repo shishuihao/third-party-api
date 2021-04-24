@@ -4,12 +4,11 @@ import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayClient;
-import cn.shishuihao.thirdparty.api.pay.alipay.assembler.AlipayResponseAssembler;
+import cn.shishuihao.thirdparty.api.pay.alipay.assembler.AlipayPayResponseAssembler;
 import cn.shishuihao.thirdparty.api.pay.api.RefundPayApi;
 import cn.shishuihao.thirdparty.api.pay.request.RefundPayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.RefundPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.util.AmountUtils;
-import com.alipay.easysdk.payment.common.models.AlipayTradeRefundResponse;
 import lombok.AllArgsConstructor;
 
 /**
@@ -21,25 +20,24 @@ public class AlipayRefundPayApi implements RefundPayApi {
     /**
      * alipay pay client.
      */
-    private final AlipayPayClient alipayPayClient;
+    private final AlipayPayClient client;
 
     /**
-     * execute request by alipay.
+     * execute request.
      *
      * @param request request
      * @return response
      */
     @Override
     public RefundPayApiResponse execute(final RefundPayApiRequest request) {
-        AlipayPayApiProperties properties = (AlipayPayApiProperties)
+        final AlipayPayApiProperties properties = (AlipayPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            AlipayTradeRefundResponse response = alipayPayClient
-                    .getCommonClient(properties)
-                    .refund(request.getOutTradeNo(), AmountUtils
-                            .toYuanString(request.getRefundAmount()));
-            return AlipayResponseAssembler.INSTANCE
-                    .assemble(response);
+            return AlipayPayResponseAssembler.INSTANCE
+                    .assemble(client
+                            .getCommonClient(properties)
+                            .refund(request.getOutTradeNo(), AmountUtils
+                                    .toYuanString(request.getRefundAmount())));
         } catch (Exception e) {
             throw new ApiException(e);
         }

@@ -27,7 +27,7 @@ public final class XmlFieldUtils {
      * @return field list
      */
     public static List<Field> getFields(final Class<?> cls) {
-        List<Field> list = new ArrayList<>();
+        final List<Field> list = new ArrayList<>();
         list.addAll(FieldUtils.getFieldsListWithAnnotation(cls,
                 XStreamAlias.class));
         list.addAll(FieldUtils.getFieldsListWithAnnotation(cls,
@@ -42,8 +42,8 @@ public final class XmlFieldUtils {
      * @return name value map
      */
     public static Map<String, Object> getNameValueMap(final Object object) {
-        List<Field> fieldList = getFields(object.getClass());
-        Map<String, Object> map = new HashMap<>(fieldList.size());
+        final List<Field> fieldList = getFields(object.getClass());
+        final Map<String, Object> map = new HashMap<>(fieldList.size());
         fieldList.forEach(field -> {
             handleXStreamAlias(object, map, field);
             handleJacksonXmlProperty(object, map, field);
@@ -58,8 +58,8 @@ public final class XmlFieldUtils {
      * @return name field map
      */
     public static Map<String, Field> getNameFieldMap(final Class<?> cls) {
-        List<Field> fieldList = getFields(cls);
-        Map<String, Field> map = new HashMap<>(fieldList.size());
+        final List<Field> fieldList = getFields(cls);
+        final Map<String, Field> map = new HashMap<>(fieldList.size());
         fieldList.forEach(field -> {
             XStreamAlias xStreamAlias = field.getAnnotation(XStreamAlias.class);
             if (xStreamAlias != null) {
@@ -78,11 +78,11 @@ public final class XmlFieldUtils {
             final Object object,
             final Map<String, Object> map,
             final Field field) {
-        JacksonXmlProperty jacksonXmlProperty = field
+        final JacksonXmlProperty jacksonXmlProperty = field
                 .getAnnotation(JacksonXmlProperty.class);
         if (jacksonXmlProperty != null) {
             try {
-                Object value = FieldUtils.readField(field, object, true);
+                final Object value = FieldUtils.readField(field, object, true);
                 map.put(jacksonXmlProperty.localName(), value);
             } catch (IllegalAccessException e) {
                 ReflectionUtils.handleReflectionException(e);
@@ -97,7 +97,7 @@ public final class XmlFieldUtils {
         XStreamAlias xStreamAlias = field.getAnnotation(XStreamAlias.class);
         if (xStreamAlias != null) {
             try {
-                Object value = FieldUtils.readField(field, object, true);
+                final Object value = FieldUtils.readField(field, object, true);
                 map.put(xStreamAlias.value(), value);
             } catch (IllegalAccessException e) {
                 ReflectionUtils.handleReflectionException(e);

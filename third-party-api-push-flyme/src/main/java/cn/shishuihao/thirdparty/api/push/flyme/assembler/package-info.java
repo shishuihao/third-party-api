@@ -1,5 +1,5 @@
 /**
- * flyme assembler.
+ * flyme push assembler.
  *
  * @author shishuihao
  * @version 1.0.0

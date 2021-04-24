@@ -58,11 +58,11 @@ public enum SignType {
         if (params == null || params.isEmpty()) {
             return "";
         }
-        Map<String, String> stringStringMap
+        final Map<String, String> stringStringMap
                 = new LinkedHashMap<>(params.size());
         params.forEach((k, v) -> stringStringMap
                 .put(k, v == null ? null : v.toString()));
-        String paramsString = stringStringMap.entrySet().stream()
+        final String paramsString = stringStringMap.entrySet().stream()
                 // 过滤
                 .filter(it -> it.getKey() != null)
                 .filter(it -> !Objects.equals(it.getKey(), "sign"))

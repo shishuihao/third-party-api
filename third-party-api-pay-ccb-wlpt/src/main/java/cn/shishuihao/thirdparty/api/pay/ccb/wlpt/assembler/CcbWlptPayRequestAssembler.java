@@ -23,12 +23,12 @@ import java.util.Optional;
  * @version 1.0.0
  */
 
-public class CcbWlptRequestAssembler {
+public class CcbWlptPayRequestAssembler {
     /**
      * 实例.
      */
-    public static final CcbWlptRequestAssembler INSTANCE
-            = new CcbWlptRequestAssembler();
+    public static final CcbWlptPayRequestAssembler INSTANCE
+            = new CcbWlptPayRequestAssembler();
 
     /**
      * 装配 （5W1002）商户支付流水查询请求.

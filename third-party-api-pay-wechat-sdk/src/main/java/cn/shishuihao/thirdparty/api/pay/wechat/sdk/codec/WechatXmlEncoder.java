@@ -31,7 +31,7 @@ public class WechatXmlEncoder implements Encoder {
     public void encode(final Object object,
                        final Type bodyType,
                        final RequestTemplate template) throws EncodeException {
-        String xml = JacksonXmlUtils.toXml(object);
+        final String xml = JacksonXmlUtils.toXml(object);
         log.info("request body:{}", xml);
         template.body(xml);
     }

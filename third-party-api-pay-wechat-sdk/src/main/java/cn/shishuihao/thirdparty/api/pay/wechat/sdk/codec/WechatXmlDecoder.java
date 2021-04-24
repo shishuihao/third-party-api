@@ -45,7 +45,7 @@ public class WechatXmlDecoder extends Decoder.Default {
                          final Type type) throws IOException, FeignException {
         if (type instanceof Class<?> && isAssignableFrom((Class<?>) type)) {
             try {
-                String xml = Util.toString(response.body().asReader());
+                final String xml = Util.toString(response.body().asReader());
                 log.info("response body:{}", xml);
                 return XmlUtils.fromXml(xml, (Class<?>) type);
             } catch (InstantiationException

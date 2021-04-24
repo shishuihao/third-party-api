@@ -16,12 +16,12 @@ import java.io.UnsupportedEncodingException;
  * @version 1.0.0
  */
 
-public class WechatRequestAssembler {
+public class WechatPayRequestAssembler {
     /**
      * 实例.
      */
-    public static final WechatRequestAssembler INSTANCE
-            = new WechatRequestAssembler();
+    public static final WechatPayRequestAssembler INSTANCE
+            = new WechatPayRequestAssembler();
 
     /**
      * 装配 二维码被扫支付请求.

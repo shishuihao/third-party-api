@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
  * @version 1.0.0
  */
 
-public class IcbcRequestAssembler {
+public class IcbcPayRequestAssembler {
     /**
      * DATE_FORMATTER.
      */
@@ -30,8 +30,8 @@ public class IcbcRequestAssembler {
     /**
      * 实例.
      */
-    public static final IcbcRequestAssembler INSTANCE
-            = new IcbcRequestAssembler();
+    public static final IcbcPayRequestAssembler INSTANCE
+            = new IcbcPayRequestAssembler();
 
     /**
      * 装配 二维码被扫支付请求.
@@ -43,8 +43,8 @@ public class IcbcRequestAssembler {
     public QrcodePayRequestV2 assemble(
             final CodePayApiRequest request,
             final IcbcPayApiProperties properties) {
-        QrcodePayRequestV2 qrcodePayRequestV2 = new QrcodePayRequestV2();
-        QrcodePayRequestV2.QrcodePayRequestV2Biz biz
+        final QrcodePayRequestV2 qrcodePayRequestV2 = new QrcodePayRequestV2();
+        final QrcodePayRequestV2.QrcodePayRequestV2Biz biz
                 = new QrcodePayRequestV2.QrcodePayRequestV2Biz();
         qrcodePayRequestV2.setServiceUrl(IcbcPayApiChannel.GATEWAY
                 + "/api/qrcode/V2/pay");

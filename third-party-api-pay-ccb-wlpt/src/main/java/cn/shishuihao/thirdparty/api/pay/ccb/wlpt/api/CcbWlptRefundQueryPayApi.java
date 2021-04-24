@@ -4,10 +4,9 @@ import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.api.RefundQueryPayApi;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.CcbWlptPayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.assembler.CcbWlptRequestAssembler;
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.assembler.CcbWlptResponseAssembler;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.assembler.CcbWlptPayRequestAssembler;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.assembler.CcbWlptPayResponseAssembler;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.CcbWlptPayClient;
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1003Response;
 import cn.shishuihao.thirdparty.api.pay.request.RefundQueryPayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.RefundQueryPayApiResponse;
 import lombok.AllArgsConstructor;
@@ -32,18 +31,16 @@ public class CcbWlptRefundQueryPayApi implements RefundQueryPayApi {
     @Override
     public RefundQueryPayApiResponse
     execute(final RefundQueryPayApiRequest request) {
-        CcbWlptPayApiProperties properties = (CcbWlptPayApiProperties)
+        final CcbWlptPayApiProperties properties = (CcbWlptPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            String channelName = client
-                    .urlInfo(properties)
-                    .getChannelName();
-            CcbWlpt5W1003Response response = client
-                    .onlineMerchantApi(properties)
-                    .refundQuery(channelName, CcbWlptRequestAssembler.INSTANCE
-                            .assemble(request, properties));
-            return CcbWlptResponseAssembler.INSTANCE
-                    .assemble(response);
+            return CcbWlptPayResponseAssembler.INSTANCE
+                    .assemble(client
+                            .onlineMerchantApi(properties)
+                            .refundQuery(client.urlInfo(properties)
+                                            .getChannelName(),
+                                    CcbWlptPayRequestAssembler.INSTANCE
+                                            .assemble(request, properties)));
         } catch (Exception e) {
             throw new ApiException(e);
         }

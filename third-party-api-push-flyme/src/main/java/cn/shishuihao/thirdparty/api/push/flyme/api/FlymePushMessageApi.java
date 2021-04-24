@@ -33,10 +33,10 @@ public class FlymePushMessageApi implements PushMessageApi {
     private final FlymePushClient flymePushClient;
 
     /**
-     * execute PushMessageApiRequest by flyme.
+     * execute request.
      *
      * @param request request
-     * @return PushMessageApiResponse
+     * @return response
      */
     @Override
     public PushMessageApiResponse execute(final PushMessageApiRequest request) {

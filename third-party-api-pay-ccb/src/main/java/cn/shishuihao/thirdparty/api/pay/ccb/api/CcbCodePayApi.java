@@ -4,10 +4,9 @@ import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.api.CodePayApi;
 import cn.shishuihao.thirdparty.api.pay.ccb.CcbPayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.ccb.assembler.CcbRequestAssembler;
-import cn.shishuihao.thirdparty.api.pay.ccb.assembler.CcbResponseAssembler;
+import cn.shishuihao.thirdparty.api.pay.ccb.assembler.CcbPayRequestAssembler;
+import cn.shishuihao.thirdparty.api.pay.ccb.assembler.CcbPayResponseAssembler;
 import cn.shishuihao.thirdparty.api.pay.ccb.sdk.CcbPayClient;
-import cn.shishuihao.thirdparty.api.pay.ccb.sdk.response.CcbPay100Response;
 import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
 import lombok.AllArgsConstructor;
@@ -34,15 +33,13 @@ public class CcbCodePayApi implements CodePayApi {
         final CcbPayApiProperties properties = (CcbPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            final String channelName = client
-                    .urlInfo(properties)
-                    .getChannelName();
-            final CcbPay100Response response = client
-                    .scannedPayApi(properties)
-                    .codePay(channelName, CcbRequestAssembler.INSTANCE
-                            .assemble(request, properties));
-            return CcbResponseAssembler.INSTANCE
-                    .assemble(response);
+            return CcbPayResponseAssembler.INSTANCE
+                    .assemble(client
+                            .scannedPayApi(properties)
+                            .codePay(client.urlInfo(properties)
+                                            .getChannelName(),
+                                    CcbPayRequestAssembler.INSTANCE
+                                            .assemble(request, properties)));
         } catch (Exception e) {
             throw new ApiException(e);
         }

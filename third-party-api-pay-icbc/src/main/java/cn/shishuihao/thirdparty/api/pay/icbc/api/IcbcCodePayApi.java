@@ -5,11 +5,10 @@ import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.api.CodePayApi;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayClient;
-import cn.shishuihao.thirdparty.api.pay.icbc.assembler.IcbcRequestAssembler;
-import cn.shishuihao.thirdparty.api.pay.icbc.assembler.IcbcResponseAssembler;
+import cn.shishuihao.thirdparty.api.pay.icbc.assembler.IcbcPayRequestAssembler;
+import cn.shishuihao.thirdparty.api.pay.icbc.assembler.IcbcPayResponseAssembler;
 import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
-import com.icbc.api.response.QrcodePayResponseV2;
 import lombok.AllArgsConstructor;
 
 /**
@@ -21,25 +20,24 @@ public class IcbcCodePayApi implements CodePayApi {
     /**
      * IcbcPayClient.
      */
-    private final IcbcPayClient icbcPayClient;
+    private final IcbcPayClient client;
 
     /**
-     * execute CodePayApiRequest by icbc.
+     * execute request.
      *
      * @param request request
-     * @return CodePayApiResponse
+     * @return response
      */
     @Override
     public CodePayApiResponse execute(final CodePayApiRequest request) {
-        IcbcPayApiProperties properties = (IcbcPayApiProperties)
+        final IcbcPayApiProperties properties = (IcbcPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            QrcodePayResponseV2 response = icbcPayClient
-                    .getClient(properties)
-                    .execute(IcbcRequestAssembler.INSTANCE
-                            .assemble(request, properties));
-            return IcbcResponseAssembler.INSTANCE
-                    .assemble(response);
+            return IcbcPayResponseAssembler.INSTANCE
+                    .assemble(client
+                            .getClient(properties)
+                            .execute(IcbcPayRequestAssembler.INSTANCE
+                                    .assemble(request, properties)));
         } catch (Exception e) {
             throw new ApiException(e);
         }

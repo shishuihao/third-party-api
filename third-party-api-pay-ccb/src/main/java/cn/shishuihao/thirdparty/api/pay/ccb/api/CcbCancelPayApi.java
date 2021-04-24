@@ -4,10 +4,9 @@ import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.api.CancelPayApi;
 import cn.shishuihao.thirdparty.api.pay.ccb.CcbPayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.ccb.assembler.CcbRequestAssembler;
-import cn.shishuihao.thirdparty.api.pay.ccb.assembler.CcbResponseAssembler;
+import cn.shishuihao.thirdparty.api.pay.ccb.assembler.CcbPayRequestAssembler;
+import cn.shishuihao.thirdparty.api.pay.ccb.assembler.CcbPayResponseAssembler;
 import cn.shishuihao.thirdparty.api.pay.ccb.sdk.CcbPayClient;
-import cn.shishuihao.thirdparty.api.pay.ccb.sdk.response.CcbPay103Response;
 import cn.shishuihao.thirdparty.api.pay.request.CancelPayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.CancelPayApiResponse;
 import lombok.AllArgsConstructor;
@@ -34,15 +33,13 @@ public class CcbCancelPayApi implements CancelPayApi {
         final CcbPayApiProperties properties = (CcbPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {
-            final String channelName = client
-                    .urlInfo(properties)
-                    .getChannelName();
-            final CcbPay103Response response = client
-                    .scannedPayApi(properties)
-                    .cancel(channelName, CcbRequestAssembler.INSTANCE
-                            .assemble(request, properties));
-            return CcbResponseAssembler.INSTANCE
-                    .assemble(response);
+            return CcbPayResponseAssembler.INSTANCE
+                    .assemble(client
+                            .scannedPayApi(properties)
+                            .cancel(client.urlInfo(properties)
+                                            .getChannelName(),
+                                    CcbPayRequestAssembler.INSTANCE
+                                            .assemble(request, properties)));
         } catch (Exception e) {
             throw new ApiException(e);
         }

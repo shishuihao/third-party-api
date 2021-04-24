@@ -25,12 +25,12 @@ import java.util.Optional;
  * @version 1.0.0
  */
 
-public class AlipayResponseAssembler {
+public class AlipayPayResponseAssembler {
     /**
      * 实例.
      */
-    public static final AlipayResponseAssembler INSTANCE
-            = new AlipayResponseAssembler();
+    public static final AlipayPayResponseAssembler INSTANCE
+            = new AlipayPayResponseAssembler();
 
     /**
      * 装配.

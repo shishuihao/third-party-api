@@ -15,17 +15,6 @@ import lombok.ToString;
 @Setter
 public class AbstractCcbResponse implements HttpResponse {
     /**
-     * 结果 1 Y.
-     * Y：成功
-     * N：失败
-     * U：不确定（交易超时，建议通过订单查询确认扣款结果）
-     * Q：待轮询（需按照[3.2.3.支付及轮询流程说明]继续调用轮询接口查询订单结果）
-     * 其他无法明确订单结果的情况，均继续调用轮询接口查询
-     * Y
-     */
-    @JsonProperty("RESULT")
-    private String result;
-    /**
      * 全局事件跟踪号 30 N.
      * 建行交易流水号
      * 1010113861527649530264100
@@ -53,5 +42,4 @@ public class AbstractCcbResponse implements HttpResponse {
      */
     @JsonProperty("SIGN")
     private String sign;
-
 }

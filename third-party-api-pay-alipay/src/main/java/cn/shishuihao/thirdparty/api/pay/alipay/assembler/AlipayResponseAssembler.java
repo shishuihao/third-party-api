@@ -131,7 +131,8 @@ public class AlipayResponseAssembler {
 
     /**
      * 装配.
-     * {@link "https://opendocs.alipay.com/apis/api_1/alipay.trade.fastpay.refund.query"}
+     * {@link "https://opendocs.alipay.com/apis/api_1/alipay.trade.
+     * fastpay.refund.query"}
      *
      * @param response 统一收单交易退款查询
      * @return {@link RefundQueryPayApiResponse}

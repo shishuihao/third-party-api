@@ -4,17 +4,12 @@ import cn.shishuihao.thirdparty.api.core.ApiRegistry;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.alipay.AlipayPayClient;
-import cn.shishuihao.thirdparty.api.pay.alipay.domain.AlipayTradeStatus;
-import cn.shishuihao.thirdparty.api.pay.alipay.util.AlipayResponseUtils;
+import cn.shishuihao.thirdparty.api.pay.alipay.assembler.AlipayResponseAssembler;
 import cn.shishuihao.thirdparty.api.pay.api.QueryPayApi;
 import cn.shishuihao.thirdparty.api.pay.request.QueryPayApiRequest;
 import cn.shishuihao.thirdparty.api.pay.response.QueryPayApiResponse;
-import cn.shishuihao.thirdparty.api.pay.util.AmountUtils;
-import com.alipay.easysdk.kernel.util.ResponseChecker;
 import com.alipay.easysdk.payment.common.models.AlipayTradeQueryResponse;
 import lombok.AllArgsConstructor;
-
-import java.util.Optional;
 
 /**
  * @author shishuihao
@@ -41,33 +36,10 @@ public class AlipayQueryPayApi implements QueryPayApi {
             AlipayTradeQueryResponse response = alipayPayClient
                     .getCommonClient(properties)
                     .query(request.getOutTradeNo());
-            return buildResponse(response);
+            return AlipayResponseAssembler.INSTANCE
+                    .assemble(response);
         } catch (Exception e) {
             throw new ApiException(e);
         }
-    }
-
-    private QueryPayApiResponse buildResponse(
-            final AlipayTradeQueryResponse response) {
-        return QueryPayApiResponse.builder()
-                .success(ResponseChecker.success(response))
-                .code(AlipayResponseUtils.code(response))
-                .message(AlipayResponseUtils.message(response))
-                .requestId(null)
-                .channelTransactionId(response.tradeNo)
-                .bankType(null)
-                .payCurrency(response.payCurrency)
-                .payTotalAmount(Optional
-                        .ofNullable(response.payAmount)
-                        .map(AmountUtils::toCent)
-                        .orElse(null))
-                .settleCurrency(response.settleCurrency)
-                .settleTotalAmount(Optional
-                        .ofNullable(response.settleAmount)
-                        .map(AmountUtils::toCent)
-                        .orElse(null))
-                .tradeStatus(AlipayTradeStatus
-                        .tradeStatusOf(response.tradeStatus))
-                .build();
     }
 }

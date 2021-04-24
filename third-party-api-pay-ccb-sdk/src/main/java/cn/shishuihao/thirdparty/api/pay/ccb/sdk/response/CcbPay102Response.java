@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.sdk.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -75,4 +76,15 @@ public class CcbPay102Response extends AbstractCcbResponse {
      */
     @JsonProperty("WECHAT_STATE")
     private String wechatState;
+
+    /**
+     * 是否成功.
+     *
+     * @return boolean
+     */
+    @JsonIgnore
+    @Override
+    public boolean isSuccess() {
+        return "Y".equalsIgnoreCase(result);
+    }
 }

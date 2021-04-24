@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.sdk.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,4 +39,15 @@ public class CcbPay103Response extends AbstractCcbResponse {
      */
     @JsonProperty("RECALL")
     private String recall;
+
+    /**
+     * 是否成功.
+     *
+     * @return boolean
+     */
+    @JsonIgnore
+    @Override
+    public boolean isSuccess() {
+        return "Y".equalsIgnoreCase(result);
+    }
 }

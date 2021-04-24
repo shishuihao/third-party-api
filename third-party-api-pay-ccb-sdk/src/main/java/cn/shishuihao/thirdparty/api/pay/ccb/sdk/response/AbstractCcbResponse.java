@@ -42,4 +42,13 @@ public class AbstractCcbResponse implements HttpResponse {
      */
     @JsonProperty("SIGN")
     private String sign;
+
+    /**
+     * 是否成功.
+     *
+     * @return boolean
+     */
+    public boolean isSuccess() {
+        return errCode == null;
+    }
 }

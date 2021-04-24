@@ -29,8 +29,8 @@ public interface ScannedPayApi {
      * @return 响应
      */
     @RequestLine("POST /NCCB/{channelName}B2BMainPlat")
-    CcbPay100Response pay(@Param("channelName") String channelName,
-                          CcbPay100Request request);
+    CcbPay100Response codePay(@Param("channelName") String channelName,
+                              CcbPay100Request request);
 
     /**
      * 轮询订单结果-PAY101.

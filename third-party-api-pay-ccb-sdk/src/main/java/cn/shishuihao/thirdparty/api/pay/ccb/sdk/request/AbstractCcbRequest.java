@@ -65,6 +65,7 @@ public abstract class AbstractCcbRequest {
      * 1：线上商户
      * 2：线下商户
      * 商户类型请与分行确认.
+     * 1
      */
     @JsonProperty("MERFLAG")
     private final Integer merchantFlag;

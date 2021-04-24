@@ -1,5 +1,10 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.sdk.response;
 
+import cn.shishuihao.thirdparty.api.pay.ccb.sdk.domain.Coupon;
+import cn.shishuihao.thirdparty.api.pay.ccb.sdk.domain.CouponAmountWx;
+import cn.shishuihao.thirdparty.api.pay.ccb.sdk.domain.PaymentDetails;
+import cn.shishuihao.thirdparty.api.pay.ccb.sdk.domain.PromotionDetail;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -97,7 +102,7 @@ public class CcbPay101Response extends AbstractCcbResponse {
      * 此字段不参与验签.
      */
     @JsonProperty("COUPONARRAY")
-    private CcbPay100Response.Coupon[] couponArray;
+    private Coupon[] couponArray;
     /**
      * 支付详细信息 JSON N.
      * 支付详细信息。
@@ -106,7 +111,7 @@ public class CcbPay101Response extends AbstractCcbResponse {
      * 此字段不参与验签.
      */
     @JsonProperty("PAYMENT_DETAILS")
-    private CcbPay100Response.PaymentDetails paymentDetails;
+    private PaymentDetails paymentDetails;
     /**
      * 微信优惠金额 JSON N.
      * 微信优惠金额。
@@ -115,7 +120,7 @@ public class CcbPay101Response extends AbstractCcbResponse {
      * 此字段不参与验签.
      */
     @JsonProperty("COUPONAMOUNT_WX")
-    private CcbPay100Response.CouponAmountWx couponAmountWx;
+    private CouponAmountWx couponAmountWx;
     /**
      * 微信优惠详情 JSON N.
      * 微信优惠详情。
@@ -124,5 +129,16 @@ public class CcbPay101Response extends AbstractCcbResponse {
      * 此字段不参与验签.
      */
     @JsonProperty("promotion_detail")
-    private CcbPay100Response.PromotionDetail promotionDetail;
+    private PromotionDetail promotionDetail;
+
+    /**
+     * 是否成功.
+     *
+     * @return boolean
+     */
+    @JsonIgnore
+    @Override
+    public boolean isSuccess() {
+        return "Y".equalsIgnoreCase(result);
+    }
 }

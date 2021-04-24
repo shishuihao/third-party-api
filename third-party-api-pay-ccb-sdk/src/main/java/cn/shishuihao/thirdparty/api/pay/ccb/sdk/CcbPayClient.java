@@ -3,6 +3,7 @@ package cn.shishuihao.thirdparty.api.pay.ccb.sdk;
 import cn.shishuihao.thirdparty.api.pay.ccb.sdk.api.ScannedPayApi;
 import cn.shishuihao.thirdparty.api.pay.ccb.sdk.codec.CcbJsonEncoder;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.CcbWlptPayClient;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.CcbWlptProperties;
 
 /**
  * @author shishuihao
@@ -24,7 +25,7 @@ public class CcbPayClient extends CcbWlptPayClient {
      * @return CcbOnlineMerchantApi
      */
     public ScannedPayApi
-    scannedPayApi(final CcbProperties properties) {
+    scannedPayApi(final CcbWlptProperties properties) {
         return this.jsonApi(properties, ScannedPayApi.class);
     }
 }

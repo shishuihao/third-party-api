@@ -1,9 +1,12 @@
 dependencies {
-    compile project(':third-party-api-commons')
-
-    implementation 'com.netflix.feign:feign-core:8.18.0'
+    compile  project(':third-party-api-core')
+    compile project(':third-party-api-pay')
+    compile project(':third-party-api-pay-ccb-sdk')
+    compile project(':third-party-api-pay-ccb-wlpt')
+    compile project(':third-party-api-pay-ccb-wlpt-sdk')
 }
 
 jar {
     enabled true
 }
+

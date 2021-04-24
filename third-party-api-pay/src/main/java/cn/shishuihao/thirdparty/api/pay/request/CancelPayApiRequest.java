@@ -30,6 +30,11 @@ public class CancelPayApiRequest extends AbstractRequest<
      * out trade no.
      */
     private final String outTradeNo;
+    /**
+     * auth code.
+     * such as qrcode.
+     */
+    private final String authCode;
 
     /**
      * get api type.

@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 public class CcbPay101Response extends AbstractCcbResponse {
     /**
-     * 结果 1 Y.
+     * 订单结果 1 Y.
      * Y：成功
      * N：失败
      * U：不确定（交易超时，建议通过订单查询确认扣款结果）

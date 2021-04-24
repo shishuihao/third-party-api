@@ -5,7 +5,7 @@ import cn.shishuihao.thirdparty.api.core.configuration.ApiConfiguration;
 import cn.shishuihao.thirdparty.api.core.exception.ApiException;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.icbc.IcbcPayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.request.CodePayApiRequest;
+import cn.shishuihao.thirdparty.api.pay.request.RefundPayApiRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * @version 1.0.0
  */
 
-class IcbcCodePayApiTest {
+class IcbcRefundPayApiTest {
     IcbcPayApiProperties properties = new IcbcPayApiProperties();
     ApiConfiguration configuration;
 
@@ -34,13 +34,11 @@ class IcbcCodePayApiTest {
 
     @Test
     void execute() {
-        CodePayApiRequest request = CodePayApiRequest.builder()
+        RefundPayApiRequest request = RefundPayApiRequest.builder()
                 .channelId(IcbcPayApiChannel.CHANNEL_ID)
                 .appId(configuration.getAppId())
-                .subject("Apple iPhone11 128G")
                 .outTradeNo("2234567890")
-                .totalAmount(1)
-                .authCode("")
+                .refundAmount(1)
                 .build();
         ApiException apiException = Assertions.assertThrows(ApiException.class, () -> ApiRegistry.INSTANCE.execute(request));
         Assertions.assertTrue(apiException.getMessage().startsWith("com.icbc.api.IcbcApiException: sign exception."));

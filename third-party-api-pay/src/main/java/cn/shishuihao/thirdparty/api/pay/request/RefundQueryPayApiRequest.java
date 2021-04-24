@@ -25,6 +25,10 @@ public class RefundQueryPayApiRequest extends AbstractRequest<
         RefundQueryPayApiRequest,
         RefundQueryPayApiResponse> {
     /**
+     * channel transaction id.
+     */
+    private final String channelTransactionId;
+    /**
      * out trade no.
      */
     private final String outTradeNo;

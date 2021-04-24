@@ -24,4 +24,12 @@ public class RefundQueryPayApiResponse
      * 退款状态.
      */
     private final RefundStatus refundStatus;
+    /**
+     * 支付渠道生成的订单号.
+     */
+    private final String channelTransactionId;
+    /**
+     * 支付渠道生成的退款号.
+     */
+    private final String channelRefundId;
 }

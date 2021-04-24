@@ -2,7 +2,11 @@ package cn.shishuihao.thirdparty.api.pay.icbc;
 
 import cn.shishuihao.thirdparty.api.core.channel.AbstractMemoryChannel;
 import cn.shishuihao.thirdparty.api.pay.PayApiChannel;
+import cn.shishuihao.thirdparty.api.pay.icbc.api.IcbcCancelPayApi;
 import cn.shishuihao.thirdparty.api.pay.icbc.api.IcbcCodePayApi;
+import cn.shishuihao.thirdparty.api.pay.icbc.api.IcbcQueryPayApi;
+import cn.shishuihao.thirdparty.api.pay.icbc.api.IcbcRefundPayApi;
+import cn.shishuihao.thirdparty.api.pay.icbc.api.IcbcRefundQueryPayApi;
 
 /**
  * @author shishuihao
@@ -34,7 +38,11 @@ public class IcbcPayApiChannel
     public IcbcPayApiChannel(final IcbcPayApiChannelProperties properties,
                              final IcbcPayClient client) {
         this.channelProperties = properties;
+        this.save(new IcbcCancelPayApi(client));
         this.save(new IcbcCodePayApi(client));
+        this.save(new IcbcQueryPayApi(client));
+        this.save(new IcbcRefundPayApi(client));
+        this.save(new IcbcRefundQueryPayApi(client));
     }
 
     /**

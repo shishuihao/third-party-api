@@ -34,7 +34,10 @@ public class WechatXmlDecoder extends AbstractDecoder {
             throws DecodeException {
         try {
             return XmlUtils.fromXml(body, type);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+        } catch (NoSuchMethodException
+                | IllegalAccessException
+                | InvocationTargetException
+                | InstantiationException e) {
             throw new DecodeException(format(FORMAT, type), e);
         }
     }

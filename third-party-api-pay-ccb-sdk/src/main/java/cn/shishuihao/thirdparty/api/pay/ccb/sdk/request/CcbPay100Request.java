@@ -6,6 +6,24 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 /**
+ * 客户被扫支付-PAY100请求.
+ * 注意参考 [3.2.3.支付及轮询流程说明]中的流程，对于本消费接口返回的结果进行分别处理，
+ * 如需轮询时必须调用[3.2.轮询订单结果-PAY101]接口轮询订单结果。
+ * 该接口中的所有金额字段除了明确标明单位为分的字段外，其余金额的单位均为元。
+ * 1、 如果支付接口PAY100返回结果为Q-待轮询，则必须调用轮询接口 PAY101 进行轮询。
+ * 如WAITTIME有时间返回，请等待相应时间后再发起轮询。
+ * 2、 如网络超时等原因导致未能接收到返回结果，请调用PAY101进行轮询（时间间隔建议设置为5秒）。
+ * 3、 其他无法明确该笔订单消费成功或失败的情况，请调用 PAY101进行轮询（时间间隔建议设置为5秒）。
+ * 4、 注意同一订单号仅能发送一笔 PAY100，出现上述异常情况请调用PAY101进行轮询。
+ * 切勿重复发送相同订单号的PAY100，否则可能出现订单重复错误或其他不可预期的问题。
+ * 请求样例：（注意用 post 方式提交参数）
+ * https://ibsbjstar.ccb.com.cn/CCBIS/B2CMainPlat_00_BEPAY
+ * ?MERCHANTID=105421097080009
+ * &POSID=902807340
+ * &BRANCHID=360000000
+ * &ccbParam=ylQZnF9G57gKymsjC99NTUyqUwynqgeCywvYhT
+ * %2FhW1%2CFRewTw4t0nEk8Jz%2FKYI%0AY6Pa7rQPRMJ6nmkqO7B
+ *
  * @author shishuihao
  * @version 1.0.0
  */
@@ -28,7 +46,7 @@ public class CcbPay100Request extends AbstractCcbRequest {
     @JsonProperty("QRCODE")
     private final String qrCode;
     /**
-     * 订单金额16（带2 位小 数） Y.
+     * 订单金额16（带2位小数） Y.
      * 该笔订单的资金总额
      * 0.01
      */
@@ -45,7 +63,7 @@ public class CcbPay100Request extends AbstractCcbRequest {
     /**
      * 备注1 30 N.
      * 商户自定义，按需上送。在建行商户服务平台查询流水时可见，
-     * 中文需使用UTF-8 编码。
+     * 中文需使用UTF-8编码。
      * 如需轮询，在轮询接口中需同步上送
      * remark1
      */
@@ -54,7 +72,7 @@ public class CcbPay100Request extends AbstractCcbRequest {
     /**
      * 备注2 30 N.
      * 商户自定义，按需上送。在建行商户服务平台查询流水时可见，
-     * 中文需使用UTF-8 编码。
+     * 中文需使用UTF-8编码。
      * 如需轮询，在轮询接口中需同步上送
      * remark2
      */
@@ -72,7 +90,7 @@ public class CcbPay100Request extends AbstractCcbRequest {
     private final String fzInfo2;
     /**
      * 子商户公众账号ID 32 N.
-     * 微信支付专有字段。如果子商户号没有绑定appid，只返回 openid；
+     * 微信支付专有字段。如果子商户号没有绑定appid，只返回openid；
      * wx3b8bb3fad101bb07
      */
     @JsonProperty("SUB_APPID")
@@ -80,7 +98,7 @@ public class CcbPay100Request extends AbstractCcbRequest {
     /**
      * 返回信息位图 20 N.
      * 共20位，位图，0 或空-不返回，1-返回。
-     * 第 1 位：是否返回 OPENID和 SUB_OPENID
+     * 第 1 位：是否返回OPENID和SUB_OPENID
      * 第 2 位：是否返回优惠金额相关字段
      * 第 3 位：是否将“商品名称PROINFO”的值上送支付宝/微信，以便展示在客户的支付宝/微信账单中
      * 1：上送
@@ -103,9 +121,11 @@ public class CcbPay100Request extends AbstractCcbRequest {
     private final UserParam userParam;
     /**
      * 商品详情 JSON N.
+     * 单品优惠功能字段
+     * 暂不支持，预计9月上线。
      */
     @JsonProperty("detail")
-    private final String detail;
+    private final Detail detail;
     /**
      * 订单优惠标记 32 N.
      * 订单优惠标记，代金券或立减优惠功能的参数。
@@ -163,6 +183,7 @@ public class CcbPay100Request extends AbstractCcbRequest {
          * 商户侧一张小票订单可能被分多次支付，订单原价用于记录整张小票的交易金额。
          * 当订单原价与支付金额不相等，则不享受优惠。
          * 该字段主要用于防止同一张小票分多次支付，以享受多次优惠的情况，正常支付订单不必上传此参数。
+         * 1
          */
         @JsonProperty("cost_price")
         private final Integer costPrice;
@@ -202,7 +223,7 @@ public class CcbPay100Request extends AbstractCcbRequest {
          * 1001
          */
         @JsonProperty("wxpay_goods_id")
-        private final String wxpayGoodsId;
+        private final String wxPayGoodsId;
         /**
          * 商品名称 String(256) N.
          * 商品的实际名称

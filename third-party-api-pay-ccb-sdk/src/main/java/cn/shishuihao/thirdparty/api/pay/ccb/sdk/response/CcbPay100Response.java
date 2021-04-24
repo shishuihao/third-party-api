@@ -55,8 +55,6 @@ public class CcbPay100Response extends AbstractCcbResponse {
      */
     @JsonProperty("WAITTIME")
     private String waitTime;
-
-
     /**
      * 客户识别号 128 N.
      * 客户识别码。

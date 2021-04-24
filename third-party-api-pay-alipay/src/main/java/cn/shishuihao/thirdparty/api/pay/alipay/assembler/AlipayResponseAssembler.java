@@ -19,7 +19,7 @@ import com.alipay.easysdk.payment.facetoface.models.AlipayTradePayResponse;
 import java.util.Optional;
 
 /**
- * {@link CancelPayApiResponse}装配器.
+ * 响应装配器.
  *
  * @author shishuihao
  * @version 1.0.0

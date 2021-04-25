@@ -1,5 +1,6 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.alipay.ThirdPartyApiPayAlipayAutoConfiguration,\
+cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.ccb.ThirdPartyApiPayCcbAutoConfiguration,\
 cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.ccb.wlpt.ThirdPartyApiPayCcbWlptAutoConfiguration,\
 cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.icbc.ThirdPartyApiPayIcbcAutoConfiguration,\
 cn.shishuihao.thirdparty.api.spring.boot.autoconfigure.pay.wechat.ThirdPartyApiPayWechatAutoConfiguration,\

@@ -12,6 +12,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-autoconfigure"
 
     compileOnly project(':third-party-api-pay-alipay')
+    compileOnly project(':third-party-api-pay-ccb')
     compileOnly project(':third-party-api-pay-ccb-wlpt')
     compileOnly project(':third-party-api-pay-icbc')
     compileOnly project(':third-party-api-pay-wechat')

@@ -1,36 +1,45 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk;
 
-import cn.shishuihao.thirdparty.api.commons.ssl.KeyStoreProperties;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import cn.shishuihao.thirdparty.api.commons.ssl.SslContextProperties;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-@EqualsAndHashCode(callSuper = true)
-@Getter
-@Setter
-public class CcbWlptProperties extends KeyStoreProperties {
+public interface CcbWlptProperties
+        extends SslContextProperties {
     /**
      * 商户代码 varChar(15).
+     *
+     * @return String
      */
-    private String merchantId;
+    String getMerchantId();
+
     /**
      * 网银客户号 varChar(21).
+     *
+     * @return String
      */
-    private String customerId;
+    String getCustomerId();
+
     /**
      * 操作员号 varChar(6).
+     *
+     * @return String
      */
-    private String userId;
+    String getUserId();
+
     /**
      * 操作员密码 varChar(32).
+     *
+     * @return String
      */
-    private String password;
+    String getPassword();
+
     /**
      * 语言 varChar(2) CN.
+     *
+     * @return String
      */
-    private String language = "CN";
+    String getLanguage();
 }

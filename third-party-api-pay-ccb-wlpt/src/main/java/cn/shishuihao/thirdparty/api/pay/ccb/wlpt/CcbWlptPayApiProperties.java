@@ -2,6 +2,7 @@ package cn.shishuihao.thirdparty.api.pay.ccb.wlpt;
 
 import cn.shishuihao.thirdparty.api.pay.PayApiProperties;
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.CcbWlptProperties;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.DefaultCcbWlptProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +15,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CcbWlptPayApiProperties
-        extends CcbWlptProperties
-        implements PayApiProperties {
+        extends DefaultCcbWlptProperties
+        implements CcbWlptProperties, PayApiProperties {
     /**
      * channel id.
      */

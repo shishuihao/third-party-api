@@ -4,6 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * 客户被扫支付-PAY100请求.
@@ -80,11 +86,13 @@ public class CcbPay100Request extends AbstractCcbRequest {
     private final String remark2;
     /**
      * 分账信息一 200 N.
+     * 分账字段，需要分账时，FZINFO1必送，有需要时再送FZINFO2
      */
     @JsonProperty("FZINFO1")
     private final String fzInfo1;
     /**
      * 分账信息二 200 N.
+     * 分账字段
      */
     @JsonProperty("FZINFO2")
     private final String fzInfo2;
@@ -135,6 +143,169 @@ public class CcbPay100Request extends AbstractCcbRequest {
      */
     @JsonProperty("goods_tag")
     private final String goodsTag;
+
+    /**
+     * Pair<fzInfo1, fzInfo2>.
+     *
+     * @param typeCode 分账类型代码
+     * @param infos    分账信息数组
+     * @return Pair
+     */
+    public static Pair<String, String> fzInfo(
+            final String typeCode,
+            final FzInfo... infos) {
+        final FzInfoGroup[] groups = FzInfoGroup.of(typeCode, infos);
+        return Pair.of(groups[0].toString(),
+                groups.length > 1
+                        ? groups[1].toString()
+                        : null);
+    }
+
+    /**
+     * 分账组信息.
+     * 格式：
+     * （1）分账组信息，最少 1 组，最多 5 组但总长度不超过 200字节，支付时需上送完整的全部分账组信息。
+     * FZINFO1 和FZINFO2 累加金额等于付款金额 AMOUNT。
+     * （2）格式：
+     * 分账类型代码!
+     * 编号类型^收款编号一^账号类型^费用名称一（限 5 个汉字内）^金额^退款标志#
+     * 编号类型^收款编号二^账号类型^费用名称二（限 5 个汉字）^金额^退款标志#
+     * 需使用 escape 编码，escape前 FZINFO1 的总长度不超过200。
+     */
+    @SuperBuilder
+    @Getter
+    public static class FzInfoGroup {
+        /**
+         * 总长度不超过.
+         */
+        public static final int MAX_LENGTH = 200;
+        /**
+         * 分账类型代码.
+         */
+        private final String typeCode;
+        /**
+         * 分账信息数组.
+         */
+        private final FzInfo[] infos;
+
+        /**
+         * FzInfoGroup[].
+         *
+         * @param typeCode 分账类型代码
+         * @param infos    分账信息数组
+         * @return FzInfoGroup[]
+         */
+        public static FzInfoGroup[] of(
+                final String typeCode,
+                final FzInfo... infos) {
+            final List<FzInfo> infoList = new ArrayList<>();
+            final List<FzInfoGroup> groupList = new ArrayList<>();
+            int count = typeCode.length() + 1;
+            for (FzInfo info : infos) {
+                final String infoString = info.toString();
+                if (count + infoString.length() > MAX_LENGTH) {
+                    groupList.add(FzInfoGroup.builder()
+                            .typeCode(groupList.isEmpty() ? typeCode : "")
+                            .infos(infoList.toArray(new FzInfo[0]))
+                            .build());
+                    infoList.clear();
+                    count = 0;
+                }
+                infoList.add(info);
+                count += infoString.length();
+            }
+            if (!infoList.isEmpty()) {
+                groupList.add(FzInfoGroup.builder()
+                        .typeCode(groupList.isEmpty() ? typeCode : "")
+                        .infos(infoList.toArray(new FzInfo[0]))
+                        .build());
+                infoList.clear();
+            }
+            return groupList.toArray(new FzInfoGroup[0]);
+        }
+
+        /**
+         * toString.
+         *
+         * @return String
+         */
+        @Override
+        public String toString() {
+            final StringBuilder sb = new StringBuilder(MAX_LENGTH);
+            if (StringUtils.isNotEmpty(typeCode)) {
+                sb.append(typeCode).append("!");
+            }
+            for (FzInfo info : infos) {
+                final String infoString = info.toString();
+                if (sb.length() + infoString.length() > MAX_LENGTH) {
+                    break;
+                }
+                sb.append(infoString);
+            }
+            return sb.toString();
+        }
+    }
+
+    /**
+     * 分账信息.
+     * 编号类型^收款编号一^账号类型^费用名称一（限 5 个汉字内）^金额^退款标志#
+     */
+    @SuperBuilder
+    @Getter
+    public static class FzInfo {
+        /**
+         * 编号类型.
+         * 01-商户编号
+         * 02-终端号
+         * 03-账号
+         * 必填
+         */
+        private final String numberType;
+        /**
+         * 收款编号：商户编号或者终端编号或账号（最长 27位），必填.
+         */
+        private final String receiptNumber;
+        /**
+         * 账号类型：.
+         * 01-本行对公、
+         * 02-本行对私借记、
+         * 03-合约账户、
+         * 07-内部帐。
+         * 编号类型为03 时必填，其余编号类型无需填值。
+         */
+        private final String accountType;
+        /**
+         * 费用名称 （限 5 个汉字内）.
+         */
+        private final String costName;
+        /**
+         * 金额：整数部分最长 10位，小数部分最长 2 位，如1.23，必填，无需补空格.
+         */
+        private final String amount;
+        /**
+         * 退款标志取值用法：.
+         * 0-未退款，
+         * 1-已退款；
+         * 支付时送0，退款时送 1；必填。
+         */
+        private final int refundFlag;
+
+        /**
+         * toString.
+         *
+         * @return String
+         */
+        @Override
+        public String toString() {
+            return numberType
+                    + "^" + receiptNumber
+                    + "^" + Optional.ofNullable(accountType).orElse("")
+                    + "^" + Optional.ofNullable(costName).orElse("")
+                    + "^" + amount
+                    + "^" + refundFlag
+                    + "#";
+        }
+    }
 
     /**
      * 实名支付 JSON N.

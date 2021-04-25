@@ -1,8 +1,6 @@
-package cn.shishuihao.thirdparty.api.pay.ccb;
+package cn.shishuihao.thirdparty.api.pay.ccb.sdk;
 
-import cn.shishuihao.thirdparty.api.pay.PayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.ccb.sdk.CcbProperties;
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.CcbWlptPayApiProperties;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.DefaultCcbWlptProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,13 +12,9 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
-public class CcbPayApiProperties
-        extends CcbWlptPayApiProperties
-        implements CcbProperties, PayApiProperties {
-    /**
-     * channel id.
-     */
-    private String channelId;
+public class DefaultCcbProperties
+        extends DefaultCcbWlptProperties
+        implements CcbProperties {
     /**
      * 商户公钥.
      */
@@ -81,31 +75,4 @@ public class CcbPayApiProperties
      * 第 5 位：是否返回微信优惠详情字段
      */
     private String returnField;
-
-    /**
-     * new CcbPayApiProperties.
-     */
-    public CcbPayApiProperties() {
-        this.setChannelId(CcbPayApiChannel.CHANNEL_ID);
-    }
-
-    /**
-     * get channel id.
-     *
-     * @return channel id
-     */
-    @Override
-    public String channelId() {
-        return channelId;
-    }
-
-    /**
-     * get id.
-     *
-     * @return id
-     */
-    @Override
-    public String id() {
-        return this.getMerchantId();
-    }
 }

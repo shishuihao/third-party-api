@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request;
 
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.TransactionInfo;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.domain.CcbWlptTxInfo;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.Builder;
@@ -19,7 +19,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @JacksonXmlRootElement(localName = "TX_INFO")
-public class CcbWlpt5W10C4RequestTxInfo implements TransactionInfo {
+public class CcbWlpt5W10C4RequestTxInfo implements CcbWlptTxInfo {
     /**
      * 退款金额 varChar(100) F.
      */

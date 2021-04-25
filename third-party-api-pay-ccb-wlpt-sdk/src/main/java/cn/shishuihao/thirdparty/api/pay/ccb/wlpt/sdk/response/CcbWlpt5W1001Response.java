@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response;
 
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.TransactionInfo;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.domain.CcbWlptTxInfo;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class CcbWlpt5W1001Response
     @Getter
     @Setter
     @JacksonXmlRootElement(localName = "TX_INFO")
-    public static class TxInfo implements TransactionInfo {
+    public static class TxInfo implements CcbWlptTxInfo {
         /**
          * 备注1 varChar(32) T.
          */

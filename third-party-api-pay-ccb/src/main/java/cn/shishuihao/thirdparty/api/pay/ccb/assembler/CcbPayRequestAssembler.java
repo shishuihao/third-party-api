@@ -45,8 +45,6 @@ public class CcbPayRequestAssembler {
                 .qrCode(request.getAuthCode())
                 .amount(AmountUtils.toYuanString(request.getTotalAmount()))
                 .productInfo(properties.getProductInfo())
-                .fzInfo1(properties.getFzInfo1())
-                .fzInfo2(properties.getFzInfo2())
                 .returnField(properties.getReturnField())
                 .queryString(r -> r.queryString(properties.getPublicKey()))
                 .build();

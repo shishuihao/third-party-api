@@ -18,7 +18,7 @@ public class SslContexts {
     /**
      * SSLFactory Cache.
      */
-    private final Cache<KeyStoreProperties, SSLFactory>
+    private final Cache<SslContextProperties, SSLFactory>
             sslFactoryCache;
 
     /**
@@ -33,13 +33,13 @@ public class SslContexts {
     }
 
     /**
-     * 获取SSLContext.
+     * 获取SSLFactory.
      *
      * @param properties 属性
      * @return maybe {@code null}
      */
     public SSLFactory sslFactory(
-            final KeyStoreProperties properties) {
+            final SslContextProperties properties) {
         return sslFactoryCache.get(properties, k ->
                 properties.sslFactory());
     }
@@ -51,7 +51,7 @@ public class SslContexts {
      * @return maybe {@code null}
      */
     public SSLContext sslContext(
-            final KeyStoreProperties properties) {
+            final SslContextProperties properties) {
         return Optional.ofNullable(sslFactory(properties))
                 .map(SSLFactory::getSslContext)
                 .orElse(null);
@@ -64,7 +64,7 @@ public class SslContexts {
      * @return maybe {@code null}
      */
     public HostnameVerifier hostnameVerifier(
-            final KeyStoreProperties properties) {
+            final SslContextProperties properties) {
         return Optional.ofNullable(sslFactory(properties))
                 .map(SSLFactory::getHostnameVerifier)
                 .orElse(null);

@@ -1,40 +1,36 @@
-package cn.shishuihao.thirdparty.api.pay.ccb;
+package cn.shishuihao.thirdparty.api.pay.ccb.sdk;
 
-import cn.shishuihao.thirdparty.api.pay.PayApiProperties;
-import cn.shishuihao.thirdparty.api.pay.ccb.sdk.CcbProperties;
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.CcbWlptPayApiProperties;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.CcbWlptProperties;
 
 /**
  * @author shishuihao
  * @version 1.0.0
  */
-@EqualsAndHashCode(callSuper = true)
-@Getter
-@Setter
-public class CcbPayApiProperties
-        extends CcbWlptPayApiProperties
-        implements CcbProperties, PayApiProperties {
-    /**
-     * channel id.
-     */
-    private String channelId;
+public interface CcbProperties
+        extends CcbWlptProperties {
     /**
      * 商户公钥.
+     *
+     * @return String
      */
-    private String publicKey;
+    String getPublicKey();
+
     /**
      * 柜台号 9 Y.
      * 请联系开立商户的分行提供.
+     *
+     * @return String
      */
-    private String posId;
+    String getPosId();
+
     /**
      * 分行号 9 Y.
      * 请联系开立商户的分行提供（一级分行号）.
+     *
+     * @return String
      */
-    private String branchId;
+    String getBranchId();
+
     /**
      * 集团商户信息 40 N （非集团商户无需上送）.
      * 集团主商户代理发起子商户交易时（验证主商户柜台公钥），需将集团主商户信息填入该字段，
@@ -44,31 +40,46 @@ public class CcbPayApiProperties
      * 105000000000000为主商户号，
      * 123456789为主商户柜台号，
      * 441000000 为主商户一级分行号.
+     *
+     * @return String
      */
-    private String groupMch;
+    String getGroupMch();
+
     /**
      * 商户类型 1 Y.
      * 1：线上商户
      * 2：线下商户
      * 商户类型请与分行确认.
+     *
+     * @return Integer
      */
-    private Integer merchantFlag;
+    Integer getMerchantFlag();
+
     /**
      * 终端编号1 19 N 商户类型为2时上送.
      * 请联系开立商户的分行提供
+     *
+     * @return String
      */
-    private String termNo1;
+    String getTermNo1();
+
     /**
      * 终端编号 2 8 N 商户类型为2时上送.
      * 请联系开立商户的分行提供
+     *
+     * @return String
      */
-    private String termNo2;
+    String getTermNo2();
+
     /**
      * 商品名称 128 N.
      * 当 RETURN_FIELD 字段第三位上送 1 时，该字段将展示在客户微信/支付宝账单的商品名称字段，
      * 按微信文档要求1个中文算3个字节，1个英文或数字算1个字节，请注意不要超长。
+     *
+     * @return String
      */
-    private String productInfo;
+    String getProductInfo();
+
     /**
      * 返回信息位图 20 N.
      * 共20位，位图，0 或空-不返回，1-返回。
@@ -79,33 +90,8 @@ public class CcbPayApiProperties
      * 0或空：不上送
      * 第 4 位：是否返回支付详细信息字段
      * 第 5 位：是否返回微信优惠详情字段
-     */
-    private String returnField;
-
-    /**
-     * new CcbPayApiProperties.
-     */
-    public CcbPayApiProperties() {
-        this.setChannelId(CcbPayApiChannel.CHANNEL_ID);
-    }
-
-    /**
-     * get channel id.
      *
-     * @return channel id
+     * @return String
      */
-    @Override
-    public String channelId() {
-        return channelId;
-    }
-
-    /**
-     * get id.
-     *
-     * @return id
-     */
-    @Override
-    public String id() {
-        return this.getMerchantId();
-    }
+    String getReturnField();
 }

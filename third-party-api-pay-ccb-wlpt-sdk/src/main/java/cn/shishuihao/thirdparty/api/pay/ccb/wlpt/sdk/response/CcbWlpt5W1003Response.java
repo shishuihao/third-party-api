@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response;
 
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.TransactionInfo;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.domain.CcbWlptTxInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
@@ -21,7 +21,7 @@ public class CcbWlpt5W1003Response
     @Getter
     @Setter
     @JacksonXmlRootElement(localName = "TX_INFO")
-    public static class TxInfo implements TransactionInfo {
+    public static class TxInfo implements CcbWlptTxInfo {
         /**
          * 总页次 Int T.
          */

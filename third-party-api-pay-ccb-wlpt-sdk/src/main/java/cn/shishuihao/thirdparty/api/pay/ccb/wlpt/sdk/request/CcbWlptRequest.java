@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request;
 
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.TransactionInfo;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.domain.CcbWlptTxInfo;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.Builder;
@@ -14,7 +14,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @JacksonXmlRootElement(localName = "TX")
-public class CcbWlptRequest<T extends TransactionInfo> {
+public class CcbWlptRequest<T extends CcbWlptTxInfo> {
     /**
      * 请求序列号 varChar(16) F 只可以使用数字.
      */

@@ -5,6 +5,7 @@ import cn.shishuihao.thirdparty.api.commons.http.codec.JacksonEncoder;
 import cn.shishuihao.thirdparty.api.commons.http.codec.JacksonXmlDecoder;
 import cn.shishuihao.thirdparty.api.commons.http.codec.JacksonXmlEncoder;
 import cn.shishuihao.thirdparty.api.commons.ssl.KeyStoreProperties;
+import cn.shishuihao.thirdparty.api.commons.ssl.SslContextProperties;
 import cn.shishuihao.thirdparty.api.commons.ssl.SslContexts;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
@@ -43,31 +44,6 @@ public class HttpClient {
      * Cache.
      */
     private final Cache<KeyStoreProperties, Object> cache;
-
-    /**
-     * HttpClient.
-     *
-     * @param pUrl          url
-     * @param cacheDuration expireAfterWrite
-     */
-    public HttpClient(final String pUrl,
-                      final Duration cacheDuration) {
-        this.url = pUrl;
-        this.sslContexts = new SslContexts(cacheDuration);
-        this.cache = Caffeine.newBuilder()
-                .expireAfterWrite(cacheDuration)
-                .build();
-    }
-
-    /**
-     * HttpClient.
-     *
-     * @param pUrl url
-     */
-    public HttpClient(final String pUrl) {
-        this(pUrl, Duration.ofHours(1));
-    }
-
     /**
      * url.
      */
@@ -93,6 +69,28 @@ public class HttpClient {
      */
     @Setter(value = AccessLevel.PROTECTED)
     private Decoder jsonDecoder = JacksonDecoder.INSTANCE;
+    /**
+     * HttpClient.
+     *
+     * @param pUrl          url
+     * @param cacheDuration expireAfterWrite
+     */
+    public HttpClient(final String pUrl,
+                      final Duration cacheDuration) {
+        this.url = pUrl;
+        this.sslContexts = new SslContexts(cacheDuration);
+        this.cache = Caffeine.newBuilder()
+                .expireAfterWrite(cacheDuration)
+                .build();
+    }
+    /**
+     * HttpClient.
+     *
+     * @param pUrl url
+     */
+    public HttpClient(final String pUrl) {
+        this(pUrl, Duration.ofHours(1));
+    }
 
     /**
      * get new xml api instance.
@@ -102,7 +100,7 @@ public class HttpClient {
      * @param <T>        api type
      * @return T new api instance
      */
-    public <T> T xmlApi(final KeyStoreProperties properties,
+    public <T> T xmlApi(final SslContextProperties properties,
                         final Class<T> apiType) {
         return builder(properties)
                 .encoder(xmlEncoder)
@@ -118,7 +116,7 @@ public class HttpClient {
      * @param <T>        api type
      * @return T new api instance
      */
-    public <T> T jsonApi(final KeyStoreProperties properties,
+    public <T> T jsonApi(final SslContextProperties properties,
                          final Class<T> apiType) {
         return builder(properties)
                 .encoder(jsonEncoder)
@@ -147,7 +145,7 @@ public class HttpClient {
         );
     }
 
-    private Feign.Builder builder(final KeyStoreProperties properties) {
+    private Feign.Builder builder(final SslContextProperties properties) {
         return builder(
                 Optional.ofNullable(properties)
                         .map(sslContexts::sslContext)

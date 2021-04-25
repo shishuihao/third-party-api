@@ -1,6 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.request;
 
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.TransactionInfo;
+import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.domain.CcbWlptTxInfo;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.Builder;
@@ -19,7 +19,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @JacksonXmlRootElement(localName = "TX_INFO")
-public class CcbWlpt5W3000RequestTxInfo implements TransactionInfo {
+public class CcbWlpt5W3000RequestTxInfo implements CcbWlptTxInfo {
     /**
      * 要上传的文件名称 varChar(128) F 要上传的文件名，如：CBB1172476199728.
      */

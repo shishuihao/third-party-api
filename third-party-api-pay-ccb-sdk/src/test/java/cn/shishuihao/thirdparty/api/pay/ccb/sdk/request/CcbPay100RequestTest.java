@@ -1,7 +1,10 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.sdk.request;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.stream.IntStream;
 
 /**
  * @author shishuihao
@@ -20,6 +23,31 @@ class CcbPay100RequestTest {
      */
     final String publicKey = "30819d300d06092a864886f70d010101050003818b0030818702818100a32fb2d51dda418f65ca456431bd2f4173e41a82bb75c2338a6f649f8e9216204838d42e2a028c79cee19144a72b5b46fe6a498367bf41" +
             "43f959e4f73c9c4f499f68831f8663d6b946ae9fa31c74c9332bebf3cba1a98481533a37ffad944823bd46c305ec560648f1b6bcc64d54d32e213926b26cd10d342f2c61ff5ac2d78b020111";
+
+    @Test
+    void fzInfo() {
+        CcbPay100Request.FzInfo[] infos = IntStream.range(0, 10)
+                .mapToObj(i -> CcbPay100Request.FzInfo.builder()
+                        .numberType("01")
+                        .receiptNumber("10511007011000" + i)
+                        .amount("1.0" + i)
+                        .refundFlag(0)
+                        .build())
+                .toArray(CcbPay100Request.FzInfo[]::new);
+        Pair<String, String> pair = CcbPay100Request.fzInfo("21", infos);
+        Assertions.assertEquals("21!" +
+                "01^105110070110000^^^1.00^0#" +
+                "01^105110070110001^^^1.01^0#" +
+                "01^105110070110002^^^1.02^0#" +
+                "01^105110070110003^^^1.03^0#" +
+                "01^105110070110004^^^1.04^0#" +
+                "01^105110070110005^^^1.05^0#" +
+                "01^105110070110006^^^1.06^0#", pair.getLeft());
+        Assertions.assertEquals("" +
+                "01^105110070110007^^^1.07^0#" +
+                "01^105110070110008^^^1.08^0#" +
+                "01^105110070110009^^^1.09^0#", pair.getRight());
+    }
 
     @Test
     void url() {

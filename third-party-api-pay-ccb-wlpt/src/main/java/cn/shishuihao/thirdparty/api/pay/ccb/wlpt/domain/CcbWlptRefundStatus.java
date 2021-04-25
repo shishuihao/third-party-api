@@ -1,7 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.ccb.wlpt.domain;
 
 import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.domain.CcbWlptOrderStatus;
-import cn.shishuihao.thirdparty.api.pay.ccb.wlpt.sdk.response.CcbWlpt5W1003Response;
 import cn.shishuihao.thirdparty.api.pay.domain.transaction.RefundStatus;
 
 import java.util.Arrays;

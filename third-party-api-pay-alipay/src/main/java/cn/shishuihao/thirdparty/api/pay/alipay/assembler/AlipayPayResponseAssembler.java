@@ -6,11 +6,13 @@ import cn.shishuihao.thirdparty.api.pay.alipay.util.AlipayResponseUtils;
 import cn.shishuihao.thirdparty.api.pay.domain.transaction.RefundStatus;
 import cn.shishuihao.thirdparty.api.pay.response.CancelPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.response.CodePayApiResponse;
+import cn.shishuihao.thirdparty.api.pay.response.DownloadBillPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.response.QueryPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.response.RefundPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.response.RefundQueryPayApiResponse;
 import cn.shishuihao.thirdparty.api.pay.util.AmountUtils;
 import com.alipay.easysdk.kernel.util.ResponseChecker;
+import com.alipay.easysdk.payment.common.models.AlipayDataDataserviceBillDownloadurlQueryResponse;
 import com.alipay.easysdk.payment.common.models.AlipayTradeCancelResponse;
 import com.alipay.easysdk.payment.common.models.AlipayTradeFastpayRefundQueryResponse;
 import com.alipay.easysdk.payment.common.models.AlipayTradeQueryResponse;
@@ -132,8 +134,8 @@ public class AlipayPayResponseAssembler {
 
     /**
      * 装配.
-     * {@link "https://opendocs.alipay.com/apis/api_1/alipay.trade.
-     * fastpay.refund.query"}
+     * {@link "https://opendocs.alipay.com/apis/api_1/
+     * alipay.trade.fastpay.refund.query"}
      *
      * @param response 统一收单交易退款查询
      * @return {@link RefundQueryPayApiResponse}
@@ -147,6 +149,25 @@ public class AlipayPayResponseAssembler {
                 .requestId(null)
                 .refundStatuses(new RefundStatus[]{AlipayRefundStatus
                         .refundStatusOf(response.refundStatus)})
+                .build();
+    }
+
+    /**
+     * 装配.
+     * {@link "https://opendocs.alipay.com/apis/api_15/
+     * alipay.data.dataservice.bill.downloadurl.query"}
+     *
+     * @param response 查询对账单下载地址查询
+     * @return {@link DownloadBillPayApiResponse}
+     */
+    public DownloadBillPayApiResponse assemble(
+            final AlipayDataDataserviceBillDownloadurlQueryResponse response) {
+        return DownloadBillPayApiResponse.builder()
+                .success(ResponseChecker.success(response))
+                .code(AlipayResponseUtils.code(response))
+                .message(AlipayResponseUtils.message(response))
+                .requestId(null)
+                .downloadUrl(response.getBillDownloadUrl())
                 .build();
     }
 }

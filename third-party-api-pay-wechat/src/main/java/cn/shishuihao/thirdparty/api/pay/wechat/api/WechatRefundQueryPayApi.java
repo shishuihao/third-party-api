@@ -29,7 +29,8 @@ public class WechatRefundQueryPayApi implements RefundQueryPayApi {
      * @return response
      */
     @Override
-    public RefundQueryPayApiResponse execute(final RefundQueryPayApiRequest request) {
+    public RefundQueryPayApiResponse execute(
+            final RefundQueryPayApiRequest request) {
         final WechatPayApiProperties properties = (WechatPayApiProperties)
                 ApiRegistry.INSTANCE.getApiPropertiesOrThrow(request);
         try {

@@ -5,6 +5,7 @@ import cn.shishuihao.thirdparty.api.pay.PayApiChannel;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayAppPayApi;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayCancelPayApi;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayCodePayApi;
+import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayDownloadBillPayApi;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayH5PayApi;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayQueryPayApi;
 import cn.shishuihao.thirdparty.api.pay.alipay.api.AlipayRefundPayApi;
@@ -38,6 +39,7 @@ public class AlipayPayApiChannel
         this.save(new AlipayAppPayApi(client));
         this.save(new AlipayCancelPayApi(client));
         this.save(new AlipayCodePayApi(client));
+        this.save(new AlipayDownloadBillPayApi(client));
         this.save(new AlipayH5PayApi(client));
         this.save(new AlipayQueryPayApi(client));
         this.save(new AlipayRefundPayApi(client));

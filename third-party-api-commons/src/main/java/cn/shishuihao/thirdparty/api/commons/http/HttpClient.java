@@ -69,6 +69,7 @@ public class HttpClient {
      */
     @Setter(value = AccessLevel.PROTECTED)
     private Decoder jsonDecoder = JacksonDecoder.INSTANCE;
+
     /**
      * HttpClient.
      *
@@ -83,6 +84,7 @@ public class HttpClient {
                 .expireAfterWrite(cacheDuration)
                 .build();
     }
+
     /**
      * HttpClient.
      *

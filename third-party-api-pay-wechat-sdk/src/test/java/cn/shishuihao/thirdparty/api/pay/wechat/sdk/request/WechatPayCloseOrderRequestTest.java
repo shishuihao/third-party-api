@@ -12,16 +12,16 @@ import java.util.HashMap;
  */
 
 class WechatPayCloseOrderRequestTest {
+    final String xml = "<xml>\n" +
+            "   <appid>wx2421b1c4370ec43b</appid>\n" +
+            "   <mch_id>10000100</mch_id>\n" +
+            "   <nonce_str>4ca93f17ddf3443ceabf72f26d64fe0e</nonce_str>\n" +
+            "   <out_trade_no>1415983244</out_trade_no>\n" +
+            "   <sign>59FF1DF214B2D279A0EA7077C54DD95D</sign>\n" +
+            "</xml>";
 
     @Test
     void toXml() {
-        String xml = "<xml>\n" +
-                "   <appid>wx2421b1c4370ec43b</appid>\n" +
-                "   <mch_id>10000100</mch_id>\n" +
-                "   <nonce_str>4ca93f17ddf3443ceabf72f26d64fe0e</nonce_str>\n" +
-                "   <out_trade_no>1415983244</out_trade_no>\n" +
-                "   <sign>59FF1DF214B2D279A0EA7077C54DD95D</sign>\n" +
-                "</xml>";
         WechatPayCloseOrderRequest request = WechatPayCloseOrderRequest.builder()
                 .appId("wx2421b1c4370ec43b")
                 .mchId("10000100")

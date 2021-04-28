@@ -46,7 +46,7 @@ public class ChinaumnProperties extends KeyStoreProperties {
     /**
      * 消息来源.
      */
-    private String msgSrc = "WWW.SMSPCWWL.COM";
+    private String msgSrc;
     /**
      * 消息来源ID.
      */

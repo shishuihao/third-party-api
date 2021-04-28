@@ -1,7 +1,9 @@
 package cn.shishuihao.thirdparty.api.pay.chinaums.sdk.api;
 
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPayQueryRequest;
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPayRefundRequest;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.response.ChinaumsV1NetPayQueryResponse;
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.response.ChinaumsV1NetPayRefundResponse;
 import feign.RequestLine;
 
 /**
@@ -29,7 +31,8 @@ public interface ChinaumsNetPayApi {
      * @return response
      */
     @RequestLine("POST /v1/netpay/refund")
-    String refund(String request);
+    ChinaumsV1NetPayRefundResponse
+    refund(ChinaumsV1NetPayRefundRequest request);
 
     /**
      * 退款查询.

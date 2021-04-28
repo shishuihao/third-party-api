@@ -157,5 +157,4 @@ public class ChinaumsV1NetPayQueryResponse
      */
     @JsonProperty("activityIds")
     private final String activityIds;
-
 }

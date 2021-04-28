@@ -1,5 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.chinaums.sdk.api;
 
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPayQueryRequest;
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.response.ChinaumsV1NetPayQueryResponse;
 import feign.RequestLine;
 
 /**
@@ -17,7 +19,8 @@ public interface ChinaumsNetPayApi {
      * @return response
      */
     @RequestLine("POST /v1/netpay/query")
-    String query(String request);
+    ChinaumsV1NetPayQueryResponse
+    query(ChinaumsV1NetPayQueryRequest request);
 
     /**
      * 退款.

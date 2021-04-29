@@ -88,6 +88,8 @@ class CcbPay100RequestTest {
                         .build())
                 .goodsTag("WXG")
                 .build();
-        Assertions.assertEquals(url, request.url(host, publicKey));
+        String genUrl = request.url(host, publicKey);
+        System.out.println(genUrl);
+        Assertions.assertEquals(url, genUrl);
     }
 }

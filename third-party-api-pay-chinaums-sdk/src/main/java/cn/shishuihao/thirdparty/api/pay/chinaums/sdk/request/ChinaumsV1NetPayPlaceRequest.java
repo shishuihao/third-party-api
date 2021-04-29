@@ -2,6 +2,7 @@ package cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request;
 
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.domain.Good;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.domain.ReturnCommonParams;
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.domain.SubOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.ToString;
@@ -112,7 +113,7 @@ public class ChinaumsV1NetPayPlaceRequest
      * 详见接口下方备注部分.
      */
     @JsonProperty("subOrders")
-    private final String subOrders;
+    private final SubOrder[] subOrders;
     /**
      * 支付结果 通知地址 字符串 ⇐255 否.
      */

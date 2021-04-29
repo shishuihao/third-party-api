@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request;
 
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.domain.RefundSubOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.ToString;
@@ -61,37 +62,10 @@ public class ChinaumsV1NetPayRefundRequest
      * （一 次只能对一个子商户进行退款 ）.
      */
     @JsonProperty("subOrders")
-    private final SubOrder[] subOrders;
+    private final RefundSubOrder[] subOrders;
     /**
      * 退货说明 字符串 ⇐255 否.
      */
     @JsonProperty("refundDesc")
     private final String refundDesc;
-
-    @Jacksonized
-    @ToString
-    @SuperBuilder
-    @Getter
-    public static class SubOrder {
-        /**
-         * 子商户号 字符串 8..32 否.
-         */
-        @JsonProperty("mid")
-        private final String mid;
-        /**
-         * 子商户分账金额 数字型 0..100000000 否.
-         */
-        @JsonProperty("totalAmount")
-        private final Integer totalAmount;
-        /**
-         * 商户子订单号 字符串 6..32 否.
-         */
-        @JsonProperty("merOrderId")
-        private final String merOrderId;
-        /**
-         * 商户退款子订 单号 字符串 6..32 否.
-         */
-        @JsonProperty("refundOrderId")
-        private final String refundOrderId;
-    }
 }

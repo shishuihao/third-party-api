@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.chinaums.sdk.api;
 
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPayPlaceRequest;
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPaySubOrdersConfirmRequest;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.response.ChinaumsV1NetPayPlaceResponse;
 import feign.Param;
 import feign.RequestLine;
@@ -34,5 +35,6 @@ public interface ChinaumsAppletPayApi extends ChinaumsNetPayApi {
      * @return response
      */
     @RequestLine("POST /sub-orders-confirm")
-    String subOrdersConfirm(String request);
+    ChinaumsV1NetPaySubOrdersConfirmRequest
+    subOrdersConfirm(ChinaumsV1NetPaySubOrdersConfirmRequest request);
 }

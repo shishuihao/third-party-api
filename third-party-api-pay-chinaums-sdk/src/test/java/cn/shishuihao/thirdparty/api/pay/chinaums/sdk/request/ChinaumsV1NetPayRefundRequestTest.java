@@ -1,6 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request;
 
 import cn.shishuihao.thirdparty.api.commons.json.JacksonUtils;
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.domain.RefundSubOrder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -37,8 +38,8 @@ class ChinaumsV1NetPayRefundRequestTest {
                 .msgId("07S30609000023115850160142")
                 .mid("898340149000005")
                 .tid("12340042")
-                .subOrders(new ChinaumsV1NetPayRefundRequest.SubOrder[]{
-                        ChinaumsV1NetPayRefundRequest.SubOrder.builder()
+                .subOrders(new RefundSubOrder[]{
+                        RefundSubOrder.builder()
                                 .totalAmount(1)
                                 .mid("988460101800203")
                                 .build()

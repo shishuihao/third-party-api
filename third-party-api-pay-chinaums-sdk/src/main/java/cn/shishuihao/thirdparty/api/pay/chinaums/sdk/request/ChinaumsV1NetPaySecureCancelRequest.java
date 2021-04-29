@@ -9,7 +9,7 @@ import lombok.extern.jackson.Jacksonized;
 /**
  * 担保撤销.
  * 对于担保交易（下单接口请求参数中上送了担保交易标识并置true），
- * 用户支付成功后，商户可调用此接口来进行担保撤销操作。。
+ * 用户支付成功后，商户可调用此接口来进行担保撤销操作。
  *
  * @author shishuihao
  * @version 1.0.0
@@ -21,7 +21,7 @@ import lombok.extern.jackson.Jacksonized;
 public class ChinaumsV1NetPaySecureCancelRequest
         extends AbstractChinaumsRequest {
     /**
-     * 商户订单号 字符串 6..64 否.
+     * 商户订单号 字符串 6..32 是 原交易订单号.
      */
     @JsonProperty("merOrderId")
     private final String merOrderId;

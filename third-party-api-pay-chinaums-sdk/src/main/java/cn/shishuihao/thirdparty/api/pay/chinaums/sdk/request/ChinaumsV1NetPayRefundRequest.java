@@ -24,7 +24,7 @@ import lombok.extern.jackson.Jacksonized;
 public class ChinaumsV1NetPayRefundRequest
         extends AbstractChinaumsRequest {
     /**
-     * 商户订单号 字符串 6..64 否.
+     * 商户订单号 字符串 6..64 是 原交易订单号.
      */
     @JsonProperty("merOrderId")
     private final String merOrderId;

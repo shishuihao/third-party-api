@@ -24,6 +24,11 @@ public abstract class AbstractChinaumsResponse {
     @JsonProperty("errMsg")
     private final String errMsg;
     /**
+     * 链接系统 字符串 否.
+     */
+    @JsonProperty("connectSys")
+    private final String connectSys;
+    /**
      * 消息ID， 原样返回 字符串 ⇐64 否.
      */
     @JsonProperty("msgId")
@@ -54,8 +59,8 @@ public abstract class AbstractChinaumsResponse {
     @JsonProperty("instMid")
     private final String instMid;
     /**
-     * 链接系统 字符串 否.
+     * 平台流水号 字符串 否.
      */
-    @JsonProperty("connectSys")
-    private final String connectSys;
+    @JsonProperty("seqId")
+    private final String seqId;
 }

@@ -30,7 +30,7 @@ import lombok.extern.jackson.Jacksonized;
 public class ChinaumsV1NetPayPlaceRequest
         extends AbstractChinaumsRequest {
     /**
-     * 商户订单号 字符串 6..64 否.
+     * 商户订单号 字符串 6..64 否 商户自行生成.
      */
     @JsonProperty("merOrderId")
     private final String merOrderId;

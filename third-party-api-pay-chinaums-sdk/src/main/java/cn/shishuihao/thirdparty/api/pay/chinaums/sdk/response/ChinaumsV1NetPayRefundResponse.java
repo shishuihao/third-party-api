@@ -27,11 +27,6 @@ public class ChinaumsV1NetPayRefundResponse
     @JsonProperty("merName")
     private final String merName;
     /**
-     * 平台流水号 字符串 否.
-     */
-    @JsonProperty("seqId")
-    private final String seqId;
-    /**
      * 交易状态 字符串 否.
      */
     @JsonProperty("status")

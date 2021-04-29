@@ -32,11 +32,6 @@ public class ChinaumsV1NetPayRefundQueryResponse
     @JsonProperty("refundTargetOrderId")
     private final String refundTargetOrderId;
     /**
-     * 平台流水号 字符串 否.
-     */
-    @JsonProperty("seqId")
-    private final String seqId;
-    /**
      * 清分ID 字符串 否.
      * 如果来源方传了bankRefId就等于bankRefId，否则等于seqId
      */

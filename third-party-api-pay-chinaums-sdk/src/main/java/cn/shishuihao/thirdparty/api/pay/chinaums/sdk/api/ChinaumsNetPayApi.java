@@ -1,10 +1,12 @@
 package cn.shishuihao.thirdparty.api.pay.chinaums.sdk.api;
 
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPayCloseRequest;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPayQueryRequest;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPayRefundQueryRequest;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPayRefundRequest;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPaySecureCancelRequest;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPaySecureCompleteRequest;
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.response.ChinaumsV1NetPayCloseResponse;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.response.ChinaumsV1NetPayQueryResponse;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.response.ChinaumsV1NetPayRefundQueryResponse;
 import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.response.ChinaumsV1NetPayRefundResponse;
@@ -77,5 +79,6 @@ public interface ChinaumsNetPayApi {
      * @return response
      */
     @RequestLine("POST /v1/netpay/close")
-    String close(String request);
+    ChinaumsV1NetPayCloseResponse
+    close(ChinaumsV1NetPayCloseRequest request);
 }

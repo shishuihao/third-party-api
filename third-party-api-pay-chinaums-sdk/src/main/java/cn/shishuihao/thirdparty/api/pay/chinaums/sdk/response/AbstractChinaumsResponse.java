@@ -53,4 +53,9 @@ public abstract class AbstractChinaumsResponse {
      */
     @JsonProperty("instMid")
     private final String instMid;
+    /**
+     * 链接系统 字符串 否.
+     */
+    @JsonProperty("connectSys")
+    private final String connectSys;
 }

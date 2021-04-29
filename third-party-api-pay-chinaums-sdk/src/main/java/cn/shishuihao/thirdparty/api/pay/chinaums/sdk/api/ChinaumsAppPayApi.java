@@ -1,5 +1,7 @@
 package cn.shishuihao.thirdparty.api.pay.chinaums.sdk.api;
 
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.request.ChinaumsV1NetPayPlaceRequest;
+import cn.shishuihao.thirdparty.api.pay.chinaums.sdk.response.ChinaumsV1NetPayPlaceResponse;
 import feign.Param;
 import feign.RequestLine;
 
@@ -25,6 +27,7 @@ public interface ChinaumsAppPayApi extends ChinaumsNetPayApi {
      * @return response
      */
     @RequestLine("POST /v1/netpay/{msgType}")
-    String place(@Param("msgType") String msgType,
-                 String request);
+    ChinaumsV1NetPayPlaceResponse
+    place(@Param("msgType") String msgType,
+          ChinaumsV1NetPayPlaceRequest request);
 }

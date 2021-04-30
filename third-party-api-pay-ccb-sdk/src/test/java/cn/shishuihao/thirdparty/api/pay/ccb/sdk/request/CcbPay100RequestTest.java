@@ -88,8 +88,8 @@ class CcbPay100RequestTest {
                         .build())
                 .goodsTag("WXG")
                 .build();
-        String genUrl = request.url(host, publicKey);
-        System.out.println(genUrl);
-        Assertions.assertEquals(url, genUrl);
+        // linux没有%0D
+        Assertions.assertEquals(url.replace("%0D", ""),
+                request.url(host, publicKey).replace("%0D", ""));
     }
 }

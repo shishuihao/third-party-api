@@ -28,7 +28,8 @@ subprojects {
     apply plugin: 'jacoco'
     apply plugin: "io.freefair.lombok"
 
-    sourceCompatibility = 1.8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
     configurations {
         compileOnly {

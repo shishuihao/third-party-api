@@ -41,6 +41,8 @@ class CcbPay101RequestTest {
                 .subAppId("wx3b8bb3fad101bb07")
                 .returnField("11000000000000000000")
                 .build();
-        Assertions.assertEquals(url, request.url(host, publicKey));
+        // linux没有%0D
+        Assertions.assertEquals(url.replace("%0D", ""),
+                request.url(host, publicKey).replace("%0D", ""));
     }
 }

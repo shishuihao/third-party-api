@@ -35,6 +35,8 @@ class CcbPay103RequestTest {
                 .orderId("20180906101102")
                 .qrCodeType("2")
                 .build();
-        Assertions.assertEquals(url, request.url(host, publicKey));
+        // linux没有%0D
+        Assertions.assertEquals(url.replace("%0D", ""),
+                request.url(host, publicKey).replace("%0D", ""));
     }
 }

@@ -35,6 +35,8 @@ class CcbPay107RequestTest {
                 .subAppId("wx3b8bb3fad101bb07")
                 .qrCode("134737690209713402")
                 .build();
-        Assertions.assertEquals(url, request.url(host, publicKey));
+        // linux没有%0D
+        Assertions.assertEquals(url.replace("%0D", ""),
+                request.url(host, publicKey).replace("%0D", ""));
     }
 }

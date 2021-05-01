@@ -39,7 +39,7 @@ public class PayClient extends HttpClient {
      * codeApi.
      *
      * @param properties properties
-     * @return WechatPayCodeApi
+     * @return CodePayApi
      */
     public CodePayApi codeApi(
             final PayProperties properties) {

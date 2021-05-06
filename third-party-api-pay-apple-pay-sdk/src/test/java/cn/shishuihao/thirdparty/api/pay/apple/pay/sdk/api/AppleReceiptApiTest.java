@@ -1,12 +1,10 @@
 package cn.shishuihao.thirdparty.api.pay.apple.pay.sdk.api;
 
-import cn.shishuihao.thirdparty.api.pay.apple.pay.sdk.AppletPayClient;
+import cn.shishuihao.thirdparty.api.pay.apple.pay.sdk.ApplePayClient;
 import cn.shishuihao.thirdparty.api.pay.apple.pay.sdk.request.AppleVerifyReceiptRequest;
 import cn.shishuihao.thirdparty.api.pay.apple.pay.sdk.response.AppleVerifyReceiptResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author shishuihao
@@ -14,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 class AppleReceiptApiTest {
-    final AppletPayClient client = new AppletPayClient();
+    final ApplePayClient client = new ApplePayClient();
 
     @Test
     void verifyReceipt() {

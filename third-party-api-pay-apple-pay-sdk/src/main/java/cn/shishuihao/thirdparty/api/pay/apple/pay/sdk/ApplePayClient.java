@@ -8,7 +8,7 @@ import cn.shishuihao.thirdparty.api.pay.apple.pay.sdk.api.AppleReceiptApi;
  * @version 1.0.0
  */
 
-public class AppletPayClient extends HttpClient {
+public class ApplePayClient extends HttpClient {
     /**
      * ENDPOINT.
      */
@@ -23,7 +23,7 @@ public class AppletPayClient extends HttpClient {
     /**
      * new AppletPayClient.
      */
-    public AppletPayClient() {
+    public ApplePayClient() {
         super(ENDPOINT);
     }
 
@@ -34,7 +34,7 @@ public class AppletPayClient extends HttpClient {
      * @return AppleReceiptApi
      */
     public AppleReceiptApi receiptApi(
-            final AppletProperties properties) {
+            final AppleProperties properties) {
         return this.jsonApi(properties, AppleReceiptApi.class);
     }
 }

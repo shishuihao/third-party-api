@@ -12,7 +12,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
-public class AppletProperties extends KeyStoreProperties {
+public class AppleProperties extends KeyStoreProperties {
     /**
      * (Required) Your app’s shared secret, which is a hexadecimal string.
      */

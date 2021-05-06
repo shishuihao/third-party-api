@@ -12,7 +12,8 @@ public class AppletPayClient extends HttpClient {
     /**
      * ENDPOINT.
      */
-    public static final String ENDPOINT = "https://buy.itunes.apple.com";
+    public static final String ENDPOINT
+            = "https://buy.itunes.apple.com";
     /**
      * Sandbox ENDPOINT.
      */
@@ -27,7 +28,7 @@ public class AppletPayClient extends HttpClient {
     }
 
     /**
-     * commonApi.
+     * receiptApi.
      *
      * @param properties properties
      * @return AppleReceiptApi

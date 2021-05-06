@@ -18,7 +18,7 @@ class AppleReceiptApiTest {
     void verifyReceipt() {
         AppleVerifyReceiptResponse response = client.receiptApi(null)
                 .verifyReceipt(AppleVerifyReceiptRequest.builder()
-                .build());
+                        .build());
         Assertions.assertEquals(21002, response.getStatus());
     }
 }

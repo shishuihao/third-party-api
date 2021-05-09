@@ -33,8 +33,8 @@ class BusinessInfoTest {
                                 .addressCode("440305")
                                 .storeAddress("xx区xx大厦x层xxx室")
                                 .appId("1234567890123456")
-                                .storeEntrancePic("media_id1")
-                                .indoorPic("media_id2")
+                                .entrancePics(new String[]{"media_id1"})
+                                .indoorPics(new String[]{"media_id2"})
                                 .appId("1234567890123456")
                                 .build(),
                         WebSalesScenes.builder()

@@ -31,11 +31,11 @@ public class StoreSalesScenes extends SalesScenes {
     /**
      * 门店门头照片.
      */
-    private final String storeEntrancePic;
+    private final String[] entrancePics;
     /**
      * 店内环境照片.
      */
-    private final String indoorPic;
+    private final String[] indoorPics;
     /**
      * 应用ID(选填).
      */

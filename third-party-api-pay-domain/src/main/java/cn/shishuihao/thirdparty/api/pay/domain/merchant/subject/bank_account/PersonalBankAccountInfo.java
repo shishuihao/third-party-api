@@ -11,12 +11,12 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class PersonalBankAccountInfo extends BankAccountInfo {
     /**
-     * builder.
+     * 账户类型.
      *
-     * @param builder builder
+     * @return BankAccountType
      */
-    public PersonalBankAccountInfo(
-            final BankAccountInfoBuilder<?, ?> builder) {
-        super(builder.bankAccountType(BankAccountType.PERSONAL));
+    @Override
+    public BankAccountType getBankAccountType() {
+        return BankAccountType.PERSONAL;
     }
 }

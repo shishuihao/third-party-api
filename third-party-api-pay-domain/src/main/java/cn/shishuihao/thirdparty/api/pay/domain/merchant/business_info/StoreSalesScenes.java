@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
  * @author shishuihao
  * @version 1.0.0
  */
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @SuperBuilder
 @Data
 public class StoreSalesScenes extends SalesScenes {

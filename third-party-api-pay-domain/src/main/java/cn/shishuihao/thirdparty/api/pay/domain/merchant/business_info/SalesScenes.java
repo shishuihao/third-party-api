@@ -5,6 +5,7 @@ import lombok.experimental.SuperBuilder;
 
 /**
  * 经营场景.
+ * 一种经营场景只能一项
  *
  * @author shishuihao
  * @version 1.0.0

@@ -1,5 +1,6 @@
 package cn.shishuihao.thirdparty.api.pay.domain.merchant.subject_info.certificate_info;
 
+import cn.shishuihao.thirdparty.api.pay.domain.common.period.ShortTermPeriod;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +21,10 @@ class CertificateInfoTest {
                 .merchantName("xx公益团体")
                 .legalPerson("李四")
                 .companyAddress("xx省xx市xx区xx路xx号")
-                .periodBegin(LocalDate.of(2019, 8, 1))
-                .periodEnd(LocalDate.of(2029, 8, 1))
+                .period(ShortTermPeriod.builder()
+                        .begin(LocalDate.of(2019, 8, 1))
+                        .end(LocalDate.of(2029, 8, 1))
+                        .build())
                 .build();
         Assertions.assertEquals("media_id1", certificateInfo.getCopy());
     }

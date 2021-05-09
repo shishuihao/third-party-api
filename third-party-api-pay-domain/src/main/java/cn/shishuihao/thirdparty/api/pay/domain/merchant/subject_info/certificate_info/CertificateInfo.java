@@ -1,9 +1,8 @@
 package cn.shishuihao.thirdparty.api.pay.domain.merchant.subject_info.certificate_info;
 
+import cn.shishuihao.thirdparty.api.pay.domain.common.period.Period;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
-
-import java.time.LocalDate;
 
 /**
  * 登记证书.
@@ -39,11 +38,7 @@ public class CertificateInfo {
      */
     private final String companyAddress;
     /**
-     * 有效期限开始日期.
+     * 有效期限.
      */
-    private final LocalDate periodBegin;
-    /**
-     * 有效期限结束日期.
-     */
-    private final LocalDate periodEnd;
+    private final Period period;
 }

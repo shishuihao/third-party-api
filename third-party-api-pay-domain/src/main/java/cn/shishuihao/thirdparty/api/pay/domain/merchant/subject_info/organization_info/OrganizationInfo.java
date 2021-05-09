@@ -1,9 +1,8 @@
 package cn.shishuihao.thirdparty.api.pay.domain.merchant.subject_info.organization_info;
 
+import cn.shishuihao.thirdparty.api.pay.domain.common.period.Period;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
-
-import java.time.LocalDate;
 
 /**
  * 组织机构代码证.
@@ -23,11 +22,7 @@ public class OrganizationInfo {
      */
     private final String code;
     /**
-     * 组织机构代码证有效期开始日期.
+     * 组织机构代码证有效期.
      */
-    private final LocalDate periodBegin;
-    /**
-     * 组织机构代码证有效期结束日期.
-     */
-    private final LocalDate periodEnd;
+    private final Period period;
 }

@@ -6,5 +6,5 @@ package cn.shishuihao.thirdparty.api.pay.domain.merchant.subject;
  * @author shishuihao
  * @version 1.0.0
  */
-public interface SubjectInfo {
+public interface Subject {
 }

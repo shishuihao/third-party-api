@@ -1,15 +1,15 @@
-package cn.shishuihao.thirdparty.api.pay.domain.merchant.subject.bank_account;
+package cn.shishuihao.thirdparty.api.pay.domain.merchant.bank_account_info;
 
 import lombok.experimental.SuperBuilder;
 
 /**
- * 对公银行账户.
+ * 经营者个人银行卡.
  *
  * @author shishuihao
  * @version 1.0.0
  */
 @SuperBuilder
-public class CorporateBankAccountInfo extends BankAccountInfo {
+public class PersonalBankAccountInfo extends BankAccountInfo {
     /**
      * 账户类型.
      *
@@ -17,6 +17,6 @@ public class CorporateBankAccountInfo extends BankAccountInfo {
      */
     @Override
     public BankAccountType getBankAccountType() {
-        return BankAccountType.CORPORATE;
+        return BankAccountType.PERSONAL;
     }
 }

@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.pay.domain.merchant.subject.bank_account;
+package cn.shishuihao.thirdparty.api.pay.domain.merchant.bank_account_info;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

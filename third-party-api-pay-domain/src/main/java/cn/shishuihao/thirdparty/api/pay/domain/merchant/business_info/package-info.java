@@ -1,5 +1,6 @@
 /**
- * 支付领域商户子域(pay domain merchant subdomain) 商户经营信息(merchant business info).
+ * 支付领域商户子域(pay domain merchant subdomain)
+ * 商户经营信息(merchant business info).
  *
  * @author shishuihao
  * @version 1.0.0

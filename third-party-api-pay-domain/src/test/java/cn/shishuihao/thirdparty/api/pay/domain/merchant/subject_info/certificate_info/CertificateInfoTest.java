@@ -1,4 +1,4 @@
-package cn.shishuihao.thirdparty.api.pay.domain.merchant.subject_info.certificate;
+package cn.shishuihao.thirdparty.api.pay.domain.merchant.subject_info.certificate_info;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

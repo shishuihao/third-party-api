@@ -1,6 +1,8 @@
 package cn.shishuihao.thirdparty.api.pay.domain.merchant.subject;
 
 /**
+ * 主体类型.
+ *
  * @author shishuihao
  * @version 1.0.0
  */

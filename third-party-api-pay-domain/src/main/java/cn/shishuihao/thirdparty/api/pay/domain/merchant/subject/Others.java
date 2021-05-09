@@ -1,7 +1,12 @@
 package cn.shishuihao.thirdparty.api.pay.domain.merchant.subject;
 
-import lombok.Builder;
+import cn.shishuihao.thirdparty.api.pay.domain.merchant.bank_account.CorporateBankAccount;
+import cn.shishuihao.thirdparty.api.pay.domain.merchant.subject.certificate.Certificate;
+import cn.shishuihao.thirdparty.api.pay.domain.merchant.subject.organization.Organization;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 /**
  * 其他组织.
@@ -10,7 +15,25 @@ import lombok.Data;
  * @author shishuihao
  * @version 1.0.0
  */
-@Builder
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@SuperBuilder
 @Data
-public class Others implements Subject {
+public class Others extends Subject<
+        Certificate,
+        CorporateBankAccount> {
+    /**
+     * 组织机构代码证.
+     */
+    private final Organization organization;
+
+    /**
+     * 主体类型.
+     *
+     * @return SubjectType
+     */
+    @Override
+    public SubjectType getSubjectType() {
+        return SubjectType.OTHERS;
+    }
 }

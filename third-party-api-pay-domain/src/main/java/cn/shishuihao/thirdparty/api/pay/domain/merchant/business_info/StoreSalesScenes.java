@@ -2,6 +2,7 @@ package cn.shishuihao.thirdparty.api.pay.domain.merchant.business_info;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -11,6 +12,7 @@ import lombok.experimental.SuperBuilder;
  * @version 1.0.0
  */
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@ToString(callSuper = true)
 @SuperBuilder
 @Data
 public class StoreSalesScenes extends SalesScenes {
